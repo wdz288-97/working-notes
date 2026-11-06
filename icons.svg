@@ -21,5 +21,12 @@
   <symbol id="i-tag" viewBox="0 0 48 48"><path pathLength="1" d="M7 7h17l17 17l-17 17L7 24z"/><path pathLength="1" d="M15 12a3 3 0 1 1 0 6a3 3 0 1 1 0-6z"/></symbol>
   <symbol id="i-gate" viewBox="0 0 48 48"><path pathLength="1" d="M24 4l20 20l-20 20L4 24z"/><path pathLength="1" d="M16 24l6 6l10-12"/></symbol>
   <symbol id="i-loop" viewBox="0 0 48 48"><path pathLength="1" d="M38 20a15 15 0 1 0 1 9"/><path pathLength="1" d="M33 14l5.5 6.5l6-6"/></symbol>
+  <symbol id="i-shop" viewBox="0 0 48 48"><path pathLength="1" d="M8 12l3-7h26l3 7"/><path pathLength="1" d="M4 12h40l-2 6c-1.5 3-5 3-6.5 0c-1.5 3-5 3-6.5 0c-1.5 3-5 3-6.5 0c-1.5 3-5 3-6.5 0c-1.5 3-5 3-6.5 0z"/><path pathLength="1" d="M7 22v20h34V22"/><path pathLength="1" d="M20 42V30h8v12M11 27h6v6h-6zM31 27h6v6h-6z"/></symbol>
+  <symbol id="i-scooter" viewBox="0 0 48 48"><path pathLength="1" d="M11 32a5 5 0 1 1 0 10a5 5 0 1 1 0-10zM37 32a5 5 0 1 1 0 10a5 5 0 1 1 0-10z"/><path pathLength="1" d="M16 37h15l5-13h-7M36 24l2-7h4"/><path pathLength="1" d="M5 16h13v11H5z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 48 48"><path pathLength="1" d="M9 16h30l-2 26H11z"/><path pathLength="1" d="M18 16v-4a6 6 0 0 1 12 0v4"/></symbol>
+  <symbol id="i-dine" viewBox="0 0 48 48"><path pathLength="1" d="M25 10a14 14 0 1 1 0 28a14 14 0 1 1 0-28zM25 17a7 7 0 1 1 0 14a7 7 0 1 1 0-14z"/><path pathLength="1" d="M6 10v8a2 2 0 0 0 4 0v-8M8 20v18"/><path pathLength="1" d="M44 10c-3 2-3 9 0 11v17"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 48 48"><path pathLength="1" d="M15 5h18v38H15z"/><path pathLength="1" d="M22 38h4"/><path pathLength="1" d="M19 22l3.5 3.5L29 19"/></symbol>
+  <symbol id="i-tray" viewBox="0 0 48 48"><path pathLength="1" d="M5 35h38"/><path pathLength="1" d="M8 35a16 16 0 0 1 32 0"/><path pathLength="1" d="M24 15v4M21 15h6"/></symbol>
+  <symbol id="i-car" viewBox="0 0 48 48"><path pathLength="1" d="M5 34v-7l6-9h24l8 9v7z"/><path pathLength="1" d="M13 26l4-5h14l4 5z"/><path pathLength="1" d="M14 31a4 4 0 1 1 0 8a4 4 0 1 1 0-8zM34 31a4 4 0 1 1 0 8a4 4 0 1 1 0-8z"/></symbol>
   <symbol id="i-tick" viewBox="0 0 24 24"><path pathLength="1" d="M12 2a10 10 0 1 1 0 20a10 10 0 1 1 0-20z"/><path pathLength="1" d="M7 12.5l3.2 3.2L17 9"/></symbol>
 </svg>

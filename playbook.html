@@ -24,7 +24,8 @@
   </header>
 
   <nav class="rail" id="rail" aria-label="Story chapters">
-    <a href="#s-ways" data-rail="-1">Three ways in</a>
+    <a href="#top" data-rail="-2">The loop</a>
+    <a href="#s-example" data-rail="-1">The example</a>
     <a href="#s-plan" data-rail="0">Plan</a>
     <a href="#s-do" data-rail="1">Do</a>
     <a href="#s-check" data-rail="2">Check</a>
@@ -32,25 +33,55 @@
     <a href="#ways" data-rail="5">Other ways in</a>
   </nav>
 
-  <header class="page-head">
-    <p class="page-name">Business analysis playbook</p>
-    <h1>One loop, three ways in</h1>
-    <p class="lede">Analysis work doesn't always start with someone asking. Scroll through one month of a KPI being owned, for a made-up chain of coffee shops, then see how requests and team initiatives run through the same loop.</p>
-    <p class="scroll-cue"><svg class="ico cue-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M6 13l6 6l6-6"/></svg><span class="on-wide">Scroll to follow the story. The drawing on the right builds as you read.</span><span class="on-phone">Scroll to follow the story. The drawing stays at the top and builds as you read.</span></p>
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name">Business analysis playbook</p>
+      <h1>One loop, three ways in</h1>
+      <p class="lede">Most business work runs on a loop: plan, do, check, act. A business intelligence analyst supports every turn of it: agreeing targets and definitions, tracking the numbers, explaining what moved, and helping the teams who act.</p>
+      <p>The analyst's work usually starts in one of three ways: <strong>a KPI they own moves</strong>, <strong>another team asks a question</strong>, or <strong>a team starts an initiative</strong>.</p>
+      <p class="scope-note">These notes come from work in companies with several teams, a ticketing system and regular business reviews. In a small business the same loop applies with lighter tools: a shared sheet instead of tickets, a weekly catch-up instead of a formal review.</p>
+    </div>
+    <svg class="canvas loop-figure" id="ways-canvas" viewBox="0 0 440 400" aria-hidden="true"></svg>
+    <p class="scroll-cue"><svg class="ico cue-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M6 13l6 6l6-6"/></svg>Scroll to follow one example around the loop</p>
   </header>
 
   <section class="scrolly" id="scrolly" aria-label="The story">
     <p class="story-start" aria-hidden="true"><svg class="ico cue-arrow up" viewBox="0 0 24 24"><path d="M12 20V5M6 11l6-6l6 6"/></svg><span><b>Scroll to start.</b> The drawing above builds as you go.</span></p>
     <div class="stage-col">
       <div class="stage" id="stage" data-scene="none" data-state="none" aria-hidden="true">
-        <div class="cycle">
-          <svg id="cycle-mark" viewBox="0 0 60 60"></svg>
-          <p class="cycle-text"><b id="cycle-name">Plan, do, check, act</b><span id="cycle-note">One loop, three ways in</span></p>
+        <div class="loop-guide">
+          <div class="loop-strip">
+            <ol class="loop-steps" id="loop-steps"><li>Plan</li><li>Do</li><li>Check</li><li>Act</li></ol>
+            <svg class="ico loop-again"><use href="icons.svg#i-loop"/></svg>
+          </div>
+          <p class="loop-note"><b id="loop-name">Plan, do, check, act</b><span id="loop-desc">: one example, step by step</span></p>
         </div>
         <p class="stage-hint"><svg class="ico cue-arrow" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6l6-6"/></svg>The drawing starts here as you scroll</p>
         <div class="scenes">
 
-          <div class="scene scene-ways"><svg class="canvas" id="ways-canvas" viewBox="0 0 440 400"></svg></div>
+          <div class="scene scene-example">
+            <svg class="canvas" viewBox="0 0 440 400">
+              <use class="ico draw" href="icons.svg#i-shop" x="44" y="4" width="76" height="76" data-at="0"/>
+              <use class="ico draw" href="icons.svg#i-shop" x="182" y="4" width="76" height="76" data-at="0.04"/>
+              <use class="ico draw" href="icons.svg#i-shop" x="320" y="4" width="76" height="76" data-at="0.08"/>
+              <text class="note" x="220" y="104" text-anchor="middle" data-at="0.1">a made-up chain of 20 coffee shops</text>
+              <text class="big" x="220" y="146" text-anchor="middle" data-at="0.14">Six ways to order</text>
+              <use class="ico draw accent" href="icons.svg#i-scooter" x="53" y="164" width="44" height="44" data-at="0.18"/>
+              <text x="75" y="228" text-anchor="middle" data-at="0.18">Delivery apps</text>
+              <use class="ico draw" href="icons.svg#i-bag" x="198" y="164" width="44" height="44" data-at="0.22"/>
+              <text x="220" y="228" text-anchor="middle" data-at="0.22">Takeaway</text>
+              <use class="ico draw" href="icons.svg#i-dine" x="343" y="164" width="44" height="44" data-at="0.26"/>
+              <text x="365" y="228" text-anchor="middle" data-at="0.26">Dine-in</text>
+              <use class="ico draw" href="icons.svg#i-phone" x="53" y="250" width="44" height="44" data-at="0.3"/>
+              <text x="75" y="314" text-anchor="middle" data-at="0.3">App pre-order</text>
+              <use class="ico draw" href="icons.svg#i-tray" x="198" y="250" width="44" height="44" data-at="0.34"/>
+              <text x="220" y="314" text-anchor="middle" data-at="0.34">Catering</text>
+              <use class="ico draw" href="icons.svg#i-car" x="343" y="250" width="44" height="44" data-at="0.38"/>
+              <text x="365" y="314" text-anchor="middle" data-at="0.38">Drive-through</text>
+              <text class="big" x="220" y="362" text-anchor="middle" data-at="0.44">About 124k orders a month</text>
+              <text class="note" x="220" y="386" text-anchor="middle" data-at="0.46">last October; all figures illustrative</text>
+            </svg>
+          </div>
 
           <div class="scene scene-plan">
             <svg class="canvas" viewBox="0 0 440 400">
@@ -183,65 +214,67 @@ GROUP BY 1, 2;</code></pre>
     </div>
 
     <div class="steps">
-      <div class="step" id="s-ways" data-scene="ways" data-state="ways" data-stage="-1"><div class="step-card">
-        <h3>Analysis work starts in three ways</h3>
-        <p>A KPI someone owns moves. Another team asks a question. Or a team sets out to do something, such as a loyalty programme.</p>
-        <p>All three run through the same loop of plan, do, check and act. This story follows the first, at a made-up chain of coffee shops.</p>
+      <div class="step" id="s-example" data-scene="example" data-state="example" data-stage="-1"><div class="step-card">
+        <h3>The example: a café chain and its monthly orders</h3>
+        <p>Imagine a made-up chain of <strong>20 coffee shops</strong>. Customers order in <strong>six ways</strong>: delivery apps, takeaway, dine-in, app pre-orders, catering and the drive-through.</p>
+        <p>The metric followed is <strong>monthly orders</strong>, about <strong>124k</strong> last October.</p>
       </div></div>
       <div class="step" id="s-plan" data-scene="plan" data-state="plan" data-stage="0"><div class="step-card">
-        <h3>Owning a number starts before it moves</h3>
-        <p>A business intelligence analyst often owns key metrics: tracking them regularly, explaining what moves them, and working with the teams who can act. Here, that metric is monthly orders.</p>
-        <p>Its target is set with the business-unit head, and its definition is agreed across every team, so everyone reads the same number.</p>
+        <h3>A key metric gets an owner, a target and one definition</h3>
+        <p>Monthly orders is <strong>owned by the BI analyst</strong>, who tracks it, explains its moves and works with the teams who act.</p>
+        <p>Before the month starts, the <strong>target</strong> is agreed with the business-unit head, and <mark>every team counts an order the same way</mark>.</p>
       </div></div>
       <div class="step" id="s-do" data-scene="track" data-state="track" data-stage="1"><div class="step-card">
-        <h3>Week by week, small slips add up</h3>
-        <p>Then the shops run, and orders are tracked weekly against target and last year. Through September and October, orders slipped a little each week while last year's line held steady.</p>
+        <h3>Weekly tracking shows orders slipping</h3>
+        <p>During the month, the analyst checks orders <strong>every week</strong> against target and last year.</p>
+        <p>Through September and October, <mark>orders fall a little further each week</mark> while last year's line holds steady.</p>
       </div></div>
       <div class="step" id="s-check" data-scene="chart" data-state="total" data-stage="2"><div class="step-card">
-        <h3>By the monthly review, orders are down 5.8k</h3>
-        <p>October closes at 118.2k orders, against 124.0k a year earlier: down 4.7%, and below its 122.0k target. The owner of the number is expected to explain it.</p>
+        <h3>October closes 5.8k orders down</h3>
+        <p>At the monthly review, October shows <strong>118.2k</strong> orders against 124.0k a year earlier: <span class="chg fall">−4.7%</span>, and <span class="chg fall">3.8k below</span> target.</p>
+        <p>As the metric's owner, the analyst is expected to explain why.</p>
       </div></div>
       <div class="step" data-scene="confirm" data-state="confirm" data-stage="2"><div class="step-card">
-        <h3>A number is worth explaining only once it's confirmed</h3>
-        <p>Before any explanation, the number itself gets checked: the same definition both years, complete data, and totals that match the master dashboard and last year's review.</p>
-        <p>A drop caused by a broken data load isn't a business problem.</p>
+        <h3>First, the analyst makes sure the drop is real</h3>
+        <p>A drop in the report isn't always a real drop: <mark>late or incomplete data can make orders look lower</mark> than they were.</p>
+        <p>That's why it's checked first: the <strong>same definition</strong> both years, <strong>complete data</strong>, and totals that <strong>match the master dashboard</strong>.</p>
       </div></div>
       <div class="step" data-scene="work" data-state="sql" data-stage="2"><div class="step-card">
-        <h3>Splitting the drop takes one query, inside one plan</h3>
-        <p>With the total confirmed, the next question is where the drop came from. The AI writes the SQL inside a plan agreed first: tables, filters, grain and calculations. Its output is checked before anyone reads it.</p>
+        <h3>Then the drop is broken down, with the AI writing the query</h3>
+        <p>To see where the drop came from, the analyst and the AI first agree <strong>what to count and how</strong>. The AI then writes the SQL, and the analyst <mark>checks the output before reading anything into it</mark>.</p>
         <p class="aside"><button type="button" class="link-btn" data-open="drawer-work">See the plan, SQL and checks</button></p>
       </div></div>
       <div class="step" data-scene="chart" data-state="split" data-stage="2"><div class="step-card">
-        <h3>Four ways of ordering fell, and two grew</h3>
-        <p>The split follows how customers order: through delivery apps, takeaway, dine-in, app pre-orders, catering and the drive-through. Each row shows October 2026 against October 2025, and the change between them.</p>
+        <h3>Four channels lost orders, and two gained</h3>
+        <p>Split by how customers order, each row compares <strong>this October with last</strong>. The red bars are the losses.</p>
       </div></div>
       <div class="step aha" data-scene="chart" data-state="abs" data-stage="2"><div class="step-card">
         <h3>Delivery apps explain 83% of the drop</h3>
-        <p>Ranked by the size of the change, delivery-app orders fell by 4.8k. This is the moment the story turns: one channel holds most of the answer, and a big channel is where action pays back.</p>
-        <p>Next comes a split by shop and by app, and a test of the operations team's explanation against related metrics.</p>
+        <p>Delivery-app orders changed by <span class="chg fall">−4.8k</span>, most of the 5.8k drop. <mark>One large channel holds most of the answer</mark>, so that's where action will pay back.</p>
+        <p>The next questions: which <strong>shops</strong> and which <strong>apps</strong>, and does the operations team's explanation hold up in the data?</p>
       </div></div>
       <div class="step" data-scene="chart" data-state="pct" data-stage="2"><div class="step-card">
-        <h3>The drive-through fell fastest, but by only 0.7k</h3>
-        <p>Ranked by rate instead, drive-through orders fell 35%. That gets logged with its evidence and a cue to revisit if the drive-through becomes a priority, rather than leading the story.</p>
-        <p>Digging stops when more depth wouldn't change the action.</p>
+        <h3>The drive-through fell fastest, but it's small</h3>
+        <p>By rate, drive-through orders changed by <span class="chg fall">−35%</span>, yet that's only 0.7k orders. It's <strong>noted to revisit later</strong> rather than made the headline.</p>
+        <p><mark>The analysis stops when more detail wouldn't change the action.</mark></p>
       </div></div>
       <div class="step" id="s-act" data-scene="align" data-state="align" data-stage="3"><div class="step-card">
-        <h3>A finding holds only after it has been challenged</h3>
-        <p>With the driver found, the loop turns to action, starting with the business-unit head. The head questions the finding with context the data doesn't have; each question is worth understanding before it's answered with data, until the finding holds or is dismissed.</p>
+        <h3>Before anyone acts, the business-unit head tests the finding</h3>
+        <p>The head brings <strong>context the data doesn't have</strong> and asks questions. The analyst answers each one <strong>with data</strong>, <mark>until the finding holds or is dismissed</mark>.</p>
       </div></div>
       <div class="step" data-scene="act" data-state="act" data-stage="3"><div class="step-card">
-        <h3>The action belongs to the people who run it</h3>
-        <p>Once the finding holds, a shared thread carries the evidence, priority and timeline to the head and the operations manager. The operations manager designs the action, here a delivery-app promotion, with data points supplied as it takes shape.</p>
-        <p>Agreement shapes each step, but it isn't proof of cause. The data keeps supporting it.</p>
+        <h3>The operations manager turns the finding into an action</h3>
+        <p>A <strong>shared thread</strong> brings in the evidence, priority and timeline. The operations manager designs a <strong>delivery-app promotion</strong>, and the analyst supplies data as the plan takes shape.</p>
+        <p><mark>Agreeing on a cause doesn't prove it</mark>, so the data keeps backing each step.</p>
       </div></div>
       <div class="step" data-scene="present" data-state="present" data-stage="3"><div class="step-card">
-        <h3>The review slide leads with the finding</h3>
-        <p>By the business review, the finding and its action are ready to share. Documents are updated by the cutoff, the numbers pre-reviewed with the head, and who presents what is agreed.</p>
-        <p>On the slide, the title states the finding and the chart proves it.</p>
+        <h3>At the business review, the slide leads with the finding</h3>
+        <p>Before the meeting, documents are <strong>updated by the cutoff</strong>, the numbers <strong>pre-reviewed with the head</strong>, and presenters agreed.</p>
+        <p>On the slide, <mark>the title states the finding and the chart proves it</mark>.</p>
       </div></div>
       <div class="step" data-scene="track" data-state="next" data-stage="4"><div class="step-card">
-        <h3>Next month's number shows whether it worked</h3>
-        <p>The promotion starts, and the weekly tracking picks it up, or doesn't. Either way, the next round of plan, do, check and act starts from there.</p>
+        <h3>Next month's tracking shows whether it worked</h3>
+        <p>Once the promotion starts, <strong>weekly tracking</strong> shows whether orders recover. <mark>Either way, the result feeds the next plan</mark>, and the loop turns again.</p>
       </div></div>
     </div>
   </section>
@@ -263,7 +296,7 @@ GROUP BY 1, 2;</code></pre>
           <div><dt>Check</dt><dd>Confirm the number, then find what drove it</dd></div>
           <div><dt>Act</dt><dd>Align with the head, plan the action with its owner, present at the review, follow up next month</dd></div>
         </dl>
-        <p class="foot"><a href="#s-ways">Followed in the story above</a></p>
+        <p class="foot"><a href="#s-example">Followed in the story above</a></p>
       </article>
       <article class="way">
         <svg class="ico" aria-hidden="true"><use href="icons.svg#i-ticket"/></svg>
@@ -297,7 +330,7 @@ GROUP BY 1, 2;</code></pre>
   </nav>
 
   <footer>
-    <p>All figures on this page are illustrative. Employer names, internal systems and real results are left out.</p>
+    <p>All figures on this page are illustrative.</p>
     <p>Version 0.7, 6 November 2026</p>
   </footer>
 </div>

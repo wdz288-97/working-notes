@@ -1,5 +1,5 @@
 /* Ding's working notes: behaviour shared by every page. Each part runs only on pages that have its elements.
-   Parts, in order: helpers, hero drawing field, story drawings (cycle mark, three ways in, weekly tracking),
+   Parts, in order: helpers, hero drawing field, story drawings (loop guide, opening figure, weekly tracking),
    variance data, channel chart, review slide, SQL, scroll story and chapter rail, AI pipeline,
    side panels, the work (tabs, raw output), template copy. */
 (function () {
@@ -118,42 +118,48 @@
     var scrolly = $('scrolly');
     if (!scrolly) return;
 
-    // The cycle mark shows the current stage of the loop
-    var cycleArcs = [];
-    LOOP_ARCS.forEach(function (a) {
-      var arc = svgEl('path', { class: 'cycle-arc', d: arcPath(30, 30, 24, a[0], a[1]) });
-      $('cycle-mark').appendChild(arc);
-      cycleArcs.push(arc);
-    });
+    // The loop guide above the drawing: Plan, Do, Check, Act, with what the current stage is for
+    var loopItems = document.querySelectorAll('#loop-steps li');
+    var LOOP_PURPOSE = [
+      'agree the target and how it\u2019s measured',
+      'run the business and track the numbers',
+      'confirm what changed, then find out why',
+      'agree the action, then follow up'
+    ];
 
-    // Opening scene: three ways in, all leading into the same loop
+    // Opening figure: three ways in, all leading into the same loop. It sits beside the summary and draws itself in on load.
     (function drawWaysIn() {
       var svg = $('ways-canvas');
+      var order = 0;
+      function onLoad(node) {
+        node.classList.add('onload');
+        node.style.setProperty('--i', order++);
+        svg.appendChild(node);
+      }
       var ways = [
         { icon: 'kpi', lines: ['An owned KPI', 'moves'], cx: 70, path: 'M70 116C70 170 120 205 158 213', head: 'M149 206l9 7l-10 3' },
         { icon: 'ticket', lines: ['Another team', 'asks'], cx: 220, path: 'M220 116V184', head: 'M214 177l6 7l6-7' },
-        { icon: 'idea', lines: ['A team sets out', 'to do something'], cx: 370, path: 'M370 116C370 170 320 205 282 213', head: 'M291 206l-9 7l10 3' }
+        { icon: 'idea', lines: ['A team starts', 'an initiative'], cx: 370, path: 'M370 116C370 170 320 205 282 213', head: 'M291 206l-9 7l10 3' }
       ];
-      ways.forEach(function (w, i) {
-        var at = i * 0.12;
-        svg.appendChild(piece(icon(w.icon, { x: w.cx - 26, y: 8, width: 52, height: 52, class: 'ico draw' }), at));
-        var label = piece(svgEl('text', { x: w.cx, y: 82, 'text-anchor': 'middle' }), at + 0.03);
+      ways.forEach(function (w) {
+        onLoad(icon(w.icon, { x: w.cx - 26, y: 8, width: 52, height: 52, class: 'ico draw' }));
+        var label = svgEl('text', { x: w.cx, y: 82, 'text-anchor': 'middle' });
         w.lines.forEach(function (line, j) { label.appendChild(svgEl('tspan', { x: w.cx, dy: j === 0 ? 0 : 18 }, line)); });
-        svg.appendChild(label);
-        svg.appendChild(piece(drawn(svgEl('path', { d: w.path + w.head })), at + 0.07));
+        onLoad(label);
+        onLoad(drawn(svgEl('path', { d: w.path + w.head })));
       });
       var cx = 220;
       var cy = 276;
       LOOP_ARCS.forEach(function (a, i) {
         var arc = drawn(svgEl('path', { d: arcPath(cx, cy, 84, a[0], a[1]) }));
         arc.style.strokeWidth = '2.5';
-        svg.appendChild(piece(arc, 0.4 + i * 0.05));
+        onLoad(arc);
         var mid = (a[0] + a[1]) / 2 * Math.PI / 180;
         var lx = cx + 106 * Math.sin(mid);
         var ly = cy - 106 * Math.cos(mid) + 5;
-        svg.appendChild(piece(svgEl('text', { class: 'big', x: lx.toFixed(1), y: ly.toFixed(1), 'text-anchor': lx > cx ? 'start' : 'end' }, LOOP_NAMES[i]), 0.42 + i * 0.05));
+        onLoad(svgEl('text', { class: 'big', x: lx.toFixed(1), y: ly.toFixed(1), 'text-anchor': lx > cx ? 'start' : 'end' }, LOOP_NAMES[i]));
       });
-      svg.appendChild(piece(svgEl('text', { class: 'note', x: cx, y: cy + 5, 'text-anchor': 'middle' }, 'the same loop'), 0.62));
+      onLoad(svgEl('text', { class: 'note', x: cx, y: cy + 5, 'text-anchor': 'middle' }, 'the same loop'));
     })();
 
     // Weekly tracking: orders slip week by week; at the end of the story, the weeks after the promotion are still to come
@@ -367,6 +373,8 @@
     var activeStage = -1;
 
     var TRIGGER = 0.6;
+    // Drawings finish in the first part of each step, so the picture is complete while its text is still in view
+    var BUILD_SPEED = 4;
     var started = false;
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -380,7 +388,7 @@
       if (index === -1) return -1;
       var top = steps[index].getBoundingClientRect().top;
       var end = index + 1 < steps.length ? steps[index + 1].getBoundingClientRect().top : steps[index].getBoundingClientRect().bottom;
-      return index + clamp((line - top) / Math.max(1, end - top), 0, 0.999);
+      return index + clamp((line - top) / Math.max(1, end - top) * BUILD_SPEED, 0, 0.999);
     }
 
     // Text box progress and Back/Next. Each button scrolls to the point where that step's drawing is complete,
@@ -390,7 +398,7 @@
       if (i >= steps.length) { waysSection.scrollIntoView({ behavior: behavior, block: 'start' }); return; }
       var top = steps[i].getBoundingClientRect().top + window.scrollY;
       var end = i + 1 < steps.length ? steps[i + 1].getBoundingClientRect().top + window.scrollY : top + steps[i].offsetHeight;
-      window.scrollTo({ top: top + (end - top) * 0.62 - window.innerHeight * TRIGGER, behavior: behavior });
+      window.scrollTo({ top: top + (end - top) * (0.7 / BUILD_SPEED) - window.innerHeight * TRIGGER, behavior: behavior });
     }
     steps.forEach(function (step, i) {
       var card = step.querySelector('.step-card');
@@ -420,26 +428,25 @@
       var rect = scrolly.getBoundingClientRect();
       scrolly.classList.toggle('in-view', !started && rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight);
     }
-    // Stage -1 is the opening; 0 to 3 are plan, do, check and act; 4 means the loop has come back round to plan
-    function updateCycle(stageIndex) {
-      cycleArcs.forEach(function (arc, i) {
-        var done = stageIndex === 4 || i < stageIndex;
+    // Stage -2 is before the story starts, -1 the café example; 0 to 3 are plan, do, check and act;
+    // 4 means the loop has come back round to plan
+    function updateLoop(stageIndex) {
+      each(loopItems, function (li, i) {
+        var done = stageIndex === 4 || (stageIndex >= 0 && i < stageIndex);
         var current = stageIndex === 4 ? i === 0 : i === stageIndex;
-        arc.setAttribute('class', 'cycle-arc' + (current ? ' current' : done ? ' done' : ''));
+        li.className = current ? 'current' : done ? 'done' : '';
       });
-      if (stageIndex < 0) {
-        $('cycle-name').textContent = 'Plan, do, check, act';
-        $('cycle-note').textContent = 'One loop, three ways in';
-      } else if (stageIndex === 4) {
-        $('cycle-name').textContent = 'Back to plan';
-        $('cycle-note').textContent = 'The next round starts';
-      } else {
-        $('cycle-name').textContent = LOOP_NAMES[stageIndex];
-        $('cycle-note').textContent = "Example: a café chain's monthly orders";
-      }
+      var name;
+      var purpose;
+      if (stageIndex === -2) { name = 'Plan, do, check, act'; purpose = 'one example, step by step'; }
+      else if (stageIndex === -1) { name = 'The example'; purpose = 'a café chain and its monthly orders'; }
+      else if (stageIndex === 4) { name = 'Back to plan'; purpose = 'the result feeds the next plan'; }
+      else { name = LOOP_NAMES[stageIndex]; purpose = LOOP_PURPOSE[stageIndex]; }
+      $('loop-name').textContent = name;
+      $('loop-desc').textContent = ': ' + purpose;
     }
     function updateRail() {
-      var current = activeStep ? (activeStage === 4 ? 3 : activeStage) : null;
+      var current = activeStep ? (activeStage === 4 ? 3 : activeStage) : -2;
       if (waysSection.getBoundingClientRect().top < window.innerHeight * 0.5) current = 5;
       railLinks.forEach(function (a) { a.classList.toggle('is-current', current !== null && Number(a.getAttribute('data-rail')) === current); });
     }
@@ -458,7 +465,7 @@
       stage.setAttribute('data-scene', scene);
       stage.setAttribute('data-state', state);
       activeStage = Number(step.getAttribute('data-stage'));
-      updateCycle(activeStage);
+      updateLoop(activeStage);
       if (scene === 'chart') layoutChart(state);
     }
     function reveal(position) {
@@ -469,7 +476,7 @@
         p.node.classList.toggle('is-shown', show);
       });
     }
-    updateCycle(-1);
+    updateLoop(-2);
     scrollHandlers.push(function updateStory() {
       var position = storyPosition();
       activate(position < 0 ? null : steps[Math.floor(position)]);
