@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business analysis playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=Source+Code+Pro:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="prefetch" href="ai.html">
+<link rel="prefetch" href="index.html">
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="topbar">
+    <a class="who-am-i" href="index.html"><strong>Wong Ding Zhe</strong><span>Business intelligence analyst</span></a>
+    <nav aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="playbook.html" aria-current="page">Playbook</a>
+      <a href="ai.html">Using AI</a>
+      <a href="reading.html">Reading</a>
+    </nav>
+  </header>
+
+  <nav class="rail" id="rail" aria-label="Story chapters">
+    <a href="#s-ways" data-rail="-1">Three ways in</a>
+    <a href="#s-plan" data-rail="0">Plan</a>
+    <a href="#s-do" data-rail="1">Do</a>
+    <a href="#s-check" data-rail="2">Check</a>
+    <a href="#s-act" data-rail="3">Act</a>
+    <a href="#ways" data-rail="5">Other ways in</a>
+  </nav>
+
+  <header class="page-head">
+    <p class="page-name">Business analysis playbook</p>
+    <h1>One loop, three ways in</h1>
+    <p class="lede">Analysis work doesn't always start with someone asking. Scroll through one month of a KPI being owned, for a made-up chain of coffee shops, then see how requests and team initiatives run through the same loop.</p>
+  </header>
+
+  <section class="scrolly" id="scrolly" aria-label="The story">
+    <div class="stage-col">
+      <div class="stage" id="stage" data-scene="none" data-state="none" aria-hidden="true">
+        <div class="cycle">
+          <svg id="cycle-mark" viewBox="0 0 60 60"></svg>
+          <p class="cycle-text"><b id="cycle-name">Plan, do, check, act</b><span id="cycle-note">One loop, three ways in</span></p>
+        </div>
+        <div class="scenes">
+
+          <div class="scene scene-ways"><svg class="canvas" id="ways-canvas" viewBox="0 0 440 400"></svg></div>
+
+          <div class="scene scene-plan">
+            <svg class="canvas" viewBox="0 0 440 400">
+              <path class="ico draw" pathLength="1" d="M10 20H270V170H10Z" data-at="1"/>
+              <use class="ico draw accent" href="icons.svg#i-cup" x="214" y="30" width="44" height="44" data-at="1.02"/>
+              <text class="big" x="28" y="52" data-at="1.04">Monthly orders</text>
+              <text class="note" x="28" y="74" data-at="1.04">Owner: the analyst</text>
+              <path class="wk-target" d="M28 112H252" data-at="1.1"/>
+              <text class="wk-target-label" x="28" y="104" data-at="1.1">October target: 122.0k orders</text>
+              <text class="note" x="28" y="144" data-at="1.14">Set from history, the business plan</text>
+              <text class="note" x="28" y="162" data-at="1.14">and the resources available</text>
+              <use class="ico draw" href="icons.svg#i-person" x="346" y="40" width="52" height="52" data-at="1.18"/>
+              <text x="372" y="112" text-anchor="middle" data-at="1.18">Business-unit head</text>
+              <path class="ico draw" pathLength="1" d="M276 70C300 62 318 62 338 66M330 60l8 6l-8 5" data-at="1.22"/>
+              <text class="note" x="372" y="132" text-anchor="middle" data-at="1.24">agrees the target</text>
+              <use class="ico draw" href="icons.svg#i-book" x="10" y="216" width="52" height="52" data-at="1.3"/>
+              <text x="74" y="236" data-at="1.32">One definition: an order is one paid receipt,</text>
+              <text x="74" y="256" data-at="1.32">refunds and staff drinks excluded</text>
+              <use class="ico draw" href="icons.svg#i-person" x="74" y="292" width="40" height="40" data-at="1.38"/>
+              <use class="ico draw" href="icons.svg#i-person" x="124" y="292" width="40" height="40" data-at="1.41"/>
+              <use class="ico draw" href="icons.svg#i-person" x="174" y="292" width="40" height="40" data-at="1.44"/>
+              <use class="ico draw" href="icons.svg#i-person" x="224" y="292" width="40" height="40" data-at="1.47"/>
+              <use class="ico draw" href="icons.svg#i-person" x="274" y="292" width="40" height="40" data-at="1.5"/>
+              <text class="note" x="74" y="356" data-at="1.54">aligned across every team in the business</text>
+            </svg>
+          </div>
+
+          <div class="scene scene-track">
+            <p class="scene-title" data-at="2">Orders, week by week</p>
+            <p class="scene-sub" data-at="2">Orders per week, thousands. Illustrative.</p>
+            <svg class="canvas" id="track-canvas" viewBox="0 0 440 330"></svg>
+          </div>
+
+          <div class="scene scene-confirm">
+            <p class="ck-head" data-at="4"><svg class="ico"><use class="draw" href="icons.svg#i-clipboard"/></svg>Is the number itself right?</p>
+            <ul class="ck-list">
+              <li class="ck" data-at="4.08"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>Same definition both years</span><span class="ck-result">The glossary entry for an order is unchanged</span></span></li>
+              <li class="ck" data-at="4.16"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>Data is complete</span><span class="ck-result">October sales loaded 2 Nov, after the cutoff</span></span></li>
+              <li class="ck" data-at="4.24"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>October 2026 total reconciles</span><span class="ck-result">118,200 orders on the master dashboard</span></span></li>
+              <li class="ck" data-at="4.32"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>October 2025 total reconciles</span><span class="ck-result">124,000 orders in last year's review</span></span></li>
+            </ul>
+            <p class="note-text" data-at="4.4">Confirmed: the drop is real, not a data problem.</p>
+          </div>
+
+          <div class="scene scene-work">
+            <svg class="figs" viewBox="0 0 400 74">
+              <use class="ico draw" href="icons.svg#i-person" x="12" y="2" width="40" height="40" data-at="5"/>
+              <text x="32" y="62" text-anchor="middle" data-at="5">Analyst</text>
+              <use class="ico draw" href="icons.svg#i-bubble" x="80" y="0" width="34" height="34" data-at="5.04"/>
+              <use class="ico draw accent" href="icons.svg#i-ticket" x="140" y="8" width="30" height="30" data-at="5.08"/>
+              <text x="155" y="62" text-anchor="middle" data-at="5.08">The plan</text>
+              <path class="ico draw" pathLength="1" d="M186 24H246M238 18l8 6l-8 6" data-at="5.12"/>
+              <use class="ico draw accent" href="icons.svg#i-sparkle" x="258" y="2" width="40" height="40" data-at="5.16"/>
+              <text x="278" y="62" text-anchor="middle" data-at="5.16">AI</text>
+              <use class="ico draw" href="icons.svg#i-database" x="330" y="4" width="36" height="36" data-at="5.2"/>
+              <text x="348" y="62" text-anchor="middle" data-at="5.2">Data</text>
+            </svg>
+            <dl class="wk-plan">
+              <div data-at="5.22"><dt>Question</dt><dd>Which ways of ordering drove the drop?</dd></div>
+              <div data-at="5.26"><dt>Grain</dt><dd>One row per channel per month</dd></div>
+              <div data-at="5.3"><dt>Calculations</dt><dd>Change, change % and share of the net drop</dd></div>
+            </dl>
+            <pre class="code-mini" data-at="5.33"><code id="scene-sql">SELECT order_channel, order_month,
+  COUNT(DISTINCT order_id) AS orders
+FROM cafe.orders
+WHERE is_refunded = FALSE
+  AND is_staff_order = FALSE
+  AND order_month IN ('2025-10-01',
+                      '2026-10-01')
+GROUP BY 1, 2;</code></pre>
+            <p class="wk-check" data-at="5.66"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Output checked: no duplicates, all 6 channels, totals match 118.2k</p>
+          </div>
+
+          <div class="scene scene-chart">
+            <p class="scene-title" id="ch-title" data-at="3">Orders fell 4.7% year on year</p>
+            <p class="scene-sub" data-at="3">Monthly orders, October 2026 vs October 2025, thousands. Illustrative.</p>
+            <svg id="story-chart" viewBox="-8 0 456 400" preserveAspectRatio="xMidYMin meet"></svg>
+            <p class="ch-legend" data-at="3.02"><span><i class="sw this"></i>October 2026</span><span><i class="sw last"></i>October 2025</span><span><i class="sw fall"></i>Fall</span><span><i class="sw growth"></i>Growth</span></p>
+          </div>
+
+          <div class="scene scene-align">
+            <svg class="canvas" viewBox="0 0 440 360">
+              <use class="ico draw" href="icons.svg#i-person" x="30" y="90" width="60" height="60" data-at="9"/>
+              <text x="60" y="172" text-anchor="middle" data-at="9">Analyst</text>
+              <use class="ico draw" href="icons.svg#i-person" x="350" y="90" width="60" height="60" data-at="9.04"/>
+              <text x="380" y="172" text-anchor="middle" data-at="9.04">Business-unit head</text>
+              <path class="ico draw" pathLength="1" d="M160 70H280V160H160Z" data-at="9.08"/>
+              <use class="ico draw" href="icons.svg#i-bars" x="190" y="88" width="60" height="60" data-at="9.1"/>
+              <text class="note" x="220" y="186" text-anchor="middle" data-at="9.12">the finding</text>
+              <use class="ico draw amber" href="icons.svg#i-bubble" x="300" y="20" width="48" height="48" data-at="9.16"/>
+              <text class="note" x="324" y="16" text-anchor="middle" data-at="9.16">a question, with context</text>
+              <use class="ico draw accent" href="icons.svg#i-bubble" x="92" y="20" width="48" height="48" data-at="9.22"/>
+              <text class="note" x="116" y="16" text-anchor="middle" data-at="9.22">an answer, with data</text>
+              <use class="ico draw accent" href="icons.svg#i-loop" x="190" y="226" width="60" height="60" data-at="9.28"/>
+              <text class="note" x="220" y="310" text-anchor="middle" data-at="9.32">repeat until the finding holds,</text>
+              <text class="note" x="220" y="330" text-anchor="middle" data-at="9.32">or is dismissed</text>
+            </svg>
+          </div>
+
+          <div class="scene scene-act">
+            <div class="lanes">
+              <p class="lane-h" style="grid-column:1" data-at="10"><svg class="ico"><use class="draw" href="icons.svg#i-person"/></svg><span>Analyst</span></p>
+              <p class="lane-h" style="grid-column:2" data-at="10.04"><svg class="ico"><use class="draw" href="icons.svg#i-person"/></svg><span>Business-unit head</span></p>
+              <p class="lane-h" style="grid-column:3" data-at="10.08"><svg class="ico"><use class="draw" href="icons.svg#i-person"/></svg><span>Operations manager</span></p>
+              <div class="node" style="--c:1;--r:2" data-at="10.12"><b>1</b>Shared thread with the evidence</div>
+              <div class="node" style="--c:2;--r:3" data-at="10.18"><b>2</b>Sets the priority and timeline</div>
+              <div class="node" style="--c:3;--r:4" data-at="10.24"><b>3</b>Designs the action: a delivery-app promotion</div>
+              <div class="node loop" style="--c:1;--r:4" data-at="10.3"><b>3, alongside</b>Supplies data points as the plan takes shape</div>
+              <div class="node" style="--c:3;--r:5" data-at="10.36"><b>4</b>Shares the plan with the head</div>
+              <div class="node" style="--c:1;--r:6" data-at="10.42"><b>5</b>Tracks the KPI as the action runs</div>
+            </div>
+          </div>
+
+          <div class="scene scene-present">
+            <div class="slide" data-at="11">
+              <p class="slide-title" id="slide-title" data-at="11.06">Delivery apps explain 83% of a 5.8k drop in orders</p>
+              <p class="slide-sub" data-at="11.1">Change in monthly orders by channel, October 2026 vs October 2025, thousands</p>
+              <svg id="slide-chart" viewBox="-8 0 416 182"></svg>
+              <p class="slide-foot" data-at="11.45">An order is one paid receipt. Refunds and staff drinks excluded. Same definition both years. Figures illustrative.</p>
+            </div>
+            <ul class="prep">
+              <li data-at="11.5"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Documents updated by the cutoff</li>
+              <li data-at="11.56"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Numbers pre-reviewed with the head</li>
+              <li data-at="11.62"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Who presents what, agreed</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step" id="s-ways" data-scene="ways" data-state="ways" data-stage="-1"><div class="step-card">
+        <h3>Analysis work starts in three ways</h3>
+        <p>A KPI someone owns moves. Another team asks a question. Or a team sets out to do something, such as a loyalty programme.</p>
+        <p>All three run through the same loop of plan, do, check and act. This story follows the first, at a made-up chain of coffee shops.</p>
+      </div></div>
+      <div class="step" id="s-plan" data-scene="plan" data-state="plan" data-stage="0"><div class="step-card">
+        <h3>Owning a number starts before it moves</h3>
+        <p>A business intelligence analyst often owns some of the business's key metrics: tracking them week by week, explaining what moves them, and working with the teams who can act on what they show. Here, the analyst owns monthly orders.</p>
+        <p>The target is set with the business-unit head, from history, the business plan and the resources available, and the definition is aligned across every team, so everyone reads the same number.</p>
+      </div></div>
+      <div class="step" id="s-do" data-scene="track" data-state="track" data-stage="1"><div class="step-card">
+        <h3>Week by week, small slips add up</h3>
+        <p>Then the shops run, and orders are tracked weekly against target and last year. Through September and October, orders slipped a little each week while last year's line held steady.</p>
+      </div></div>
+      <div class="step" id="s-check" data-scene="chart" data-state="total" data-stage="2"><div class="step-card">
+        <h3>By the monthly review, orders are down 5.8k</h3>
+        <p>October closes at 118.2k orders, against 124.0k a year earlier: down 4.7%, and below its 122.0k target. The owner of the number is expected to explain it.</p>
+      </div></div>
+      <div class="step" data-scene="confirm" data-state="confirm" data-stage="2"><div class="step-card">
+        <h3>A number is worth explaining only once it's confirmed</h3>
+        <p>Before any explanation, the number itself gets checked: the same definition both years, complete data, and totals that match the master dashboard and last year's review.</p>
+        <p>A drop caused by a broken data load isn't a business problem.</p>
+      </div></div>
+      <div class="step" data-scene="work" data-state="sql" data-stage="2"><div class="step-card">
+        <h3>Splitting the drop takes one query, inside one plan</h3>
+        <p>With the total confirmed, the next question is where the drop came from. The AI writes the SQL inside a plan agreed first: tables, filters, grain and calculations. Its output is checked before anyone reads it.</p>
+        <p class="aside"><button type="button" class="link-btn" data-open="drawer-work">See the plan, SQL and checks</button></p>
+      </div></div>
+      <div class="step" data-scene="chart" data-state="split" data-stage="2"><div class="step-card">
+        <h3>Four ways of ordering fell, and two grew</h3>
+        <p>The split follows how customers order: through delivery apps, takeaway, dine-in, app pre-orders, catering and the drive-through. Each row shows October 2026 against October 2025, and the change between them.</p>
+      </div></div>
+      <div class="step aha" data-scene="chart" data-state="abs" data-stage="2"><div class="step-card">
+        <h3>Delivery apps explain 83% of the drop</h3>
+        <p>Ranked by the size of the change, delivery-app orders fell by 4.8k. This is the moment the story turns: one channel holds most of the answer, and a big channel is where action pays back.</p>
+        <p>Next comes a split by shop and by app, and a test of the operations team's explanation against related metrics.</p>
+      </div></div>
+      <div class="step" data-scene="chart" data-state="pct" data-stage="2"><div class="step-card">
+        <h3>The drive-through fell fastest, but by only 0.7k</h3>
+        <p>Ranked by rate instead, drive-through orders fell 35%. That gets logged with its evidence and a cue to revisit if the drive-through becomes a priority, rather than leading the story.</p>
+        <p>Digging stops when more depth wouldn't change the action.</p>
+      </div></div>
+      <div class="step" id="s-act" data-scene="align" data-state="align" data-stage="3"><div class="step-card">
+        <h3>A finding holds only after it has been challenged</h3>
+        <p>With the driver found, the loop turns to action, starting with the business-unit head. The head questions the finding with context the data doesn't have; each question is worth understanding before it's answered with data, until the finding holds or is dismissed.</p>
+      </div></div>
+      <div class="step" data-scene="act" data-state="act" data-stage="3"><div class="step-card">
+        <h3>The action belongs to the people who run it</h3>
+        <p>Once the finding holds, a shared thread carries the evidence, priority and timeline to the head and the operations manager. The operations manager designs the action, here a delivery-app promotion, with data points supplied as it takes shape.</p>
+        <p>Agreement shapes each step, but it isn't proof of cause. The data keeps supporting it.</p>
+      </div></div>
+      <div class="step" data-scene="present" data-state="present" data-stage="3"><div class="step-card">
+        <h3>The review slide leads with the finding</h3>
+        <p>By the business review, the finding and its action are ready to share. Documents are updated by the cutoff, the numbers pre-reviewed with the head, and who presents what is agreed.</p>
+        <p>On the slide, the title states the finding and the chart proves it.</p>
+      </div></div>
+      <div class="step" data-scene="track" data-state="next" data-stage="4"><div class="step-card">
+        <h3>Next month's number shows whether it worked</h3>
+        <p>The promotion starts, and the weekly tracking picks it up, or doesn't. Either way, the next round of plan, do, check and act starts from there.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- Other ways in -->
+  <section id="ways" class="sub" aria-labelledby="ways-h">
+    <div class="sub-head">
+      <h2 id="ways-h">The same loop, whichever way the work comes in</h2>
+      <p class="lede">The story followed a KPI that moved. A question from another team, or a team's own initiative, turns the same loop from a different starting point.</p>
+    </div>
+    <div class="ways">
+      <article class="way is-story">
+        <svg class="ico" aria-hidden="true"><use href="icons.svg#i-kpi"/></svg>
+        <h3>An owned KPI moves</h3>
+        <p class="starts">Starts at the weekly or monthly review, such as orders falling short</p>
+        <dl>
+          <div><dt>Plan</dt><dd>Target set with the business-unit head; definition aligned across the business</dd></div>
+          <div><dt>Do</dt><dd>Tracked weekly against target and last year</dd></div>
+          <div><dt>Check</dt><dd>Confirm the number, then find what drove it</dd></div>
+          <div><dt>Act</dt><dd>Align with the head, plan the action with its owner, present at the review, follow up next month</dd></div>
+        </dl>
+        <p class="foot"><a href="#s-ways">Followed in the story above</a></p>
+      </article>
+      <article class="way">
+        <svg class="ico" aria-hidden="true"><use href="icons.svg#i-ticket"/></svg>
+        <h3>Another team asks</h3>
+        <p class="starts">Starts with a ticket, such as marketing asking why weekend orders dipped</p>
+        <dl>
+          <div><dt>Plan</dt><dd>The ticket, then an alignment chat; the agreement and due date go into the ticket</dd></div>
+          <div><dt>Do</dt><dd>Query and analysis inside an agreed plan</dd></div>
+          <div><dt>Check</dt><dd>Validate the output before interpreting it</dd></div>
+          <div><dt>Act</dt><dd>Deliver with notes on filters and definitions; follow up a week later, then close the ticket</dd></div>
+        </dl>
+        <p class="foot"><button type="button" class="link-btn" data-open="drawer-requests">How requests are handled, and the template</button></p>
+      </article>
+      <article class="way">
+        <svg class="ico" aria-hidden="true"><use href="icons.svg#i-idea"/></svg>
+        <h3>A team sets out to do something</h3>
+        <p class="starts">Starts with the team's own idea, a project or business initiative, such as a loyalty programme</p>
+        <dl>
+          <div><dt>Plan</dt><dd>Success metrics mapped to the must-win battles; initiative metrics drilled down from the main objective to the actions meant to move it; targets set with the head</dd></div>
+          <div><dt>Do</dt><dd>Data points supplied as the team's plan takes shape, then progress tracked</dd></div>
+          <div><dt>Check</dt><dd>Whether the initiative metrics are moving</dd></div>
+          <div><dt>Act</dt><dd>The same alignment and action planning as when a KPI moves</dd></div>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <nav class="next-page" aria-label="Next page">
+    <a class="prev" href="index.html"><span>Previous</span><strong>Home</strong></a>
+    <a class="next" href="ai.html"><span>Next</span><strong>Using AI in analysis</strong></a>
+  </nav>
+
+  <footer>
+    <p>All figures on this page are illustrative. Employer names, internal systems and real results are left out.</p>
+    <p>Version 0.7, 6 November 2026</p>
+  </footer>
+</div>
+
+<!-- Side panel: the work behind the chart -->
+<dialog class="drawer" id="drawer-work" aria-labelledby="drawer-work-h">
+  <div class="drawer-head"><h2 id="drawer-work-h">The work behind the chart</h2><button type="button" class="drawer-close" data-close>Close</button></div>
+  <div class="drawer-body">
+    <p>The plan, SQL, checks and raw output from the story, saved together so the work can be rerun. The café chain and every figure are made up.</p>
+    <div class="work-tabs" role="tablist" aria-label="Analysis artefacts">
+      <button type="button" role="tab" id="wt-plan" aria-controls="wp-plan" aria-selected="true">Plan</button>
+      <button type="button" role="tab" id="wt-sql" aria-controls="wp-sql" aria-selected="false" tabindex="-1">SQL</button>
+      <button type="button" role="tab" id="wt-checks" aria-controls="wp-checks" aria-selected="false" tabindex="-1">Checks</button>
+      <button type="button" role="tab" id="wt-output" aria-controls="wp-output" aria-selected="false" tabindex="-1">Raw output</button>
+    </div>
+
+    <div role="tabpanel" id="wp-plan" aria-labelledby="wt-plan">
+      <p>Agreed with the AI before any code was written. Anything that changes this plan comes back to the analyst first.</p>
+      <dl class="plan">
+        <dt>Question</dt><dd>Which ways of ordering drove the year-on-year drop in monthly orders?</dd>
+        <dt>Source</dt><dd><code>cafe.orders</code>, one row per order</dd>
+        <dt>Metric</dt><dd>Orders: distinct paid receipts</dd>
+        <dt>Filters</dt><dd>Refunds and staff drinks excluded; October 2025 and October 2026</dd>
+        <dt>Grain</dt><dd>One row per order channel</dd>
+        <dt>Calculations</dt><dd>Change = this year − last year. Change % = change ÷ last year. Share of the net drop = change ÷ total change.</dd>
+        <dt>Output</dt><dd>Six rows sorted by change, ready to chart</dd>
+        <dt>Out of scope</dt><dd>The split by shop and by delivery app, which comes next</dd>
+      </dl>
+    </div>
+
+    <div role="tabpanel" id="wp-sql" aria-labelledby="wt-sql" hidden>
+      <p>Written and run by the AI within the plan, then read line by line before anything is interpreted.</p>
+      <div class="code">
+        <div class="code-head">orders_by_channel_change.sql</div>
+        <pre><code id="sql-code">-- Monthly orders by channel, October 2026 vs October 2025
+-- Illustrative schema: one row per order
+WITH monthly AS (
+  SELECT
+    order_channel,
+    order_month,
+    COUNT(DISTINCT order_id) AS orders
+  FROM cafe.orders
+  WHERE is_refunded = FALSE
+    AND is_staff_order = FALSE
+    AND order_month IN ('2025-10-01', '2026-10-01')
+  GROUP BY order_channel, order_month
+),
+pivoted AS (
+  SELECT
+    order_channel,
+    SUM(CASE WHEN order_month = '2025-10-01' THEN orders ELSE 0 END) AS last_year,
+    SUM(CASE WHEN order_month = '2026-10-01' THEN orders ELSE 0 END) AS this_year
+  FROM monthly
+  GROUP BY order_channel
+)
+SELECT
+  order_channel,
+  last_year,
+  this_year,
+  this_year - last_year AS change,
+  ROUND(100.0 * (this_year - last_year) / NULLIF(last_year, 0), 1) AS change_pct
+FROM pivoted
+ORDER BY change;</code></pre>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="wp-checks" aria-labelledby="wt-checks" hidden>
+      <p>Nothing gets interpreted until every check passes.</p>
+      <div class="scroll">
+        <table class="data-table checks">
+          <thead><tr><th scope="col">Check</th><th scope="col">Compared against</th><th scope="col">Result</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr><td>Same definition of an order</td><td>Glossary entry for both years</td><td>Unchanged</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Data is complete</td><td>Load log for October 2026 sales</td><td>Loaded 2 Nov 2026, after cutoff</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>October 2026 total reconciles</td><td>Master dashboard, October 2026</td><td>118,200 = 118,200</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>October 2025 total reconciles</td><td>October 2025 monthly review</td><td>124,000 = 124,000</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>One row per order</td><td>Primary key of the orders table</td><td>0 duplicate orders</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Refunds and staff drinks excluded</td><td>Flags in the output</td><td>0 flagged rows</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Every channel present</td><td>Channel list in the team glossary</td><td>6 of 6 channels</td><td><span class="pass">Pass</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="wp-output" aria-labelledby="wt-output" hidden>
+      <p>What the query returned, before any rounding or formatting. The charts are drawn from these rows.</p>
+      <div class="scroll"><table class="data-table raw" id="raw-output"></table></div>
+      <p class="meta" id="raw-meta"></p>
+    </div>
+  </div>
+</dialog>
+
+<!-- Side panel: requests and the template -->
+<dialog class="drawer" id="drawer-requests" aria-labelledby="drawer-requests-h">
+  <div class="drawer-head"><h2 id="drawer-requests-h">When another team asks</h2><button type="button" class="drawer-close" data-close>Close</button></div>
+  <div class="drawer-body">
+    <p>Requests come in through a ticket on a short template. Here is how one moves, from before it's written to after it closes, with notes beside the fields that matter most.</p>
+    <ol class="req-flow">
+      <li><span class="req-n" aria-hidden="true">1</span><div><strong>Often the answer already exists</strong><p>Before any work starts, existing dashboards and past outputs come first. If one answers the question and the requester is happy with it, the work stops there.</p></div></li>
+      <li><span class="req-n" aria-hidden="true">2</span><div><strong>The ticket is filled in on the template</strong><p>The two notes mark the fields that shape the work.</p>
+        <div class="tpl-card">
+          <p class="tpl-title"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-ticket"/></svg>Data request template</p>
+          <dl class="tpl" id="tpl">
+            <div><dt>Requesting team</dt><dd>Which team the request is for</dd></div>
+            <div><dt>Objective</dt><dd>What are you trying to understand?</dd></div>
+            <div><dt>Description</dt><dd>What makes you want to understand it?</dd></div>
+            <div class="key"><dt>Next course of action</dt><dd>What will you do with the output?</dd><p class="anno"><b>What happens next decides how deep to dig.</b> This field says what the requester will do with the answer. It sets the depth of the analysis, and ranks the request against other work by its likely impact.</p></div>
+            <div><dt>Example output</dt><dd>Link to a mock-up sheet of the output you expect. Required.</dd></div>
+            <div><dt>Criteria</dt><dd>The filters, such as which items and which date period. Say whether you need it on a recurring basis.</dd></div>
+            <div><dt>Dimensions</dt><dd>The columns, starting with granularity: daily, weekly or monthly.</dd></div>
+            <div><dt>Metrics</dt><dd>The values you'd like to track.</dd></div>
+            <div><dt>Special criteria</dt><dd>Anything else to consider.</dd></div>
+            <div class="key"><dt>Deadline</dt><dd>3, 5, 7 or 10 working days, weekends excluded.</dd><p class="anno"><b>The date is agreed, not just requested.</b> It's confirmed in the next step and written back into the ticket.</p></div>
+          </dl>
+        </div>
+        <div class="tpl-actions">
+          <button type="button" class="btn" id="copy-template">Copy the template</button>
+          <span class="status" id="copy-status" role="status"></span>
+        </div>
+        <textarea id="copy-fallback" aria-label="Template text" rows="12" hidden readonly></textarea>
+      </div></li>
+      <li><span class="req-n" aria-hidden="true">3</span><div><strong>A written agreement saves the argument later</strong><p>Anything unclear gets settled in a quick chat, and the understanding and due date go into the ticket. If the date doesn't work, the requester takes it to the manager, so priorities are decided openly.</p></div></li>
+      <li><span class="req-n" aria-hidden="true">4</span><div><strong>A ticket closes once someone has acted</strong><p>The output goes out with notes on filters and definitions. A week later comes a follow-up: was it used, and what action was taken? Then the ticket closes. Expanded scope gets a new ticket linked to the first.</p></div></li>
+    </ol>
+  </div>
+</dialog>
+
+<script src="site.js"></script>
+</body>
+</html>
