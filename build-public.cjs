@@ -24,10 +24,13 @@ function headExtras(page) {
   ].join('\n');
 }
 
-// On a web host the folder address serves index.html, so link home as "./" to keep "/index.html" out of the address bar.
-// The source keeps "index.html" because "./" opens a folder listing when the files are opened from disk.
-function cleanHomeLinks(html) {
-  return html.replace(/href="index\.html"/g, 'href="./"');
+// Web hosts serve /playbook from playbook.html and / from index.html, so the public site links to clean addresses.
+// The source keeps the .html links because clean ones don't resolve when the files are opened from disk.
+// edgeone.json redirects the old .html addresses here, so shared links keep working.
+function cleanPageLinks(html) {
+  return html
+    .replace(/href="index\.html"/g, 'href="./"')
+    .replace(/href="(playbook|ai|reading)\.html"/g, 'href="$1"');
 }
 
 // The home page is written as an artifact page (no doctype or head); give it a full document here
@@ -71,8 +74,8 @@ function copyDir(from, to) {
 
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
-fs.writeFileSync(path.join(OUT, 'index.html'), cleanHomeLinks(buildHome()));
-PAGES.forEach(page => fs.writeFileSync(path.join(OUT, page), cleanHomeLinks(buildPage(page))));
+fs.writeFileSync(path.join(OUT, 'index.html'), cleanPageLinks(buildHome()));
+PAGES.forEach(page => fs.writeFileSync(path.join(OUT, page), cleanPageLinks(buildPage(page))));
 ASSETS.forEach(file => fs.copyFileSync(path.join(SOURCE, file), path.join(OUT, file)));
 copyDir(path.join(SOURCE, 'covers'), path.join(OUT, 'covers'));
 

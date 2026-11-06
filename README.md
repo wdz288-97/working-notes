@@ -2,7 +2,7 @@
 
 A small static site: a home page, a business analysis playbook told as a scroll story, notes on using AI, and a reading list.
 
-Every push to `main` rebuilds the site and publishes it with GitHub Pages (see `.github/workflows/pages.yml`).
+Every push to `main` rebuilds the site and publishes it twice: to EdgeOne Pages at https://ba-working-notes.edgeone.dev (see `edgeone.json`), and to GitHub Pages (see `.github/workflows/pages.yml`).
 
 ## Files
 
@@ -16,6 +16,7 @@ Every push to `main` rebuilds the site and publishes it with GitHub Pages (see `
 | `favicon.svg` | Browser tab icon (used by the public build) |
 | `covers/` | Book covers for the Reading page (Open Library and Amazon; Spreadsheet Modelling Best Practice has a drawn cover because none was published) |
 | `build-public.cjs` | Builds `public/` |
+| `edgeone.json` | EdgeOne Pages settings: build command, output folder, and redirects from the old `.html` addresses. These override the console's build settings. |
 | `public/` | Generated. Don't edit it by hand; rebuild instead |
 
 ## Build the public site
@@ -31,27 +32,30 @@ The build:
 1. Wraps the home page in a full HTML document and saves it as `public/index.html`.
 2. Copies the other pages, adding a page description and the favicon to each.
 3. Copies the styles, script, drawings and covers.
+4. Rewrites the links between pages to clean addresses: `./` for home, `playbook` instead of `playbook.html`, and so on.
 
-Every page links to the others with relative paths, so the folder works from any address.
+The source pages keep their `.html` links so they still work when opened from disk. The public site uses clean addresses (`/playbook`, `/ai`, `/reading`), which EdgeOne, GitHub Pages, Netlify and Cloudflare Pages all serve from the matching `.html` file. On EdgeOne, `edgeone.json` sends the old `.html` addresses to the clean ones with a permanent (301) redirect, so links shared earlier keep working.
 
 ```mermaid
 flowchart LR
   S[Source files] -->|git push| G[GitHub]
-  G -->|Actions: node build-public.cjs| P[public/]
-  P -->|deploy| H[GitHub Pages]
+  G -->|edgeone.json: node build-public.cjs| E[EdgeOne Pages]
+  G -->|Actions: node build-public.cjs| H[GitHub Pages]
 ```
 
 ## Preview locally
 
+The clean addresses need a server that maps `/playbook` to `playbook.html`. Python's built-in server doesn't, so use `serve`:
+
 ```bash
-python -m http.server 8000 --directory public
+npx serve public
 ```
 
-Then open http://localhost:8000.
+Then open http://localhost:3000.
 
 ## Deploy
 
-Push to `main`. The workflow builds `public/` and deploys it to GitHub Pages; `public/` itself is not committed. In the repository settings, Pages uses **GitHub Actions** as its source.
+Push to `main`. EdgeOne Pages and the GitHub Pages workflow each build `public/` and deploy it; `public/` itself is not committed. In the repository settings, Pages uses **GitHub Actions** as its source.
 
 The same `public/` folder also works on any other static host, such as Netlify Drop or Cloudflare Pages.
 
