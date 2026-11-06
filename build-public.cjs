@@ -24,6 +24,12 @@ function headExtras(page) {
   ].join('\n');
 }
 
+// On a web host the folder address serves index.html, so link home as "./" to keep "/index.html" out of the address bar.
+// The source keeps "index.html" because "./" opens a folder listing when the files are opened from disk.
+function cleanHomeLinks(html) {
+  return html.replace(/href="index\.html"/g, 'href="./"');
+}
+
 // The home page is written as an artifact page (no doctype or head); give it a full document here
 function buildHome() {
   const source = fs.readFileSync(path.join(SOURCE, 'data-analytics-playbook.html'), 'utf8');
@@ -65,8 +71,8 @@ function copyDir(from, to) {
 
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
-fs.writeFileSync(path.join(OUT, 'index.html'), buildHome());
-PAGES.forEach(page => fs.writeFileSync(path.join(OUT, page), buildPage(page)));
+fs.writeFileSync(path.join(OUT, 'index.html'), cleanHomeLinks(buildHome()));
+PAGES.forEach(page => fs.writeFileSync(path.join(OUT, page), cleanHomeLinks(buildPage(page))));
 ASSETS.forEach(file => fs.copyFileSync(path.join(SOURCE, file), path.join(OUT, file)));
 copyDir(path.join(SOURCE, 'covers'), path.join(OUT, 'covers'));
 
