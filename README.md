@@ -4,6 +4,8 @@ A small static site: a home page, a business analysis playbook told as a scroll 
 
 Every push to `main` rebuilds the site and publishes it twice: to EdgeOne Pages at https://ba-working-notes.edgeone.dev (see `edgeone.json`), and to GitHub Pages (see `.github/workflows/pages.yml`).
 
+This repository is the only copy of the site. A private claude.ai artifact of it is published from the same source files: https://claude.ai/artifact/RWmgt2EE3CVpYQ51yaWVv6
+
 ## Files
 
 | File | What it is |
