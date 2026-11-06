@@ -366,17 +366,59 @@
     var activeStep = null;
     var activeStage = -1;
 
-    // On phones the cards scroll over the canvas, so a scene must finish assembling while its card is still entering below the canvas
+    var TRIGGER = 0.6;
+    var started = false;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Position in the story: the step whose top has passed the trigger line, plus how far into that step you are.
+    // On phones the text box is fixed to the screen, so the story stops once its section scrolls away.
     function storyPosition() {
-      var phone = narrow.matches;
-      var line = window.innerHeight * (phone ? 0.95 : 0.6);
+      var line = window.innerHeight * TRIGGER;
+      if (narrow.matches && scrolly.getBoundingClientRect().bottom < window.innerHeight) return -1;
       var index = -1;
       steps.forEach(function (step, i) { if (step.getBoundingClientRect().top < line) index = i; });
-      if (index === -1) return scrolly.getBoundingClientRect().top < window.innerHeight * 0.8 ? 0 : -1;
+      if (index === -1) return -1;
       var top = steps[index].getBoundingClientRect().top;
       var end = index + 1 < steps.length ? steps[index + 1].getBoundingClientRect().top : steps[index].getBoundingClientRect().bottom;
-      var span = phone ? window.innerHeight * 0.3 : Math.max(1, end - top);
-      return index + clamp((line - top) / span, 0, 0.999);
+      return index + clamp((line - top) / Math.max(1, end - top), 0, 0.999);
+    }
+
+    // Text box progress and Back/Next. Each button scrolls to the point where that step's drawing is complete,
+    // so tapping and scrolling stay one system.
+    function scrollToStep(i) {
+      var behavior = reduceMotion.matches ? 'auto' : 'smooth';
+      if (i >= steps.length) { waysSection.scrollIntoView({ behavior: behavior, block: 'start' }); return; }
+      var top = steps[i].getBoundingClientRect().top + window.scrollY;
+      var end = i + 1 < steps.length ? steps[i + 1].getBoundingClientRect().top + window.scrollY : top + steps[i].offsetHeight;
+      window.scrollTo({ top: top + (end - top) * 0.62 - window.innerHeight * TRIGGER, behavior: behavior });
+    }
+    steps.forEach(function (step, i) {
+      var card = step.querySelector('.step-card');
+      var bar = htmlEl('span', { class: 'card-progress', 'aria-hidden': 'true' });
+      var fill = htmlEl('i');
+      fill.style.width = ((i + 1) / steps.length * 100).toFixed(1) + '%';
+      bar.appendChild(fill);
+      card.insertBefore(bar, card.firstChild);
+      var nav = htmlEl('div', { class: 'card-nav' });
+      var back = htmlEl('button', { type: 'button', class: 'card-btn' }, 'Back');
+      back.disabled = i === 0;
+      back.addEventListener('click', function () { scrollToStep(i - 1); });
+      var next = htmlEl('button', { type: 'button', class: 'card-btn' }, i === steps.length - 1 ? 'Finish' : 'Next');
+      next.addEventListener('click', function () { scrollToStep(i + 1); });
+      nav.appendChild(back);
+      nav.appendChild(htmlEl('span', { class: 'card-count' }, 'Step ' + (i + 1) + ' of ' + steps.length));
+      nav.appendChild(next);
+      card.appendChild(nav);
+    });
+
+    // Scroll cues: shown until the first step starts, then gone for the rest of the visit
+    function updateCues(position) {
+      if (!started && position >= 0) {
+        started = true;
+        document.documentElement.classList.add('story-started');
+      }
+      var rect = scrolly.getBoundingClientRect();
+      scrolly.classList.toggle('in-view', !started && rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight);
     }
     // Stage -1 is the opening; 0 to 3 are plan, do, check and act; 4 means the loop has come back round to plan
     function updateCycle(stageIndex) {
@@ -433,6 +475,7 @@
       activate(position < 0 ? null : steps[Math.floor(position)]);
       reveal(position);
       updateRail();
+      updateCues(position);
     });
   })();
 
