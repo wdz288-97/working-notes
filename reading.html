@@ -14,7 +14,7 @@
 <body>
 <div class="wrap" id="top">
   <header class="topbar">
-    <a class="who-am-i" href="index.html"><strong>Wong Ding Zhe</strong><span>Business intelligence analyst</span></a>
+    <a class="who-am-i" href="index.html"><strong>Ding's working notes</strong></a>
     <nav aria-label="Pages">
       <a href="index.html">Home</a>
       <a href="playbook.html">Playbook</a>
@@ -23,17 +23,45 @@
     </nav>
   </header>
 
-  <header class="page-head">
-    <p class="page-name">Reading</p>
-    <h1>The books I read</h1>
-    <p class="lede">Books that shape how I work and think.</p>
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name">Reading</p>
+      <h1>Books teach what work rarely does</h1>
+      <p class="lede">Your work teaches you how things are done in your job and your team. Books can teach the basics that hold true almost anywhere, such as how people make decisions or how a business decides where it's going.</p>
+      <p>Popular books on these basics often stay useful for decades. Reading them is only the first step: relate an idea to your own work, apply it, and reflect on how it went. That may send you back to the book, and the next time you apply the idea differently.</p>
+    </div>
+    <svg class="loop-figure reading-figure" viewBox="0 0 440 300" role="img" aria-label="Read, relate the idea to your work, apply it, reflect on how it went, then read again if needed and apply it differently.">
+      <use class="ico draw onload accent" style="--i:0" href="icons.svg#i-book" x="62" y="28" width="56" height="56"/>
+      <text class="onload" style="--i:1" x="90" y="108" text-anchor="middle">Read</text>
+      <path class="ico draw onload" style="--i:2" pathLength="1" d="M136 56H304"/>
+      <path class="ico draw onload" style="--i:2" pathLength="1" d="M296 50L304 56L296 62"/>
+      <use class="ico draw onload" style="--i:3" href="icons.svg#i-idea" x="322" y="28" width="56" height="56"/>
+      <text class="onload" style="--i:4" x="350" y="108" text-anchor="middle">Relate</text>
+      <path class="ico draw onload" style="--i:5" pathLength="1" d="M350 124V184"/>
+      <path class="ico draw onload" style="--i:5" pathLength="1" d="M344 176L350 184L356 176"/>
+      <use class="ico draw onload" style="--i:6" href="icons.svg#i-laptop" x="322" y="196" width="56" height="56"/>
+      <text class="onload" style="--i:7" x="350" y="276" text-anchor="middle">Apply</text>
+      <path class="ico draw onload" style="--i:8" pathLength="1" d="M304 224H136"/>
+      <path class="ico draw onload" style="--i:8" pathLength="1" d="M144 218L136 224L144 230"/>
+      <use class="ico draw onload" style="--i:9" href="icons.svg#i-magnifier" x="62" y="196" width="56" height="56"/>
+      <text class="onload" style="--i:10" x="90" y="276" text-anchor="middle">Reflect</text>
+      <path class="ico draw onload" style="--i:11" pathLength="1" stroke-dasharray="4 5" d="M90 184V124"/>
+      <path class="ico draw onload" style="--i:11" pathLength="1" d="M84 132L90 124L96 132"/>
+      <text class="note onload" style="--i:12" x="220" y="134" text-anchor="middle">Read again if needed,</text>
+      <text class="note onload" style="--i:12" x="220" y="158" text-anchor="middle">then apply it differently</text>
+    </svg>
+  </header>
+
+  <section class="shelf-intro" aria-labelledby="books-h">
+    <h2 id="books-h">The books I read</h2>
+    <p>Books that shape how I work and think, in four groups.</p>
     <nav class="shelf-index" aria-label="Book groups">
       <a href="#reporting">Reporting and data</a>
       <a href="#thinking">Thinking and decisions</a>
       <a href="#strategy">Strategy and the long view</a>
       <a href="#people">People and personal effectiveness</a>
     </nav>
-  </header>
+  </section>
 
   <section class="shelf-group" id="reporting" aria-labelledby="reporting-h">
     <div class="shelf-head">
@@ -61,7 +89,7 @@
         <img class="cover" src="covers/dashboards.jpg" alt="Cover of The Big Book of Dashboards by Steve Wexler, Jeffrey Shaffer and Andy Cotgreave" width="481" height="500" loading="lazy">
         <div>
           <h3>The Big Book of Dashboards</h3>
-          <p class="by">Steve Wexler, Jeffrey Shaffer, Andy Cotgreave</p>
+          <p class="by">Steve Wexler, Jeffrey Shaffer and Andy Cotgreave, 2017</p>
           <p>What I reach for when building dashboards: real business scenarios and how to choose charts for them.</p>
         </div>
       </article>
@@ -136,7 +164,7 @@
         <div>
           <h3><span lang="zh-Hans">华杉讲透《孙子兵法》</span></h3>
           <p class="by"><span lang="zh-Hans">华杉</span> (Hua Shan), 2015; revised edition, 2016. In English, roughly: <i>Hua Shan Explains Sun Tzu's The Art of War</i></p>
-          <p>The Art of War, read line by line. It made Sun Tzu approachable for me, explaining each line in plain language with historical battles.</p>
+          <p>The Art of War, read line by line. It made Sun Tzu approachable for me: each line is explained in plain language, with historical battles as examples.</p>
         </div>
       </article>
       <article class="book">
@@ -161,7 +189,7 @@
         <div>
           <h3>People Skills for Analytical Thinkers</h3>
           <p class="by">Gilbert Eijkelenboom, 2020</p>
-          <p>The people side of analysis: understanding stakeholders, communicating clearly and influencing decisions. It's the half of the loop where findings meet the people who act on them.</p>
+          <p>The people side of analysis: understanding stakeholders, communicating clearly and influencing decisions. That is the part of my work where findings reach the people who act on them.</p>
         </div>
       </article>
       <article class="book">
@@ -169,7 +197,7 @@
         <div>
           <h3>The 7 Habits of Highly Effective People</h3>
           <p class="by">Stephen R. Covey, 1989; 30th anniversary edition, 2020</p>
-          <p>Seven habits for living and working well. What I go back to are simple principles over quick productivity tips: take responsibility for your choices, start with the end in mind, do the important things first, and listen to understand before you explain.</p>
+          <p>Seven habits for living and working well. What I go back to are its simple principles: take responsibility for your choices, start with the end in mind, do the important things first, and listen to understand before you explain.</p>
         </div>
       </article>
       <article class="book">
@@ -177,7 +205,7 @@
         <div>
           <h3><span lang="zh-Hans">重返大厂：创业治好了我的上班焦虑</span></h3>
           <p class="by"><span lang="zh-Hans">罗量</span> (Luo Liang), 2025. In English, roughly: <i>Back to Big Tech: How Starting a Business Cured My Office Anxiety</i></p>
-          <p>A former big-company executive starts a pet business, closes it, and goes back to corporate work. It's an honest account of what starting a business cost the author. Reading it, I felt I was going through each stage alongside the author, in today's world of work, and it helps anyone weighing that choice before making it.</p>
+          <p>A former big-company executive starts a pet business, closes it, and goes back to corporate work. It's an honest account of what starting a business cost the author. Reading it, I felt I was going through each stage alongside the author, in today's world of work. It's useful for anyone weighing the same choice.</p>
         </div>
       </article>
     </div>
@@ -189,8 +217,9 @@
   </nav>
 
   <footer>
+    <p>By Wong Ding Zhe. Reach me at <a href="mailto:dzwong97@gmail.com">dzwong97@gmail.com</a> or on <a href="https://www.linkedin.com/in/dzwong97">LinkedIn</a>.</p>
     <p>Cover images from <a href="https://openlibrary.org">Open Library</a>, Amazon and <a href="https://book.douban.com">Douban</a>. Spreadsheet Modelling Best Practice was a free guide with no published cover, so it gets a drawn one.</p>
-    <p>Version 0.9, 7 November 2026</p>
+    <p>Version 1.0, 7 November 2026</p>
   </footer>
 </div>
 

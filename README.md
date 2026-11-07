@@ -20,6 +20,7 @@ This repository is the only copy of the site. A private claude.ai artifact of it
 | `favicon.svg` | Browser tab icon (used by the public build) |
 | `covers/` | Book covers for the Reading page, from Open Library, Amazon and Douban, resized to about 350 pixels wide. Spreadsheet Modelling Best Practice has a drawn cover in the page because none was published. |
 | `build-public.cjs` | Builds `public/` |
+| `AGENTS.md` | Maintenance notes: the decisions behind the writing, layout, visuals and build. `CLAUDE.md` points Claude Code to it. |
 | `edgeone.json` | EdgeOne Pages settings: build command, output folder, and redirects from the old `.html` addresses. These override the console's build settings. |
 | `public/` | Generated. Don't edit it by hand; rebuild instead |
 
@@ -67,6 +68,6 @@ The same `public/` folder also works on any other static host, such as Netlify D
 
 ## Before going public
 
-- The site shows the full name Wong Ding Zhe and the job title. Everything else is generic.
+- The top bar shows the site name, Ding's working notes. Each footer shows the full name Wong Ding Zhe with an email address and a LinkedIn link. Everything else is generic.
 - All figures are illustrative, for a made-up café chain. No employer names, internal systems or real results.
 - Search engines will index the site once it is linked anywhere. To keep it out of search results, add `<meta name="robots" content="noindex">` to each page's `<head>`.

@@ -21,7 +21,7 @@ const DESCRIPTIONS = {
   'ai-delegate.html': 'Which steps to hand to AI, how to pass work between AIs, when a method is worth making reusable, and what access an agent should have.',
   'ai-value.html': 'Whether AI is worth it: the whole effort including checking, testing tools against their claims, build or adapt, and a worked example.',
   'ai-analytics.html': 'AI in data analysis: a workflow with two checkpoints, organising context for reuse, the foundations analysts need, and starting a team on real requests.',
-  'reading.html': 'The books and references behind this practice.'
+  'reading.html': 'Books that shape how I work and think, grouped by theme, with what each one taught me.'
 };
 const PAGE_NAMES = PAGES.map(page => page.replace(/\.html$/, ''));
 
