@@ -436,7 +436,8 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
 /* Phones and narrow windows: the drawing stays at the top and the text box stays at the bottom.
    Scrolling only moves the story on: it builds the drawing, then swaps the text for the next step. */
 @media (max-width: 899px) {
-  :root { --bar-h: 0px; --box-h: calc(48svh - 36px); }
+  /* The text box starts just under the drawing and reaches the bottom of the screen, so it grows when the browser bar hides */
+  :root { --bar-h: 0px; --box-top: calc(52svh + 24px); }
   .topbar { position: static; height: auto; padding-block: 16px; flex-wrap: wrap; background: var(--paper); backdrop-filter: none; }
   .scrolly { display: block; margin-top: 8px; }
   .stage-col { top: 0; height: 100svh; align-items: flex-start; padding-top: 12px; z-index: 0; }
@@ -447,7 +448,7 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
   .step { min-height: 85svh; }
   /* Every step's box has the same height, so its heading always starts in the same place; steps swap with a plain fade */
   .step-card {
-    position: fixed; z-index: 5; left: 16px; right: 16px; bottom: max(12px, env(safe-area-inset-bottom, 0px)); height: var(--box-h); overflow-y: auto;
+    position: fixed; z-index: 5; left: 16px; right: 16px; top: var(--box-top); bottom: max(12px, env(safe-area-inset-bottom, 0px)); overflow-y: auto;
     display: flex; flex-direction: column; max-width: none; gap: 8px; padding: 14px 16px 12px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 6px; box-shadow: 0 18px 36px -24px rgb(0 0 0 / 0.35);
     opacity: 0; visibility: hidden; transition: opacity .25s var(--ease), visibility 0s linear .25s;
   }
@@ -457,8 +458,13 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
   .step.aha .step-card h3 { font-size: 1.5rem; }
   /* Short phones: give the text a little more of the screen instead of shrinking it */
   @media (max-height: 780px) {
-    :root { --box-h: calc(52svh - 30px); }
+    :root { --box-top: calc(48svh + 18px); }
     .stage { height: 48svh; }
+    .step-card { gap: 4px; padding: 12px 16px 10px; }
+    .step.aha .step-card h3 { font-size: 1.35rem; }
+    .step-card p { line-height: 1.5; }
+    .card-nav { padding-top: 6px; }
+    .card-btn { padding: 5px 14px; }
   }
   .card-progress { display: block; height: 3px; margin: -2px 0 2px; border-radius: 2px; background: var(--rule); overflow: hidden; }
   .card-progress i { display: block; height: 100%; background: var(--accent); }
@@ -502,6 +508,8 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
   @media (max-height: 780px) {
     .lane-h svg { display: none; }
     .slide-foot { display: none; }
+    .scene { gap: 6px; }
+    .slide { padding: 8px 10px 6px; }
   }
   .ai-grid { grid-template-columns: minmax(0, 1fr); }
   .ai-intro { position: static; }
