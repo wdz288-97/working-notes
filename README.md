@@ -13,7 +13,7 @@ This repository is the only copy of the site. A private claude.ai artifact of it
 | `data-analytics-playbook.html` | Home page source. Written as an artifact page, so it has no doctype or `<head>`; the artifact host and the build add them. |
 | `playbook.html`, `reading.html` | The playbook and the reading list, as full HTML documents |
 | `ai.html` | Using AI: the guide's contents page, with the six chapters and my current tools |
-| `ai-check.html`, `ai-analytics.html` | Using AI chapters 3 (Check the work) and 6 (AI in analytics, early version). Each chapter is its own page; the rest are in progress. |
+| `ai-learn.html`, `ai-brief.html`, `ai-check.html`, `ai-analytics.html` | Using AI chapters 1 (Learn what AI can do), 2 (Brief and steer the work), 3 (Check the work) and 6 (AI in analytics, early version). Each chapter is its own page; chapters 4 and 5 are in progress. |
 | `site.css` | Shared styles, light and dark |
 | `site.js` | Shared behaviour; each part runs only on pages that have its elements |
 | `icons.svg` | The line drawings, as one sprite |

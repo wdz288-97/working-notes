@@ -563,6 +563,25 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
 .self-check summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .self-check details[open] summary { margin-bottom: 8px; }
 .prose > .sources { margin-top: 2.6em; }
+
+/* Chapter 2: the same task briefed two ways, as tabs */
+.brief-compare { padding: 18px; border: 1.5px solid var(--faint); border-radius: 6px; gap: 14px; }
+.brief-rows { margin: 0; display: grid; gap: 12px; }
+.brief-rows div { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 4px 16px; }
+.brief-rows dt { font-weight: 600; color: var(--ink); line-height: 1.4; }
+.brief-rows dd { margin: 0; }
+.brief-quote { font-family: var(--font-note); font-style: italic; color: var(--ink); }
+@media (max-width: 560px) { .brief-rows div { grid-template-columns: minmax(0, 1fr); } }
+
+/* Chapter 1: what a product adds around the model */
+.model-map svg { display: block; width: 100%; max-width: 440px; height: auto; margin-inline: auto; color: var(--line); overflow: visible; }
+.model-map text { font-family: var(--font-sans); text-anchor: middle; fill: var(--ink); }
+.model-map text.mm-title { font-size: 16px; font-weight: 600; }
+.model-map text.mm-sub { font-size: 14px; fill: var(--muted); }
+.mm-core { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.mm-links path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+.history-table td:first-child { font-weight: 600; white-space: nowrap; }
+.bench-table td:first-child { font-weight: 600; }
 .sources { display: grid; gap: 8px; font-size: 0.92rem; }
 .prose .sources h2 { margin-top: 0; font-size: 1.1rem; }
 .sources ol { gap: 4px; }

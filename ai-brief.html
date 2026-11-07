@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brief and steer the work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=Source+Code+Pro:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="prefetch" href="ai-check.html">
+<link rel="prefetch" href="ai-learn.html">
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="topbar">
+    <a class="who-am-i" href="index.html"><strong>Wong Ding Zhe</strong><span>Business intelligence analyst</span></a>
+    <nav aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="ai.html" aria-current="page">Using AI</a>
+      <a href="reading.html">Reading</a>
+    </nav>
+  </header>
+
+  <header class="page-head">
+    <p class="page-name"><a href="ai.html">Using AI</a>, chapter 2 of 6</p>
+    <h1>Brief and steer the work</h1>
+    <p class="meta">About 9 minutes to read</p>
+    <p class="lede">Good work from AI starts before the first answer: knowing your role in the task, a brief that names the outcome, the right context and sources, and steering every round back to the goal.</p>
+  </header>
+
+  <div class="chapter">
+    <section class="key-ideas" aria-labelledby="key-ideas">
+      <h2 id="key-ideas">Key ideas</h2>
+      <ul>
+        <li>How much you know decides your role: direct where your knowledge is strong, and learn where it isn't.</li>
+        <li>Brief the AI on the outcome: who the result is for, what it should help them decide or do, and what evidence to use.</li>
+        <li>Give the AI a working folder of relevant, current information, and keep stale or rejected material out of it.</li>
+        <li>Point it at the right sources, or let it scout first and then narrow down.</li>
+        <li>When words fail, show an example, and hold every round against the goal you started with.</li>
+      </ul>
+    </section>
+
+    <nav class="guide-nav" id="guide-contents" aria-label="Using AI contents">
+      <p class="guide-nav-head"><a href="ai.html">Using AI</a></p>
+      <ol class="guide-chapters">
+        <li><a href="ai-learn.html">1. Learn what AI can do</a></li>
+        <li class="is-here">
+          <a href="ai-brief.html" aria-current="page">2. Brief and steer the work</a>
+          <p class="guide-here">In this chapter</p>
+          <ol class="guide-sections">
+            <li><a href="#key-ideas">Key ideas</a></li>
+            <li><a href="#role">Your knowledge sets your role in the task</a></li>
+            <li><a href="#outcome">Brief the AI on the outcome you need</a></li>
+            <li><a href="#folder">Treat context as a working folder</a></li>
+            <li><a href="#sources">Choose the sources, or let it scout first</a></li>
+            <li><a href="#examples">Show an example when words fail</a></li>
+            <li><a href="#course">Steer each round against the goal</a></li>
+            <li><a href="#trip">A worked example: planning a trip</a></li>
+            <li><a href="#learning">Learn with AI through examples and real cases</a></li>
+            <li><a href="#self-check">Check your understanding</a></li>
+            <li><a href="#sources-h">Sources</a></li>
+          </ol>
+        </li>
+        <li><a href="ai-check.html">3. Check the work</a></li>
+        <li class="is-pending"><span>4. Divide, delegate and reuse</span></li>
+        <li class="is-pending"><span>5. Judge whether it's worth it</span></li>
+        <li><a href="ai-analytics.html">6. AI in analytics</a></li>
+      </ol>
+    </nav>
+
+    <article class="prose">
+      <h2 id="role">Your knowledge sets your role in the task</h2>
+      <p>How much you know about a subject changes how you work with AI. In a subject you know well, you can work like a manager: set the purpose, recognise the assumptions that matter, and judge whether the result answers the right question. A Power BI trainer, for example, can ask AI to propose a teaching example while keeping control of the learning objective and checking the calculation.</p>
+      <p>Managing doesn't mean dictating every step. A good brief can invite alternatives: "Here is my approach. What assumptions am I overlooking, and what evidence would change the recommendation?" You stay responsible for the standard without assuming your first idea is the best one.</p>
+      <p>In an unfamiliar subject, you're an apprentice in the method and a client for the purpose. You may not know how to build a small app, but you can say who needs it, what problem it should solve and what you're willing to maintain. Ask the AI to explain its important choices, show you a small part, and give you something similar to try yourself.</p>
+      <p>Most tasks mix the roles. You might manage the business requirements, learn the technical build and review the final presentation. <mark>Direct where your knowledge is strong, and learn where it isn't.</mark></p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>In my experience, the more I know about an area, the better the work I can get AI to produce in it. Collecting resources helps too. Research, reading and social media give me more options for the parts that need human judgement, such as the look of a website. And there's often an existing tool that already fits the goal, which saves building one.</p></aside>
+
+      <h2 id="outcome">Brief the AI on the outcome you need</h2>
+      <p>Suppose you're preparing a short workshop proposal. "Make me a presentation" asks for an output. "Help my manager decide whether this workshop is worth running" names an outcome, and that changes which questions, evidence and structure matter. Switch between the two briefs below.</p>
+
+      <figure class="figure brief-compare">
+        <div class="work-tabs" role="tablist" aria-label="Two briefs for the same task">
+          <button type="button" role="tab" id="bt-output" aria-controls="bp-output" aria-selected="true">Asking for an output</button>
+          <button type="button" role="tab" id="bt-outcome" aria-controls="bp-outcome" aria-selected="false" tabindex="-1">Asking for an outcome</button>
+        </div>
+        <div role="tabpanel" id="bp-output" aria-labelledby="bt-output">
+          <dl class="brief-rows">
+            <div><dt>The brief</dt><dd class="brief-quote">"Make me a presentation about the workshop."</dd></div>
+            <div><dt>What the AI has to guess</dt><dd>Who will see it, what they need to decide, which figures to use and what to leave out.</dd></div>
+            <div><dt>What you're likely to get</dt><dd>Polished slides describing the workshop, its content and its benefits. Hard to judge, because nothing says what a good result would do.</dd></div>
+          </dl>
+        </div>
+        <div role="tabpanel" id="bp-outcome" aria-labelledby="bt-outcome" hidden>
+          <dl class="brief-rows">
+            <div><dt>The brief</dt><dd class="brief-quote">"My manager must choose between a short online workshop and a longer in-person session. Use the attached constraints and cost estimates. Compare the options, show what's still unknown, and finish with the decision needed."</dd></div>
+            <div><dt>What the AI now knows</dt><dd>The reader (your manager), the decision (online or in person), and the evidence to use (the constraints and estimates you attached).</dd></div>
+            <div><dt>What you're likely to get</dt><dd>A comparison of two options, the open questions, and a clear decision to make. Easy to judge: does it help your manager choose?</dd></div>
+          </dl>
+        </div>
+        <figcaption>Same task, two briefs. The second names the reader, the decision and the evidence, so you can judge the result against them.</figcaption>
+      </figure>
+
+      <p>This is the everyday purpose of prompt engineering: writing a useful brief. Explain the task, the constraints, who the result is for and what a good result looks like. An example of the standard you want helps. Model documentation recommends clear, explicit instructions,<a class="cite" href="#src-1" aria-label="Source 1">1</a> but a longer prompt or an impressive role title ("you are a world-class consultant") doesn't make the answer more accurate.</p>
+      <p><mark>A useful brief tells the AI what a successful contribution looks like, without scripting every sentence.</mark></p>
+
+      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>Take a request you made to an AI this week and rewrite it as an outcome: who will use the result, what they need to decide or do, and what evidence the AI should use. Run both versions and notice which result you could judge more easily.</p></aside>
+
+      <h2 id="folder">Treat context as a working folder</h2>
+      <p>The brief is one message. Context is everything else the AI can see while it works: source material, definitions, examples, earlier decisions and the results of its own tools. Engineers call the job of choosing and maintaining it context engineering.<a class="cite" href="#src-2" aria-label="Source 2">2</a><a class="cite" href="#src-3" aria-label="Source 3">3</a> A good picture is an organised working folder for this one task, much smaller than the whole filing cabinet, with contents that change as the work moves on.</p>
+      <p>For the workshop proposal, the folder might hold the audience's experience, the learning objective, the agreed time limit and the current budget. What stays out matters as much as what goes in:</p>
+      <table class="plain-table folder-table">
+        <thead><tr><th scope="col">Put in the folder</th><th scope="col">Keep out, or label clearly</th></tr></thead>
+        <tbody>
+          <tr><td>The current, approved figures</td><td>An old estimate sitting beside the approved one</td></tr>
+          <tr><td>Agreed definitions</td><td>A rejected approach that could return as a requirement</td></tr>
+          <tr><td>Decisions already made, and why</td><td>Background that doesn't change the answer</td></tr>
+          <tr><td>An example of the standard you want</td><td>Private data the task doesn't need</td></tr>
+        </tbody>
+      </table>
+      <p><mark>Your own knowledge is what tells you which information actually changes the answer.</mark> For analysts the idea is familiar: a result depends on its definitions and inputs. An AI's context works differently from a filter in a BI tool, but the habit of asking "what is this result based on?" carries straight over.</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>When an AI gets something wrong because it lacked context, I add that context to what it reads next time. The folder for each kind of work gets better that way.</p></aside>
+
+      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-alert"/></svg>Common trap: the whole filing cabinet</p><p>Pasting everything you have feels thorough, but the AI can't tell which figure is current or which decision still stands. Out-of-date material in the context can produce confident, wrong answers.</p></aside>
+
+      <h2 id="sources">Choose the sources, or let it scout first</h2>
+      <p>Where the AI looks shapes what it finds. If you know the topic, name the sources: official sites for facts and rules, forums and social media for how people actually use something, and specialist sites for particular tasks. If you have no idea where to start, let the AI explore first, look at which of its findings are strongest, and ask it to go deeper into those sources.</p>
+      <p>Then judge what comes back against your goal. <mark>A convincing answer that doesn't fit your goal is still the wrong answer.</mark> When sources conflict on facts, go back to what each one can actually establish, as <a href="ai-check.html#second-opinion">chapter 3</a> describes.</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I usually tell the AI which sources to check, depending on the topic: X and Reddit, official sites, and sites known for that kind of task. When I have no idea, I let it go first, see which points look strongest, and ask it to bring more from those sources. I'll reject an otherwise convincing answer if an alternative fits my goal better.</p></aside>
+
+      <h2 id="examples">Show an example when words fail</h2>
+      <p>Some requirements are hard to put into words, especially visual ones. If the result keeps missing and you can't say why, you may simply lack the terms. Change approach: find examples that show what you want and share them. An example carries layout, tone and detail that a description leaves out. <mark>When you can't describe it, show it.</mark></p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>When I was building a website, the overall look didn't fit what I wanted, partly because I couldn't find the right words or terms to describe it. So I changed approach: I found sample sites that matched what I had in mind and shared them for the AI to learn from. The playbook on this site started that way, from a scroll story with line drawings that I liked.</p></aside>
+
+      <h2 id="course">Steer each round against the goal</h2>
+      <p>Most of the effort in a good collaboration goes into direction. After each round, hold the output against the goal you started with and say specifically what's off. Comparing a draft only with the previous draft lets the work drift.</p>
+      <p>Ask the AI to challenge you as well: its reasons for and against, stated directly. A one-sided answer tells you little. If you're still not convinced, ask follow-up questions or get another view, and remember that two AIs agreeing isn't proof (<a href="ai-check.html#second-opinion">chapter 3</a>). <mark>Check the direction at every turn of the work.</mark></p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I usually put most of my effort into making sure we're heading in the right direction at each turn of plan, do, check and act, the same loop the <a href="playbook.html">playbook</a> follows.</p></aside>
+
+      <h2 id="trip">A worked example: planning a trip</h2>
+      <p>Here's how these ideas come together in a personal task: planning a holiday.</p>
+      <ol class="steps-list">
+        <li><strong>I choose the sources.</strong> I research RedNote (小红书) posts myself and pick several useful notes, deliberately including different perspectives.</li>
+        <li><strong>I write the brief.</strong> I give the AI the posts I picked and my requirements: trip length, budget and number of travellers. It can add its own research, then drafts a plan.</li>
+        <li><strong>We go round the loop.</strong> I review the draft, adjust my own ideas where needed and ask for changes, until the plan is ready. Then I ask for an itinerary in a format that's easy to share.</li>
+        <li><strong>It handles the admin.</strong> It compares hotel prices across sites, organises flight and booking confirmations into folders, and summarises the trip flow, practical notes and which tickets to book ahead, using my chosen posts and other sources.</li>
+      </ol>
+      <p>I chose the sources and judged the plan; the AI searched, drafted and organised.</p>
+
+      <h2 id="learning">Learn with AI through examples and real cases</h2>
+      <p>AI can be a patient tutor if you use it well. Ask for examples, and when an explanation doesn't land, ask for it in plain language. Ask what current practice is among experts and practitioners, based on research rather than the AI's memory alone, then ask how it works in real cases, because theory and application differ.</p>
+      <p>Following an explanation is different from being able to use it. A good check is to change the example and try again without copying the previous answer. When the goal is a one-off, low-risk result, deep study may not be needed. <mark>When the goal is a skill, the practice is part of the result.</mark></p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I like examples, and if I can't follow something I ask for it in plain words. When I learn something new, I make sure the AI shares current best practice from community and expert experience, after researching it. Then I ask my own questions about real-life use.</p></aside>
+
+      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>Next time you learn something with AI, ask for one worked example. Then change one detail, solve it yourself without looking back, and ask the AI to check your attempt.</p></aside>
+
+      <section class="self-check" aria-labelledby="self-check">
+        <h2 id="self-check">Check your understanding</h2>
+        <details>
+          <summary>You ask an AI for "a presentation on the workshop". What's missing from the brief?</summary>
+          <p>The outcome: who the presentation is for, what they need to decide, and what evidence to use. With those, the AI can build towards a decision and you can judge the result against it.</p>
+        </details>
+        <details>
+          <summary>Last month's estimate sits in the AI's context next to this month's approved budget. Why does it matter?</summary>
+          <p>The AI can't tell which figure is current, so it may use the wrong one or mix the two. Remove the old estimate, or label it clearly as superseded.</p>
+        </details>
+        <details>
+          <summary>The AI keeps missing the look you want for a page, and you can't say exactly why. What do you try?</summary>
+          <p>Show it. Find example pages that match what you have in mind and share them, so the AI can see the layout and tone you can't describe.</p>
+        </details>
+      </section>
+
+      <section class="sources" aria-labelledby="sources-h">
+        <h2 id="sources-h">Sources</h2>
+        <ol>
+          <li id="src-1">Anthropic. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Prompting best practices</a>. Documentation.</li>
+          <li id="src-2">Anthropic. <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Effective context engineering for AI agents</a>. 29 September 2025.</li>
+          <li id="src-3">LangChain. <a href="https://www.langchain.com/blog/context-engineering-for-agents">Context engineering</a>. 2 July 2025.</li>
+        </ol>
+        <p class="meta">Sources checked in October 2026.</p>
+      </section>
+    </article>
+  </div>
+
+  <a class="to-contents" id="to-contents" href="#guide-contents">Contents</a>
+
+  <nav class="next-page" aria-label="Next page">
+    <a class="prev" href="ai-learn.html"><span>Previous</span><strong>Chapter 1: Learn what AI can do</strong></a>
+    <a class="next" href="ai-check.html"><span>Next</span><strong>Chapter 3: Check the work</strong></a>
+  </nav>
+
+  <footer>
+    <p>Version 0.9, 7 November 2026</p>
+    <p>All figures on this page are illustrative.</p>
+  </footer>
+</div>
+
+<script src="site.js"></script>
+</body>
+</html>
