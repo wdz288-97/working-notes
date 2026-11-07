@@ -485,11 +485,6 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
   .ch-colhead { font-size: 15px; }
   .t-label, .t-value { font-size: 20px; }
   .t-delta { font-size: 18px; }
-  /* The loop guide stays readable on phones: fixed sizes, not scaled down with the drawing */
-  .loop-guide { gap: 6px; }
-  .loop-steps li { font-size: 13px; padding: 6px 0; }
-  .loop-note { font-size: 13.5px; line-height: 1.35; }
-  .loop-again { width: 20px; height: 20px; }
   /* Scenes on phones: tighter spacing so every drawing fits above the text box */
   .scene { gap: 10px; }
   .lanes { gap: 5px 6px; }
@@ -506,7 +501,6 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
   /* Short phones: drop the decorative extras, keep every label and number */
   @media (max-height: 780px) {
     .lane-h svg { display: none; }
-    .lanes { gap: 3px 6px; }
     .slide-foot { display: none; }
   }
   .ai-grid { grid-template-columns: minmax(0, 1fr); }
