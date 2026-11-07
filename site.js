@@ -419,6 +419,89 @@
       card.appendChild(nav);
     });
 
+    // Phones: split the screen between the drawing and the text box by measuring this phone (its screen height,
+    // browser bars and font-size setting), so every step's text fits the box and every drawing fits above it.
+    // It re-measures only when the width, screen height or text size changes, never as the browser bar hides,
+    // so the drawing doesn't jump while scrolling.
+    (function fitPhoneLayout() {
+      var root = document.documentElement;
+      var cards = steps.map(function (step) { return step.querySelector('.step-card'); });
+      var scenes = Array.prototype.slice.call(stage.querySelectorAll('.scene'));
+      var scenesBox = stage.querySelector('.scenes');
+      var shortScreen = window.matchMedia('(max-height: 780px)');
+      // 100svh is the screen height with the browser bar showing; it stays put while the bar hides and shows
+      var screenProbe = htmlEl('div', { 'aria-hidden': 'true' });
+      screenProbe.style.cssText = 'position:fixed;top:0;left:0;width:0;height:100svh;visibility:hidden;pointer-events:none';
+      // Its width follows the phone's text size, including font-size settings in Android and WeChat
+      var textProbe = htmlEl('span', { 'aria-hidden': 'true' }, 'Monthly orders by channel');
+      textProbe.style.cssText = 'position:absolute;top:0;left:0;white-space:nowrap;visibility:hidden;pointer-events:none';
+      document.body.appendChild(screenProbe);
+      document.body.appendChild(textProbe);
+      var DRAWING_SHARE = { min: 0.36, max: 0.52 };
+      var MIN_SCENE_SCALE = 0.6;
+      var lastKey = '';
+
+      function tallestCardHeight() {
+        cards.forEach(function (card) { card.style.top = 'auto'; });
+        var tallest = Math.max.apply(null, cards.map(function (card) { return card.offsetHeight; }));
+        cards.forEach(function (card) { card.style.top = ''; });
+        return tallest;
+      }
+      // Each drawing keeps its natural size, or shrinks just enough to fit the space it has
+      function contentBottom(scene) {
+        var sceneTop = scene.getBoundingClientRect().top;
+        var bottom = 0;
+        each(scene.children, function (child) {
+          var end = child instanceof HTMLElement ? child.offsetTop + child.offsetHeight : child.getBoundingClientRect().bottom - sceneTop;
+          bottom = Math.max(bottom, end);
+        });
+        return bottom;
+      }
+      // A visual scale, not a re-layout: the drawing keeps its own arrangement and shrinks from the top centre
+      function scaleScene(scene, scale) {
+        scene.style.transform = scale < 1 ? 'scale(' + scale.toFixed(3) + ')' : '';
+        scene.style.transformOrigin = scale < 1 ? '50% 0' : '';
+      }
+      function fitScenes() {
+        var room = scenesBox.clientHeight;
+        scenes.forEach(function (scene) { scaleScene(scene, 1); });
+        scenes.forEach(function (scene) {
+          var needed = contentBottom(scene);
+          if (needed > room + 1) scaleScene(scene, Math.max(MIN_SCENE_SCALE, room / needed));
+        });
+      }
+      function fit() {
+        if (!narrow.matches) {
+          root.style.removeProperty('--stage-h');
+          scenes.forEach(function (scene) { scaleScene(scene, 1); });
+          lastKey = '';
+          return;
+        }
+        var screenHeight = screenProbe.offsetHeight || window.innerHeight;
+        var key = [window.innerWidth, screenHeight, textProbe.offsetWidth, shortScreen.matches].join('|');
+        if (key === lastKey) return;
+        lastKey = key;
+        root.style.removeProperty('--stage-h');
+        var gap = parseFloat(getComputedStyle(root).getPropertyValue('--box-gap')) || 8;
+        var top = parseFloat(getComputedStyle(stage.parentNode).paddingTop) || 12;
+        var bottom = parseFloat(getComputedStyle(cards[0]).bottom) || 12;
+        var room = screenHeight - top - gap - bottom - tallestCardHeight() - 2;
+        var stageHeight = clamp(room, screenHeight * DRAWING_SHARE.min, screenHeight * DRAWING_SHARE.max);
+        root.style.setProperty('--stage-h', Math.floor(stageHeight) + 'px');
+        fitScenes();
+      }
+
+      var fitQueued = false;
+      function queueFit() {
+        if (fitQueued) return;
+        fitQueued = true;
+        window.requestAnimationFrame(function () { fitQueued = false; fit(); });
+      }
+      fit();
+      window.addEventListener('resize', queueFit);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { lastKey = ''; fit(); });
+    })();
+
     // Scroll cues: shown until the first step starts, then gone for the rest of the visit
     function updateCues(position) {
       if (!started && position >= 0) {

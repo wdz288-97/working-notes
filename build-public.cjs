@@ -3,6 +3,7 @@
 // Run from this folder: node build-public.cjs
 'use strict';
 
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -72,11 +73,46 @@ function copyDir(from, to) {
   for (const name of fs.readdirSync(from)) fs.copyFileSync(path.join(from, name), path.join(to, name));
 }
 
+// Fingerprinted file names: site.css becomes site.<hash>.css, so a changed file always has a new address and
+// no phone, browser or CDN can pair a new page with an old stylesheet. icons.svg goes first because site.js names it.
+// The plain names are written too, so a page cached from before still finds its files.
+function fingerprint(name, text) {
+  const hash = crypto.createHash('sha256').update(text).digest('hex').slice(0, 10);
+  const dot = name.lastIndexOf('.');
+  return name.slice(0, dot) + '.' + hash + name.slice(dot);
+}
+
+function writeFingerprintedAssets() {
+  const renamed = {};
+  const read = file => fs.readFileSync(path.join(SOURCE, file), 'utf8');
+  const write = (file, text) => {
+    renamed[file] = fingerprint(file, text);
+    fs.writeFileSync(path.join(OUT, renamed[file]), text);
+    fs.writeFileSync(path.join(OUT, file), text);
+  };
+  write('icons.svg', read('icons.svg'));
+  const script = read('site.js');
+  const spriteLine = "var SPRITE = 'icons.svg';";
+  if (!script.includes(spriteLine)) throw new Error('site.js: could not find the icon sprite name to fingerprint');
+  write('site.js', script.replace(spriteLine, "var SPRITE = '" + renamed['icons.svg'] + "';"));
+  write('site.css', read('site.css'));
+  return renamed;
+}
+
+function linkFingerprintedAssets(html, renamed) {
+  return html
+    .replace(/href="site\.css"/g, 'href="' + renamed['site.css'] + '"')
+    .replace(/src="site\.js"/g, 'src="' + renamed['site.js'] + '"')
+    .replace(/href="icons\.svg#/g, 'href="' + renamed['icons.svg'] + '#');
+}
+
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
-fs.writeFileSync(path.join(OUT, 'index.html'), cleanPageLinks(buildHome()));
-PAGES.forEach(page => fs.writeFileSync(path.join(OUT, page), cleanPageLinks(buildPage(page))));
-ASSETS.forEach(file => fs.copyFileSync(path.join(SOURCE, file), path.join(OUT, file)));
+const renamed = writeFingerprintedAssets();
+const finish = html => linkFingerprintedAssets(cleanPageLinks(html), renamed);
+fs.writeFileSync(path.join(OUT, 'index.html'), finish(buildHome()));
+PAGES.forEach(page => fs.writeFileSync(path.join(OUT, page), finish(buildPage(page))));
+ASSETS.filter(file => !renamed[file]).forEach(file => fs.copyFileSync(path.join(SOURCE, file), path.join(OUT, file)));
 copyDir(path.join(SOURCE, 'covers'), path.join(OUT, 'covers'));
 
 const files = [];
