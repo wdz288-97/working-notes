@@ -9,7 +9,7 @@ const path = require('path');
 
 const SOURCE = __dirname;
 const OUT = path.join(SOURCE, 'public');
-const PAGES = ['playbook.html', 'ai.html', 'ai-learn.html', 'ai-brief.html', 'ai-check.html', 'ai-analytics.html', 'reading.html'];
+const PAGES = ['playbook.html', 'ai.html', 'ai-learn.html', 'ai-brief.html', 'ai-check.html', 'ai-delegate.html', 'ai-value.html', 'ai-analytics.html', 'reading.html'];
 const ASSETS = ['site.css', 'site.js', 'icons.svg', 'favicon.svg'];
 const DESCRIPTIONS = {
   'index.html': 'Working notes from a business intelligence analyst: how analysis runs as a loop, how to work with AI, and the books behind it.',
@@ -18,6 +18,8 @@ const DESCRIPTIONS = {
   'ai-learn.html': 'What to learn about AI and where to keep up, how products are built around a model, how to read benchmarks, and how to run a small trial of your own.',
   'ai-brief.html': 'How to brief and steer AI: your role in the task, a brief that names the outcome, context as a working folder, sources, examples, and a worked example.',
   'ai-check.html': 'How to check work done with AI: tests and loops with a way out, borrowed checks, second opinions, and the evidence behind an interpretation.',
+  'ai-delegate.html': 'Which steps to hand to AI, how to pass work between AIs, when a method is worth making reusable, and what access an agent should have.',
+  'ai-value.html': 'Whether AI is worth it: the whole effort including checking, testing tools against their claims, build or adapt, and a worked example.',
   'ai-analytics.html': 'Where AI fits in data analysis, and the two checkpoints where its work gets checked.',
   'reading.html': 'The books and references behind this practice.'
 };

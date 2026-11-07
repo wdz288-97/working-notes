@@ -9,6 +9,8 @@
     { "source": "/ai-learn.html", "destination": "/ai-learn", "statusCode": 301 },
     { "source": "/ai-brief.html", "destination": "/ai-brief", "statusCode": 301 },
     { "source": "/ai-check.html", "destination": "/ai-check", "statusCode": 301 },
+    { "source": "/ai-delegate.html", "destination": "/ai-delegate", "statusCode": 301 },
+    { "source": "/ai-value.html", "destination": "/ai-value", "statusCode": 301 },
     { "source": "/ai-analytics.html", "destination": "/ai-analytics", "statusCode": 301 },
     { "source": "/reading.html", "destination": "/reading", "statusCode": 301 }
   ]

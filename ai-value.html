@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Judge whether it's worth it</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=Source+Code+Pro:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="prefetch" href="ai-analytics.html">
+<link rel="prefetch" href="ai-delegate.html">
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="topbar">
+    <a class="who-am-i" href="index.html"><strong>Wong Ding Zhe</strong><span>Business intelligence analyst</span></a>
+    <nav aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="ai.html" aria-current="page">Using AI</a>
+      <a href="reading.html">Reading</a>
+    </nav>
+  </header>
+
+  <header class="page-head">
+    <p class="page-name"><a href="ai.html">Using AI</a>, chapter 5 of 6</p>
+    <h1>Judge whether it's worth it</h1>
+    <p class="meta">About 6 minutes to read</p>
+    <p class="lede">A cheap subscription isn't the same as cheap work. Whether AI, a tool or a skill is worth it depends on the whole effort, the quality of the result and the upkeep, judged on your own work.</p>
+  </header>
+
+  <div class="chapter">
+    <section class="key-ideas" aria-labelledby="key-ideas">
+      <h2 id="key-ideas">Key ideas</h2>
+      <ul>
+        <li>Count the whole effort, including briefing, checking and correcting, and compare only options that meet the standard you need.</li>
+        <li>Count new opportunities separately from money saved.</li>
+        <li>Test a tool or skill on your own work against what it claims; extra tokens alone aren't a benefit.</li>
+        <li>Weigh time saved, quality, cost and upkeep together, and adapt what exists before building your own.</li>
+        <li>Improving a tool can mean removing parts, and when others use it, start from their needs.</li>
+      </ul>
+    </section>
+
+    <nav class="guide-nav" id="guide-contents" aria-label="Using AI contents">
+      <p class="guide-nav-head"><a href="ai.html">Using AI</a></p>
+      <ol class="guide-chapters">
+        <li><a href="ai-learn.html">1. Learn what AI can do</a></li>
+        <li><a href="ai-brief.html">2. Brief and steer the work</a></li>
+        <li><a href="ai-check.html">3. Check the work</a></li>
+        <li><a href="ai-delegate.html">4. Divide, delegate and reuse</a></li>
+        <li class="is-here">
+          <a href="ai-value.html" aria-current="page">5. Judge whether it's worth it</a>
+          <p class="guide-here">In this chapter</p>
+          <ol class="guide-sections">
+            <li><a href="#key-ideas">Key ideas</a></li>
+            <li><a href="#total">Count the whole effort, including the checking</a></li>
+            <li><a href="#opportunity">Count new opportunities separately</a></li>
+            <li><a href="#claims">Test a tool against what it claims</a></li>
+            <li><a href="#weigh">Weigh time, quality, cost and upkeep together</a></li>
+            <li><a href="#adapt">Adapt what exists before building your own</a></li>
+            <li><a href="#improve">Improving a tool can mean removing parts</a></li>
+            <li><a href="#others">When others use it, start from their needs</a></li>
+            <li><a href="#job-sieve">A worked example: building Job Sieve</a></li>
+            <li><a href="#self-check">Check your understanding</a></li>
+            <li><a href="#sources-h">Sources</a></li>
+          </ol>
+        </li>
+        <li><a href="ai-analytics.html">6. AI in analytics</a></li>
+      </ol>
+    </nav>
+
+    <article class="prose">
+      <h2 id="total">Count the whole effort, including the checking</h2>
+      <p>You may know how to do a task and still choose not to do every part yourself. A low subscription price doesn't make that choice good value if you spend the afternoon repairing the result. A fair comparison includes the fee and your time spent briefing, operating, coordinating, checking and correcting.</p>
+      <p>Quality, confidentiality and acceptable risk come first: compare options only once each one meets the standard you need. A person's higher fee can buy specialist judgement, the actual implementation or someone accountable, and a cheaper AI subscription doesn't replace those.</p>
+      <p>The calculator below assumes four similar, low-risk tasks a month, with all three approaches meeting the same standard. Every fee and time is hypothetical, not a price quote or a measured result.</p>
+
+      <figure class="figure calc cost-calc" id="cost-calc">
+        <div class="calc-inputs">
+          <label class="calc-in"><span class="calc-name">Your hours with AI <i>briefing, checking, fixing</i></span><input type="range" id="ai-hours" min="1" max="14" step="1" value="4"><output id="ai-hours-out" for="ai-hours">4 hours</output></label>
+          <label class="calc-in"><span class="calc-name">Value of your time <i>per hour</i></span><input type="range" id="hour-value" min="10" max="100" step="10" value="40"><output id="hour-value-out" for="hour-value">RM40</output></label>
+        </div>
+        <dl class="calc-out">
+          <div><dt>Do it yourself <i>12 hours, no fee</i></dt><dd><b id="cost-diy">RM480</b><span class="calc-bar"><i id="bar-diy" style="width: 100%"></i></span></dd></div>
+          <div><dt>AI-assisted <i>RM100 a month, plus your hours</i></dt><dd><b id="cost-ai">RM260</b><span class="calc-bar"><i id="bar-ai" style="width: 54.2%"></i></span></dd></div>
+          <div><dt>Hire a person <i>RM400, plus 1 hour of yours</i></dt><dd><b id="cost-hire">RM440</b><span class="calc-bar"><i id="bar-hire" style="width: 91.7%"></i></span></dd></div>
+        </dl>
+        <p class="calc-note" id="cost-note" aria-live="polite">AI-assisted work costs least here. At RM40 an hour, the RM100 subscription pays for itself only if AI saves you more than 2.5 hours a month.</p>
+        <figcaption>Fee plus the value of your time, per month. Drag "your hours with AI" up to 10 and AI-assisted becomes dearer than doing it yourself, with no change to the subscription. Hypothetical figures.</figcaption>
+      </figure>
+
+      <p>With the starting figures, AI assistance has the lowest combined cost. If using it took ten hours instead of four, it would cost RM500, more than doing the work yourself. The difference comes from the whole workflow; the fee stayed the same. <mark>Total effort includes the work of checking the work.</mark></p>
+      <p>Valuing your time this way doesn't turn saved hours into cash. The time you get back might go to paid work, learning or rest; you decide what it's worth.</p>
+
+      <h2 id="opportunity">Count new opportunities separately</h2>
+      <p>Some benefits don't fit a replacement calculation. You might rehearse a presentation several times, explore an idea, or build a prototype you'd otherwise have given up on. A service you'd never have bought isn't "money saved". <mark>Call it a new opportunity, and judge whether it's worth the effort and the fee.</mark></p>
+
+      <h2 id="claims">Test a tool against what it claims</h2>
+      <p>Skills, plugins and tools come with promised benefits: better code, faster research, fewer mistakes. Test them on your actual work against those claims. Keep what brings a real improvement, and drop what mostly uses more tokens.</p>
+      <p>Extra effort can still be worth paying for. An agent that spends more tokens checking its own work may give you better quality, stronger verification or less review time, as in <a href="ai-check.html#loop">chapter 3</a>. Guidance on building agents makes the same point about complexity: add it only when it improves the result.<a class="cite" href="#src-1" aria-label="Source 1">1</a></p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I validate a skill by testing it with my actual work against its promised benefits. If there's a real improvement, I keep it. It must bring value, not just consume extra tokens. Extra effort is worth it when it buys quality, verification or less review for me.</p></aside>
+
+      <h2 id="weigh">Weigh time, quality, cost and upkeep together</h2>
+      <p>Four things decide whether an AI workflow or tool is worth keeping:</p>
+      <ul>
+        <li><strong>Time saved</strong>, after the time spent briefing and checking.</li>
+        <li><strong>Output quality</strong>, judged against the standard the work needs.</li>
+        <li><strong>Cost</strong>, in tokens or fees and in your own effort.</li>
+        <li><strong>Maintenance</strong>: the upkeep that keeps it working as tools and needs change.</li>
+      </ul>
+      <p>You don't need a formula, or weights for each. <mark>Name all four before you decide.</mark></p>
+
+      <h2 id="adapt">Adapt what exists before building your own</h2>
+      <p>AI makes building your own tool feel quick, but the upkeep stays with you. When an existing tool partly fits, compare the gap it leaves and the effort to adapt it with the effort to build and maintain a new one. Collecting what's already out there, through research, reading and other users, widens your options before you build.</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>There are existing tools out there that we don't need to recreate, which saves time, provided they fit the goal. When one fits only partly, I weigh the remaining gap and the effort to adapt it against building and maintaining my own.</p></aside>
+
+      <h2 id="improve">Improving a tool can mean removing parts</h2>
+      <p>A tool built for your goal deserves to be kept improving while the goal holds. Switch when a clearly better alternative appears, or rebuild when the goal changes a lot. And measure improvement by the overall return, including upkeep and review time: <mark>a part that isn't worth its upkeep is a candidate for removal</mark>, however clever it is.</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I only stop improving a tool I built when there's a better alternative; otherwise I keep improving it. I built it to match my goal, so only a drastic change in that goal would make me look elsewhere or rebuild. We need to gauge the overall return. Improving a tool doesn't only mean adding features: it can mean removing things that aren't worth the effort for what they return.</p></aside>
+
+      <h2 id="others">When others use it, start from their needs</h2>
+      <p>A tool for yourself can follow your own priorities. Once other people rely on it, agree on their goals and needs first, then decide what to work on by impact and effort. Their feedback and how they actually use it will tell you more than your guesses about them.</p>
+
+      <h2 id="job-sieve">A worked example: building Job Sieve</h2>
+      <p>I used AI to help build Job Sieve, a browser extension for my own job search. It started as a filter for LinkedIn results and grew to cover searches across several job sites.</p>
+      <ul>
+        <li><strong>One list instead of many tabs.</strong> I register search addresses from the supported sites and see their results in one list, then go through jobs one by one in the same workspace. Each job still opens on its original site, with that site's own controls.</li>
+        <li><strong>Less repeated reviewing.</strong> It groups the same job posted more than once, by title and company, and lets me hide title and company combinations that aren't relevant, using shared keyword, title and company rules.</li>
+        <li><strong>The rest of the search in one place.</strong> I can search and filter results, keep a shortlist, and collect my application history from the supported sites. It never applies or sends messages for me.</li>
+      </ul>
+      <p>The aim is to focus on relevant jobs and spend less time reviewing the same postings. That's the intended benefit; I haven't measured it.</p>
+
+      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>Pick one AI tool or skill you pay for or use often. For a typical week, note the time it saves, the time you spend checking and fixing its work, and anything you had to maintain. Then decide: keep, simplify or drop.</p></aside>
+
+      <section class="self-check" aria-labelledby="self-check">
+        <h2 id="self-check">Check your understanding</h2>
+        <details>
+          <summary>An AI subscription costs RM100 a month, and you value your time at RM40 an hour. How much time must it save to pay for itself on time alone?</summary>
+          <p>More than 2.5 hours a month, counted after the time you spend briefing, checking and correcting its work.</p>
+        </details>
+        <details>
+          <summary>A new skill promises better code, and your token use doubles. Do you keep it?</summary>
+          <p>Only if your own work shows the promised improvement, such as fewer fixes or less review time. More tokens on their own aren't a benefit.</p>
+        </details>
+        <details>
+          <summary>Your tool still fits your goal, but one feature takes a lot of upkeep and is rarely used. What does improving the tool mean here?</summary>
+          <p>Simplifying or removing that feature. Improvement includes taking out parts that don't return the effort they cost.</p>
+        </details>
+      </section>
+
+      <section class="sources" aria-labelledby="sources-h">
+        <h2 id="sources-h">Sources</h2>
+        <ol>
+          <li id="src-1">Anthropic. <a href="https://www.anthropic.com/research/building-effective-agents">Building effective agents</a>. 19 December 2024.</li>
+        </ol>
+        <p class="meta">The cost example's fees and hours are hypothetical; its arithmetic was checked separately.</p>
+      </section>
+    </article>
+  </div>
+
+  <a class="to-contents" id="to-contents" href="#guide-contents">Contents</a>
+
+  <nav class="next-page" aria-label="Next page">
+    <a class="prev" href="ai-delegate.html"><span>Previous</span><strong>Chapter 4: Divide, delegate and reuse</strong></a>
+    <a class="next" href="ai-analytics.html"><span>Next</span><strong>Chapter 6: AI in analytics</strong></a>
+  </nav>
+
+  <footer>
+    <p>Version 0.9, 7 November 2026</p>
+    <p>All figures on this page are illustrative.</p>
+  </footer>
+</div>
+
+<script src="site.js"></script>
+</body>
+</html>

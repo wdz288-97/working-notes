@@ -765,6 +765,40 @@
     update();
   })();
 
+  // ---- Judge whether it's worth it: three ways to get the same monthly work done, as fee plus the value of your time
+  (function costCalculator() {
+    var hoursInput = $('ai-hours');
+    var rateInput = $('hour-value');
+    if (!hoursInput || !rateInput) return;
+    var DIY_HOURS = 12;
+    var AI_FEE = 100;
+    var HIRE_FEE = 400;
+    var HIRE_HOURS = 1;
+    var NAMES = { diy: 'Doing it yourself', ai: 'AI-assisted work', hire: 'Hiring a person' };
+
+    function money(amount) { return 'RM' + Math.round(amount).toLocaleString('en-GB'); }
+    function tidy(number) { return Math.abs(number - Math.round(number)) < 0.05 ? String(Math.round(number)) : number.toFixed(1); }
+    function update() {
+      var hours = Number(hoursInput.value);
+      var rate = Number(rateInput.value);
+      var costs = { diy: DIY_HOURS * rate, ai: AI_FEE + hours * rate, hire: HIRE_FEE + HIRE_HOURS * rate };
+      var highest = Math.max(costs.diy, costs.ai, costs.hire);
+      var cheapest = 'diy';
+      Object.keys(costs).forEach(function (key) {
+        $('cost-' + key).textContent = money(costs[key]);
+        $('bar-' + key).style.width = (costs[key] / highest * 100).toFixed(1) + '%';
+        if (costs[key] < costs[cheapest]) cheapest = key;
+      });
+      $('ai-hours-out').textContent = hours + (hours === 1 ? ' hour' : ' hours');
+      $('hour-value-out').textContent = money(rate);
+      $('cost-note').textContent = NAMES[cheapest] + ' costs least here. At ' + money(rate) + ' an hour, the ' + money(AI_FEE) +
+        ' subscription pays for itself only if AI saves you more than ' + tidy(AI_FEE / rate) + ' hours a month.';
+    }
+    hoursInput.addEventListener('input', update);
+    rateInput.addEventListener('input', update);
+    update();
+  })();
+
   // ---- One scroll listener for every part that follows the reader
   if (scrollHandlers.length) {
     var frameQueued = false;

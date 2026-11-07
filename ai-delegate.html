@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divide, delegate and reuse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=Source+Code+Pro:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="prefetch" href="ai-value.html">
+<link rel="prefetch" href="ai-check.html">
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="topbar">
+    <a class="who-am-i" href="index.html"><strong>Wong Ding Zhe</strong><span>Business intelligence analyst</span></a>
+    <nav aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="ai.html" aria-current="page">Using AI</a>
+      <a href="reading.html">Reading</a>
+    </nav>
+  </header>
+
+  <header class="page-head">
+    <p class="page-name"><a href="ai.html">Using AI</a>, chapter 4 of 6</p>
+    <h1>Divide, delegate and reuse</h1>
+    <p class="meta">About 7 minutes to read</p>
+    <p class="lede">Once you can brief and check AI's work, the next questions are which steps to hand over, how to pass work between AIs, and when a method is worth turning into something reusable.</p>
+  </header>
+
+  <div class="chapter">
+    <section class="key-ideas" aria-labelledby="key-ideas">
+      <h2 id="key-ideas">Key ideas</h2>
+      <ul>
+        <li>Hand over the steps that need no important human judgement in between; keep a person where judgement matters.</li>
+        <li>Give each AI, tool or person the contribution it's best at, and give the reviewer the evidence as well as the conclusion.</li>
+        <li>Start with the simplest setup that works, and add an agent only when the next step depends on what it finds.</li>
+        <li>A handover carries the goal, decisions, evidence, current state and open questions.</li>
+        <li>Make a method reusable when its steps repeat and the setup and upkeep pay back, and give agents only the access the job needs.</li>
+      </ul>
+    </section>
+
+    <nav class="guide-nav" id="guide-contents" aria-label="Using AI contents">
+      <p class="guide-nav-head"><a href="ai.html">Using AI</a></p>
+      <ol class="guide-chapters">
+        <li><a href="ai-learn.html">1. Learn what AI can do</a></li>
+        <li><a href="ai-brief.html">2. Brief and steer the work</a></li>
+        <li><a href="ai-check.html">3. Check the work</a></li>
+        <li class="is-here">
+          <a href="ai-delegate.html" aria-current="page">4. Divide, delegate and reuse</a>
+          <p class="guide-here">In this chapter</p>
+          <ol class="guide-sections">
+            <li><a href="#key-ideas">Key ideas</a></li>
+            <li><a href="#hand-over">Hand over the steps that need no judgement in between</a></li>
+            <li><a href="#contributions">Give each helper the contribution it's best at</a></li>
+            <li><a href="#simple">Start simple, and add an agent only when steps vary</a></li>
+            <li><a href="#handover">A handover carries the goal, the evidence and the state</a></li>
+            <li><a href="#reuse">Decide what's worth making reusable</a></li>
+            <li><a href="#project">Set up the project so an agent can work well</a></li>
+            <li><a href="#permissions">Give an agent the access its job needs</a></li>
+            <li><a href="#self-check">Check your understanding</a></li>
+            <li><a href="#sources-h">Sources</a></li>
+          </ol>
+        </li>
+        <li><a href="ai-value.html">5. Judge whether it's worth it</a></li>
+        <li><a href="ai-analytics.html">6. AI in analytics</a></li>
+      </ol>
+    </nav>
+
+    <article class="prose">
+      <h2 id="hand-over">Hand over the steps that need no judgement in between</h2>
+      <p>Start by breaking the task into its steps, then ask of each one: does anything important need a person's judgement between this step and the next? Steps that can be done by code or by an agent using a computer, with no such judgement in between, are good candidates to hand over. Steps where a wrong turn is costly, or where the right answer depends on context only you have, stay with you or get a review point.</p>
+      <p>If the task is new to you, you don't have to work out the split alone. Look at how other people use AI for the same kind of task, try it, and build your own experience over time. <mark>The checkpoints from <a href="ai-check.html">chapter 3</a> still apply to anything you hand over.</mark></p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>Steps that can be automated by code or computer use, without important human judgement in between, can be done by AI. When I'm new to a kind of task, I first research how other people do it with AI, and gather experience as I go.</p></aside>
+
+      <h2 id="contributions">Give each helper the contribution it's best at</h2>
+      <p>Once AI is a collaborator, using more than one becomes natural. One may be good at finding sources, another at working inside a codebase, another at explaining. Treat these as assignments to test: products change, and so does what each is best at. My own current choices are on the <a href="ai.html#tools-h">Using AI page</a>, with a date.</p>
+      <p>The helper doesn't have to be an AI. A calculator is a better colleague for arithmetic than another language model, and a specialist can be the right reviewer even when AI wrote most of the draft. The question to ask is which contribution the task needs, and which setup can provide it at an acceptable cost. <mark>The smallest team that can produce and justify the result is usually the right one.</mark></p>
+      <p>Whoever reviews the work should get the task and the evidence, as well as the draft's conclusion. A reviewer who sees only a polished answer tends to inherit its assumptions.</p>
+
+      <h2 id="simple">Start simple, and add an agent only when steps vary</h2>
+      <p>More helpers mean more coordination. Anthropic's guidance on building agents recommends starting with the simplest solution and adding complexity only when it improves the result.<a class="cite" href="#src-1" aria-label="Source 1">1</a> It separates two shapes:</p>
+      <ul>
+        <li><strong>A workflow</strong> follows a fixed sequence of steps that you design in advance.</li>
+        <li><strong>An agent</strong> chooses its next step based on what it finds, which helps when the path can't be known in advance.</li>
+      </ul>
+      <p>You can coordinate useful work by hand before automating any of it. Moving a carefully prepared brief between two tools is already a workflow. <mark>Automating a process you don't yet understand only repeats its mistakes faster.</mark></p>
+
+      <h2 id="handover">A handover carries the goal, the evidence and the state</h2>
+      <p>When work moves between AIs or chats, keep one clear lead who brings the results together and checks them. Then pass on enough for the next helper to continue without guessing:</p>
+      <ul>
+        <li>the original goal, and the decisions already made;</li>
+        <li>the evidence gathered so far, and where it came from;</li>
+        <li>the current state of the work, and the useful files;</li>
+        <li>the questions still open.</li>
+      </ul>
+      <p>Passing on only a polished conclusion invites the next helper to build on assumptions nobody checked. Keep the coordination and the final review in proportion to the task: a two-step job doesn't need a project plan.</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>Without a ready-made workflow for coordinating agents, I don't do this often. When I do, a handoff skill (Matt Pocock's is a good one) passes the work to another agent cleanly. Simpler ways are to have the main agent start a sub-agent, or to give the agent the name or ID of an earlier chat in the same project. I expect that last one to use more tokens, though I haven't measured it.</p></aside>
+
+      <h2 id="reuse">Decide what's worth making reusable</h2>
+      <p>When a task keeps coming back, you can keep using a prompt, write a skill, write a script, set up an agent workflow, or combine them. Three questions decide it: which steps repeat, where judgement is needed, and whether the setup and upkeep are worth the benefit.</p>
+
+      <figure class="figure reuse-map">
+        <svg viewBox="0 0 360 318" role="img" aria-labelledby="reuse-title">
+          <title id="reuse-title">A two-by-two chart. Across: how often the task repeats, from once to often. Up: how much the steps vary, from fixed to varying. Once with fixed steps: one prompt, or just do it. Once with varying steps: a prompt and a conversation. Often with fixed steps: a script. Often with varying steps: a skill or an agent workflow with checks.</title>
+          <g class="rm-axes">
+            <path d="M60 276H344"/><path d="M338 271l6 5l-6 5"/>
+            <path d="M60 276V22"/><path d="M55 28l5-6l5 6"/>
+          </g>
+          <g class="rm-grid"><path d="M202 26V272"/><path d="M64 149H340"/></g>
+          <text class="rm-axis" x="202" y="304" text-anchor="middle">How often it repeats</text>
+          <text class="rm-end" x="64" y="298">once</text>
+          <text class="rm-end" x="334" y="298" text-anchor="end">often</text>
+          <text class="rm-axis" x="22" y="149" text-anchor="middle" transform="rotate(-90 22 149)">How much the steps vary</text>
+          <text class="rm-end" x="50" y="46" text-anchor="end">vary</text>
+          <text class="rm-end" x="54" y="272" text-anchor="end">fixed</text>
+          <text class="rm-title" x="131" y="82">A prompt</text><text class="rm-sub" x="131" y="102">and a conversation</text>
+          <text class="rm-title" x="131" y="208">One prompt</text><text class="rm-sub" x="131" y="228">or just do it</text>
+          <text class="rm-title" x="271" y="72">A skill or</text><text class="rm-title" x="271" y="92">agent workflow</text><text class="rm-sub" x="271" y="112">with checks</text>
+          <text class="rm-title" x="271" y="208">A script</text><text class="rm-sub" x="271" y="228">runs the same way</text>
+        </svg>
+        <figcaption>Where important judgement is needed between steps, keep a person's review in the flow, whichever box you're in. And the setup and upkeep have to pay back.</figcaption>
+      </figure>
+
+      <p>A skill packages instructions and resources that an agent loads when they're relevant,<a class="cite" href="#src-2" aria-label="Source 2">2</a> so it suits a method that repeats but still needs judgement on each run. A script suits steps that run the same way every time. <mark>Saving an untested method as a skill keeps its mistakes along with its convenience</mark>, so test it on real work first (<a href="ai-value.html#claims">chapter 5</a>).</p>
+
+      <h2 id="project">Set up the project so an agent can work well</h2>
+      <p>An agent works better in a project built for it, in the same way a new colleague does better with a good handover pack. I've adopted five practical principles, as flexible guidance rather than strict rules:</p>
+      <ol>
+        <li><strong>Keep changes understandable and contained.</strong> Coherent modules with clear inputs, outputs and constraints, adding structure only where it helps.</li>
+        <li><strong>Provide a short map to what matters.</strong> Point to the relevant project knowledge, definitions, decisions, setup steps and specialist guidance, rather than one huge instruction file.<a class="cite" href="#src-3" aria-label="Source 3">3</a></li>
+        <li><strong>Make important requirements checkable.</strong> Tests and checks with failure messages that say what to fix, and written commands for setup and verification. Instructions alone don't guarantee an agent follows them.<a class="cite" href="#src-4" aria-label="Source 4">4</a></li>
+        <li><strong>Give the agent tools to verify the actual result.</strong> A browser or computer use for visual work and for operations it must perform, as <a href="ai-check.html#real-result">chapter 3</a> describes.<a class="cite" href="#src-5" aria-label="Source 5">5</a></li>
+        <li><strong>Keep meaningful human review.</strong> Including the fixed checkpoints in analysis: validating the raw output, and reviewing the final interpretation.</li>
+      </ol>
+      <p><mark>Good engineering habits help agents for the same reasons they help people.</mark> I usually pick engineering skills that teach agents these habits from popular, well-known sources, then test them on my own work.</p>
+
+      <h2 id="permissions">Give an agent the access its job needs</h2>
+      <p>Advice can be reviewed before you use it. An action may already have changed a file, sent a message or exposed information. As an agent's ability to act grows, the need for clear limits grows with it.</p>
+      <ul>
+        <li><strong>Keep permissions in proportion to the job.</strong> Work on safe copies where you can, and keep approval for consequential steps such as sending, deleting or paying.</li>
+        <li><strong>A written instruction isn't a lock.</strong> "Don't send anything" in a prompt doesn't technically stop an agent that has permission to send.</li>
+        <li><strong>Know where your data goes.</strong> Running an agent on your own computer doesn't mean your data stays there: the model service or a connected tool may run elsewhere.<a class="cite" href="#src-6" aria-label="Source 6">6</a></li>
+        <li><strong>Text in a page isn't an instruction.</strong> A web page or document can contain words aimed at the agent. Finding them doesn't give them authority over your task.<a class="cite" href="#src-6" aria-label="Source 6">6</a></li>
+      </ul>
+
+      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-alert"/></svg>Common trap: full access to save time</p><p>Giving an agent every permission avoids interruptions, until it acts on a misunderstanding. Grant what the task needs, and widen access step by step as the agent proves itself on that kind of work.</p></aside>
+
+      <section class="self-check" aria-labelledby="self-check">
+        <h2 id="self-check">Check your understanding</h2>
+        <details>
+          <summary>You run the same monthly data export, with exactly the same steps, every time. What fits best?</summary>
+          <p>A script. The steps repeat and don't vary, and no judgement is needed between them, so the setup pays back quickly.</p>
+        </details>
+        <details>
+          <summary>You pass work to a second AI with just the finished draft. What's missing?</summary>
+          <p>The goal, the decisions already made, the evidence and where it came from, the current state, and the open questions. Without them, the second AI builds on assumptions nobody checked.</p>
+        </details>
+        <details>
+          <summary>Your prompt tells an agent "don't email anyone", and it has access to your email. Is that safe?</summary>
+          <p>No. An instruction isn't a technical barrier. If the task doesn't need email, don't give the agent email access; if it does, keep sending behind your approval.</p>
+        </details>
+      </section>
+
+      <section class="sources" aria-labelledby="sources-h">
+        <h2 id="sources-h">Sources</h2>
+        <ol>
+          <li id="src-1">Anthropic. <a href="https://www.anthropic.com/research/building-effective-agents">Building effective agents</a>. 19 December 2024.</li>
+          <li id="src-2">Anthropic. <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">Equipping agents for the real world with Agent Skills</a>. 16 October 2025.</li>
+          <li id="src-3">OpenAI. <a href="https://openai.com/index/harness-engineering/">Harness engineering</a>.</li>
+          <li id="src-4">GitHub. <a href="https://docs.github.com/en/copilot/concepts/customizations/comparing-customizations">Comparing customizations</a>. Documentation.</li>
+          <li id="src-5">Anthropic. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Prompting best practices</a>. Documentation.</li>
+          <li id="src-6">OpenClaw. <a href="https://docs.openclaw.ai/gateway/security">Security documentation</a>: access, permissions and untrusted input.</li>
+        </ol>
+        <p class="meta">Sources checked in October and November 2026.</p>
+      </section>
+    </article>
+  </div>
+
+  <a class="to-contents" id="to-contents" href="#guide-contents">Contents</a>
+
+  <nav class="next-page" aria-label="Next page">
+    <a class="prev" href="ai-check.html"><span>Previous</span><strong>Chapter 3: Check the work</strong></a>
+    <a class="next" href="ai-value.html"><span>Next</span><strong>Chapter 5: Judge whether it's worth it</strong></a>
+  </nav>
+
+  <footer>
+    <p>Version 0.9, 7 November 2026</p>
+  </footer>
+</div>
+
+<script src="site.js"></script>
+</body>
+</html>

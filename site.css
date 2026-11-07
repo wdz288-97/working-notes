@@ -582,6 +582,16 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
 .mm-links path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
 .history-table td:first-child { font-weight: 600; white-space: nowrap; }
 .bench-table td:first-child { font-weight: 600; }
+
+/* Chapter 4: what's worth making reusable, as a two-by-two chart */
+.reuse-map svg { display: block; width: 100%; max-width: 440px; height: auto; margin-inline: auto; color: var(--line); overflow: visible; }
+.reuse-map text { font-family: var(--font-sans); fill: var(--ink); }
+.reuse-map text.rm-title { font-size: 16px; font-weight: 600; text-anchor: middle; }
+.reuse-map text.rm-sub { font-size: 14px; fill: var(--muted); text-anchor: middle; }
+.reuse-map text.rm-axis { font-size: 14px; fill: var(--text); }
+.reuse-map text.rm-end { font-family: var(--font-note); font-style: italic; font-size: 13.5px; fill: var(--muted); }
+.rm-axes path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.rm-grid path { fill: none; stroke: var(--faint); stroke-width: 1.5; stroke-dasharray: 4 4; }
 .sources { display: grid; gap: 8px; font-size: 0.92rem; }
 .prose .sources h2 { margin-top: 0; font-size: 1.1rem; }
 .sources ol { gap: 4px; }
