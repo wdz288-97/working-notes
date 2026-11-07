@@ -23,37 +23,194 @@
     </nav>
   </header>
 
-  <header class="page-head">
-    <p class="page-name"><a href="ai.html">Using AI</a>, chapter 6 of 6</p>
-    <h1>AI in analytics</h1>
-    <p class="lede">Where AI fits in my analysis, and the two places I check its work. This is an early version of the chapter: what analysts need to know, and what a team should see before relying on an AI agent, will follow.</p>
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 6 of 6</p>
+      <h1>AI in analytics</h1>
+      <p class="meta">About 5 minutes to read</p>
+      <p class="lede">How the ideas in this guide come together in data analysis: where AI fits in my workflow, the two places I check its work, and what a team should see before relying on an AI agent.</p>
+    </div>
+    <svg class="loop-figure chapter-figure" viewBox="0 0 400 184" role="img" aria-label="Data, then the AI drafts, then a checkpoint, then your decision.">
+      <use class="ico draw onload" style="--i:0" href="icons.svg#i-database" x="14" y="70" width="60" height="60"/>
+      <text class="onload" style="--i:1" x="44" y="160" text-anchor="middle">Data</text>
+      <path class="ico draw onload" style="--i:2" pathLength="1" d="M80 100H112"/>
+      <path class="ico draw onload" style="--i:3" pathLength="1" d="M106 94l6 6l-6 6"/>
+      <use class="ico draw onload" style="--i:4" href="icons.svg#i-bars" x="118" y="70" width="60" height="60"/>
+      <text class="onload" style="--i:5" x="148" y="160" text-anchor="middle">AI drafts</text>
+      <path class="ico draw onload" style="--i:6" pathLength="1" d="M184 100H216"/>
+      <path class="ico draw onload" style="--i:7" pathLength="1" d="M210 94l6 6l-6 6"/>
+      <use class="ico draw onload accent" style="--i:8" href="icons.svg#i-gate" x="222" y="70" width="60" height="60"/>
+      <text class="onload" style="--i:9" x="252" y="160" text-anchor="middle">Checkpoint</text>
+      <path class="ico draw onload" style="--i:10" pathLength="1" d="M288 100H320"/>
+      <path class="ico draw onload" style="--i:11" pathLength="1" d="M314 94l6 6l-6 6"/>
+      <use class="ico draw onload" style="--i:12" href="icons.svg#i-person" x="326" y="70" width="60" height="60"/>
+      <text class="onload" style="--i:13" x="356" y="160" text-anchor="middle">Decision</text>
+    </svg>
   </header>
 
-  <section class="ai-grid" aria-labelledby="ai-h">
-    <div class="ai-intro">
-      <h2 id="ai-h" class="sub-head" style="font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.1rem)">Where AI fits in my analysis</h2>
-      <p class="lede">The AI never interprets data I haven't validated, and nothing goes out in its words alone. You can see it at work in the <a href="playbook.html">playbook story</a>, where the AI writes the query that splits the drop in orders by channel.</p>
-      <p class="ai-note"><b>Context is the asset</b>When the AI gets something wrong because it lacked context, I add that context to what it reads next time.</p>
-      <p class="ai-note"><b>On reuse</b>Before rerunning old work I compare the period, conditions, assumptions and definitions with the new request. A query that was right last quarter isn't automatically right now.</p>
-    </div>
-    <ol class="pipeline" id="pipeline">
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-bubble"/></svg><span class="who">Me and the AI</span><strong>Agree the plan</strong><p>Objective, output, tables, joins, filters, grain and calculations. It draws on past SQL, table metadata, metric definitions, business context, team rules and data-privacy standards.</p></li>
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-sparkle"/></svg><span class="who">The AI</span><strong>Write and run the SQL</strong><p>Within the plan. Any material change comes back to me for realignment.</p></li>
-      <li class="gate"><svg class="ico"><use class="draw" href="icons.svg#i-gate"/></svg><span class="who">First checkpoint, me</span><strong>Validate the raw output</strong><p>Columns and filters against the request, tricky computed fields checked, totals reconciled.</p></li>
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-bars"/></svg><span class="who">The AI</span><strong>Explore and draft</strong><p>Exploratory analysis, a first interpretation and charts, each citing its source.</p></li>
-      <li class="gate"><svg class="ico"><use class="draw" href="icons.svg#i-gate"/></svg><span class="who">Second checkpoint, me</span><strong>Review the reasoning</strong><p>Do the insights follow from the verified output and the business context?</p></li>
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-person"/></svg><span class="who">Me</span><strong>Final interpretation</strong><p>The conclusions and visuals are mine. The AI helps rephrase or build slides.</p></li>
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-database"/></svg><span class="who">Me and the AI</span><strong>Archive for reuse</strong><p>Plan, SQL, checks, output and assumptions saved together, so the work can be rerun.</p></li>
-    </ol>
-  </section>
+  <div class="chapter">
+    <section class="key-ideas" aria-labelledby="key-ideas">
+      <h2 id="key-ideas">Key ideas</h2>
+      <ul>
+        <li>AI never interprets data I haven't validated, and nothing goes out in its words alone.</li>
+        <li>Organise the context so AI can find it: team-agreed information in shared tools, personal preferences kept locally.</li>
+        <li>Before reusing old work, compare the period, conditions, assumptions and definitions with the new request.</li>
+        <li>Analysts need business context, metrics and basic SQL and data knowledge to judge AI's work.</li>
+        <li>Start a team on real requests, and show accuracy and time saved before expanding.</li>
+      </ul>
+    </section>
+
+    <nav class="guide-nav" id="guide-contents" aria-label="Using AI contents">
+      <p class="guide-nav-head"><a href="ai.html">Using AI</a></p>
+      <ol class="guide-chapters">
+        <li><a href="ai-learn.html">1. Learn what AI can do</a></li>
+        <li><a href="ai-brief.html">2. Brief and steer the work</a></li>
+        <li><a href="ai-check.html">3. Check the work</a></li>
+        <li><a href="ai-delegate.html">4. Divide, delegate and reuse</a></li>
+        <li><a href="ai-value.html">5. Judge whether it's worth it</a></li>
+        <li class="is-here">
+          <a href="ai-analytics.html" aria-current="page">6. AI in analytics</a>
+          <p class="guide-here">In this chapter</p>
+          <ol class="guide-sections">
+            <li><a href="#key-ideas">Key ideas</a></li>
+            <li><a href="#workflow">Two checkpoints keep the analysis trustworthy</a></li>
+            <li><a href="#context">Organise the context so AI can find it</a></li>
+            <li><a href="#reuse">Check what's changed before reusing old work</a></li>
+            <li><a href="#foundations">Analysts need the foundations to judge AI's work</a></li>
+            <li><a href="#adoption">Start a team on real requests</a></li>
+            <li><a href="#my-view">My view: how AI should work in a company</a></li>
+            <li><a href="#self-check">Check your understanding</a></li>
+            <li><a href="#sources-h">Sources</a></li>
+          </ol>
+        </li>
+      </ol>
+    </nav>
+
+    <article class="prose">
+      <h2 id="workflow">Two checkpoints keep the analysis trustworthy</h2>
+      <p>This chapter is for people who work with data, so a few terms are worth a line each. SQL is the language used to pull data out of databases. A join combines two tables, and the grain is the level of detail of each row, such as one row per order or one row per day. Metadata is information about the data itself, such as what each column means.</p>
+      <p>In my analysis work, AI drafts and runs a lot of the work, but two checkpoints never move. <mark>The AI never interprets data I haven't validated, and nothing goes out in its words alone.</mark> You can see the workflow in the <a href="playbook.html">playbook story</a>, where the AI writes the query that splits the drop in orders by channel.</p>
+      <ol class="pipeline is-static">
+        <li><svg class="ico" aria-hidden="true"><use class="draw" href="icons.svg#i-bubble"/></svg><span class="who">Me and the AI</span><strong>Agree the plan</strong><p>Objective, output, tables, joins, filters, grain and calculations. It draws on past SQL, table metadata, metric definitions, business context, team rules and data-privacy standards.</p></li>
+        <li><svg class="ico" aria-hidden="true"><use class="draw" href="icons.svg#i-sparkle"/></svg><span class="who">The AI</span><strong>Write and run the SQL</strong><p>Within the plan. Any material change comes back to me for realignment.</p></li>
+        <li class="gate"><svg class="ico" aria-hidden="true"><use class="draw" href="icons.svg#i-gate"/></svg><span class="who">First checkpoint, me</span><strong>Validate the raw output</strong><p>Columns and filters against the request, tricky calculated fields checked, totals reconciled.</p></li>
+        <li><svg class="ico" aria-hidden="true"><use class="draw" href="icons.svg#i-bars"/></svg><span class="who">The AI</span><strong>Explore and draft</strong><p>Exploratory analysis, a first interpretation and charts, each citing its source.</p></li>
+        <li class="gate"><svg class="ico" aria-hidden="true"><use class="draw" href="icons.svg#i-gate"/></svg><span class="who">Second checkpoint, me</span><strong>Review the reasoning</strong><p>Do the insights follow from the verified output and the business context?</p></li>
+        <li><svg class="ico" aria-hidden="true"><use class="draw" href="icons.svg#i-person"/></svg><span class="who">Me</span><strong>Final interpretation</strong><p>The conclusions and visuals are mine. The AI helps rephrase or build slides.</p></li>
+        <li><svg class="ico" aria-hidden="true"><use class="draw" href="icons.svg#i-database"/></svg><span class="who">Me and the AI</span><strong>Archive for reuse</strong><p>Plan, SQL, checks, output and assumptions saved together, so the work can be rerun.</p></li>
+      </ol>
+      <p>Every insight the AI drafts should point to its evidence: the raw output I verified, and any business context or earlier analysis it used. When it relies on something from the internet instead, I check that before it shapes a recommendation, as <a href="ai-check.html#evidence">chapter 3</a> describes.</p>
+
+      <h2 id="context">Organise the context so AI can find it</h2>
+      <p>The plan is only as good as what the AI can read while making it: past SQL, table descriptions, metric definitions, business context, my preferences for SQL, the team's rules and the standards for sensitive data. Organising that context is ongoing work.</p>
+      <ul>
+        <li><strong>Team-agreed information</strong> belongs in shared tools the whole team can reach, such as a data catalogue, a code repository or a shared drive.</li>
+        <li><strong>Personal preferences and notes</strong> stay local or in my own repository, along with some business context specific to my role.</li>
+        <li><strong>Conflicts get raised.</strong> When the AI finds two sources that disagree, it flags them for me to settle.</li>
+      </ul>
+      <p><mark>When the AI gets something wrong because it lacked context, I add that context to what it reads next time.</mark> Improvements to shared context are worth prioritising by their effect on the quality of the work and on the team's ability to use AI.</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>While working on SQL, data and dashboards, I watch for tables that seem poorly structured or heavy to query. When a planned script gets long and complex, I ask the AI for better models or layers where it could be optimised, and I add that preference to the context for future planning.</p></aside>
+
+      <h2 id="reuse">Check what's changed before reusing old work</h2>
+      <p>The last step of the workflow saves everything together: the plan, the SQL, the checks, the outputs, the references and assumptions, a summary of the instructions, the ticket and the final version I edited. That archive makes reruns quick, and it's useful for periodic reviews, related requests and changes of format.</p>
+      <p>A query that was right last quarter isn't automatically right now. <mark>Before rerunning old work, compare the period, conditions, assumptions and definitions with the new request.</mark></p>
+
+      <h2 id="foundations">Analysts need the foundations to judge AI's work</h2>
+      <p>AI can write the query and draft the chart, but someone has to judge whether they're right. That takes three kinds of knowledge:</p>
+      <ul>
+        <li><strong>Business context:</strong> what the business and its teams are trying to achieve.</li>
+        <li><strong>Metrics:</strong> how each one is defined and what moves it.</li>
+        <li><strong>Basic SQL and data knowledge:</strong> enough to read a query, spot a wrong join or filter, and reconcile a total.</li>
+      </ul>
+      <p>These can be learnt alongside AI. <mark>Learn through actual tasks with AI</mark>, using the learning habits in <a href="ai-brief.html#learning">chapter 2</a>, and the foundations grow with the work.</p>
+
+      <h2 id="adoption">Start a team on real requests</h2>
+      <p>For a team trying an analytics agent, the place to start is the requests analysts already handle: data, analysis and dashboard requests, using the definitions the team has agreed, with the output validated. Then show the people who'll rely on it what it does on real work they can judge. Four things should be visible before use expands:</p>
+      <ul>
+        <li>the data is accurate;</li>
+        <li>every number, fact and source in the output is real and can be traced, with nothing invented (what's often called hallucination);</li>
+        <li>the results are logical;</li>
+        <li>it saves real time.</li>
+      </ul>
+      <p>These are the checks I'd want a team to see, not results from a pilot. <mark>Prove it on real requests before expanding.</mark></p>
+
+      <h2 id="my-view">My view: how AI should work in a company</h2>
+      <p>This is my perspective on where AI at work should go, not a project I'm running. I see a chat-based agent, perhaps starting as a few focused bots, that eases the steps of everyday analytics work: getting data and insights, building monitoring dashboards, summarising meetings, following up on projects with their context, and helping with planning.</p>
+
+      <figure class="figure model-map agent-map">
+        <svg viewBox="0 0 360 280" role="img" aria-label="A team agent connected to communication, documentation, projects and operations tools.">
+          <circle class="mm-core" cx="180" cy="150" r="42"/>
+          <text class="mm-title" x="180" y="146">Team</text>
+          <text class="mm-title" x="180" y="166">agent</text>
+          <g class="mm-links">
+            <path d="M149 122L124 99"/>
+            <path d="M211 122L236 99"/>
+            <path d="M149 178L124 201"/>
+            <path d="M211 178L236 201"/>
+          </g>
+          <text class="mm-title" x="80" y="54">Communication</text><text class="mm-sub" x="80" y="74">Slack, email</text>
+          <text class="mm-title" x="280" y="54">Documentation</text><text class="mm-sub" x="280" y="74">drives, Confluence</text>
+          <text class="mm-title" x="80" y="236">Projects</text><text class="mm-sub" x="80" y="256">follow-ups, context</text>
+          <text class="mm-title" x="280" y="236">Operations</text><text class="mm-sub" x="280" y="256">support tickets, apps</text>
+        </svg>
+        <figcaption>My view of how a team's AI should be set up: an agent with context from the team's tools, and access managed by team and need.</figcaption>
+      </figure>
+
+      <p>Its value would come from context: connections to the team's communication, documentation, project and operational tools, with access managed by team and by need. Further ahead, an agent could also check its own numbers against the documented source of truth, as automation improves. The checks in the section above would apply to it.</p>
+
+      <section class="self-check" aria-labelledby="self-check">
+        <h2 id="self-check">Check your understanding</h2>
+        <div class="quiz" data-answer="a">
+          <p class="quiz-q">The AI has written and run the SQL, and its first chart looks convincing. What has to happen before it interprets anything?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Validate the raw output first.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Let it interpret, then check afterwards.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">Share the chart with the team for comments.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">You validate the raw output: columns and filters against the request, tricky calculated fields, and totals reconciled with a trusted reference.</p>
+        </div>
+        <div class="quiz" data-answer="c">
+          <p class="quiz-q">Last quarter's query answered a similar request. Can you rerun it unchanged for this quarter's request?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Yes: it worked last quarter.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Yes, if the AI wrote it.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">Not without comparing the period, conditions, assumptions and definitions.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">Not without checking. First compare the period, conditions, assumptions and definitions with the new request; any of them may have changed.</p>
+        </div>
+        <div class="quiz" data-answer="b">
+          <p class="quiz-q">A team wants to start using an analytics agent. What should it see before using it more widely?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">A good demo on sample data.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Real requests with agreed definitions, and outputs that are accurate, invent nothing, are logical and save time.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">A high benchmark score.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">Real requests handled with the team's agreed definitions, and outputs that are accurate, have no invented numbers, facts or sources, are logical and save real time.</p>
+        </div>
+      </section>
+
+      <section class="sources" aria-labelledby="sources-h">
+        <h2 id="sources-h">Sources</h2>
+        <ol>
+          <li>My own practice, as of November 2026.</li>
+        </ol>
+      </section>
+    </article>
+  </div>
+
+  <a class="to-contents" id="to-contents" href="#guide-contents">Contents</a>
 
   <nav class="next-page" aria-label="Next page">
     <a class="prev" href="ai-value.html"><span>Previous</span><strong>Chapter 5: Judge whether it's worth it</strong></a>
-    <a class="next" href="reading.html"><span>Next</span><strong>The references I work from</strong></a>
+    <a class="next" href="reading.html"><span>Next</span><strong>The books I read</strong></a>
   </nav>
 
   <footer>
-    <p>Version 0.8, 7 November 2026</p>
+    <p>Version 0.9, 7 November 2026</p>
   </footer>
 </div>
 

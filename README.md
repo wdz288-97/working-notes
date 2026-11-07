@@ -13,12 +13,12 @@ This repository is the only copy of the site. A private claude.ai artifact of it
 | `data-analytics-playbook.html` | Home page source. Written as an artifact page, so it has no doctype or `<head>`; the artifact host and the build add them. |
 | `playbook.html`, `reading.html` | The playbook and the reading list, as full HTML documents |
 | `ai.html` | Using AI: the guide's contents page, with the six chapters and my current tools |
-| `ai-learn.html`, `ai-brief.html`, `ai-check.html`, `ai-delegate.html`, `ai-value.html`, `ai-analytics.html` | Using AI chapters 1 to 6, one page each: learn what AI can do, brief and steer the work, check the work, divide and delegate, judge whether it's worth it, and AI in analytics (an early version). |
+| `ai-learn.html`, `ai-brief.html`, `ai-check.html`, `ai-delegate.html`, `ai-value.html`, `ai-analytics.html` | Using AI chapters 1 to 6, one page each: learn what AI can do, brief and steer the work, check the work, divide and delegate, judge whether it's worth it, and AI in analytics. |
 | `site.css` | Shared styles, light and dark |
 | `site.js` | Shared behaviour; each part runs only on pages that have its elements |
 | `icons.svg` | The line drawings, as one sprite |
 | `favicon.svg` | Browser tab icon (used by the public build) |
-| `covers/` | Book covers for the Reading page (Open Library and Amazon; Spreadsheet Modelling Best Practice has a drawn cover because none was published) |
+| `covers/` | Book covers for the Reading page, from Open Library, Amazon and Douban, resized to about 350 pixels wide. Spreadsheet Modelling Best Practice has a drawn cover in the page because none was published. |
 | `build-public.cjs` | Builds `public/` |
 | `edgeone.json` | EdgeOne Pages settings: build command, output folder, and redirects from the old `.html` addresses. These override the console's build settings. |
 | `public/` | Generated. Don't edit it by hand; rebuild instead |

@@ -23,22 +23,37 @@
     </nav>
   </header>
 
-  <header class="page-head">
-    <p class="page-name"><a href="ai.html">Using AI</a>, chapter 1 of 6</p>
-    <h1>Learn what AI can do</h1>
-    <p class="meta">About 9 minutes to read</p>
-    <p class="lede">You don't need to know everything about AI before you start. A broad map of what exists, a few good places to keep up, and the habit of testing tools on your own work will take you further than any ranking.</p>
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 1 of 6</p>
+      <h1>Learn what AI can do</h1>
+      <p class="meta">About 11 minutes to read</p>
+      <p class="lede">This chapter starts from zero: what AI chat apps are, how to try them on small tasks, how they got here, and how to keep learning and choose tools that suit you. You don't need to know anything about AI to begin.</p>
+    </div>
+    <svg class="loop-figure chapter-figure" viewBox="0 0 400 220" role="img" aria-label="Steps up from the basics, to products, to techniques, to agent features.">
+      <use class="ico draw onload" style="--i:0" href="icons.svg#i-book" x="24" y="130" width="56" height="56"/>
+      <text class="onload" style="--i:1" x="52" y="206" text-anchor="middle">Basics</text>
+      <path class="ico draw onload" style="--i:2" pathLength="1" d="M82 146L122 124"/>
+      <use class="ico draw onload" style="--i:3" href="icons.svg#i-monitor" x="124" y="84" width="56" height="56"/>
+      <text class="onload" style="--i:4" x="152" y="162" text-anchor="middle">Products</text>
+      <path class="ico draw onload" style="--i:5" pathLength="1" d="M180 124L222 146"/>
+      <use class="ico draw onload" style="--i:6" href="icons.svg#i-flow" x="224" y="130" width="56" height="56"/>
+      <text class="onload" style="--i:7" x="252" y="206" text-anchor="middle">Techniques</text>
+      <path class="ico draw onload" style="--i:8" pathLength="1" d="M280 144L322 102"/>
+      <use class="ico draw onload accent" style="--i:9" href="icons.svg#i-sparkle" x="324" y="50" width="56" height="56"/>
+      <text class="onload" style="--i:10" x="352" y="128" text-anchor="middle">Agents</text>
+    </svg>
   </header>
 
   <div class="chapter">
     <section class="key-ideas" aria-labelledby="key-ideas">
       <h2 id="key-ideas">Key ideas</h2>
       <ul>
-        <li>Learn a little of everything first, then deepen it by using AI on real tasks.</li>
-        <li>Keep up through practitioners and the labs' own announcements, and learn by teaching others.</li>
-        <li>Judge what AI can do from work samples: the task, the data, the mistakes and the fixes.</li>
-        <li>The model is one part of a product; tools, memory, skills and connections change what it can do.</li>
-        <li>Benchmarks help you shortlist. A small trial on your own work tells you what fits.</li>
+        <li>AI chat apps are fluent and quick, but they can be confidently wrong, and they don't know your situation unless you tell them.</li>
+        <li>Start with small, real tasks, and keep private information out.</li>
+        <li>In five years, AI has grown from making suggestions to remembering, seeing and carrying out tasks.</li>
+        <li>Learn a little of everything, keep up through people who use AI, and judge tools by real work.</li>
+        <li>Rankings help you shortlist; a small trial on your own work tells you what fits.</li>
       </ul>
     </section>
 
@@ -50,13 +65,16 @@
           <p class="guide-here">In this chapter</p>
           <ol class="guide-sections">
             <li><a href="#key-ideas">Key ideas</a></li>
+            <li><a href="#what-is">AI chat apps are fluent, fast and sometimes wrong</a></li>
+            <li><a href="#first-tasks">Start with small, real tasks</a></li>
+            <li><a href="#history">AI has grown from answering to doing</a></li>
+            <li><a href="#around">The model is only one part of the app</a></li>
             <li><a href="#broad">Learn a little of everything, then practise</a></li>
-            <li><a href="#keep-up">Keep up through practitioners and the labs</a></li>
+            <li><a href="#keep-up">Keep up through regular users and the AI companies</a></li>
             <li><a href="#method">Learn the method behind a demo</a></li>
-            <li><a href="#around">The model is only one part of the product</a></li>
-            <li><a href="#history">Read AI's history as a branching map</a></li>
-            <li><a href="#benchmarks">Read benchmarks like an analyst</a></li>
+            <li><a href="#benchmarks">Read AI rankings with care</a></li>
             <li><a href="#trial">Run a small trial of your own</a></li>
+            <li><a href="#words">Words you'll meet in this guide</a></li>
             <li><a href="#self-check">Check your understanding</a></li>
             <li><a href="#sources-h">Sources</a></li>
           </ol>
@@ -70,43 +88,50 @@
     </nav>
 
     <article class="prose">
-      <h2 id="broad">Learn a little of everything, then practise</h2>
-      <p>The most useful start is a broad, high-level understanding: a little of everything, kept in mind, then deepened as you use it. You don't need to study how models are trained before you can use one well. Here's a map, from the basics to optional depth:</p>
-      <ol class="learn-map">
-        <li><strong>How models work, at a high level.</strong> Tokens, the context window, and what "multimodal" means (working with text, images and sound). This explains what the model sees, and why long tasks cost more and can run out of room.</li>
-        <li><strong>Where AI is used.</strong> The sectors and tasks it already serves, which gives you a rough sense of what it can do.</li>
-        <li><strong>The products.</strong> Chat apps such as Claude, ChatGPT, Gemini, DeepSeek, Doubao, Qwen and Kimi; agentic coding apps from the same companies and others, such as GitHub Copilot; and web builders such as Lovable. Learn which companies train their own models and which build on someone else's, and how each is priced.</li>
-        <li><strong>Working techniques.</strong> The prompt, the context and the loop: how you brief the AI, what it can see, and how its work gets checked. Chapters <a href="ai-brief.html">2</a> and <a href="ai-check.html">3</a> cover these.</li>
-        <li><strong>Agent features.</strong> Skills, MCP, plugins and hooks: the parts that let an agent use tools, reach other systems and repeat a method.</li>
-        <li><strong>Optional depth.</strong> How models are trained today, and the research papers the main labs publish. Worth it if you want to go deeper, though you can work well with AI without it.</li>
-      </ol>
-      <p>Then practise, and keep learning how to use what you know better. <mark>Before any task, ask what its steps are and which of them AI can help with.</mark></p>
-
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>Before working on a task, I always ask myself what its steps are and which of them AI can help with. Practice makes the rest: I use AI across my work and personal life, from research and learning to writing and coding.</p></aside>
-
-      <h2 id="keep-up">Keep up through practitioners and the labs</h2>
-      <p>AI products change every few months, so where you learn matters as much as what you learn. Two kinds of source complement each other:</p>
+      <h2 id="what-is">AI chat apps are fluent, fast and sometimes wrong</h2>
+      <p>An AI chat app, such as ChatGPT, Claude, Gemini or DeepSeek, is a program you talk to in everyday language. You type or say what you want, and it replies. Behind it is a large language model: a system trained on huge amounts of text to predict what comes next, word by word. That simple-sounding skill lets it explain, summarise, translate, draft, brainstorm and write code.</p>
+      <p>Three things are worth knowing from the start:</p>
       <ul>
-        <li><strong>Practitioners and content creators</strong> show real use and give quick feedback on new releases, including whether published benchmark results hold up in practice.</li>
-        <li><strong>The official accounts of the main AI companies</strong>, both the labs that train models and the teams behind AI apps, tell you what's new and what has changed.</li>
+        <li><strong>It's fluent.</strong> Answers read well and arrive in seconds, on almost any subject.</li>
+        <li><strong>It can be confidently wrong.</strong> A model can state something false in the same smooth tone as something true, which is often called hallucination.<a class="cite" href="#src-1" aria-label="Source 1">1</a> Check anything that matters.</li>
+        <li><strong>It only knows about you what you tell it.</strong> It doesn't know your situation, your goals or your standards until you explain them. <a href="ai-brief.html">Chapter 2</a> is about doing that well.</li>
       </ul>
-      <p>Most learning still comes from use. People who use AI often know a trick you don't, and <mark>explaining AI to someone who doesn't use it shows you where your own understanding is thin</mark>.</p>
+      <p><mark>Think of it as a capable new colleague: quick and knowledgeable, but new to your work.</mark></p>
 
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I learn from reading posts on X and from constantly using AI in my personal life and at work. I also talk with people who use AI, to see if there's anything new to me, and with people who don't, such as friends and colleagues, because I learn by teaching.</p></aside>
+      <h2 id="first-tasks">Start with small, real tasks</h2>
+      <p>The best way to learn is to use it on small things you'd do anyway. Pick one chat app; most have a free version. Then try three kinds of task:</p>
+      <ul>
+        <li><strong>Explain something.</strong> "Explain how compound interest works, with an example, in plain words." If the answer is too technical, ask for it more simply.</li>
+        <li><strong>Improve something you wrote.</strong> Paste a message or an email and ask for a clearer, shorter version. Keep what you like and say what to change.</li>
+        <li><strong>Plan something.</strong> A trip, a week of meals or a study plan. Give it your limits, such as budget, time and preferences, and ask for a first draft.</li>
+      </ul>
+      <p>Notice where it saves you time and where it gets things wrong. <mark>Treat the first answer as a draft, and reply with what to change.</mark></p>
 
-      <h2 id="method">Learn the method behind a demo</h2>
-      <p>A demo, an expert's article or a social media thread may show you something you'd never have thought of: rehearsing a difficult conversation, producing practice data for a class, or an agent turning a brief into a working prototype. Treat these as invitations to investigate. Seeing an expert do it doesn't mean the same setup will work as well for you.</p>
-      <p>A reputation gets a candidate an interview; a relevant work sample shows whether they fit. When someone says an AI is excellent at analytics, look for the task, the data it was given, the mistakes, the corrections and the finished result. A screenshot of a polished dashboard says little about whether the measures are right, or how long it took to fix.</p>
-      <p>Look for the decisions behind the demonstration. Why did the person supply those definitions? Why did they keep that step manual? What failure did their test catch? <mark>Ask what this person knows, supplies or checks that makes the method work.</mark> An expert may hand a step to AI because they can spot subtle errors in it; your version may need smaller steps or an extra check.</p>
+      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-alert"/></svg>Common trap: pasting private information</p><p>Don't put passwords, ID or bank numbers, other people's personal details or confidential work data into a chat app. Before using one for work, check its settings and your employer's rules.</p></aside>
 
-      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-alert"/></svg>Common trap: copying the prompt</p><p>The wording of an expert's prompt is the least important part of their method. The definitions they supplied and the checks they kept are what made it work.</p></aside>
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>Before working on a task, I always ask myself what its steps are and which of them AI can help with. I use AI across my work and personal life, for research, learning, writing and coding, while I review the important outputs and make the important decisions myself.</p></aside>
 
-      <h2 id="around">The model is only one part of the product</h2>
-      <p>A chat app or a coding agent wraps the model in other parts, so the same model can perform differently in different products.<a class="cite" href="#src-5" aria-label="Source 5">5</a> Each part adds a capability or carries work over from one session to the next.</p>
+      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>This week, use a chat app for one real task of each kind above. For each, note one thing it did well and one thing you had to fix.</p></aside>
+
+      <h2 id="history">AI has grown from answering to doing</h2>
+      <p>AI didn't arrive all at once. In about five years it has grown from making suggestions to carrying out whole tasks:</p>
+      <table class="plain-table history-table">
+        <thead><tr><th scope="col">When</th><th scope="col">What changed</th><th scope="col">An everyday example</th></tr></thead>
+        <tbody>
+          <tr><td>2021</td><td>AI began helping inside tools people already use</td><td>Programmers got suggestions as they typed code<a class="cite" href="#src-2" aria-label="Source 2">2</a></td></tr>
+          <tr><td>2022</td><td>Anyone could chat with AI</td><td>ChatGPT launched in November, free in a web browser<a class="cite" href="#src-3" aria-label="Source 3">3</a></td></tr>
+          <tr><td>2024</td><td>AI could remember, see and listen</td><td>It remembers that you're vegetarian when suggesting recipes,<a class="cite" href="#src-4" aria-label="Source 4">4</a> or answers questions about a photo you take<a class="cite" href="#src-5" aria-label="Source 5">5</a></td></tr>
+          <tr><td>2025</td><td>AI started carrying out tasks</td><td>Describe what you want built, and an agent writes the code, tests it and fixes it, step by step<a class="cite" href="#src-6" aria-label="Source 6">6</a><a class="cite" href="#src-7" aria-label="Source 7">7</a></td></tr>
+          <tr><td>2026</td><td>Assistants started working in the background</td><td>An assistant keeps going on a task, such as tracking prices or preparing a summary, while you get on with your day<a class="cite" href="#src-8" aria-label="Source 8">8</a><a class="cite" href="#src-9" aria-label="Source 9">9</a></td></tr>
+        </tbody>
+      </table>
+      <p>An agent, in this guide, is AI that takes actions to finish a task: searching, writing files, running code or using apps. Each new ability adds to the older ones; chat didn't disappear when agents arrived. <mark>Knowing what's possible today helps you see where AI could help you.</mark></p>
+
+      <h2 id="around">The model is only one part of the app</h2>
+      <p>The app you use is more than its model. Around the model, the product adds parts that change what it can do, so the same model can perform differently in different apps.<a class="cite" href="#src-10" aria-label="Source 10">10</a></p>
 
       <figure class="figure model-map">
-        <svg viewBox="0 0 360 310" role="img" aria-labelledby="map-title">
-          <title id="map-title">The model sits in the middle. Around it: tools for search and running code, a harness of files and permissions, memory of notes over time, skills as saved procedures, connections through MCP and A2A, and retrieval of relevant documents.</title>
+        <svg viewBox="0 0 360 310" role="img" aria-label="The model, with tools, a workspace, memory, skills, connections and your documents around it.">
           <circle class="mm-core" cx="180" cy="155" r="40"/>
           <text class="mm-title" x="180" y="161">Model</text>
           <g class="mm-links">
@@ -118,109 +143,151 @@
             <path d="M145.4 135L122.9 122"/>
           </g>
           <text class="mm-title" x="180" y="48">Tools</text><text class="mm-sub" x="180" y="67">search, run code</text>
-          <text class="mm-title" x="282" y="96">Harness</text><text class="mm-sub" x="282" y="115">files, permissions</text>
+          <text class="mm-title" x="282" y="96">Workspace</text><text class="mm-sub" x="282" y="115">files, permissions</text>
           <text class="mm-title" x="282" y="212">Memory</text><text class="mm-sub" x="282" y="231">notes over time</text>
-          <text class="mm-title" x="180" y="250">Skills</text><text class="mm-sub" x="180" y="269">saved procedures</text>
-          <text class="mm-title" x="78" y="212">Connections</text><text class="mm-sub" x="78" y="231">MCP and A2A</text>
-          <text class="mm-title" x="78" y="96">Retrieval</text><text class="mm-sub" x="78" y="115">relevant documents</text>
+          <text class="mm-title" x="180" y="250">Skills</text><text class="mm-sub" x="180" y="269">saved instructions</text>
+          <text class="mm-title" x="78" y="212">Connections</text><text class="mm-sub" x="78" y="231">links to other apps</text>
+          <text class="mm-title" x="78" y="96">Your documents</text><text class="mm-sub" x="78" y="115">looked up as needed</text>
         </svg>
-        <figcaption>What a product adds around the model. None of these parts, on its own, guarantees correct work.</figcaption>
+        <figcaption>What an app adds around the model. None of these parts, on its own, guarantees correct work.</figcaption>
       </figure>
 
       <ul>
-        <li><strong>Tools</strong> let the AI act: search the web, run code, use a computer.</li>
-        <li><strong>The harness</strong> is the workplace: the files, permissions, state and records that let the work actually run.<a class="cite" href="#src-5" aria-label="Source 5">5</a></li>
-        <li><strong>Memory</strong> carries selected notes from one session to the next, like a notebook that may need correcting.<a class="cite" href="#src-6" aria-label="Source 6">6</a> The context is what the AI can see now; memory is one way information gets back into it later.</li>
-        <li><strong>Skills</strong> package reusable instructions, resources and sometimes scripts that an agent loads when they're relevant.<a class="cite" href="#src-2" aria-label="Source 2">2</a> A skill keeps a good method; it can also keep a bad one, so test it first.</li>
-        <li><strong>Connections</strong> let the AI reach other systems and agents. The Model Context Protocol (MCP), announced in November 2024, connects AI to external tools and data;<a class="cite" href="#src-3" aria-label="Source 3">3</a> Agent2Agent (A2A), announced in April 2025, is for agents talking to each other.<a class="cite" href="#src-4" aria-label="Source 4">4</a></li>
-        <li><strong>Retrieval</strong> brings relevant documents into the task. Retrieval-augmented generation (RAG) pairs a model with searchable information;<a class="cite" href="#src-1" aria-label="Source 1">1</a> it doesn't teach the model those facts for good, and a retrieved passage still has to support the claim it's used for.</li>
+        <li><strong>Tools</strong> let it act: search the web, run code, use a computer.</li>
+        <li><strong>A workspace</strong> holds the files it works on, what it's allowed to do, and a record of what it did. Engineers call this the harness.<a class="cite" href="#src-10" aria-label="Source 10">10</a></li>
+        <li><strong>Memory</strong> carries notes from one conversation to the next, like a notebook that sometimes needs correcting.<a class="cite" href="#src-11" aria-label="Source 11">11</a></li>
+        <li><strong>Skills</strong> are saved instructions for a kind of task, which the AI loads when they're relevant.<a class="cite" href="#src-12" aria-label="Source 12">12</a></li>
+        <li><strong>Connections</strong> link it to other apps, such as your calendar or email. A common standard for this is the Model Context Protocol (MCP), from late 2024.<a class="cite" href="#src-13" aria-label="Source 13">13</a></li>
+        <li><strong>Your documents</strong> can be looked up when needed, so the AI answers from them instead of from what it learnt in training alone. This is called retrieval.<a class="cite" href="#src-14" aria-label="Source 14">14</a></li>
       </ul>
-      <p><mark>When a result disappoints, the model is just one of the parts to suspect.</mark> The brief, the context, a missing tool or permission, or a weak test are often the cause, as <a href="ai-check.html#layer">chapter 3</a> sets out.</p>
+      <p><mark>When a result disappoints, the model is just one of the parts to suspect.</mark> <a href="ai-check.html#layer">Chapter 3</a> lists the others.</p>
 
-      <h2 id="history">Read AI's history as a branching map</h2>
-      <p>Knowing the history matters because you can't consider help you don't know exists. A common story runs from web chat to web agent to coding agent to memory to cloud assistant. It mixes different kinds of change: a website or terminal is an interface, coding is a domain, memory is a capability, and the cloud is a location. None of them is a level of intelligence, and coding agents didn't simply come after web agents.</p>
-      <table class="plain-table history-table">
-        <thead><tr><th scope="col">When</th><th scope="col">What arrived</th><th scope="col">Kind of change</th></tr></thead>
-        <tbody>
-          <tr><td>2020</td><td>Retrieval-augmented generation research<a class="cite" href="#src-1" aria-label="Source 1">1</a></td><td>Capability: using outside information</td></tr>
-          <tr><td>2021</td><td>GitHub Copilot preview<a class="cite" href="#src-7" aria-label="Source 7">7</a></td><td>Domain: help inside coding</td></tr>
-          <tr><td>2022</td><td>ReAct research on acting and observing;<a class="cite" href="#src-8" aria-label="Source 8">8</a> ChatGPT launches in November<a class="cite" href="#src-9" aria-label="Source 9">9</a></td><td>Capability: taking actions. Interface: conversation for everyone</td></tr>
-          <tr><td>2024</td><td>ChatGPT tests memory;<a class="cite" href="#src-10" aria-label="Source 10">10</a> GPT-4o and o1-preview;<a class="cite" href="#src-11" aria-label="Source 11">11</a> Cursor's agent works in the terminal;<a class="cite" href="#src-12" aria-label="Source 12">12</a> MCP<a class="cite" href="#src-3" aria-label="Source 3">3</a></td><td>Capability: memory, images and sound, reasoning. Domain: coding agents. Connection</td></tr>
-          <tr><td>2025</td><td>Claude Code preview;<a class="cite" href="#src-13" aria-label="Source 13">13</a> Codex cloud agent;<a class="cite" href="#src-14" aria-label="Source 14">14</a> A2A<a class="cite" href="#src-4" aria-label="Source 4">4</a></td><td>Interface: the terminal. Location: the cloud. Connection</td></tr>
-          <tr><td>2026</td><td>Codex app for managing agents;<a class="cite" href="#src-14" aria-label="Source 14">14</a> OpenClaw and Hermes personal agents;<a class="cite" href="#src-15" aria-label="Source 15">15</a><a class="cite" href="#src-6" aria-label="Source 6">6</a> Grok Bot<a class="cite" href="#src-16" aria-label="Source 16">16</a> and Meta's Muse<a class="cite" href="#src-17" aria-label="Source 17">17</a> on managed cloud computers</td><td>Interface for managing agents. Persistent personal agents</td></tr>
-        </tbody>
-      </table>
-      <p>Selected developments only, dated by the announcement or paper. The tracks overlap, and newer products add to older ones rather than replacing them. <mark>Each new product mixes interface, domain, capability and location in its own way.</mark></p>
+      <h2 id="broad">Learn a little of everything, then practise</h2>
+      <p>Once you've tried it, a broad map helps you decide what to learn next. Learn a little of everything, keep it in mind, and go deeper as you use it:</p>
+      <ol class="learn-map">
+        <li><strong>How it works, roughly.</strong> It reads and writes in small chunks of text called tokens, and it can only hold so much at once, which is its context window. Some models also work with images and sound.</li>
+        <li><strong>Where it's used.</strong> The jobs and industries already using AI, which gives you a feel for what it can do.</li>
+        <li><strong>The main apps.</strong> Chat apps such as ChatGPT, Claude, Gemini, DeepSeek, Doubao, Qwen and Kimi; coding helpers; and website builders such as Lovable. Some companies build their own models and some use other companies' models, and prices differ.</li>
+        <li><strong>How to work with it.</strong> Writing a good request (the prompt), giving it the right background (the context), and checking its work round by round (the loop). Chapters <a href="ai-brief.html">2</a> and <a href="ai-check.html">3</a> cover these.</li>
+        <li><strong>What lets it act.</strong> Skills, connections to other apps, plugins and hooks: the parts that let an agent use tools and repeat a method.</li>
+        <li><strong>Optional depth.</strong> How models are trained, and the research the main AI companies publish. It's interesting, but you can work well with AI without it.</li>
+      </ol>
+      <p>Then practise, and keep learning as you go.</p>
 
-      <h2 id="benchmarks">Read benchmarks like an analyst</h2>
-      <p>A leaderboard invites one question: who's first? A more useful one is: what exactly was measured? Anyone who works with KPIs knows a headline number depends on its definition, population and aggregation. Apply the same discipline here.</p>
+      <h2 id="keep-up">Keep up through regular users and the AI companies</h2>
+      <p>AI apps change every few months, so where you learn matters as much as what you learn. Two kinds of source work well together:</p>
+      <ul>
+        <li><strong>People who use AI every day</strong>, such as content creators and practitioners, show real use and give quick feedback on new releases, including whether the rankings hold up in practice.</li>
+        <li><strong>The official accounts of the AI companies</strong>, both those that build models and those that build apps, tell you what's new and what has changed.</li>
+      </ul>
+      <p>Most learning still comes from use. People who use AI often know a trick you don't, and <mark>explaining AI to someone who doesn't use it shows you where your own understanding is thin</mark>.</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I learn from reading posts on X and from constantly using AI in my personal life and at work. I also talk with people who use AI, to see if there's anything new to me, and with people who don't, such as friends and colleagues, because I learn by teaching.</p></aside>
+
+      <h2 id="method">Learn the method behind a demo</h2>
+      <p>A demo, an expert's article or a social media thread may show you something you'd never have thought of: rehearsing a difficult conversation, making practice questions for a class, or an agent turning a short description into a working website. Treat these as invitations to investigate. An expert's result doesn't mean the same approach will work as well for you.</p>
+      <p>A reputation gets a job candidate an interview; a relevant work sample shows whether they fit. When someone says an AI is excellent at a job, look for the task, what it was given, the mistakes, the corrections and the finished result. A screenshot of a polished result says little about whether it's right, or how long it took to fix.</p>
+      <p>Look for the decisions behind the demonstration. Why did the person give it that information? Why did they do one step themselves? What mistake did their check catch? <mark>Ask what this person knows, supplies or checks that makes the method work.</mark> An expert may hand a step to AI because they can spot subtle errors in it; your version may need smaller steps or an extra check.</p>
+
+      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-alert"/></svg>Common trap: copying the prompt</p><p>The wording of an expert's prompt is the least important part of their method. The information they supplied and the checks they kept are what made it work.</p></aside>
+
+      <h2 id="benchmarks">Read AI rankings with care</h2>
+      <p>A benchmark is a standard test used to compare AI models, and leaderboards rank models by their scores. A ranking invites one question: who's first? A more useful one is: what exactly was tested? Like any statistic, the headline number depends on what was measured and how.</p>
       <table class="plain-table bench-table">
-        <thead><tr><th scope="col">Capability</th><th scope="col">Example evaluation</th><th scope="col">What it doesn't tell you</th></tr></thead>
+        <thead><tr><th scope="col">What it tests</th><th scope="col">Example</th><th scope="col">What it doesn't tell you</th></tr></thead>
         <tbody>
-          <tr><td>Specialist knowledge</td><td>GPQA: hard science questions<a class="cite" href="#src-18" aria-label="Source 18">18</a></td><td>Professional competence in every field</td></tr>
-          <tr><td>Software changes</td><td>SWE-bench: fixing issues in real code repositories<a class="cite" href="#src-19" aria-label="Source 19">19</a></td><td>Whether it completes your whole project</td></tr>
-          <tr><td>Computer and tool use</td><td>OSWorld and BFCL: tasks on a computer, calls to tools<a class="cite" href="#src-20" aria-label="Source 20">20</a><a class="cite" href="#src-21" aria-label="Source 21">21</a></td><td>Safe, correct action in every app</td></tr>
-          <tr><td>Memory</td><td>LongMemEval: recall and updates over long conversations<a class="cite" href="#src-22" aria-label="Source 22">22</a></td><td>Perfect recall, or notes that stay correct</td></tr>
-          <tr><td>What people prefer</td><td>Arena: people comparing answers side by side<a class="cite" href="#src-23" aria-label="Source 23">23</a></td><td>Whether the answers are factually right</td></tr>
-          <tr><td>Speed and price</td><td>Artificial Analysis: quality, speed and cost<a class="cite" href="#src-24" aria-label="Source 24">24</a></td><td>Your own cost of reviewing and fixing</td></tr>
+          <tr><td>Hard knowledge questions</td><td>GPQA<a class="cite" href="#src-15" aria-label="Source 15">15</a></td><td>Whether it's competent in your field</td></tr>
+          <tr><td>Fixing real code</td><td>SWE-bench<a class="cite" href="#src-16" aria-label="Source 16">16</a></td><td>Whether it finishes your whole project</td></tr>
+          <tr><td>Using a computer</td><td>OSWorld<a class="cite" href="#src-17" aria-label="Source 17">17</a></td><td>Whether it acts safely and correctly in every app</td></tr>
+          <tr><td>What people prefer</td><td>Arena, where people compare two answers side by side<a class="cite" href="#src-18" aria-label="Source 18">18</a></td><td>Whether the answers are factually right</td></tr>
+          <tr><td>Speed and price</td><td>Artificial Analysis<a class="cite" href="#src-19" aria-label="Source 19">19</a></td><td>Your own time spent checking and fixing</td></tr>
         </tbody>
       </table>
-      <p>Then check the setup. Which model and version was tested? What tools did it have? Is the score for the model alone or for a whole agent system? Did it take several attempts? A result after several tries says little about getting it right first time, and agent evaluations treat the task, the attempts and the grading as part of the evidence.<a class="cite" href="#src-25" aria-label="Source 25">25</a> <mark>A benchmark helps you shortlist; a work sample tells you whether it fits.</mark></p>
+      <p>Before trusting a ranking, check which version of the model was tested, what tools it had, and how many tries it took. A result after several tries says little about getting it right first time.<a class="cite" href="#src-20" aria-label="Source 20">20</a> <mark>A ranking helps you shortlist; trying it on your own work tells you whether it fits.</mark></p>
 
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I check Artificial Analysis to see which models are good at what, and I follow practitioners to see whether benchmark results hold up in real use. When a benchmark or other users disagree with my experience of a tool, I try it with and without their feedback before disagreeing. If I still disagree, I keep their view in mind, carry on with my current tool, and research the real use cases behind it.</p></aside>
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I check <a href="https://artificialanalysis.ai/">Artificial Analysis</a> to see which models are good at what, and I follow practitioners to see whether ranking results hold up in real use. When a ranking or other users disagree with my experience of a tool, I try it with and without their feedback before disagreeing. If I still disagree, I keep their view in mind, carry on with my current tool, and research the real use cases behind it.</p></aside>
 
       <h2 id="trial">Run a small trial of your own</h2>
-      <p>The best evidence about a tool is how it does on your own work. A small trial set is enough to start: one straightforward task, one typical task, one edge case, and one request with missing or conflicting information. Keep the inputs and the success criteria the same when you compare setups, and record what passed, what failed, what help was needed and the total effort, including your checking.</p>
+      <p>The best evidence about a tool is how it does on your own work. A small trial is enough to start: one easy task, one typical task, one unusual case, and one request with missing or conflicting information. Give each tool you compare the same inputs and the same idea of a good result, then note what worked, what didn't, what help it needed and how long the whole thing took, including your checking.</p>
       <p>Four tasks won't prove that a tool is reliable in general. <mark>They show quickly whether it fits your work.</mark> <a href="ai-value.html">Chapter 5</a> covers how to weigh the result against its cost.</p>
 
-      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>Build your four-task trial set this week from real work. Run it on the tool you use now and on one alternative, with the same inputs, and note how long you spent checking each result.</p></aside>
+      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>Build your four-task trial from real work. Run it on the tool you use now and on one alternative, with the same inputs, and note how long you spent checking each result.</p></aside>
+
+      <h2 id="words">Words you'll meet in this guide</h2>
+      <dl class="glossary">
+        <div><dt>Model, or large language model</dt><dd>The system behind an AI app, trained on huge amounts of text to predict what comes next.</dd></div>
+        <div><dt>Chat app</dt><dd>An app where you talk to a model in everyday language, such as ChatGPT or Claude.</dd></div>
+        <div><dt>Prompt</dt><dd>What you ask or tell the AI.</dd></div>
+        <div><dt>Context</dt><dd>Everything the AI can see while it works: your prompt, the conversation so far, the files you've shared and the results from its tools.</dd></div>
+        <div><dt>Token</dt><dd>A small chunk of text, often part of a word. Models read and write in tokens, and many apps charge by them.</dd></div>
+        <div><dt>Hallucination</dt><dd>A confident answer that's false or made up.</dd></div>
+        <div><dt>Agent</dt><dd>AI that takes actions to finish a task, such as searching, writing files, running code or using apps.</dd></div>
+        <div><dt>Skill</dt><dd>Saved instructions an agent can load for a particular kind of task.</dd></div>
+        <div><dt>MCP</dt><dd>The Model Context Protocol, a common standard for connecting AI to other apps and data.</dd></div>
+        <div><dt>Computer use</dt><dd>An agent operating a computer's screen, mouse and keyboard, the way a person would.</dd></div>
+        <div><dt>Benchmark</dt><dd>A standard test used to compare AI models.</dd></div>
+      </dl>
 
       <section class="self-check" aria-labelledby="self-check">
         <h2 id="self-check">Check your understanding</h2>
-        <details>
-          <summary>A leaderboard puts one model first. What should you check before switching?</summary>
-          <p>What was measured and how: the task, the model version, the tools it had, whether the score is for the model alone or a whole agent system, and how many attempts it took. Then try it on a few of your own tasks.</p>
-        </details>
-        <details>
-          <summary>Someone shares a polished dashboard an AI built. What would tell you the AI is good at this?</summary>
-          <p>The work behind it: the data it was given, the definitions, the mistakes and corrections, and how long it took to get right.</p>
-        </details>
-        <details>
-          <summary>An agent forgets a decision you made in yesterday's session. Which part of the product is involved?</summary>
-          <p>Memory. The decision has to be carried over in memory or put back into the context, for example in a project notes file the agent reads at the start.</p>
-        </details>
+        <div class="quiz" data-answer="b">
+          <p class="quiz-q">You ask a chat app for a fact, and it answers confidently, naming a source. What do you do before relying on it?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Nothing: a confident answer with a source is reliable.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Check the fact or open the source, because AI can be confidently wrong.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">Ask the same question again, and accept it if the answer matches.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">Check it. Models can state false information fluently, and asking again can repeat the same mistake. Open the source, or check the fact somewhere you trust.</p>
+        </div>
+        <div class="quiz" data-answer="c">
+          <p class="quiz-q">Which of these is fine to paste into a public AI chat app?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Your online banking password.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">A colleague's personal details.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">A public news article you want summarised.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">The public article. Keep passwords, ID and bank numbers, other people's personal details and confidential work data out of chat apps.</p>
+        </div>
+        <div class="quiz" data-answer="b">
+          <p class="quiz-q">A leaderboard puts one model first. What should you check before switching to it?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Nothing more: first place means it's the best for most tasks.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">What was tested and how, then try it on a few of your own tasks.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">Only the price.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">What was tested and how: the task, the model version, the tools it had and how many tries it took. Then try it on a few of your own tasks.</p>
+        </div>
       </section>
 
       <section class="sources" aria-labelledby="sources-h">
         <h2 id="sources-h">Sources</h2>
         <ol>
-          <li id="src-1">Lewis and others. <a href="https://arxiv.org/abs/2005.11401">Retrieval-augmented generation for knowledge-intensive NLP tasks</a>. 2020.</li>
-          <li id="src-2">Anthropic. <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">Equipping agents for the real world with Agent Skills</a>. 16 October 2025.</li>
-          <li id="src-3">Anthropic. <a href="https://www.anthropic.com/news/model-context-protocol">Introducing the Model Context Protocol</a>. 25 November 2024.</li>
-          <li id="src-4">Google Developers. <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">Announcing the Agent2Agent Protocol (A2A)</a>. 9 April 2025.</li>
-          <li id="src-5">OpenAI. <a href="https://openai.com/index/unrolling-the-codex-agent-loop/">Unrolling the Codex agent loop</a>. 23 January 2026.</li>
-          <li id="src-6">Nous Research. <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/memory">Hermes Agent: memory</a>. Documentation.</li>
-          <li id="src-7">GitHub. <a href="https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/">Introducing GitHub Copilot</a>. 29 June 2021.</li>
-          <li id="src-8">Yao and others. <a href="https://arxiv.org/abs/2210.03629">ReAct: synergizing reasoning and acting in language models</a>. 2022.</li>
-          <li id="src-9">OpenAI. <a href="https://openai.com/index/chatgpt/">Introducing ChatGPT</a>. 30 November 2022.</li>
-          <li id="src-10">OpenAI. <a href="https://openai.com/index/memory-and-new-controls-for-chatgpt/">Memory and new controls for ChatGPT</a>. 13 February 2024.</li>
-          <li id="src-11">OpenAI. <a href="https://openai.com/index/hello-gpt-4o/">GPT-4o</a> (13 May 2024) and <a href="https://openai.com/index/introducing-openai-o1-preview/">o1-preview</a> (12 September 2024).</li>
-          <li id="src-12">Cursor. <a href="https://cursor.com/changelog/0-43-x">Changelog 0.43: Agent</a>. 24 November 2024.</li>
-          <li id="src-13">Anthropic. <a href="https://www.anthropic.com/news/claude-3-7-sonnet">Claude 3.7 Sonnet and Claude Code</a>. 24 February 2025.</li>
-          <li id="src-14">OpenAI. <a href="https://openai.com/index/introducing-codex/">Introducing Codex</a> (16 May 2025) and <a href="https://openai.com/index/introducing-the-codex-app/">the Codex app</a> (2 February 2026).</li>
-          <li id="src-15">OpenClaw. <a href="https://openclaw.ai/blog/introducing-openclaw">Introducing OpenClaw</a>. 29 January 2026.</li>
-          <li id="src-16">xAI. <a href="https://x.ai/news/introducing-grok-bot">Introducing Grok Bot</a>. 11 August 2026.</li>
-          <li id="src-17">Meta. <a href="https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/">Introducing Muse</a>. 8 September 2026.</li>
-          <li id="src-18">Rein and others. <a href="https://arxiv.org/abs/2311.12022">GPQA: a graduate-level Google-proof Q&amp;A benchmark</a>. 2023.</li>
-          <li id="src-19">SWE-bench. <a href="https://www.swebench.com/SWE-bench/">Benchmark overview</a>.</li>
-          <li id="src-20">OSWorld. <a href="https://osworld-v1.xlang.ai/">Computer-environment evaluation</a>.</li>
-          <li id="src-21">UC Berkeley. <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function Calling Leaderboard</a>.</li>
-          <li id="src-22">Wu and others. <a href="https://arxiv.org/abs/2410.10813">LongMemEval: benchmarking chat assistants on long-term interactive memory</a>. 2024.</li>
-          <li id="src-23">Arena. <a href="https://arena.ai/how-it-works">How Arena works</a>.</li>
-          <li id="src-24">Artificial Analysis. <a href="https://artificialanalysis.ai/methodology">Benchmarking methodology</a>.</li>
-          <li id="src-25">Anthropic. <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Demystifying evals for AI agents</a>. 9 January 2026.</li>
+          <li id="src-1">OpenAI. <a href="https://openai.com/index/why-language-models-hallucinate/">Why language models hallucinate</a>. 5 September 2025.</li>
+          <li id="src-2">GitHub. <a href="https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/">Introducing GitHub Copilot</a>. 29 June 2021.</li>
+          <li id="src-3">OpenAI. <a href="https://openai.com/index/chatgpt/">Introducing ChatGPT</a>. 30 November 2022.</li>
+          <li id="src-4">OpenAI. <a href="https://openai.com/index/memory-and-new-controls-for-chatgpt/">Memory and new controls for ChatGPT</a>. 13 February 2024.</li>
+          <li id="src-5">OpenAI. <a href="https://openai.com/index/hello-gpt-4o/">Hello GPT-4o</a>. 13 May 2024.</li>
+          <li id="src-6">Anthropic. <a href="https://www.anthropic.com/news/claude-3-7-sonnet">Claude 3.7 Sonnet and Claude Code</a>. 24 February 2025.</li>
+          <li id="src-7">OpenAI. <a href="https://openai.com/index/introducing-codex/">Introducing Codex</a>. 16 May 2025.</li>
+          <li id="src-8">OpenClaw. <a href="https://openclaw.ai/blog/introducing-openclaw">Introducing OpenClaw</a>. 29 January 2026.</li>
+          <li id="src-9">Meta. <a href="https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/">Introducing Muse</a>. 8 September 2026.</li>
+          <li id="src-10">OpenAI. <a href="https://openai.com/index/unrolling-the-codex-agent-loop/">Unrolling the Codex agent loop</a>. 23 January 2026.</li>
+          <li id="src-11">Nous Research. <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/memory">Hermes Agent: memory</a>. Documentation.</li>
+          <li id="src-12">Anthropic. <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">Equipping agents for the real world with Agent Skills</a>. 16 October 2025.</li>
+          <li id="src-13">Anthropic. <a href="https://www.anthropic.com/news/model-context-protocol">Introducing the Model Context Protocol</a>. 25 November 2024.</li>
+          <li id="src-14">Lewis and others. <a href="https://arxiv.org/abs/2005.11401">Retrieval-augmented generation for knowledge-intensive NLP tasks</a>. 2020.</li>
+          <li id="src-15">Rein and others. <a href="https://arxiv.org/abs/2311.12022">GPQA: a graduate-level Google-proof Q&amp;A benchmark</a>. 2023.</li>
+          <li id="src-16">SWE-bench. <a href="https://www.swebench.com/SWE-bench/">Benchmark overview</a>.</li>
+          <li id="src-17">OSWorld. <a href="https://osworld-v1.xlang.ai/">Computer-environment evaluation</a>.</li>
+          <li id="src-18">Arena. <a href="https://arena.ai/how-it-works">How Arena works</a>.</li>
+          <li id="src-19">Artificial Analysis. <a href="https://artificialanalysis.ai/methodology">Benchmarking methodology</a>.</li>
+          <li id="src-20">Anthropic. <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Demystifying evals for AI agents</a>. 9 January 2026.</li>
+          <li>My own practice, as of November 2026.</li>
         </ol>
-        <p class="meta">Sources checked in October 2026. Product announcements support dates and described features, not guarantees of performance.</p>
+        <p class="meta">Sources checked in October and November 2026. Product announcements support dates and described features, not guarantees of performance.</p>
       </section>
     </article>
   </div>

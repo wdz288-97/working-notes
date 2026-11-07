@@ -799,6 +799,30 @@
     update();
   })();
 
+  // ---- Check your understanding: tap an answer to see whether it's the best one, and why.
+  // Without the script, the answers and the explanation simply show as text.
+  (function quizzes() {
+    each(document.querySelectorAll('.quiz'), function (quiz) {
+      var answer = quiz.getAttribute('data-answer');
+      var options = quiz.querySelectorAll('.quiz-option');
+      var result = quiz.querySelector('.quiz-result');
+      quiz.classList.add('is-ready');
+      each(options, function (option) {
+        option.setAttribute('aria-pressed', 'false');
+        option.addEventListener('click', function () {
+          var right = option.getAttribute('data-option') === answer;
+          each(options, function (other) {
+            other.classList.toggle('is-right', other.getAttribute('data-option') === answer);
+            other.classList.toggle('is-wrong', other === option && !right);
+            other.setAttribute('aria-pressed', other === option ? 'true' : 'false');
+          });
+          result.textContent = right ? 'Right.' : 'Not quite. The best answer is marked with a tick.';
+          quiz.classList.add('is-answered');
+        });
+      });
+    });
+  })();
+
   // ---- One scroll listener for every part that follows the reader
   if (scrollHandlers.length) {
     var frameQueued = false;

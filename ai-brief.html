@@ -23,11 +23,29 @@
     </nav>
   </header>
 
-  <header class="page-head">
-    <p class="page-name"><a href="ai.html">Using AI</a>, chapter 2 of 6</p>
-    <h1>Brief and steer the work</h1>
-    <p class="meta">About 9 minutes to read</p>
-    <p class="lede">Good work from AI starts before the first answer: knowing your role in the task, a brief that names the outcome, the right context and sources, and steering every round back to the goal.</p>
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 2 of 6</p>
+      <h1>Brief and steer the work</h1>
+      <p class="meta">About 9 minutes to read</p>
+      <p class="lede">Good work from AI starts before the first answer: knowing your role in the task, a brief that names the outcome, the right context and sources, and steering every round back to the goal.</p>
+    </div>
+    <svg class="loop-figure chapter-figure" viewBox="0 0 400 232" role="img" aria-label="You give the AI a brief about the outcome, and context feeds in alongside it.">
+      <use class="ico draw onload" style="--i:0" href="icons.svg#i-person" x="16" y="60" width="64" height="64"/>
+      <text class="onload" style="--i:1" x="48" y="148" text-anchor="middle">You</text>
+      <path class="ico draw onload" style="--i:2" pathLength="1" d="M86 92H140"/>
+      <path class="ico draw onload" style="--i:3" pathLength="1" d="M134 86l6 6l-6 6"/>
+      <use class="ico draw onload" style="--i:4" href="icons.svg#i-bubble" x="148" y="52" width="72" height="72"/>
+      <text class="onload" style="--i:5" x="184" y="40" text-anchor="middle">The brief</text>
+      <path class="ico draw onload" style="--i:6" pathLength="1" d="M226 92H282"/>
+      <path class="ico draw onload" style="--i:7" pathLength="1" d="M276 86l6 6l-6 6"/>
+      <use class="ico draw onload accent" style="--i:8" href="icons.svg#i-sparkle" x="290" y="60" width="64" height="64"/>
+      <text class="onload" style="--i:9" x="322" y="148" text-anchor="middle">AI</text>
+      <use class="ico draw onload" style="--i:10" href="icons.svg#i-sheet" x="148" y="150" width="52" height="52"/>
+      <text class="onload" style="--i:11" x="174" y="222" text-anchor="middle">Context</text>
+      <path class="ico draw onload" style="--i:12" pathLength="1" d="M204 176C262 176 322 172 322 160"/>
+      <path class="ico draw onload" style="--i:13" pathLength="1" d="M316 166l6 -8l6 8"/>
+    </svg>
   </header>
 
   <div class="chapter">
@@ -145,7 +163,7 @@
       <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I usually put most of my effort into making sure we're heading in the right direction at each turn of plan, do, check and act, the same loop the <a href="playbook.html">playbook</a> follows.</p></aside>
 
       <h2 id="trip">A worked example: planning a trip</h2>
-      <p>Here's how these ideas come together in a personal task: planning a holiday.</p>
+      <p>These ideas come together in a personal task: planning a holiday.</p>
       <ol class="steps-list">
         <li><strong>I choose the sources.</strong> I research RedNote (小红书) posts myself and pick several useful notes, deliberately including different perspectives.</li>
         <li><strong>I write the brief.</strong> I give the AI the posts I picked and my requirements: trip length, budget and number of travellers. It can add its own research, then drafts a plan.</li>
@@ -164,18 +182,36 @@
 
       <section class="self-check" aria-labelledby="self-check">
         <h2 id="self-check">Check your understanding</h2>
-        <details>
-          <summary>You ask an AI for "a presentation on the workshop". What's missing from the brief?</summary>
-          <p>The outcome: who the presentation is for, what they need to decide, and what evidence to use. With those, the AI can build towards a decision and you can judge the result against it.</p>
-        </details>
-        <details>
-          <summary>Last month's estimate sits in the AI's context next to this month's approved budget. Why does it matter?</summary>
-          <p>The AI can't tell which figure is current, so it may use the wrong one or mix the two. Remove the old estimate, or label it clearly as superseded.</p>
-        </details>
-        <details>
-          <summary>The AI keeps missing the look you want for a page, and you can't say exactly why. What do you try?</summary>
-          <p>Show it. Find example pages that match what you have in mind and share them, so the AI can see the layout and tone you can't describe.</p>
-        </details>
+        <div class="quiz" data-answer="c">
+          <p class="quiz-q">Your whole brief to an AI is "Make a presentation on the workshop." What's missing from it?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">A longer, more polite request.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">A role title, such as "you are a world-class consultant".</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">The outcome: who it's for, what they must decide and what evidence to use.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">The outcome: who the presentation is for, what they need to decide, and what evidence to use. With those, the AI can build towards a decision and you can judge the result against it.</p>
+        </div>
+        <div class="quiz" data-answer="a">
+          <p class="quiz-q">The AI's context holds two budget figures: last month's rough estimate and this month's approved budget. Neither is labelled, so nothing says which one is current. What can go wrong?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">The AI may use the wrong figure, or mix the two.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Nothing: the AI will pick the newer one.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">The AI will refuse to answer.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">The AI can't tell which figure is current, so it may use the wrong one or mix the two. Remove the old estimate, or label it clearly as superseded.</p>
+        </div>
+        <div class="quiz" data-answer="b">
+          <p class="quiz-q">The AI keeps missing the look you want for a page, and you can't say exactly why. What do you try?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">A longer description with more adjectives.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Example pages that match what you have in mind.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">A completely new design every round.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">Show it. Find example pages that match what you have in mind and share them, so the AI can see the layout and tone you can't describe.</p>
+        </div>
       </section>
 
       <section class="sources" aria-labelledby="sources-h">
@@ -184,6 +220,7 @@
           <li id="src-1">Anthropic. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Prompting best practices</a>. Documentation.</li>
           <li id="src-2">Anthropic. <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Effective context engineering for AI agents</a>. 29 September 2025.</li>
           <li id="src-3">LangChain. <a href="https://www.langchain.com/blog/context-engineering-for-agents">Context engineering</a>. 2 July 2025.</li>
+          <li>My own practice, as of November 2026.</li>
         </ol>
         <p class="meta">Sources checked in October 2026.</p>
       </section>

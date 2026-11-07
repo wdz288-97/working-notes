@@ -23,11 +23,26 @@
     </nav>
   </header>
 
-  <header class="page-head">
-    <p class="page-name"><a href="ai.html">Using AI</a>, chapter 4 of 6</p>
-    <h1>Divide, delegate and reuse</h1>
-    <p class="meta">About 7 minutes to read</p>
-    <p class="lede">Once you can brief and check AI's work, the next questions are which steps to hand over, how to pass work between AIs, and when a method is worth turning into something reusable.</p>
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 4 of 6</p>
+      <h1>Divide, delegate and reuse</h1>
+      <p class="meta">About 7 minutes to read</p>
+      <p class="lede">Once you can brief and check AI's work, the next questions are which steps to hand over, how to pass work between AIs, and when a method is worth turning into something reusable.</p>
+    </div>
+    <svg class="loop-figure chapter-figure" viewBox="0 0 400 212" role="img" aria-label="A task splits into steps: some go to AI, and the steps needing judgement stay with you.">
+      <use class="ico draw onload" style="--i:0" href="icons.svg#i-clipboard" x="20" y="82" width="64" height="64"/>
+      <text class="onload" style="--i:1" x="52" y="172" text-anchor="middle">The task</text>
+      <path class="ico draw onload" style="--i:2" pathLength="1" d="M90 112L236 48"/>
+      <path class="ico draw onload" style="--i:3" pathLength="1" d="M90 114H236"/>
+      <path class="ico draw onload" style="--i:4" pathLength="1" d="M90 116L236 180"/>
+      <use class="ico draw onload accent" style="--i:5" href="icons.svg#i-sparkle" x="242" y="24" width="48" height="48"/>
+      <text class="onload small" style="--i:6" x="298" y="54" text-anchor="start">AI: fixed steps</text>
+      <use class="ico draw onload accent" style="--i:7" href="icons.svg#i-sparkle" x="242" y="90" width="48" height="48"/>
+      <text class="onload small" style="--i:8" x="298" y="120" text-anchor="start">AI: with checks</text>
+      <use class="ico draw onload" style="--i:9" href="icons.svg#i-person" x="242" y="156" width="48" height="48"/>
+      <text class="onload small" style="--i:10" x="298" y="186" text-anchor="start">You: judgement</text>
+    </svg>
   </header>
 
   <div class="chapter">
@@ -77,7 +92,7 @@
       <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>Steps that can be automated by code or computer use, without important human judgement in between, can be done by AI. When I'm new to a kind of task, I first research how other people do it with AI, and gather experience as I go.</p></aside>
 
       <h2 id="contributions">Give each helper the contribution it's best at</h2>
-      <p>Once AI is a collaborator, using more than one becomes natural. One may be good at finding sources, another at working inside a codebase, another at explaining. Treat these as assignments to test: products change, and so does what each is best at. My own current choices are on the <a href="ai.html#tools-h">Using AI page</a>, with a date.</p>
+      <p>Once AI is a collaborator, using more than one becomes natural. One may be good at finding sources, another at working inside a software project's code, another at explaining. Treat these as assignments to test: products change, and so does what each is best at. My own current choices are on the <a href="ai.html#tools-h">Using AI page</a>, with a date.</p>
       <p>The helper doesn't have to be an AI. A calculator is a better colleague for arithmetic than another language model, and a specialist can be the right reviewer even when AI wrote most of the draft. The question to ask is which contribution the task needs, and which setup can provide it at an acceptable cost. <mark>The smallest team that can produce and justify the result is usually the right one.</mark></p>
       <p>Whoever reviews the work should get the task and the evidence, as well as the draft's conclusion. A reviewer who sees only a polished answer tends to inherit its assumptions.</p>
 
@@ -99,14 +114,13 @@
       </ul>
       <p>Passing on only a polished conclusion invites the next helper to build on assumptions nobody checked. Keep the coordination and the final review in proportion to the task: a two-step job doesn't need a project plan.</p>
 
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>Without a ready-made workflow for coordinating agents, I don't do this often. When I do, a handoff skill (Matt Pocock's is a good one) passes the work to another agent cleanly. Simpler ways are to have the main agent start a sub-agent, or to give the agent the name or ID of an earlier chat in the same project. I expect that last one to use more tokens, though I haven't measured it.</p></aside>
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>Without a ready-made workflow for coordinating agents, I don't do this often. When I do, a handoff skill (Matt Pocock's is a good one) passes the work to another agent cleanly. Simpler ways are to have the main agent start a helper agent of its own (a sub-agent), or to give the agent the name or ID of an earlier chat in the same project. I expect that last one to use more tokens, though I haven't measured it.</p></aside>
 
       <h2 id="reuse">Decide what's worth making reusable</h2>
       <p>When a task keeps coming back, you can keep using a prompt, write a skill, write a script, set up an agent workflow, or combine them. Three questions decide it: which steps repeat, where judgement is needed, and whether the setup and upkeep are worth the benefit.</p>
 
       <figure class="figure reuse-map">
-        <svg viewBox="0 0 360 318" role="img" aria-labelledby="reuse-title">
-          <title id="reuse-title">A two-by-two chart. Across: how often the task repeats, from once to often. Up: how much the steps vary, from fixed to varying. Once with fixed steps: one prompt, or just do it. Once with varying steps: a prompt and a conversation. Often with fixed steps: a script. Often with varying steps: a skill or an agent workflow with checks.</title>
+        <svg viewBox="0 0 360 318" role="img" aria-label="How often a task repeats against how much its steps vary, with the approach that fits each box.">
           <g class="rm-axes">
             <path d="M60 276H344"/><path d="M338 271l6 5l-6 5"/>
             <path d="M60 276V22"/><path d="M55 28l5-6l5 6"/>
@@ -134,7 +148,7 @@
         <li><strong>Keep changes understandable and contained.</strong> Coherent modules with clear inputs, outputs and constraints, adding structure only where it helps.</li>
         <li><strong>Provide a short map to what matters.</strong> Point to the relevant project knowledge, definitions, decisions, setup steps and specialist guidance, rather than one huge instruction file.<a class="cite" href="#src-3" aria-label="Source 3">3</a></li>
         <li><strong>Make important requirements checkable.</strong> Tests and checks with failure messages that say what to fix, and written commands for setup and verification. Instructions alone don't guarantee an agent follows them.<a class="cite" href="#src-4" aria-label="Source 4">4</a></li>
-        <li><strong>Give the agent tools to verify the actual result.</strong> A browser or computer use for visual work and for operations it must perform, as <a href="ai-check.html#real-result">chapter 3</a> describes.<a class="cite" href="#src-5" aria-label="Source 5">5</a></li>
+        <li><strong>Give the agent tools to verify the actual result.</strong> A browser, or computer use (operating the screen, mouse and keyboard), for visual work and for operations it must perform, as <a href="ai-check.html#real-result">chapter 3</a> describes.<a class="cite" href="#src-5" aria-label="Source 5">5</a></li>
         <li><strong>Keep meaningful human review.</strong> Including the fixed checkpoints in analysis: validating the raw output, and reviewing the final interpretation.</li>
       </ol>
       <p><mark>Good engineering habits help agents for the same reasons they help people.</mark> I usually pick engineering skills that teach agents these habits from popular, well-known sources, then test them on my own work.</p>
@@ -152,18 +166,36 @@
 
       <section class="self-check" aria-labelledby="self-check">
         <h2 id="self-check">Check your understanding</h2>
-        <details>
-          <summary>You run the same monthly data export, with exactly the same steps, every time. What fits best?</summary>
-          <p>A script. The steps repeat and don't vary, and no judgement is needed between them, so the setup pays back quickly.</p>
-        </details>
-        <details>
-          <summary>You pass work to a second AI with just the finished draft. What's missing?</summary>
-          <p>The goal, the decisions already made, the evidence and where it came from, the current state, and the open questions. Without them, the second AI builds on assumptions nobody checked.</p>
-        </details>
-        <details>
-          <summary>Your prompt tells an agent "don't email anyone", and it has access to your email. Is that safe?</summary>
-          <p>No. An instruction isn't a technical barrier. If the task doesn't need email, don't give the agent email access; if it does, keep sending behind your approval.</p>
-        </details>
+        <div class="quiz" data-answer="c">
+          <p class="quiz-q">You run the same monthly data export, with exactly the same steps, every time. What fits best?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">A new prompt each month.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">An agent that decides the steps each time.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">A script.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">A script. The steps repeat and don't vary, and no judgement is needed between them, so the setup pays back quickly.</p>
+        </div>
+        <div class="quiz" data-answer="a">
+          <p class="quiz-q">You pass work to a second AI with just the finished draft. What's missing?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">The goal, decisions, evidence, current state and open questions.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Nothing: the draft has everything.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">A longer draft.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">The goal, the decisions already made, the evidence and where it came from, the current state, and the open questions. Without them, the second AI builds on assumptions nobody checked.</p>
+        </div>
+        <div class="quiz" data-answer="b">
+          <p class="quiz-q">Your prompt tells an agent "don't email anyone", and it has access to your email. Is that safe?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Yes: the instruction is clear.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">No: an instruction isn't a barrier, so remove the access or keep sending behind your approval.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">Yes, if you repeat the instruction.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">No. An instruction isn't a technical barrier. If the task doesn't need email, don't give the agent email access; if it does, keep sending behind your approval.</p>
+        </div>
       </section>
 
       <section class="sources" aria-labelledby="sources-h">
@@ -175,6 +207,7 @@
           <li id="src-4">GitHub. <a href="https://docs.github.com/en/copilot/concepts/customizations/comparing-customizations">Comparing customizations</a>. Documentation.</li>
           <li id="src-5">Anthropic. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Prompting best practices</a>. Documentation.</li>
           <li id="src-6">OpenClaw. <a href="https://docs.openclaw.ai/gateway/security">Security documentation</a>: access, permissions and untrusted input.</li>
+          <li>My own practice, as of November 2026.</li>
         </ol>
         <p class="meta">Sources checked in October and November 2026.</p>
       </section>

@@ -23,11 +23,25 @@
     </nav>
   </header>
 
-  <header class="page-head">
-    <p class="page-name"><a href="ai.html">Using AI</a>, chapter 3 of 6</p>
-    <h1>Check the work</h1>
-    <p class="meta">About 10 minutes to read</p>
-    <p class="lede">An AI can give a confident, well-formatted answer that's wrong, so you need checks that don't rely on its word: a test for each task, a way out of the loop, and the right evidence for each kind of claim.</p>
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 3 of 6</p>
+      <h1>Check the work</h1>
+      <p class="meta">About 10 minutes to read</p>
+      <p class="lede">An AI can give a confident, well-formatted answer that's wrong, so you need checks that don't rely on its word: a test for each task, a way out of the loop, and the right evidence for each kind of claim.</p>
+    </div>
+    <svg class="loop-figure chapter-figure" viewBox="0 0 400 196" role="img" aria-label="The work goes through a test and its evidence before you use it.">
+      <use class="ico draw onload" style="--i:0" href="icons.svg#i-clipboard" x="24" y="70" width="72" height="72"/>
+      <text class="onload" style="--i:1" x="60" y="172" text-anchor="middle">The work</text>
+      <path class="ico draw onload" style="--i:2" pathLength="1" d="M104 106H150"/>
+      <path class="ico draw onload" style="--i:3" pathLength="1" d="M144 100l6 6l-6 6"/>
+      <use class="ico draw onload" style="--i:4" href="icons.svg#i-magnifier" x="160" y="62" width="80" height="80"/>
+      <text class="onload" style="--i:5" x="200" y="172" text-anchor="middle">A test, evidence</text>
+      <path class="ico draw onload" style="--i:6" pathLength="1" d="M250 106H296"/>
+      <path class="ico draw onload" style="--i:7" pathLength="1" d="M290 100l6 6l-6 6"/>
+      <use class="ico draw onload" style="--i:8" href="icons.svg#i-tick" x="306" y="76" width="60" height="60"/>
+      <text class="onload" style="--i:9" x="336" y="172" text-anchor="middle">Use it</text>
+    </svg>
   </header>
 
   <div class="chapter">
@@ -73,7 +87,7 @@
     <article class="prose">
       <h2 id="fluent">A fluent answer isn't evidence</h2>
       <p>Language models can state false information fluently and confidently. OpenAI's research on why models hallucinate points to one cause: the way models are usually trained and scored rewards a confident guess more than an honest "I don't know".<a class="cite" href="#src-1" aria-label="Source 1">1</a> The tone of an answer tells you little about whether it's right.</p>
-      <p>Format doesn't tell you either. A neat table, or a data field in exactly the required layout, <mark>can still hold the wrong number</mark>.<a class="cite" href="#src-6" aria-label="Source 6">6</a> Analysts know this from reporting: a dashboard can refresh without a single error and still show the wrong figure.</p>
+      <p>Format doesn't tell you either. A neat table, or a data field in exactly the required layout, <mark>can still hold the wrong number</mark>.<a class="cite" href="#src-2" aria-label="Source 2">2</a> Analysts know this from reporting: a dashboard can refresh without a single error and still show the wrong figure.</p>
       <p>So look for evidence outside the answer: a test the result has to pass, a source you can open, or a total that has to match.</p>
 
       <h2 id="loop">Give every loop a test and a way out</h2>
@@ -85,8 +99,7 @@
       </ul>
 
       <figure class="figure loop-check" id="loop-check">
-        <svg viewBox="0 0 360 372" role="img" aria-labelledby="loop-title">
-          <title id="loop-title">A review loop: attempt, check against a test set before you look, name the defect if it fails, revise, then try again. If the check passes, use the result. If the same defect repeats, stop and ask a person who knows, or change tool.</title>
+        <svg viewBox="0 0 360 372" role="img" aria-label="Review loop: attempt, check, name the defect, revise. Use it when it passes; stop when the defect repeats.">
           <g class="lb" id="lb-1"><rect class="lb-box" x="30" y="10" width="170" height="56" rx="4"/><text class="lb-title" x="115" y="34">Attempt</text><text class="lb-sub" x="115" y="54">the AI does the task</text></g>
           <g class="la"><path d="M115 66V96"/><path d="M110 90l5 6l5-6"/></g>
           <g class="lb" id="lb-2"><rect class="lb-box" x="30" y="100" width="170" height="74" rx="4"/><text class="lb-title" x="115" y="124">Check</text><text class="lb-sub" x="115" y="145">against a test set</text><text class="lb-sub" x="115" y="163">before you look</text></g>
@@ -103,7 +116,7 @@
         <figcaption>The loop needs its test and both exits: use the result when it passes, and stop when the same defect repeats.</figcaption>
       </figure>
 
-      <p>The same applies when an agent runs the loop on its own. Engineers now treat an agent's working cycle and the cycle that verifies its work as separate things to design.<a class="cite" href="#src-2" aria-label="Source 2">2</a><a class="cite" href="#src-3" aria-label="Source 3">3</a> Before you let an agent loop by itself, decide what counts as done, what it may change and when it must stop and ask. Above all, <mark>don't let the agent pass by making the test easier without telling you</mark>.</p>
+      <p>The same applies when an agent runs the loop on its own. Engineers now treat an agent's working cycle and the cycle that verifies its work as separate things to design.<a class="cite" href="#src-3" aria-label="Source 3">3</a><a class="cite" href="#src-4" aria-label="Source 4">4</a> Before you let an agent loop by itself, decide what counts as done, what it may change and when it must stop and ask. Above all, <mark>don't let the agent pass by making the test easier without telling you</mark>.</p>
 
       <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I've recently started setting up loops where the agent checks its own work before handing it back to me. In my use, that cut out a large share of the rounds where I had to review the work and send it back. That's my own experience, not a measured result, and it doesn't replace the checks I still do myself.</p></aside>
 
@@ -137,7 +150,7 @@
 
       <h2 id="second-opinion">Two AIs agreeing isn't proof</h2>
       <p>A second AI can help review the work. Give it the original question, the data and the method, then ask it to list the assumptions nobody has supported and the tests that would settle them. For a more independent attempt, hold back the first answer at the start.</p>
-      <p>A study across many language models found that their errors are correlated, including between models from different providers.<a class="cite" href="#src-4" aria-label="Source 4">4</a> If both assume "average" means the simple mean, agreeing only preserves the mistake. And when two AIs disagree, don't settle it by counting votes. <mark>Look for the definition, source, calculation or test that tells the two answers apart.</mark></p>
+      <p>A study across many language models found that their errors are correlated, including between models from different providers.<a class="cite" href="#src-5" aria-label="Source 5">5</a> If both assume "average" means the simple mean, agreeing only preserves the mistake. And when two AIs disagree, don't settle it by counting votes. <mark>Look for the definition, source, calculation or test that tells the two answers apart.</mark></p>
 
       <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I ask the AI to challenge me directly, giving its reasons on both sides. When I'm still not convinced, I ask more questions, put the question to another AI, and look at how people in the community or experts handle it. I open the references to judge their quality. When sources conflict, I go back to what each one can actually establish, and I leave the question open if it doesn't resolve.</p></aside>
 
@@ -150,7 +163,7 @@
           <tr><td>A formula or calculation</td><td>Testing it on a small example with a known answer, and on edge cases such as zeros and blanks</td></tr>
           <tr><td>A citation</td><td>Opening the page and finding the sentence that supports the claim</td></tr>
           <tr><td>Code, or an app it says works</td><td>Running it, or having the agent run it and show you the actual result</td></tr>
-          <tr><td>A visual change</td><td>Looking at the page itself, at the screen sizes people use, not only at the code</td></tr>
+          <tr><td>A visual change</td><td>Looking at the page itself, at the screen sizes people use, as well as the code</td></tr>
           <tr><td>An interpretation of data</td><td>Tracing it to figures you've validated and to the business context you supplied</td></tr>
           <tr><td>An answer you can't judge</td><td>Asking someone with the expertise, especially when the work matters</td></tr>
         </tbody>
@@ -166,10 +179,10 @@
       <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I ask for the evidence or reference behind every interpretation. If it comes from the internet rather than the business context I gave the AI, I sense-check it or do a quick search myself, then check with the relevant team before acting.</p></aside>
 
       <h2 id="real-result">Check what the agent actually produced</h2>
-      <p>An agent saying a task succeeded is a claim like any other. Good agent evaluation inspects the final state: the file that was written, or the app as it runs.<a class="cite" href="#src-5" aria-label="Source 5">5</a> What an agent can check depends on its tools: a chat-only assistant can draft a test but can't run it, while an agent working in a copy of the project can.</p>
+      <p>An agent saying a task succeeded is a claim like any other. Good agent evaluation inspects the final state: the file that was written, or the app as it runs.<a class="cite" href="#src-6" aria-label="Source 6">6</a> What an agent can check depends on its tools: a chat-only assistant can draft a test but can't run it, while an agent working in a copy of the project can.</p>
       <p>For visual work, the agent needs to see the page as well as the code. <mark>Give the agent tools that reach the actual outcome</mark>, and find out where those tools stop.</p>
 
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>When an agent built my browser extension, it needed to reload the extension to test each change. Browser control alone couldn't do that, because the browser's own rules block it; the agent needed computer use. Websites are similar: the agent needs a browser to look at the page as well as the code. This site is checked that way. The agent measures each page at phone sizes in a browser, and I look at it on my own phone.</p></aside>
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>When an agent built my browser extension, it needed to reload the extension to test each change. Browser control alone couldn't do that, because the browser's own rules block it; the agent needed computer use, which lets it work the screen, mouse and keyboard the way a person does. Websites are similar: the agent needs a browser to look at the page as well as the code. This site is checked that way. The agent measures each page at phone sizes in a browser, and I look at it on my own phone.</p></aside>
 
       <h2 id="layer">When a check fails, find the layer that broke</h2>
       <p>A failed check tells you something is wrong, not what. Before asking for another attempt, work out which layer failed:</p>
@@ -187,29 +200,48 @@
 
       <section class="self-check" aria-labelledby="self-check">
         <h2 id="self-check">Check your understanding</h2>
-        <details>
-          <summary>Two AIs both report an average margin of 20%. Is the number settled?</summary>
-          <p>No. Their errors can be correlated, and both may have taken the simple average of the two margins. Settle the definition first: if the question is how much of each ringgit was kept as profit, the answer is total profit ÷ total revenue.</p>
-        </details>
-        <details>
-          <summary>An agent changes your code and reports that all the tests pass. What do you check?</summary>
-          <p>Whether the tests themselves changed, and the actual result: run them, or have the agent show the output, and look at the app or page it changed.</p>
-        </details>
-        <details>
-          <summary>The same defect comes back after two rounds of revision. What next?</summary>
-          <p>Stop retrying. Work out which layer broke (the brief, the context, the tools, the test or the task itself), or ask someone who knows the subject.</p>
-        </details>
+        <div class="quiz" data-answer="c">
+          <p class="quiz-q">Two AIs both say the average margin for products A and B in this chapter's example is 20%. Is that settled?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Yes: two AIs agree.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Yes, if both explain their working confidently.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">No: settle the definition first; total profit ÷ total revenue gives 28%.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">No. Their errors can be correlated, and both may have taken the simple average of the two margins. Settle the definition first: if the question is how much of each ringgit was kept as profit, the answer is total profit ÷ total revenue.</p>
+        </div>
+        <div class="quiz" data-answer="a">
+          <p class="quiz-q">An agent changes your code and reports that all the tests pass. What do you check?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Whether the tests changed, and the actual result.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Nothing: the agent ran them.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">Only the agent's summary of what it did.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">Whether the tests themselves changed, and the actual result: run them, or have the agent show the output, and look at the app or page it changed.</p>
+        </div>
+        <div class="quiz" data-answer="b">
+          <p class="quiz-q">The same defect comes back after two rounds of revision. What next?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Ask again with more emphasis.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Stop retrying, and find the layer that broke or ask someone who knows.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">Switch to a bigger model straight away.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">Stop retrying. Work out which layer broke (the brief, the context, the tools, the test or the task itself), or ask someone who knows the subject.</p>
+        </div>
       </section>
 
       <section class="sources" aria-labelledby="sources-h">
         <h2 id="sources-h">Sources</h2>
         <ol>
           <li id="src-1">OpenAI. <a href="https://openai.com/index/why-language-models-hallucinate/">Why language models hallucinate</a>. 5 September 2025.</li>
-          <li id="src-2">LangChain. <a href="https://www.langchain.com/blog/the-art-of-loop-engineering">The art of loop engineering</a>. 16 June 2026.</li>
-          <li id="src-3">OpenAI. <a href="https://openai.com/index/unrolling-the-codex-agent-loop/">Unrolling the Codex agent loop</a>. 23 January 2026.</li>
-          <li id="src-4">Kim and others. <a href="https://proceedings.mlr.press/v267/kim25e.html">Correlated errors in large language models</a>. ICML 2025.</li>
-          <li id="src-5">Anthropic. <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Demystifying evals for AI agents</a>. 9 January 2026.</li>
-          <li id="src-6">OpenAI. <a href="https://openai.com/index/introducing-structured-outputs-in-the-api/">Introducing Structured Outputs in the API</a>. 6 August 2024.</li>
+          <li id="src-2">OpenAI. <a href="https://openai.com/index/introducing-structured-outputs-in-the-api/">Introducing Structured Outputs in the API</a>. 6 August 2024.</li>
+          <li id="src-3">LangChain. <a href="https://www.langchain.com/blog/the-art-of-loop-engineering">The art of loop engineering</a>. 16 June 2026.</li>
+          <li id="src-4">OpenAI. <a href="https://openai.com/index/unrolling-the-codex-agent-loop/">Unrolling the Codex agent loop</a>. 23 January 2026.</li>
+          <li id="src-5">Kim and others. <a href="https://proceedings.mlr.press/v267/kim25e.html">Correlated errors in large language models</a>. ICML 2025.</li>
+          <li id="src-6">Anthropic. <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Demystifying evals for AI agents</a>. 9 January 2026.</li>
+          <li>My own practice, as of November 2026.</li>
         </ol>
         <p class="meta">Sources checked in October 2026.</p>
       </section>

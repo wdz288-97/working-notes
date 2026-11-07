@@ -23,11 +23,29 @@
     </nav>
   </header>
 
-  <header class="page-head">
-    <p class="page-name"><a href="ai.html">Using AI</a>, chapter 5 of 6</p>
-    <h1>Judge whether it's worth it</h1>
-    <p class="meta">About 6 minutes to read</p>
-    <p class="lede">A cheap subscription isn't the same as cheap work. Whether AI, a tool or a skill is worth it depends on the whole effort, the quality of the result and the upkeep, judged on your own work.</p>
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 5 of 6</p>
+      <h1>Judge whether it's worth it</h1>
+      <p class="meta">About 6 minutes to read</p>
+      <p class="lede">A cheap subscription isn't the same as cheap work. Whether AI, a tool or a skill is worth it depends on the whole effort, the quality of the result and the upkeep, judged on your own work.</p>
+    </div>
+    <svg class="loop-figure chapter-figure" viewBox="0 0 400 214" role="img" aria-label="A balance weighing time saved and better quality against checking, cost and upkeep.">
+      <path class="ico draw onload" style="--i:0" pathLength="1" d="M200 66V198"/>
+      <path class="ico draw onload" style="--i:1" pathLength="1" d="M164 198H236"/>
+      <path class="ico draw onload" style="--i:2" pathLength="1" d="M192 70l8 -10l8 10"/>
+      <path class="ico draw onload" style="--i:3" pathLength="1" d="M80 96L320 68"/>
+      <path class="ico draw onload" style="--i:4" pathLength="1" d="M80 96L58 140"/>
+      <path class="ico draw onload" style="--i:5" pathLength="1" d="M80 96L102 140"/>
+      <path class="ico draw onload" style="--i:6" pathLength="1" d="M50 140C58 156 102 156 110 140"/>
+      <path class="ico draw onload" style="--i:7" pathLength="1" d="M320 68L298 112"/>
+      <path class="ico draw onload" style="--i:8" pathLength="1" d="M320 68L342 112"/>
+      <path class="ico draw onload" style="--i:9" pathLength="1" d="M290 112C298 128 342 128 350 112"/>
+      <text class="onload" style="--i:10" x="80" y="182" text-anchor="middle">Time saved,</text>
+      <text class="onload" style="--i:11" x="80" y="200" text-anchor="middle">better quality</text>
+      <text class="onload" style="--i:12" x="320" y="154" text-anchor="middle">Checking,</text>
+      <text class="onload" style="--i:13" x="320" y="172" text-anchor="middle">cost, upkeep</text>
+    </svg>
   </header>
 
   <div class="chapter">
@@ -133,29 +151,49 @@
         <li><strong>The rest of the search in one place.</strong> I can search and filter results, keep a shortlist, and collect my application history from the supported sites. It never applies or sends messages for me.</li>
       </ul>
       <p>The aim is to focus on relevant jobs and spend less time reviewing the same postings. That's the intended benefit; I haven't measured it.</p>
+      <p><strong>What I'm working towards:</strong> having it review postings and suggest bookmarks based on the patterns in what I've bookmarked before, so even fewer steps need me in the loop.</p>
 
       <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>Pick one AI tool or skill you pay for or use often. For a typical week, note the time it saves, the time you spend checking and fixing its work, and anything you had to maintain. Then decide: keep, simplify or drop.</p></aside>
 
       <section class="self-check" aria-labelledby="self-check">
         <h2 id="self-check">Check your understanding</h2>
-        <details>
-          <summary>An AI subscription costs RM100 a month, and you value your time at RM40 an hour. How much time must it save to pay for itself on time alone?</summary>
-          <p>More than 2.5 hours a month, counted after the time you spend briefing, checking and correcting its work.</p>
-        </details>
-        <details>
-          <summary>A new skill promises better code, and your token use doubles. Do you keep it?</summary>
-          <p>Only if your own work shows the promised improvement, such as fewer fixes or less review time. More tokens on their own aren't a benefit.</p>
-        </details>
-        <details>
-          <summary>Your tool still fits your goal, but one feature takes a lot of upkeep and is rarely used. What does improving the tool mean here?</summary>
-          <p>Simplifying or removing that feature. Improvement includes taking out parts that don't return the effort they cost.</p>
-        </details>
+        <div class="quiz" data-answer="c">
+          <p class="quiz-q">An AI subscription costs RM100 a month, and you value your time at RM40 an hour. How much time must it save to pay for itself on time alone?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">About 1 hour a month.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">About 10 hours a month.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">More than 2.5 hours a month.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">More than 2.5 hours a month, counted after the time you spend briefing, checking and correcting its work.</p>
+        </div>
+        <div class="quiz" data-answer="a">
+          <p class="quiz-q">You install a skill that promises better code. Since then your token use has doubled, and you haven't yet checked whether the code is any better. Do you keep it?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Only if your own work shows the promised improvement.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Yes: more tokens mean more work done.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">No: never pay for extra tokens.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">Only if your own work shows the promised improvement, such as fewer fixes or less review time. More tokens on their own aren't a benefit.</p>
+        </div>
+        <div class="quiz" data-answer="b">
+          <p class="quiz-q">Your tool still fits your goal, but one feature takes a lot of upkeep and is rarely used. What does improving the tool mean here?</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">Add more features so it's worth the upkeep.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">Simplify or remove that feature.</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">Rebuild the whole tool.</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">Simplifying or removing that feature. Improvement includes taking out parts that don't return the effort they cost.</p>
+        </div>
       </section>
 
       <section class="sources" aria-labelledby="sources-h">
         <h2 id="sources-h">Sources</h2>
         <ol>
           <li id="src-1">Anthropic. <a href="https://www.anthropic.com/research/building-effective-agents">Building effective agents</a>. 19 December 2024.</li>
+          <li>My own practice, as of November 2026.</li>
         </ol>
         <p class="meta">The cost example's fees and hours are hypothetical; its arithmetic was checked separately.</p>
       </section>

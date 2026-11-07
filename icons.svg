@@ -31,4 +31,5 @@
   <symbol id="i-tick" viewBox="0 0 24 24"><path pathLength="1" d="M12 2a10 10 0 1 1 0 20a10 10 0 1 1 0-20z"/><path pathLength="1" d="M7 12.5l3.2 3.2L17 9"/></symbol>
   <symbol id="i-alert" viewBox="0 0 48 48"><path pathLength="1" d="M24 6L44 41H4z"/><path pathLength="1" d="M24 19v10M24 34.5v.5"/></symbol>
   <symbol id="i-pencil" viewBox="0 0 48 48"><path pathLength="1" d="M33 7l8 8L17 39H9v-8z"/><path pathLength="1" d="M28 12l8 8"/></symbol>
+  <symbol id="i-image" viewBox="0 0 48 48"><path pathLength="1" d="M6 9h36v30H6z"/><path pathLength="1" d="M6 33l11-11l9 9l6-6l10 10"/><path pathLength="1" d="M32 14a3 3 0 1 1 0 6a3 3 0 1 1 0-6z"/></symbol>
 </svg>

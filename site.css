@@ -418,6 +418,14 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
 .pipeline .gate .who { color: var(--accent); }
 .pipeline strong { color: var(--ink); font-size: 1.3rem; font-weight: 600; line-height: 1.25; }
 .pipeline p { max-width: 50ch; }
+.prose .pipeline { display: block; padding-left: 0; margin-block: 1.8em; }
+.pipeline.is-static::after { display: none; }
+.pipeline.is-static::before { background: var(--line); }
+.pipeline.is-static li { padding-bottom: 28px; }
+.pipeline.is-static li:last-child { padding-bottom: 0; }
+.pipeline.is-static li > svg { color: var(--line); }
+.pipeline.is-static li.gate > svg { color: var(--accent); }
+.pipeline.is-static .draw { stroke-dashoffset: 0; }
 
 /* Reading */
 .shelf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 48px; margin-top: clamp(48px, 6vw, 72px); }
@@ -431,11 +439,22 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
 .book div { display: grid; gap: 8px; font-size: 0.975rem; }
 .book h3 { font-size: 1.125rem; line-height: 1.25; }
 .book .by { font-family: var(--font-note); font-style: italic; color: var(--muted); }
+/* Reading: books grouped by theme, with a row of links to each group */
+.shelf-index { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 6px; }
+.shelf-index a { padding: 6px 14px; border: 1.5px solid var(--faint); border-radius: 99px; font-size: 0.95rem; color: var(--ink); text-decoration: none; transition: border-color .2s; }
+.shelf-index a:hover { border-color: var(--ink); }
+.shelf-group { padding-top: clamp(56px, 7vw, 88px); scroll-margin-top: calc(var(--bar-h) + 12px); }
+.shelf-head { display: grid; gap: 8px; max-width: 68ch; }
+.shelf-head h2 { font-size: clamp(1.45rem, 1.15rem + 0.9vw, 1.85rem); }
+.shelf-group .shelf { margin-top: 28px; }
 @media (max-width: 760px) { .shelf { grid-template-columns: minmax(0, 1fr); } }
 
 /* Working with AI: a guide in chapters. The hub keeps the site's opener with a figure; each chapter is a reading column
    with an "In this chapter" list beside it on wide screens, and three kinds of box: my practice, a common trap, an exercise. */
 .collab-figure { max-width: 460px; }
+/* Chapter openers: one line drawing beside the title, drawn in once on load */
+.chapter-figure text { font-family: var(--font-sans); font-size: 15px; fill: var(--ink); }
+.chapter-figure text.small { font-size: 14px; }
 .collab-figure text { font-family: var(--font-sans); font-size: 17px; fill: var(--ink); }
 .collab-figure text.strong { font-weight: 600; }
 .collab-figure text.note { font-family: var(--font-note); font-style: italic; font-size: 16px; fill: var(--muted); }
@@ -492,6 +511,14 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
   .to-contents.is-shown { opacity: 1; visibility: visible; transition: opacity .25s var(--ease), visibility 0s; }
 }
 
+/* Using AI page: on wide screens a section's heading sits in a left column beside its text, so the page uses its
+   width while lines stay a comfortable length */
+.sub.split > h2 { font-size: clamp(1.45rem, 1.15rem + 0.9vw, 1.85rem); }
+@media (min-width: 1000px) {
+  .sub.split { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); column-gap: 64px; align-items: start; }
+  .sub.split > h2 { position: sticky; top: calc(var(--bar-h) + 28px); }
+}
+
 /* Boxes: my own practice reads like a quote; a trap is dashed; an exercise sits on a light panel */
 .box { display: grid; gap: 8px; padding: 16px 18px; border: 1.5px solid var(--faint); border-radius: 4px; }
 .prose > .box { margin-block: 1.6em; }
@@ -505,6 +532,42 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
 
 .chapters .contents-head h2 { font-size: clamp(1.45rem, 1.15rem + 0.9vw, 1.85rem); }
 .toc-num { font-size: 1.6rem; font-weight: 300; line-height: 1; color: var(--muted); }
+
+/* Using AI: my tools as task cards; each row gives the task, then the tool and its model or setting */
+.toolkit { columns: 3 280px; column-gap: 20px; }
+.toolkit .tool-group { break-inside: avoid; margin-bottom: 20px; }
+.tool-group { display: grid; gap: 14px; padding: 18px; border: 1.5px dashed var(--faint); border-radius: 4px; }
+.tool-group h3 { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; }
+.tool-group h3 svg { flex: none; width: 30px; height: 30px; color: var(--line); }
+.tool-group dl { margin: 0; display: grid; gap: 12px; }
+.tool-group dl div { display: grid; gap: 2px; padding-top: 12px; border-top: 1px dashed var(--faint); }
+.tool-group dt { font-size: 0.9rem; color: var(--muted); }
+.tool-group dd { margin: 0; display: grid; gap: 4px; }
+.tool-opt { display: grid; gap: 1px; }
+.tool-opt b { color: var(--ink); font-weight: 600; }
+.tool-opt > span { font-size: 0.92rem; color: var(--text); }
+.tool-or { font-family: var(--font-note); font-style: italic; font-size: 0.88rem; color: var(--muted); }
+.tool-note { font-size: 0.9rem; color: var(--muted); }
+
+/* Using AI: speed versus value, as lines labelled at their ends */
+.value-chart svg { display: block; width: 100%; max-width: 460px; height: auto; margin-inline: auto; overflow: visible; }
+.vc-axes path { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.vc-gap { fill: var(--amber-soft); }
+.vc-line { fill: none; stroke-width: 2; stroke-linecap: round; }
+.vc-line.vc-prod { stroke: var(--line); }
+.vc-line.vc-value { stroke: var(--accent); stroke-width: 2.75; }
+.vc-line.vc-learn { stroke: var(--teal); }
+.vc-line.vc-flat { stroke: var(--muted); stroke-dasharray: 5 4; }
+.vc-line.vc-noai { stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 1.5 4; }
+.value-chart text { font-family: var(--font-sans); font-size: 13.5px; }
+.vc-label { font-weight: 600; }
+text.vc-prod { fill: var(--ink); }
+text.vc-value { fill: var(--accent); }
+text.vc-learn { fill: var(--teal); }
+text.vc-flat { fill: var(--muted); }
+text.vc-noai { fill: var(--ink); }
+.value-chart text.vc-note { font-family: var(--font-note); font-style: italic; font-size: 12.5px; fill: var(--text); }
+.value-chart text.vc-axis { fill: var(--text); }
 
 .plain-table { width: 100%; border-collapse: collapse; font-size: 0.975rem; }
 .plain-table th, .plain-table td { padding: 10px 14px 10px 0; text-align: left; vertical-align: top; border-bottom: 1px dashed var(--faint); color: var(--ink); }
@@ -553,6 +616,12 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
 .plain-table .note-row td { padding-top: 12px; border-bottom: 0; font-size: 0.9rem; color: var(--muted); }
 .key-ideas { padding: 18px 20px; border: 1.5px solid var(--line); border-radius: 4px; display: grid; gap: 10px; }
 .key-ideas h2 { font-size: 1.25rem; }
+/* Chapter 1's glossary: each term with its plain meaning */
+.glossary { margin: 0; display: grid; gap: 10px; }
+.glossary div { display: grid; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr); gap: 2px 16px; padding-bottom: 10px; border-bottom: 1px dashed var(--faint); }
+.glossary dt { color: var(--ink); font-weight: 600; }
+.glossary dd { margin: 0; }
+@media (max-width: 560px) { .glossary div { grid-template-columns: minmax(0, 1fr); } }
 .key-ideas ul { margin: 0; padding-left: 1.3em; display: grid; gap: 0.5em; }
 /* Check your understanding: tap a question to see the answer */
 .self-check { display: grid; gap: 10px; }
@@ -562,6 +631,21 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
 .self-check summary { cursor: pointer; color: var(--ink); font-weight: 600; line-height: 1.4; }
 .self-check summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .self-check details[open] summary { margin-bottom: 8px; }
+/* Tap an answer: a tick marks the best answer, a cross your pick if it wasn't. Colour isn't used, because
+   green and red already mean growth and fall in the charts. */
+.quiz { display: grid; gap: 10px; padding: 14px 16px; border: 1.5px solid var(--faint); border-radius: 4px; }
+.quiz-q { color: var(--ink); font-weight: 600; line-height: 1.4; }
+.prose .quiz-options { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.quiz-option { all: unset; box-sizing: border-box; display: block; width: 100%; padding: 9px 12px; border: 1.5px solid var(--faint); border-radius: 4px; line-height: 1.4; color: var(--text); }
+.quiz.is-ready .quiz-option { cursor: pointer; }
+.quiz.is-ready .quiz-option:hover { border-color: var(--ink); color: var(--ink); }
+.quiz-option:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.quiz-option.is-right { border: 2px solid var(--ink); color: var(--ink); font-weight: 600; }
+.quiz-option.is-right::before { content: "\2713  "; }
+.quiz-option.is-wrong { border-style: dashed; color: var(--muted); }
+.quiz-option.is-wrong::before { content: "\2717  "; }
+.quiz-result { font-weight: 600; color: var(--ink); }
+.quiz.is-ready:not(.is-answered) .quiz-result, .quiz.is-ready:not(.is-answered) .quiz-why { display: none; }
 .prose > .sources { margin-top: 2.6em; }
 
 /* Chapter 2: the same task briefed two ways, as tabs */
