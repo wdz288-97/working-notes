@@ -1,6 +1,6 @@
 # Ding's working notes (site)
 
-A small static site: a home page, a business analysis playbook told as a scroll story, notes on using AI, and a reading list.
+A small static site: a home page, a business analysis playbook told as a scroll story, a guide to using AI in six chapters, and a reading list.
 
 Every push to `main` rebuilds the site and publishes it twice: to EdgeOne Pages at https://ba-working-notes.edgeone.dev (see `edgeone.json`), and to GitHub Pages (see `.github/workflows/pages.yml`).
 
@@ -11,7 +11,9 @@ This repository is the only copy of the site. A private claude.ai artifact of it
 | File | What it is |
 | --- | --- |
 | `data-analytics-playbook.html` | Home page source. Written as an artifact page, so it has no doctype or `<head>`; the artifact host and the build add them. |
-| `playbook.html`, `ai.html`, `reading.html` | The other three pages, as full HTML documents |
+| `playbook.html`, `reading.html` | The playbook and the reading list, as full HTML documents |
+| `ai.html` | Using AI: the guide's contents page, with the six chapters and my current tools |
+| `ai-check.html`, `ai-analytics.html` | Using AI chapters 3 (Check the work) and 6 (AI in analytics, early version). Each chapter is its own page; the rest are in progress. |
 | `site.css` | Shared styles, light and dark |
 | `site.js` | Shared behaviour; each part runs only on pages that have its elements |
 | `icons.svg` | The line drawings, as one sprite |

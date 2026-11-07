@@ -9,14 +9,17 @@ const path = require('path');
 
 const SOURCE = __dirname;
 const OUT = path.join(SOURCE, 'public');
-const PAGES = ['playbook.html', 'ai.html', 'reading.html'];
+const PAGES = ['playbook.html', 'ai.html', 'ai-check.html', 'ai-analytics.html', 'reading.html'];
 const ASSETS = ['site.css', 'site.js', 'icons.svg', 'favicon.svg'];
 const DESCRIPTIONS = {
-  'index.html': 'Working notes from a business intelligence analyst: how analysis runs as a loop, how AI fits in, and the books behind it.',
+  'index.html': 'Working notes from a business intelligence analyst: how analysis runs as a loop, how to work with AI, and the books behind it.',
   'playbook.html': 'A business analysis playbook: one loop of plan, do, check and act, followed through one month of a made-up café chain.',
-  'ai.html': 'How AI tools fit into analysis, and the two places their work gets checked.',
+  'ai.html': 'A practical guide to working with AI, in six chapters: learning what it can do, briefing it, checking its work, delegating, judging value, and AI in analytics.',
+  'ai-check.html': 'How to check work done with AI: tests and loops with a way out, borrowed checks, second opinions, and the evidence behind an interpretation.',
+  'ai-analytics.html': 'Where AI fits in data analysis, and the two checkpoints where its work gets checked.',
   'reading.html': 'The books and references behind this practice.'
 };
+const PAGE_NAMES = PAGES.map(page => page.replace(/\.html$/, ''));
 
 function headExtras(page) {
   return [
@@ -29,9 +32,10 @@ function headExtras(page) {
 // The source keeps the .html links because clean ones don't resolve when the files are opened from disk.
 // edgeone.json redirects the old .html addresses here, so shared links keep working.
 function cleanPageLinks(html) {
+  const pageLink = new RegExp('href="(' + PAGE_NAMES.join('|') + ')\\.html(#[^"]*)?"', 'g');
   return html
-    .replace(/href="index\.html"/g, 'href="./"')
-    .replace(/href="(playbook|ai|reading)\.html"/g, 'href="$1"');
+    .replace(/href="index\.html(#[^"]*)?"/g, (match, hash) => 'href="./' + (hash || '') + '"')
+    .replace(pageLink, (match, name, hash) => 'href="' + name + (hash || '') + '"');
 }
 
 // The home page is written as an artifact page (no doctype or head); give it a full document here

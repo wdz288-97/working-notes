@@ -433,6 +433,141 @@ footer { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--rule);
 .book .by { font-family: var(--font-note); font-style: italic; color: var(--muted); }
 @media (max-width: 760px) { .shelf { grid-template-columns: minmax(0, 1fr); } }
 
+/* Working with AI: a guide in chapters. The hub keeps the site's opener with a figure; each chapter is a reading column
+   with an "In this chapter" list beside it on wide screens, and three kinds of box: my practice, a common trap, an exercise. */
+.collab-figure { max-width: 460px; }
+.collab-figure text { font-family: var(--font-sans); font-size: 17px; fill: var(--ink); }
+.collab-figure text.strong { font-weight: 600; }
+.collab-figure text.note { font-family: var(--font-note); font-style: italic; font-size: 16px; fill: var(--muted); }
+.page-name a { color: inherit; text-decoration: none; }
+.page-name a:hover { text-decoration: underline; }
+
+.prose { max-width: 68ch; }
+.prose > * + * { margin-top: 1.1em; }
+.prose h2 { font-size: clamp(1.45rem, 1.15rem + 0.9vw, 1.85rem); margin-top: 2.2em; scroll-margin-top: calc(var(--bar-h) + 20px); }
+.prose > h2:first-child { margin-top: 0; }
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose mark { color: var(--ink); background: linear-gradient(transparent 58%, var(--amber-soft) 58%); padding: 0 1px; }
+.prose ul, .prose ol { margin-block: 0; padding-left: 1.3em; display: grid; gap: 0.55em; }
+.prose li::marker { color: var(--muted); }
+.cite { display: inline-block; margin-left: 2px; font-size: 0.72em; line-height: 1; vertical-align: super; text-decoration: none; }
+.cite::before { content: "["; }
+.cite::after { content: "]"; }
+
+/* A chapter: key ideas first, then the guide's contents, then the text. On wide screens the contents sit in a
+   left-hand column (readers overlook a right-hand one) listing every chapter, with this chapter's sections opened. */
+.chapter { margin-top: clamp(32px, 4vw, 48px); display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+.chapter > .key-ideas { max-width: 68ch; }
+.guide-nav { font-size: 0.95rem; padding: 14px 16px; border: 1.5px dashed var(--faint); border-radius: 4px; }
+.guide-nav-head { font-weight: 600; }
+.guide-nav-head a { color: var(--ink); text-decoration: none; }
+.guide-nav-head a:hover { color: var(--accent); }
+.guide-chapters, .guide-sections { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.guide-chapters { margin-top: 8px; gap: 6px; }
+.guide-chapters > li > a, .guide-chapters > li > span { display: block; line-height: 1.35; text-decoration: none; }
+.guide-chapters > li > a { color: var(--ink); }
+.guide-chapters > li > a:hover { color: var(--accent); }
+.guide-chapters > li.is-pending > span { color: var(--muted); }
+.guide-chapters > li.is-here > a { font-weight: 600; }
+.guide-here { margin: 8px 0 4px; font-size: 0.85rem; color: var(--muted); }
+.guide-sections a { display: block; padding: 3px 0 3px 12px; border-left: 2px solid var(--rule); color: var(--muted); line-height: 1.35; text-decoration: none; transition: color .2s, border-color .2s; }
+.guide-sections a:hover { color: var(--ink); }
+.guide-sections a.is-current { color: var(--ink); border-left-color: var(--accent); }
+/* Phones: only this chapter's sections; the other chapters are one tap away on the Using AI page */
+@media (max-width: 999px) {
+  .guide-chapters > li:not(.is-here) { display: none; }
+  .guide-chapters > li.is-here > a { display: none; }
+  .guide-here { margin-top: 0; font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+}
+@media (min-width: 1000px) {
+  .chapter { grid-template-columns: 240px minmax(0, 1fr); column-gap: 64px; align-items: start; }
+  .guide-nav { grid-column: 1; grid-row: 1 / span 2; position: sticky; top: calc(var(--bar-h) + 28px); max-height: calc(100vh - var(--bar-h) - 56px); overflow-y: auto; padding: 0; border: 0; }
+  .chapter > .key-ideas { grid-column: 2; grid-row: 1; }
+  .chapter > .prose { grid-column: 2; grid-row: 2; }
+}
+/* Phones: a small button back to the contents once they have scrolled away */
+.to-contents { display: none; }
+@media (max-width: 999px) {
+  .to-contents { display: block; position: fixed; z-index: 15; right: 16px; bottom: max(16px, env(safe-area-inset-bottom, 0px)); padding: 8px 16px; border: 1.5px solid var(--line); border-radius: 99px; background: var(--paper); color: var(--ink); font-size: 0.95rem; font-weight: 600; text-decoration: none; box-shadow: 0 10px 24px -14px rgb(0 0 0 / 0.4); opacity: 0; visibility: hidden; transition: opacity .25s var(--ease), visibility 0s linear .25s; }
+  .to-contents.is-shown { opacity: 1; visibility: visible; transition: opacity .25s var(--ease), visibility 0s; }
+}
+
+/* Boxes: my own practice reads like a quote; a trap is dashed; an exercise sits on a light panel */
+.box { display: grid; gap: 8px; padding: 16px 18px; border: 1.5px solid var(--faint); border-radius: 4px; }
+.prose > .box { margin-block: 1.6em; }
+.box-label { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+.box-label svg { flex: none; width: 24px; height: 24px; color: var(--line); }
+.box.practice { border: 0; border-left: 3px solid var(--line); border-radius: 0; padding: 4px 0 4px 18px; }
+.box.trap { border-style: dashed; }
+.box.try { border-color: transparent; background: color-mix(in srgb, var(--rule) 70%, transparent); }
+.box-legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; max-width: 980px; }
+@media (max-width: 760px) { .box-legend { grid-template-columns: minmax(0, 1fr); } }
+
+.chapters .contents-head h2 { font-size: clamp(1.45rem, 1.15rem + 0.9vw, 1.85rem); }
+.toc-num { font-size: 1.6rem; font-weight: 300; line-height: 1; color: var(--muted); }
+
+.plain-table { width: 100%; border-collapse: collapse; font-size: 0.975rem; }
+.plain-table th, .plain-table td { padding: 10px 14px 10px 0; text-align: left; vertical-align: top; border-bottom: 1px dashed var(--faint); color: var(--ink); }
+.plain-table thead th { font-weight: 600; color: var(--muted); border-bottom: 1.5px solid var(--line); }
+.check-table td:first-child { width: 38%; font-weight: 600; }
+
+/* Figures in a chapter */
+.figure { margin: 1.8em 0; display: grid; gap: 10px; }
+.figure figcaption { font-size: 0.9rem; line-height: 1.5; color: var(--muted); }
+.loop-check svg { display: block; width: 100%; max-width: 440px; height: auto; margin-inline: auto; color: var(--line); overflow: visible; }
+.loop-check text { font-family: var(--font-sans); fill: var(--ink); }
+.lb text { text-anchor: middle; }
+.loop-check text.lb-title { font-size: 16px; font-weight: 600; }
+.loop-check text.lb-sub { font-size: 14px; fill: var(--muted); }
+.loop-check text.lb-label { font-family: var(--font-note); font-style: italic; font-size: 13.5px; fill: var(--muted); }
+.lb-box { fill: var(--paper); stroke: currentColor; stroke-width: 1.5; }
+.lb.stop .lb-box { stroke-dasharray: 5 4; }
+.lb .ico { color: var(--line); }
+.la path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* The margin calculator: two revenue sliders, two answers */
+.calc { padding: 18px; border: 1.5px solid var(--faint); border-radius: 6px; gap: 16px; }
+.calc-inputs { display: grid; gap: 12px; }
+.calc-in { display: grid; grid-template-columns: minmax(0, 10rem) minmax(0, 1fr) 4.5rem; align-items: center; gap: 6px 14px; }
+.calc-name { color: var(--ink); font-weight: 600; line-height: 1.3; }
+.calc-name i { display: block; font-style: normal; font-weight: 400; font-size: 0.9rem; color: var(--muted); }
+.calc-in input { width: 100%; margin: 0; }
+.calc-in output { text-align: right; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.calc-out { margin: 0; padding-top: 14px; border-top: 1px dashed var(--faint); display: grid; gap: 10px; }
+.calc-out div { display: grid; grid-template-columns: minmax(0, 10rem) minmax(0, 1fr); align-items: center; gap: 4px 14px; }
+.calc-out dt { line-height: 1.3; }
+.calc-out dt i { display: block; font-style: normal; font-size: 0.85rem; color: var(--muted); }
+.calc-out dd { margin: 0; display: grid; grid-template-columns: 3.6rem minmax(0, 1fr); align-items: center; gap: 10px; }
+.calc-out b { font-size: 1.25rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.calc-bar { height: 12px; border-radius: 2px; background: var(--rule); overflow: hidden; }
+.calc-bar i { display: block; height: 100%; background: var(--line); transition: width .3s var(--ease); }
+.calc-note { color: var(--ink); }
+@media (max-width: 560px) {
+  .calc-in { grid-template-columns: minmax(0, 1fr) auto; }
+  .calc-in input { grid-column: 1 / -1; grid-row: 2; }
+  .calc-out div { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+.plain-table th[scope="rowgroup"] { padding-top: 18px; font-size: 0.85rem; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--faint); }
+.plain-table .note-row td { padding-top: 12px; border-bottom: 0; font-size: 0.9rem; color: var(--muted); }
+.key-ideas { padding: 18px 20px; border: 1.5px solid var(--line); border-radius: 4px; display: grid; gap: 10px; }
+.key-ideas h2 { font-size: 1.25rem; }
+.key-ideas ul { margin: 0; padding-left: 1.3em; display: grid; gap: 0.5em; }
+/* Check your understanding: tap a question to see the answer */
+.self-check { display: grid; gap: 10px; }
+.prose .self-check { margin-top: 2.6em; }
+.prose .self-check h2 { margin-top: 0; }
+.self-check details { border: 1.5px solid var(--faint); border-radius: 4px; padding: 12px 16px; }
+.self-check summary { cursor: pointer; color: var(--ink); font-weight: 600; line-height: 1.4; }
+.self-check summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.self-check details[open] summary { margin-bottom: 8px; }
+.prose > .sources { margin-top: 2.6em; }
+.sources { display: grid; gap: 8px; font-size: 0.92rem; }
+.prose .sources h2 { margin-top: 0; font-size: 1.1rem; }
+.sources ol { gap: 4px; }
+.sources li:target { background: var(--amber-soft); }
+
 /* Phones and narrow windows: the drawing stays at the top and the text box stays at the bottom.
    Scrolling only moves the story on: it builds the drawing, then swaps the text for the next step. */
 @media (max-width: 899px) {

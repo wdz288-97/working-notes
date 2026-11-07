@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=Source+Code+Pro:wght@400;500&display=swap">
 <link rel="stylesheet" href="site.css">
+<link rel="prefetch" href="ai-check.html">
 <link rel="prefetch" href="reading.html">
-<link rel="prefetch" href="playbook.html">
 </head>
 <body>
 <div class="wrap" id="top">
@@ -23,37 +23,106 @@
     </nav>
   </header>
 
-  <header class="page-head">
-    <p class="page-name">Using AI</p>
-    <h1>How I use AI, at work and day to day</h1>
-    <p class="lede">Notes on working with AI tools. The first is about analysis: where AI fits in my workflow, and the two places I check its work. More will follow.</p>
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name">Using AI</p>
+      <h1>Working with a collaborator you've just met</h1>
+      <p class="lede">A practical guide, in six chapters, to getting work from AI that you can trust. It draws on how I use AI as a business intelligence analyst and in everyday life.</p>
+    </div>
+    <svg class="loop-figure collab-figure" viewBox="0 0 440 310" role="img" aria-labelledby="collab-title">
+      <title id="collab-title">You give the AI collaborator purpose, a brief and context; it returns work with evidence and checks; between you sits a worthwhile, trustworthy outcome.</title>
+      <path class="ico draw onload" style="--i:0" pathLength="1" d="M74 92C140 28 300 28 366 92"/>
+      <path class="ico draw onload" style="--i:1" pathLength="1" d="M362.6 81.5L366 92L355.4 88.9"/>
+      <text class="note onload" style="--i:2" x="220" y="24" text-anchor="middle">Purpose, brief and context</text>
+      <use class="ico draw onload" style="--i:3" href="icons.svg#i-person" x="22" y="100" width="80" height="80"/>
+      <text class="onload" style="--i:4" x="62" y="202" text-anchor="middle">You</text>
+      <path class="ico draw onload" style="--i:5" pathLength="1" d="M136 94h168v92H136z"/>
+      <text class="strong onload" style="--i:6" x="220" y="124" text-anchor="middle">A worthwhile,</text>
+      <text class="strong onload" style="--i:6" x="220" y="146" text-anchor="middle">trustworthy</text>
+      <text class="strong onload" style="--i:6" x="220" y="168" text-anchor="middle">outcome</text>
+      <use class="ico draw onload accent" style="--i:7" href="icons.svg#i-sparkle" x="338" y="100" width="80" height="80"/>
+      <text class="onload" style="--i:8" x="378" y="202" text-anchor="middle">AI collaborator</text>
+      <path class="ico draw onload" style="--i:9" pathLength="1" d="M366 220C300 284 140 284 74 220"/>
+      <path class="ico draw onload" style="--i:10" pathLength="1" d="M77.4 230.5L74 220L84.6 223.1"/>
+      <text class="note onload" style="--i:11" x="220" y="300" text-anchor="middle">Work, evidence and checks</text>
+    </svg>
   </header>
 
-  <section class="ai-grid" aria-labelledby="ai-h">
-    <div class="ai-intro">
-      <h2 id="ai-h" class="sub-head" style="font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.1rem)">Where AI fits in my analysis</h2>
-      <p class="lede">The AI never interprets data I haven't validated, and nothing goes out in its words alone. You can see it at work in the <a href="playbook.html">playbook story</a>, where the AI writes the query that splits the drop in orders by channel.</p>
-      <p class="ai-note"><b>Context is the asset</b>When the AI gets something wrong because it lacked context, I add that context to what it reads next time.</p>
-      <p class="ai-note"><b>On reuse</b>Before rerunning old work I compare the period, conditions, assumptions and definitions with the new request. A query that was right last quarter isn't automatically right now.</p>
+  <section class="sub" aria-labelledby="start-h">
+    <div class="prose">
+      <h2 id="start-h">Think of AI as a capable collaborator you've only just met</h2>
+      <p>Imagine hiring someone, at a modest cost, who can discuss an extraordinary range of subjects. They can draft, explain, analyse and help you build things. But you've only just met. You don't yet know where their abilities end, how much context they need, or which parts of their work deserve a close look.</p>
+      <p>That's a useful way to approach AI: <strong>a broadly capable collaborator whose reliability you establish task by task</strong>. It's a comparison for a working relationship; AI isn't a person.</p>
+
+      <h2 id="gaps-h">Two gaps stand between you and a useful result</h2>
+      <p>Every piece of work with AI starts with two gaps. <strong>You don't fully know what it can do</strong>, and that gap closes with work samples and checking. <strong>It doesn't know your situation</strong>, and that gap closes with a useful brief and the right context.</p>
+      <p>Neither gap closes because an answer sounds professional: language models can state false information fluently and confidently. <mark>What you're after is a worthwhile outcome you can trust.</mark></p>
+      <p>How much you know about the subject changes how you work together. In a subject you know well, you can direct the work like a manager: set the purpose, spot the assumptions that matter and judge whether the result answers the right question. In an unfamiliar subject, you're closer to an apprentice: ask the AI to explain its choices, try a small part yourself, and arrange checks you don't have to judge alone. Most real tasks mix both, so expect to switch roles within one piece of work.</p>
     </div>
-    <ol class="pipeline" id="pipeline">
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-bubble"/></svg><span class="who">Me and the AI</span><strong>Agree the plan</strong><p>Objective, output, tables, joins, filters, grain and calculations. It draws on past SQL, table metadata, metric definitions, business context, team rules and data-privacy standards.</p></li>
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-sparkle"/></svg><span class="who">The AI</span><strong>Write and run the SQL</strong><p>Within the plan. Any material change comes back to me for realignment.</p></li>
-      <li class="gate"><svg class="ico"><use class="draw" href="icons.svg#i-gate"/></svg><span class="who">First checkpoint, me</span><strong>Validate the raw output</strong><p>Columns and filters against the request, tricky computed fields checked, totals reconciled.</p></li>
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-bars"/></svg><span class="who">The AI</span><strong>Explore and draft</strong><p>Exploratory analysis, a first interpretation and charts, each citing its source.</p></li>
-      <li class="gate"><svg class="ico"><use class="draw" href="icons.svg#i-gate"/></svg><span class="who">Second checkpoint, me</span><strong>Review the reasoning</strong><p>Do the insights follow from the verified output and the business context?</p></li>
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-person"/></svg><span class="who">Me</span><strong>Final interpretation</strong><p>The conclusions and visuals are mine. The AI helps rephrase or build slides.</p></li>
-      <li><svg class="ico"><use class="draw" href="icons.svg#i-database"/></svg><span class="who">Me and the AI</span><strong>Archive for reuse</strong><p>Plan, SQL, checks, output and assumptions saved together, so the work can be rerun.</p></li>
-    </ol>
+  </section>
+
+  <nav class="contents chapters" aria-labelledby="chapters-h">
+    <div class="contents-head">
+      <h2 id="chapters-h">The guide follows the work: learn, brief, check, delegate, judge, apply</h2>
+      <p class="meta">Last updated 7 November 2026</p>
+    </div>
+    <ul>
+      <li><div class="toc-item"><span class="toc-num">1</span><span class="toc-name">Learn what AI can do</span><span class="toc-desc">What's worth knowing about models, products and agent features, where to keep up, and how to read benchmarks like an analyst.</span><span class="toc-state"><span class="mark progress" aria-hidden="true"></span>In progress</span></div></li>
+      <li><div class="toc-item"><span class="toc-num">2</span><span class="toc-name">Brief and steer the work</span><span class="toc-desc">Your role in the task, a brief that names the outcome, context as a working folder, and keeping the work on course.</span><span class="toc-state"><span class="mark progress" aria-hidden="true"></span>In progress</span></div></li>
+      <li><a class="toc-item" href="ai-check.html"><span class="toc-num">3</span><span class="toc-name">Check the work</span><span class="toc-desc">Tests and loops with a way out, borrowed checks, second opinions, and the evidence behind an interpretation.</span><span class="toc-state"><span class="mark live" aria-hidden="true"></span>Ready to read</span></a></li>
+      <li><div class="toc-item"><span class="toc-num">4</span><span class="toc-name">Divide, delegate and reuse</span><span class="toc-desc">Which steps to hand over, how to pass work between AIs, and when a prompt is worth turning into a skill or a script.</span><span class="toc-state"><span class="mark progress" aria-hidden="true"></span>In progress</span></div></li>
+      <li><div class="toc-item"><span class="toc-num">5</span><span class="toc-name">Judge whether it's worth it</span><span class="toc-desc">Total effort including the checking, testing a tool against its claims, and when to build, adapt or simplify.</span><span class="toc-state"><span class="mark progress" aria-hidden="true"></span>In progress</span></div></li>
+      <li><a class="toc-item" href="ai-analytics.html"><span class="toc-num">6</span><span class="toc-name">AI in analytics</span><span class="toc-desc">The analysis workflow and its two checkpoints, what analysts need to know, and what a team should see before relying on an AI agent.</span><span class="toc-state"><span class="mark progress" aria-hidden="true"></span>Early version, one section</span></a></li>
+    </ul>
+    <p class="contents-key">Solid marks a chapter that's ready; hatched, one still in progress.</p>
+  </nav>
+
+  <section class="sub" aria-labelledby="read-h">
+    <div class="prose">
+      <h2 id="read-h">Each chapter explains the idea, then shows it in practice</h2>
+      <p>Alongside the explanations and examples, three kinds of box run through the text:</p>
+    </div>
+    <div class="box-legend">
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>How I actually work, at my job and day to day. These describe my own experience, not measured results.</p></aside>
+      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-alert"/></svg>Common trap</p><p>A mistake the idea helps you avoid.</p></aside>
+      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>A short exercise to run on your own work.</p></aside>
+    </div>
+  </section>
+
+  <section class="sub" aria-labelledby="tools-h">
+    <div class="prose">
+      <h2 id="tools-h">The tools I reach for, as of November 2026</h2>
+      <p>Products change every few months, so this list carries a date. They're my own choices for my tasks, and they aren't a ranking. Chapter 1 covers how to compare tools for yourself.</p>
+      <table class="plain-table">
+        <thead><tr><th scope="col">For</th><th scope="col">I use</th><th scope="col">Model or setting</th></tr></thead>
+        <tbody>
+          <tr><th scope="rowgroup" colspan="3">Questions</th></tr>
+          <tr><td>Quick questions</td><td>Google Search, AI Mode</td><td></td></tr>
+          <tr><td>Everyday questions</td><td>ChatGPT on the web</td><td></td></tr>
+          <tr><td>Complex questions</td><td>ChatGPT on the web</td><td>Pro effort</td></tr>
+        </tbody>
+        <tbody>
+          <tr><th scope="rowgroup" colspan="3">Building and everyday work</th></tr>
+          <tr><td>Frontend coding and planning</td><td>Claude desktop app</td><td>Opus 5.5</td></tr>
+          <tr><td>Backend and security coding</td><td>ChatGPT desktop app</td><td>GPT-6.1 Sol or GPT-6 Astra</td></tr>
+          <tr><td>Everyday tasks</td><td>ChatGPT desktop app</td><td>GPT-6.1 Sol or GPT-6.1 Terra</td></tr>
+        </tbody>
+        <tbody>
+          <tr><th scope="rowgroup" colspan="3">Writing</th></tr>
+          <tr><td>Writing</td><td>ChatGPT, web or desktop app</td><td>GPT-6.1 Terra</td></tr>
+          <tr class="note-row"><td colspan="3">For writing I'd choose Gemini Argon first, but I don't subscribe to Gemini.</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <nav class="next-page" aria-label="Next page">
     <a class="prev" href="playbook.html"><span>Previous</span><strong>The business analysis playbook</strong></a>
-    <a class="next" href="reading.html"><span>Next</span><strong>The references I work from</strong></a>
+    <a class="next" href="ai-check.html"><span>Start reading</span><strong>Chapter 3: Check the work</strong></a>
   </nav>
 
   <footer>
-    <p>Version 0.7, 6 November 2026</p>
+    <p>Version 0.8, 7 November 2026</p>
   </footer>
 </div>
 

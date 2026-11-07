@@ -150,13 +150,30 @@
       });
       var cx = 220;
       var cy = 276;
-      LOOP_ARCS.forEach(function (a, i) {
-        var arc = drawn(svgEl('path', { d: arcPath(cx, cy, 84, a[0], a[1]) }));
+      // Read like the strip above the story: Plan top left, then clockwise through Do, Check and Act, each arc
+      // ending in an arrowhead. Names sit towards the sides, clear of the arrows coming in from above.
+      var R = 84;
+      var ARCS = [[276, 354], [6, 84], [96, 174], [186, 264]];
+      var LABEL_ANGLES = [290, 70, 110, 250];
+      function arcHead(endDeg) {
+        var e = endDeg * Math.PI / 180;
+        var tipX = cx + R * Math.sin(e);
+        var tipY = cy - R * Math.cos(e);
+        var back = [-Math.cos(e), -Math.sin(e)]; // opposite to the clockwise direction of travel
+        function wing(turn) {
+          var c = Math.cos(turn);
+          var s = Math.sin(turn);
+          return (tipX + 10 * (back[0] * c - back[1] * s)).toFixed(1) + ' ' + (tipY + 10 * (back[0] * s + back[1] * c)).toFixed(1);
+        }
+        return 'M' + wing(0.5) + 'L' + tipX.toFixed(1) + ' ' + tipY.toFixed(1) + 'L' + wing(-0.5);
+      }
+      ARCS.forEach(function (a, i) {
+        var arc = drawn(svgEl('path', { d: arcPath(cx, cy, R, a[0], a[1]) + arcHead(a[1]) }));
         arc.style.strokeWidth = '2.5';
         onLoad(arc);
-        var mid = (a[0] + a[1]) / 2 * Math.PI / 180;
-        var lx = cx + 106 * Math.sin(mid);
-        var ly = cy - 106 * Math.cos(mid) + 5;
+        var angle = LABEL_ANGLES[i] * Math.PI / 180;
+        var lx = cx + 106 * Math.sin(angle);
+        var ly = cy - 106 * Math.cos(angle) + 5;
         onLoad(svgEl('text', { class: 'big', x: lx.toFixed(1), y: ly.toFixed(1), 'text-anchor': lx > cx ? 'start' : 'end' }, LOOP_NAMES[i]));
       });
       onLoad(svgEl('text', { class: 'note', x: cx, y: cy + 5, 'text-anchor': 'middle' }, 'the same loop'));
@@ -684,6 +701,68 @@
         status.textContent = 'Copy is blocked here. The text is selected below; press Ctrl+C.';
       });
     });
+  })();
+
+  // ---- Using AI chapters: the "In this chapter" list marks the section being read,
+  // which is the last heading that has passed the top third of the screen
+  (function chapterContents() {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.guide-sections a[href^="#"]'));
+    var sections = links.map(function (link) {
+      return { link: link, heading: document.getElementById(link.getAttribute('href').slice(1)) };
+    }).filter(function (section) { return section.heading; });
+    if (!sections.length) return;
+    var READING_LINE = 1 / 3;
+    var contents = $('guide-contents');
+    var toContents = $('to-contents');
+    scrollHandlers.push(function markCurrentSection() {
+      var line = window.innerHeight * READING_LINE;
+      var current = null;
+      sections.forEach(function (section) { if (section.heading.getBoundingClientRect().top < line) current = section; });
+      sections.forEach(function (section) { section.link.classList.toggle('is-current', section === current); });
+      // Phones: offer the way back to the contents once they have scrolled out of view
+      if (contents && toContents) toContents.classList.toggle('is-shown', contents.getBoundingClientRect().bottom < 0);
+    });
+  })();
+
+  // ---- Check the work: the margin example. Moving revenue changes total profit ÷ total revenue,
+  // while the simple average of the two margins never moves.
+  (function marginCalculator() {
+    var revenueA = $('rev-a');
+    var revenueB = $('rev-b');
+    if (!revenueA || !revenueB) return;
+    var MARGIN_A = 0.10;
+    var MARGIN_B = 0.30;
+    var BAR_FULL = 0.30; // the highest possible answer fills its bar
+
+    function money(amount) { return 'RM' + Math.round(amount).toLocaleString('en-GB'); }
+    function tidy(number) { return Math.abs(number - Math.round(number)) < 0.05 ? String(Math.round(number)) : number.toFixed(1); }
+    function percent(share) { return tidy(share * 100) + '%'; }
+    function barWidth(share) { return (share / BAR_FULL * 100).toFixed(1) + '%'; }
+
+    function describe(simple, weighted, profit, revenue) {
+      if (weighted === null) return 'With no revenue at all, there is no margin to compare.';
+      var gap = Math.abs(weighted - simple) * 100;
+      var totals = 'Total profit is ' + money(profit) + ' on ' + money(revenue) + ' of revenue. ';
+      if (gap < 0.05) return totals + 'Both products sell the same amount, so the two answers agree.';
+      return totals + 'The two answers differ by ' + tidy(gap) + ' percentage points.';
+    }
+    function update() {
+      var a = Number(revenueA.value);
+      var b = Number(revenueB.value);
+      var profit = a * MARGIN_A + b * MARGIN_B;
+      var simple = (MARGIN_A + MARGIN_B) / 2;
+      var weighted = a + b > 0 ? profit / (a + b) : null;
+      $('rev-a-out').textContent = money(a);
+      $('rev-b-out').textContent = money(b);
+      $('m-simple').textContent = percent(simple);
+      $('bar-simple').style.width = barWidth(simple);
+      $('m-weighted').textContent = weighted === null ? 'n/a' : percent(weighted);
+      $('bar-weighted').style.width = weighted === null ? '0%' : barWidth(weighted);
+      $('calc-note').textContent = describe(simple, weighted, profit, a + b);
+    }
+    revenueA.addEventListener('input', update);
+    revenueB.addEventListener('input', update);
+    update();
   })();
 
   // ---- One scroll listener for every part that follows the reader

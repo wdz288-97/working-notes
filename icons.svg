@@ -29,4 +29,6 @@
   <symbol id="i-tray" viewBox="0 0 48 48"><path pathLength="1" d="M5 35h38"/><path pathLength="1" d="M8 35a16 16 0 0 1 32 0"/><path pathLength="1" d="M24 15v4M21 15h6"/></symbol>
   <symbol id="i-car" viewBox="0 0 48 48"><path pathLength="1" d="M5 34v-7l6-9h24l8 9v7z"/><path pathLength="1" d="M13 26l4-5h14l4 5z"/><path pathLength="1" d="M14 31a4 4 0 1 1 0 8a4 4 0 1 1 0-8zM34 31a4 4 0 1 1 0 8a4 4 0 1 1 0-8z"/></symbol>
   <symbol id="i-tick" viewBox="0 0 24 24"><path pathLength="1" d="M12 2a10 10 0 1 1 0 20a10 10 0 1 1 0-20z"/><path pathLength="1" d="M7 12.5l3.2 3.2L17 9"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 48 48"><path pathLength="1" d="M24 6L44 41H4z"/><path pathLength="1" d="M24 19v10M24 34.5v.5"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 48 48"><path pathLength="1" d="M33 7l8 8L17 39H9v-8z"/><path pathLength="1" d="M28 12l8 8"/></symbol>
 </svg>
