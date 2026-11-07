@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>检查成果</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=Source+Code+Pro:wght@400;500&display=swap">
+<link rel="stylesheet" href="../site.css">
+<link rel="prefetch" href="ai.html">
+<link rel="prefetch" href="ai-analytics.html">
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="topbar">
+    <a class="who-am-i" href="index.html"><strong>定泽的工作笔记</strong></a>
+    <nav aria-label="页面">
+      <a href="index.html">首页</a>
+      <a href="playbook.html">工作手册</a>
+      <a href="ai.html" aria-current="page">用好 AI</a>
+      <a href="reading.html">阅读</a>
+      <a class="lang-switch" href="../ai-check.html" lang="en" hreflang="en">English</a>
+    </nav>
+  </header>
+
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name"><a href="ai.html">用好 AI</a>，第 3 章（共 6 章）</p>
+      <h1>检查成果</h1>
+      <p class="meta">阅读约 10 分钟</p>
+      <p class="lede">AI 可能给你一个语气自信、排版工整，内容却是错的回答。所以你需要不靠它自己担保的检查办法：每项任务有一个检验标准，循环有一个出口，每类说法配上对应的证据。</p>
+    </div>
+    <svg class="loop-figure chapter-figure" viewBox="0 0 400 196" role="img" aria-label="成果先过检验标准和证据这一关，再拿来用。">
+      <use class="ico draw onload" style="--i:0" href="../icons.svg#i-clipboard" x="24" y="70" width="72" height="72"/>
+      <text class="onload" style="--i:1" x="60" y="172" text-anchor="middle">成果</text>
+      <path class="ico draw onload" style="--i:2" pathLength="1" d="M104 106H150"/>
+      <path class="ico draw onload" style="--i:3" pathLength="1" d="M144 100l6 6l-6 6"/>
+      <use class="ico draw onload" style="--i:4" href="../icons.svg#i-magnifier" x="160" y="62" width="80" height="80"/>
+      <text class="onload" style="--i:5" x="200" y="172" text-anchor="middle">检验标准、证据</text>
+      <path class="ico draw onload" style="--i:6" pathLength="1" d="M250 106H296"/>
+      <path class="ico draw onload" style="--i:7" pathLength="1" d="M290 100l6 6l-6 6"/>
+      <use class="ico draw onload" style="--i:8" href="../icons.svg#i-tick" x="306" y="76" width="60" height="60"/>
+      <text class="onload" style="--i:9" x="336" y="172" text-anchor="middle">拿来用</text>
+    </svg>
+  </header>
+
+  <div class="chapter">
+    <section class="key-ideas" aria-labelledby="key-ideas">
+      <h2 id="key-ideas">本章要点</h2>
+      <ul>
+        <li>语气自信、排版工整的回答不是证据。要到回答之外去找证明。</li>
+        <li>每个循环都要有检验标准、指出具体缺陷的反馈，以及一个出口。</li>
+        <li>自己判断不了答案时，就借一个检查办法：一个很小的例子、一个可信的定义，或者一位懂行的人。</li>
+        <li>两个 AI 意见一致，只算多了一份第二意见。有分歧时，用定义、来源或测试来定。</li>
+        <li>检查实际结果。检查没通过时，先找出是哪一层出了问题，再重试。</li>
+      </ul>
+    </section>
+
+    <nav class="guide-nav" id="guide-contents" aria-label="用好 AI 目录">
+      <p class="guide-nav-head"><a href="ai.html">用好 AI</a></p>
+      <ol class="guide-chapters">
+        <li><a href="ai-learn.html">1. 了解 AI 能做什么</a></li>
+        <li><a href="ai-brief.html">2. 交代任务，把握方向</a></li>
+        <li class="is-here">
+          <a href="ai-check.html" aria-current="page">3. 检查成果</a>
+          <p class="guide-here">本章内容</p>
+          <ol class="guide-sections">
+            <li><a href="#key-ideas">本章要点</a></li>
+            <li><a href="#fluent">回答流畅，不等于有证据</a></li>
+            <li><a href="#loop">每个循环都要有检验标准和出口</a></li>
+            <li><a href="#borrow">自己判断不了，就借一个检查办法</a></li>
+            <li><a href="#second-opinion">两个 AI 意见一致，不算证明</a></li>
+            <li><a href="#match">什么样的说法，配什么样的检查</a></li>
+            <li><a href="#evidence">解读要附上背后的证据</a></li>
+            <li><a href="#real-result">检查智能体实际做出了什么</a></li>
+            <li><a href="#layer">检查没通过，先找出哪一层出了问题</a></li>
+            <li><a href="#self-check">自测一下</a></li>
+            <li><a href="#sources-h">参考来源</a></li>
+          </ol>
+        </li>
+        <li><a href="ai-delegate.html">4. 拆分、委派与复用</a></li>
+        <li><a href="ai-value.html">5. 判断值不值</a></li>
+        <li><a href="ai-analytics.html">6. 数据分析中的 AI</a></li>
+      </ol>
+    </nav>
+
+    <article class="prose">
+      <h2 id="fluent">回答流畅，不等于有证据</h2>
+      <p>大语言模型可以流畅又自信地说出错误信息。OpenAI 研究过模型为什么会产生幻觉，指出了一个原因：模型通常的训练和评分方式，给自信猜测的奖励多于诚实地说一句“我不知道”。<a class="cite" href="#src-1" aria-label="来源 1">1</a>回答的语气，几乎说明不了它对不对。</p>
+      <p>格式也说明不了。一张整齐的表格，或者一个完全按要求格式输出的数据字段，<mark>里面的数字照样可能是错的</mark>。<a class="cite" href="#src-2" aria-label="来源 2">2</a>做过报表的分析师都懂：看板刷新时一个报错都没有，显示的数字却可能是错的。</p>
+      <p>所以要到回答之外去找证据：结果必须通过的测试，你能打开核对的来源，或者必须对得上的合计数。</p>
+
+      <h2 id="loop">每个循环都要有检验标准和出口</h2>
+      <p>和 AI 合作，多半是一轮一轮来的。第一稿只是一次尝试，你看过之后再提修改。这些轮次能不能走到结果，取决于三件事。</p>
+      <ul>
+        <li><strong>检验标准，在看结果之前就写好。</strong>也就是结果必须过的关：每个日期和费用都和原始笔记对得上，合计数能对平，页面在手机上能正常用。</li>
+        <li><strong>指出具体缺陷的反馈。</strong>“改好一点”没说差在哪。“方案把估算当成了已批准的数，请把已确认的事实和待定的决定分开”，下一轮要改什么就一清二楚。</li>
+        <li><strong>一个出口。</strong>检验通过了就停，同一个缺陷又回来了也停。一遍遍重问，直到某个回答让你觉得安心，这不叫检查。有时候正确的下一步是换个工具，或者去找懂这个领域的人。</li>
+      </ul>
+
+      <figure class="figure loop-check" id="loop-check">
+        <svg viewBox="0 0 360 372" role="img" aria-label="检查循环：尝试、检查、指出缺陷、修改。通过了就拿来用，缺陷反复出现就停下。">
+          <g class="lb" id="lb-1"><rect class="lb-box" x="30" y="10" width="170" height="56" rx="4"/><text class="lb-title" x="115" y="34">尝试</text><text class="lb-sub" x="115" y="54">AI 执行任务</text></g>
+          <g class="la"><path d="M115 66V96"/><path d="M110 90l5 6l5-6"/></g>
+          <g class="lb" id="lb-2"><rect class="lb-box" x="30" y="100" width="170" height="74" rx="4"/><text class="lb-title" x="115" y="124">检查</text><text class="lb-sub" x="115" y="145">对照看结果之前</text><text class="lb-sub" x="115" y="163">定好的检验标准</text></g>
+          <g class="la"><path d="M115 174V208"/><path d="M110 202l5 6l5-6"/><text class="lb-label" x="123" y="196">不通过</text></g>
+          <g class="lb" id="lb-3"><rect class="lb-box" x="30" y="212" width="170" height="56" rx="4"/><text class="lb-title" x="115" y="236">指出缺陷</text><text class="lb-sub" x="115" y="256">具体哪里不对？</text></g>
+          <g class="la"><path d="M115 268V298"/><path d="M110 292l5 6l5-6"/></g>
+          <g class="lb" id="lb-4"><rect class="lb-box" x="30" y="302" width="170" height="56" rx="4"/><text class="lb-title" x="115" y="326">修改</text><text class="lb-sub" x="115" y="346">改掉指出的缺陷</text></g>
+          <g class="la"><path d="M30 330H12V38H26"/><path d="M20 33l6 5l-6 5"/><text class="lb-label" x="26" y="184" text-anchor="middle" transform="rotate(-90 26 184)">下一轮</text></g>
+          <g class="la"><path d="M200 137H248"/><path d="M242 132l6 5l-6 5"/><text class="lb-label" x="223" y="124" text-anchor="middle">通过</text></g>
+          <g class="lb exit" id="lb-use"><rect class="lb-box" x="252" y="100" width="100" height="74" rx="4"/><use class="ico" href="../icons.svg#i-tick" x="290" y="112" width="24" height="24"/><text class="lb-title" x="302" y="160">拿来用</text></g>
+          <g class="la"><path d="M200 240H248"/><path d="M242 235l6 5l-6 5"/><text class="lb-label" x="223" y="227" text-anchor="middle">反复</text></g>
+          <g class="lb exit stop" id="lb-stop"><rect class="lb-box" x="252" y="212" width="100" height="104" rx="4"/><text class="lb-title" x="302" y="236">停下</text><text class="lb-sub" x="302" y="257">问懂行的人</text><text class="lb-sub" x="302" y="275">或者</text><text class="lb-sub" x="302" y="293">换个工具</text></g>
+        </svg>
+        <figcaption>这个循环离不开检验标准，也离不开两个出口：通过了就用结果，同一个缺陷反复出现就停下。</figcaption>
+      </figure>
+
+      <p>智能体自己跑循环时也一样。工程师现在把智能体的工作循环，和核验它成果的循环，当成两件要分开设计的事。<a class="cite" href="#src-3" aria-label="来源 3">3</a><a class="cite" href="#src-4" aria-label="来源 4">4</a>让智能体自己循环之前，先定好什么算完成、它可以改动什么、什么时候必须停下来问你。最要紧的一条：<mark>别让智能体背着你把测试改简单来过关</mark>。</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>我最近开始搭这样的循环：智能体先检查自己的成果，再交给我。就我自己用下来，需要我审完再打回去的轮次少了一大截。这只是我的体会，不是测出来的结果，也代替不了我自己仍然在做的检查。</p></aside>
+
+      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-alert"/></svg>常见误区：“改好一点”</p><p>含糊的反馈会让答案变个样，却没告诉 AI 错在哪，所以下一版未必更好。如果你说不出缺陷在哪，就再看一遍，直到说得出来；或者先写好检验标准，看结果在哪一条上过不了。</p></aside>
+
+      <h2 id="borrow">自己判断不了，就借一个检查办法</h2>
+      <p>最难的情况是：你需要帮忙，恰恰因为你懂得不够，认不出错误。这时你需要一个不靠 AI 自我担保的检查办法。这样的办法，不用先成为专家也能安排。</p>
+      <p>举一个虚构的销售小例子，金额单位是 RM（马来西亚令吉）。产品 A 带来 RM100 的收入，利润率 10%。产品 B 带来 RM900 的收入，利润率 30%。AI 助手报告的平均利润率是 20%，也就是两个百分比的简单平均。用总利润除以总收入，得到的是 28%。两种算法都没算错，但回答的是不同的问题：</p>
+      <ul>
+        <li><strong>20%</strong> 回答的是“一个典型产品能赚多少利润率？”，不管卖了多少，每个产品分量一样。</li>
+        <li><strong>28%</strong> 回答的是“收进来的每一令吉里，有多少留成了利润？”，每一令吉收入分量一样。</li>
+      </ul>
+      <p>财务团队问公司的利润率，几乎都是指第二种。<strong>问的是哪个问题，由业务口径决定</strong>，所以在相信任何一个数字之前，先把口径定下来。</p>
+
+      <figure class="figure calc" id="margin-calc">
+        <div class="calc-inputs">
+          <label class="calc-in"><span class="calc-name">产品 A <i>利润率 10%</i></span><input type="range" id="rev-a" min="0" max="1000" step="50" value="100"><output id="rev-a-out" for="rev-a">RM100</output></label>
+          <label class="calc-in"><span class="calc-name">产品 B <i>利润率 30%</i></span><input type="range" id="rev-b" min="0" max="1000" step="50" value="900"><output id="rev-b-out" for="rev-b">RM900</output></label>
+        </div>
+        <dl class="calc-out">
+          <div><dt>两个利润率的平均 <i>每个产品分量一样</i></dt><dd><b id="m-simple">20%</b><span class="calc-bar"><i id="bar-simple" style="width: 66.7%"></i></span></dd></div>
+          <div><dt>总利润 ÷ 总收入 <i>每一令吉分量一样</i></dt><dd><b id="m-weighted">28%</b><span class="calc-bar"><i id="bar-weighted" style="width: 93.3%"></i></span></dd></div>
+        </dl>
+        <p class="calc-note" id="calc-note" aria-live="polite">总收入 RM1,000，总利润 RM280。两个答案相差 8 个百分点。</p>
+        <figcaption>拖动收入滑块。不管每个产品卖多少，简单平均始终是 20%，总利润 ÷ 总收入则跟着收入落在哪里走。只有两个产品卖得一样多时，两个结果才相同。数字为虚构。</figcaption>
+      </figure>
+
+      <p>有经验的分析师一眼就能看出差别。新手可以借一个检查办法：用很小的例子算一遍合计，查一个可信的定义，或者问一位懂行的人。这三种办法都<mark>能让这个说法在 AI 自己的解释之外得到检验</mark>。</p>
+
+      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-pencil"/></svg>动手试试</p><p>挑一个 AI 最近帮你算的数字，用一个很小的例子重算一遍，两三行、能手算的那种就够。如果同样的方法在小例子上得出不同的答案，你就找到了一个要先定下来的口径，定好之后，才能相信大数据上的那个数。</p></aside>
+
+      <h2 id="second-opinion">两个 AI 意见一致，不算证明</h2>
+      <p>第二个 AI 可以帮你审核成果。把原始问题、数据和方法交给它，让它列出哪些假设没人给出依据，以及哪些测试能把这些假设定下来。想让它的判断更独立，一开始先别把第一个答案给它。</p>
+      <p>一项覆盖许多大语言模型的研究发现，它们的错误是相关的，不同厂商的模型之间也是这样。<a class="cite" href="#src-5" aria-label="来源 5">5</a>如果两个 AI 都把“平均”理解成简单平均，意见一致只是把错误留了下来。两个 AI 有分歧时，也别靠数票来定。<mark>去找能把两个答案区分开的定义、来源、计算或测试。</mark></p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>我会让 AI 直接挑战我，把正反两面的理由都摆出来。还是不信服时，我会继续追问，把问题拿去问另一个 AI，再看看社区里的人或专家怎么处理。参考资料我会点开，判断它们的质量。来源之间有冲突时，我回到每个来源实际能证明什么；如果还是定不下来，就先让这个问题悬着。</p></aside>
+
+      <h2 id="match">什么样的说法，配什么样的检查</h2>
+      <p>不同的说法，需要不同的证据。好的检查，是你自己或你信任的人不用听 AI 怎么说，也能动手做的检查。</p>
+      <table class="plain-table check-table">
+        <thead><tr><th scope="col">AI 给你的是</th><th scope="col">这样检查</th></tr></thead>
+        <tbody>
+          <tr><td>一份文档的摘要</td><td>和它概括的原文段落对照</td></tr>
+          <tr><td>一个公式或计算</td><td>在答案已知的小例子上测试，再试试零值、空值这类边界情况</td></tr>
+          <tr><td>一条引用</td><td>打开那个页面，找到支持这个说法的那句话</td></tr>
+          <tr><td>代码，或者它说能运行的应用</td><td>亲自运行，或者让智能体运行，给你看实际结果</td></tr>
+          <tr><td>一处视觉改动</td><td>除了看代码，还要在大家常用的屏幕尺寸下看页面本身</td></tr>
+          <tr><td>对数据的一种解读</td><td>追溯到你验证过的数字，以及你提供的业务背景</td></tr>
+          <tr><td>一个你判断不了的答案</td><td>请教有专业知识的人，事情要紧时更要这样</td></tr>
+        </tbody>
+      </table>
+      <p><mark>一个答案你自己越难判断，就越要有意给自己留一条通往证据的路。</mark>后果重大、你又评估不了的工作，这条路就是找人。</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>在我的分析工作里，有两个检查点从来不挪。AI 解读任何东西之前，我先验证原始输出（字段、筛选条件、容易出错的计算字段，还有合计数）。然后在任何东西发出去之前，我审一遍它的推理。<a href="ai-analytics.html">第 6 章</a>会把整个流程完整走一遍。</p></aside>
+
+      <h2 id="evidence">解读要附上背后的证据</h2>
+      <p>计算可以测试，解读就难了。“订单量下降，是因为竞争对手做了促销活动”，听起来合理，却可能是错的。要求每条解读都附上证据：验证过的输出里的数字，你提供的上下文里的文档，或者它依据的外部来源。</p>
+      <p>来自你自己的上下文之外的证据，最需要小心。AI 找到的可能是一份真实的报告，也可能是一个根本不支持这个说法的页面，所以要点开看。证据再好，也只能支持一种可能的解释，要不要行动是另一个决定。<mark>对这个决定负责的人，应该在任何人行动之前先检验这个解释。</mark></p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>每条解读，我都要它给出背后的证据或参考来源。如果证据来自网上，而不是我给 AI 的业务背景，我会先用常识掂量一下，或者自己快速搜一搜，行动之前再和相关团队确认。</p></aside>
+
+      <h2 id="real-result">检查智能体实际做出了什么</h2>
+      <p>智能体说任务成功了，这和别的说法一样，也只是一个说法。好的智能体评估看的是最终状态：写出来的文件，或者运行中的应用。<a class="cite" href="#src-6" aria-label="来源 6">6</a>智能体能检查什么，取决于它手上有什么工具：只能对话的助手可以起草测试，但跑不了；在项目副本里工作的智能体就能跑。</p>
+      <p>视觉类的工作，智能体除了代码，还得能看到页面。<mark>给智能体能触及实际结果的工具</mark>，并弄清这些工具的边界在哪。</p>
+
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>有一次让智能体帮我做浏览器扩展，每改一处，都要重新加载扩展来测试。光靠控制浏览器做不到，因为浏览器自己的规则不允许。智能体需要电脑操作（computer use），也就是像人一样使用屏幕、鼠标和键盘。网站也类似：除了代码，智能体还需要一个浏览器来看页面。本站就是这样检查的。智能体在浏览器里按手机尺寸逐页测量，我再用自己的手机看一遍。</p></aside>
+
+      <h2 id="layer">检查没通过，先找出哪一层出了问题</h2>
+      <p>检查没通过，只说明有地方不对，没说明是哪里。再让它重来之前，先弄清是哪一层出了问题：</p>
+      <ol>
+        <li><strong>任务说明。</strong>目标或者某个定义是不是不清楚？</li>
+        <li><strong>上下文。</strong>是不是缺了关键信息，或者旧数字留在了新数字旁边？</li>
+        <li><strong>工具。</strong>AI 是不是缺了某个它需要的工具或权限？</li>
+        <li><strong>检验标准。</strong>检查本身是不是太弱，或者干脆错了？</li>
+        <li><strong>任务本身。</strong>这件事是不是超出了当前这套配置能稳定做到的范围？</li>
+      </ol>
+      <p>换个模型是一种可能的修法，但很少是最先该试的那一种。</p>
+
+      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-alert"/></svg>常见误区：先怪模型</p><p>缺了定义、上下文里有过时的数字、智能体看不到页面，这些问题换个更强的模型也解决不了。修好出问题的那一层，再把检查跑一遍。</p></aside>
+
+
+      <section class="self-check" aria-labelledby="self-check">
+        <h2 id="self-check">自测一下</h2>
+        <div class="quiz" data-answer="c">
+          <p class="quiz-q">本章例子里，产品 A 收入 RM100、利润率 10%，产品 B 收入 RM900、利润率 30%。两个 AI 都说它们的平均利润率是 20%。这就算定了吗？</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">算定了：两个 AI 意见一致。</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">算定了，只要两个都把算法讲得很自信。</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">没有：先定口径，按总利润 ÷ 总收入算是 28%。</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">没有。它们的错误可能是相关的，两个可能都取了两个利润率的简单平均。先定口径：如果问的是每一令吉收入里有多少留成了利润，答案就是总利润 ÷ 总收入。</p>
+        </div>
+        <div class="quiz" data-answer="a">
+          <p class="quiz-q">智能体改了你的代码，报告说所有测试都通过了。你要检查什么？</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">测试本身有没有被改过，以及实际结果。</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">什么都不用查：测试是智能体跑的。</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">只看智能体对自己做了什么的总结。</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">测试本身有没有被改过，以及实际结果：自己跑一遍，或者让智能体给你看输出，再看看它改过的应用或页面。</p>
+        </div>
+        <div class="quiz" data-answer="b">
+          <p class="quiz-q">改了两轮之后，同一个缺陷又回来了。下一步怎么办？</p>
+          <ul class="quiz-options">
+            <li><button type="button" class="quiz-option" data-option="a">再问一次，语气加重。</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">别再重试，找出是哪一层出了问题，或者请教懂行的人。</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">马上换一个更大的模型。</button></li>
+          </ul>
+          <p class="quiz-result" aria-live="polite"></p>
+          <p class="quiz-why">别再重试。弄清是哪一层出了问题（任务说明、上下文、工具、检验标准，还是任务本身），或者请教懂这个领域的人。</p>
+        </div>
+      </section>
+
+      <section class="sources" aria-labelledby="sources-h">
+        <h2 id="sources-h">参考来源</h2>
+        <ol>
+          <li id="src-1">OpenAI：<a href="https://openai.com/index/why-language-models-hallucinate/">Why language models hallucinate</a>，2025 年 9 月 5 日。</li>
+          <li id="src-2">OpenAI：<a href="https://openai.com/index/introducing-structured-outputs-in-the-api/">Introducing Structured Outputs in the API</a>，2024 年 8 月 6 日。</li>
+          <li id="src-3">LangChain：<a href="https://www.langchain.com/blog/the-art-of-loop-engineering">The art of loop engineering</a>，2026 年 6 月 16 日。</li>
+          <li id="src-4">OpenAI：<a href="https://openai.com/index/unrolling-the-codex-agent-loop/">Unrolling the Codex agent loop</a>，2026 年 1 月 23 日。</li>
+          <li id="src-5">Kim 等：<a href="https://proceedings.mlr.press/v267/kim25e.html">Correlated errors in large language models</a>，ICML 2025。</li>
+          <li id="src-6">Anthropic：<a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Demystifying evals for AI agents</a>，2026 年 1 月 9 日。</li>
+          <li>我的实践经验，截至 2026 年 11 月。</li>
+        </ol>
+        <p class="meta">来源核对于 2026 年 10 月。</p>
+      </section>
+    </article>
+  </div>
+
+  <a class="to-contents" id="to-contents" href="#guide-contents">目录</a>
+
+  <nav class="next-page" aria-label="翻页">
+    <a class="prev" href="ai-brief.html"><span>上一页</span><strong>第 2 章：交代任务，把握方向</strong></a>
+    <a class="next" href="ai-delegate.html"><span>下一页</span><strong>第 4 章：拆分、委派与复用</strong></a>
+  </nav>
+
+  <footer>
+    <p>作者：黄定泽（Wong Ding Zhe）。联系方式：<a href="mailto:dzwong97@gmail.com">dzwong97@gmail.com</a>，或 <a href="https://www.linkedin.com/in/dzwong97/?locale=zh-CN">领英（LinkedIn）</a>。</p>
+    <p>版本 0.8，2026 年 11 月 7 日</p>
+    <p>本页数字均为示意数据。</p>
+  </footer>
+</div>
+
+<script src="../site.js"></script>
+</body>
+</html>

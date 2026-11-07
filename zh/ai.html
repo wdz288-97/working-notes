@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用好 AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=Source+Code+Pro:wght@400;500&display=swap">
+<link rel="stylesheet" href="../site.css">
+<link rel="prefetch" href="ai-learn.html">
+<link rel="prefetch" href="reading.html">
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="topbar">
+    <a class="who-am-i" href="index.html"><strong>定泽的工作笔记</strong></a>
+    <nav aria-label="页面">
+      <a href="index.html">首页</a>
+      <a href="playbook.html">工作手册</a>
+      <a href="ai.html" aria-current="page">用好 AI</a>
+      <a href="reading.html">阅读</a>
+      <a class="lang-switch" href="../ai.html" lang="en" hreflang="en">English</a>
+    </nav>
+  </header>
+
+  <header class="page-head with-figure">
+    <div class="head-text">
+      <p class="page-name">用好 AI</p>
+      <h1>和一位刚认识的搭档一起干活</h1>
+      <p class="lede">一份实用指南，共六章，讲怎么让 AI 交出你信得过的成果。内容来自我做商业智能分析师时用 AI 的方法，也来自日常生活。</p>
+    </div>
+    <svg class="loop-figure collab-figure" viewBox="0 0 440 310" role="img" aria-label="你把目的和上下文交给 AI，它交回成果，并附上依据和检查。">
+      <path class="ico draw onload" style="--i:0" pathLength="1" d="M74 92C140 28 300 28 366 92"/>
+      <path class="ico draw onload" style="--i:1" pathLength="1" d="M362.6 81.5L366 92L355.4 88.9"/>
+      <text class="note onload" style="--i:2" x="220" y="24" text-anchor="middle">目的、任务说明和上下文</text>
+      <use class="ico draw onload" style="--i:3" href="../icons.svg#i-person" x="22" y="100" width="80" height="80"/>
+      <text class="onload" style="--i:4" x="62" y="202" text-anchor="middle">你</text>
+      <path class="ico draw onload" style="--i:5" pathLength="1" d="M136 94h168v92H136z"/>
+      <text class="strong onload" style="--i:6" x="220" y="124" text-anchor="middle">值得做、</text>
+      <text class="strong onload" style="--i:6" x="220" y="146" text-anchor="middle">信得过的</text>
+      <text class="strong onload" style="--i:6" x="220" y="168" text-anchor="middle">结果</text>
+      <use class="ico draw onload accent" style="--i:7" href="../icons.svg#i-sparkle" x="338" y="100" width="80" height="80"/>
+      <text class="onload" style="--i:8" x="378" y="202" text-anchor="middle">AI 搭档</text>
+      <path class="ico draw onload" style="--i:9" pathLength="1" d="M366 220C300 284 140 284 74 220"/>
+      <path class="ico draw onload" style="--i:10" pathLength="1" d="M77.4 230.5L74 220L84.6 223.1"/>
+      <text class="note onload" style="--i:11" x="220" y="300" text-anchor="middle">成果、依据和检查</text>
+    </svg>
+  </header>
+
+  <section class="sub split" aria-labelledby="start-h">
+    <h2 id="start-h">把 AI 当成一位能干、但刚认识的搭档</h2>
+    <div class="prose">
+      <p>假设你花不多的钱请来一个人，对方能聊的话题多得惊人，能起草、能讲解、能做分析，还能帮你把东西做出来。可你们才刚认识。你还不清楚对方的本事到哪为止，需要多少背景信息，交来的活哪些地方得仔细看。</p>
+      <p>用这个角度看 AI 很有用：<strong>它是一位样样都能干的搭档，靠不靠得住，要一件任务一件任务地确认</strong>。这只是拿工作关系打个比方，AI 并不是人。</p>
+
+    </div>
+  </section>
+
+  <section class="sub split" aria-labelledby="gaps-h">
+    <h2 id="gaps-h">你和有用的结果之间，隔着两道缺口</h2>
+    <div class="prose">
+      <p>每次用 AI 干活，一开始都有两道缺口。<strong>你并不完全清楚它能做什么</strong>，这道缺口靠看它的工作样本、检查它的成果来补。<strong>它不了解你的情况</strong>，这道缺口靠一份好用的任务说明和合适的上下文来补。</p>
+      <p>回答听起来再专业，也补不上任何一道缺口，因为语言模型可以流畅又自信地说出错误信息。<mark>你要的是一个值得做、信得过的结果。</mark></p>
+      <p>你对这个领域懂多少，决定了你们怎么配合。在你熟悉的领域，你可以像经理一样带着它干：定好目的，找出要紧的假设，判断结果有没有回答对的问题。在陌生的领域，你更像学徒：让 AI 讲清楚它为什么这么做，自己先试一小部分，再安排一些不用你独自判断的检查。实际的任务大多两种情况都有，所以同一件事做下来，你的角色可能要来回切换。</p>
+    </div>
+  </section>
+
+  <section class="sub split" aria-labelledby="value-h">
+    <h2 id="value-h">效率只有变成价值才划算</h2>
+    <div class="prose">
+      <p>说起在工作中用 AI，大家谈得最多的是效率：写得更快，代码写得更快，回答得更快。效率当然重要，但光有效率，体现不到收入上，也体现不到公司在意的 KPI 上。一项任务用一半时间做完，只有省下的时间花在了要紧的事上，才算创造了价值。</p>
+      <p>在我看来，如果公司花钱买了 AI，大家用它把同样的活做得更快，省下的时间却没拿去做更多事，那公司就是多花了钱，拿到的还是同样的结果。回报来自用 AI 去做以前够不着的事：做一次更深入的分析，验证一个新想法，解决一个拖了很久的问题。</p>
+
+      <figure class="figure value-chart">
+        <svg viewBox="0 0 360 256" role="img" aria-label="随着时间推移，学会用 AI 会提高生产率。只有把省下的时间用在更有价值的工作上，价值才会跟着涨；否则价值几乎不动，中间留下一道差距。">
+          <path class="vc-gap" d="M36 214C94.3 210 139.9 110 200 40L200 182C121.6 190 85.2 214 36 216Z"/>
+          <g class="vc-axes"><path d="M36 226H204"/><path d="M198 221l6 5l-6 5"/><path d="M36 226V20"/><path d="M31 26l5-6l5 6"/></g>
+          <path class="vc-line vc-learn" d="M36 212C63.3 210 74.3 112 110.7 102C139.9 95 172.7 96 200 96"/>
+          <path class="vc-line vc-flat" d="M36 216C85.2 214 121.6 190 200 182"/>
+          <path class="vc-line vc-prod" d="M36 214C94.3 210 139.9 110 200 40"/>
+          <path class="vc-line vc-value" d="M36 216C98 214 145.3 124 200 64"/>
+          <text class="vc-label vc-prod" x="206" y="44">生产率</text>
+          <text class="vc-label vc-value" x="206" y="68">价值，时间另作他用</text>
+          <text class="vc-label vc-learn" x="206" y="100">学会用 AI</text>
+          <text class="vc-label vc-flat" x="206" y="186">价值，时间没另作他用</text>
+          <text class="vc-note" x="172" y="154" text-anchor="middle">更快了，</text>
+          <text class="vc-note" x="172" y="170" text-anchor="middle">价值没增加</text>
+          <text class="vc-axis" x="120" y="248" text-anchor="middle">使用 AI 的时间</text>
+        </svg>
+        <figcaption>这是我的看法，画出来只为示意，不是实测数据。学会用 AI 会让人变快，但只有把省下的时间用在更有价值的工作上，效率才会变成价值。阴影部分就是做得更快、价值却没增加的那部分工作。</figcaption>
+      </figure>
+
+      <p><mark>所以值得问的是，AI 能让你接手哪些更有价值的工作。</mark>把眼下的活做得更快，只是起点。</p>
+      <p>再和完全不用 AI 的人比一比，情况就更清楚了。用了 AI 却不把省下的时间转去做别的，结果和不用差不多，还多付了钱：</p>
+
+      <figure class="figure value-chart">
+        <svg viewBox="0 0 360 226" role="img" aria-label="三类人随时间创造的价值：用 AI 并把时间用在新工作上，价值涨得很快；用 AI 但时间没用在新工作上，以及不用 AI，价值都停在低处，两条线挨得很近。">
+          <g class="vc-axes"><path d="M36 196H204"/><path d="M198 191l6 5l-6 5"/><path d="M36 196V20"/><path d="M31 26l5-6l5 6"/></g>
+          <path class="vc-line vc-noai" d="M36 182C90 181 140 170 200 162"/>
+          <path class="vc-line vc-flat" d="M36 182C90 180 140 160 200 150"/>
+          <path class="vc-line vc-value" d="M36 182C90 178 140 120 200 50"/>
+          <text class="vc-label vc-value" x="206" y="54">用 AI，时间另作他用</text>
+          <text class="vc-label vc-flat" x="206" y="148">用 AI，时间没另作他用</text>
+          <text class="vc-label vc-noai" x="206" y="172">不用 AI</text>
+          <text class="vc-axis" x="120" y="218" text-anchor="middle">时间</text>
+          <text class="vc-axis" x="20" y="108" text-anchor="middle" transform="rotate(-90 20 108)">创造的价值</text>
+        </svg>
+        <figcaption>这是我的看法，只为示意，不是实测数据。用了 AI 却不把省下的时间用在别处，创造的价值和不用 AI 差不多，成本却更高。</figcaption>
+      </figure>
+
+      <p>这件事每个人都有份。用 AI 创造更多价值的人，对团队来说也更有价值。管理者也有份：工作变快以后，得有人决定空出来的时间拿去做什么。没人做这个决定，花在 AI 上的钱大多只是让同样的活变轻松了。</p>
+      <p>还有一个限度，最好提前想到。生产率可能比它带来的价值涨得快：大家做得更多，结果却几乎没变。到了这一步，公司就会去别处找地方省钱，这对员工不好受，如果很多公司都这样，也会拖累整体经济。更好的办法是一直把这些提升引向能让业务增长的工作，让更多的产出变成更多的价值。本指南的<a href="ai-value.html">第 5 章</a>会讲实际工作中怎么判断这种价值。</p>
+    </div>
+  </section>
+
+  <nav class="contents chapters" aria-labelledby="chapters-h">
+    <div class="contents-head">
+      <h2 id="chapters-h">六章内容，从入门一直讲到在分析中用 AI</h2>
+      <p class="meta">最后更新：2026 年 11 月 7 日</p>
+    </div>
+    <ul>
+      <li><a class="toc-item" href="ai-learn.html"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-book"/></svg><span class="toc-name">1. 了解 AI 能做什么</span><span class="toc-desc">新手从这里开始：AI 对话应用是什么，先拿小任务试一试，它是怎么发展到今天的，以及怎么选适合自己的工具。</span></a></li>
+      <li><a class="toc-item" href="ai-brief.html"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-bubble"/></svg><span class="toc-name">2. 交代任务，把握方向</span><span class="toc-desc">你在任务里的角色，写明想要什么结果的任务说明，把上下文当成工作文件夹，以及怎么让工作不跑偏。</span></a></li>
+      <li><a class="toc-item" href="ai-check.html"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-gate"/></svg><span class="toc-name">3. 检查成果</span><span class="toc-desc">留好出口的测试和检查循环，借用现成的检查，第二意见，以及一个解读背后的依据。</span></a></li>
+      <li><a class="toc-item" href="ai-delegate.html"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-flow"/></svg><span class="toc-name">4. 拆分、委派与复用</span><span class="toc-desc">哪些步骤可以交出去，工作怎么在不同 AI 之间交接，什么时候值得把提示词做成技能（Skill）或脚本。</span></a></li>
+      <li><a class="toc-item" href="ai-value.html"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-kpi"/></svg><span class="toc-name">5. 判断值不值</span><span class="toc-desc">算上检查在内的总投入，拿工具宣称的能力去实测，以及什么时候自己做、改现成的，或者干脆简化。</span></a></li>
+      <li><a class="toc-item" href="ai-analytics.html"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-monitor"/></svg><span class="toc-name">6. 数据分析中的 AI</span><span class="toc-desc">分析流程和其中的两个检查点，分析师需要懂什么，团队在依赖 AI 智能体之前应该先看到什么。</span></a></li>
+    </ul>
+  </nav>
+
+  <section class="sub" aria-labelledby="read-h">
+    <div class="prose">
+      <h2 id="read-h">每章先讲道理，再看实际怎么用</h2>
+      <p>除了讲解和例子，正文里还穿插着三种方框：</p>
+    </div>
+    <div class="box-legend">
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>我在工作和日常里实际是怎么做的。写的是我自己的经验，不是实测结果。</p></aside>
+      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-alert"/></svg>常见误区</p><p>这个道理能帮你避开的一个错误。</p></aside>
+      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-pencil"/></svg>动手试试</p><p>一个可以拿自己的工作来做的小练习。</p></aside>
+    </div>
+  </section>
+
+  <section class="sub" aria-labelledby="tools-h">
+    <div class="prose">
+      <h2 id="tools-h">截至 2026 年 11 月，我常用的工具</h2>
+      <p>这份清单是我根据自己的调研和日常使用整理的，适合我手上的任务，并不是排名。产品每隔几个月就会变，所以标了日期。怎么自己比较工具，<a href="ai-learn.html#trial">第 1 章</a>里有讲。</p>
+    </div>
+    <div class="toolkit">
+      <article class="tool-group">
+        <h3><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-magnifier"/></svg>提问和调研</h3>
+        <dl>
+          <div><dt>简单问题</dt><dd><span class="tool-opt"><b>Google Search</b><span>AI 模式</span></span></dd></div>
+          <div><dt>日常问题</dt><dd><span class="tool-opt"><b>ChatGPT</b><span>网页版或手机 App</span></span></dd></div>
+          <div><dt>用中文问日常问题</dt><dd><span class="tool-opt"><b><span lang="zh-Hans">元宝</span>、<span lang="zh-Hans">豆包</span>或 DeepSeek</b><span>手机 App</span></span></dd></div>
+          <div><dt>复杂问题</dt><dd><span class="tool-opt"><b>ChatGPT</b><span>网页版或手机 App，Pro 模式</span></span></dd></div>
+          <div><dt>调研</dt><dd><span class="tool-opt"><b>Grok</b><span>在 X 里</span></span><span class="tool-or">或</span><span class="tool-opt"><b>ChatGPT</b><span>网页版或手机 App，Pro 模式</span></span></dd></div>
+        </dl>
+      </article>
+      <article class="tool-group">
+        <h3><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-laptop"/></svg>开发和日常工作</h3>
+        <dl>
+          <div><dt>前端开发和规划</dt><dd><span class="tool-opt"><b>Claude</b><span>桌面版，Opus 5.5</span></span></dd></div>
+          <div><dt>后端和安全相关的开发</dt><dd><span class="tool-opt"><b>ChatGPT</b><span>桌面版，GPT-6.1 Sol 或 GPT-6 Astra</span></span></dd></div>
+          <div><dt>日常任务</dt><dd><span class="tool-opt"><b>ChatGPT</b><span>桌面版，GPT-6.1 Sol 或 GPT-6.1 Terra</span></span></dd></div>
+        </dl>
+      </article>
+      <article class="tool-group">
+        <h3><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-pencil"/></svg>写作</h3>
+        <dl>
+          <div><dt>起草和修改</dt><dd><span class="tool-opt"><b>ChatGPT</b><span>网页版或桌面版，GPT-6.1 Terra</span></span></dd></div>
+        </dl>
+        <p class="tool-note">写作我会首选 Gemini Argon，但我没有订阅 Gemini。</p>
+      </article>
+      <article class="tool-group">
+        <h3><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-image"/></svg>图片</h3>
+        <dl>
+          <div><dt>生成图片</dt><dd><span class="tool-opt"><b>ChatGPT</b><span>手机 App 或网页版</span></span><span class="tool-or">或</span><span class="tool-opt"><b><span lang="zh-Hans">豆包</span></b><span>手机 App</span></span></dd></div>
+        </dl>
+      </article>
+      <article class="tool-group">
+        <h3><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-bubble"/></svg>个人助理和笔记</h3>
+        <dl>
+          <div><dt>个人助理</dt><dd><span class="tool-opt"><b>Hermes</b><span>通过 Telegram</span></span></dd></div>
+          <div><dt>笔记和知识库</dt><dd><span class="tool-opt"><b>Obsidian</b><span>搭配 Claude 或 ChatGPT 桌面版，或者通过 Telegram 用 Hermes</span></span></dd></div>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <nav class="next-page" aria-label="翻页">
+    <a class="prev" href="playbook.html"><span>上一页</span><strong>商业分析工作手册</strong></a>
+    <a class="next" href="ai-learn.html"><span>开始阅读</span><strong>第 1 章：了解 AI 能做什么</strong></a>
+  </nav>
+
+  <footer>
+    <p>作者：黄定泽（Wong Ding Zhe）。联系方式：<a href="mailto:dzwong97@gmail.com">dzwong97@gmail.com</a>，或 <a href="https://www.linkedin.com/in/dzwong97/?locale=zh-CN">领英（LinkedIn）</a>。</p>
+    <p>版本 0.8，2026 年 11 月 7 日</p>
+  </footer>
+</div>
+
+<script src="../site.js"></script>
+</body>
+</html>

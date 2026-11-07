@@ -87,6 +87,24 @@ a:hover { text-decoration-thickness: 2px; }
 .topbar nav a { color: var(--muted); text-decoration: none; padding-block: 4px; border-bottom: 1.5px solid transparent; transition: color .2s, border-color .2s; }
 .topbar nav a:hover { color: var(--ink); }
 .topbar nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+/* The language switch sits apart from the page links, after a thin divider */
+.topbar nav a.lang-switch { position: relative; margin-left: 10px; }
+.topbar nav a.lang-switch::before { content: ""; position: absolute; left: -17px; top: 25%; height: 50%; border-left: 1px solid var(--faint); }
+
+/* Chinese pages use Noto Sans SC (Source Han Sans), the Chinese companion to Source Sans, trimmed to the characters the
+   site uses by tools/subset-zh-font.py and served from this site, since Google Fonts doesn't load in mainland China */
+@font-face { font-family: "Noto Sans SC Site"; src: url("fonts/noto-sans-sc.woff2") format("woff2"); font-weight: 300 700; font-style: normal; font-display: swap; }
+/* Chinese pages: Noto Sans SC, then system Chinese fonts, after Source Sans (which has no Chinese glyphs), no italics (Chinese
+   has none, and slanted characters read as a rendering fault), no negative tracking, and roomier lines */
+html:lang(zh) {
+  --font-sans: "Source Sans 3", "Noto Sans SC Site", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+  --font-note: "Source Serif 4", "Songti SC", "STSong", "Noto Serif SC", "SimSun", serif;
+}
+html:lang(zh) body { line-height: 1.8; }
+html:lang(zh) *, html:lang(zh) text { font-style: normal !important; }
+html:lang(zh) h1, html:lang(zh) h2, html:lang(zh) h3, html:lang(zh) h4, html:lang(zh) .next-page a strong { letter-spacing: 0; }
+html:lang(zh) h1, html:lang(zh) h2, html:lang(zh) h3 { line-height: 1.3; }
+html:lang(zh) .page-head h1 { max-width: 14em; }
 
 /* Page openers */
 .page-head { padding-top: clamp(48px, 7vw, 96px); display: grid; gap: 14px; }

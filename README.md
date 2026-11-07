@@ -22,6 +22,9 @@ This repository is the only copy of the site. A private claude.ai artifact of it
 | `build-public.cjs` | Builds `public/` |
 | `AGENTS.md` | Maintenance notes: the decisions behind the writing, layout, visuals and build. `CLAUDE.md` points Claude Code to it. |
 | `edgeone.json` | EdgeOne Pages settings: build command, output folder, and redirects from the old `.html` addresses. These override the console's build settings. |
+| `zh/` | The Chinese version: the same pages with the same file names, in Simplified Chinese. They link one folder up for styles, script, icons and covers. |
+| `fonts/` | `noto-sans-sc.woff2`, the Chinese web font trimmed to the characters the site uses, and its licence (`OFL.txt`) |
+| `tools/subset-zh-font.py` | Remakes the trimmed Chinese font. See "Chinese font" below |
 | `public/` | Generated. Don't edit it by hand; rebuild instead |
 
 ## Build the public site
@@ -34,7 +37,7 @@ node build-public.cjs
 
 The build:
 
-1. Wraps the home page in a full HTML document and saves it as `public/index.html`.
+1. Wraps the home page in a full HTML document and saves it as `public/index.html`, and does the same for the Chinese pages in `zh/` (saved under `public/zh/`, with `lang="zh-CN"` and Chinese descriptions).
 2. Copies the other pages, adding a page description and the favicon to each.
 3. Copies the styles, script, drawings and covers. `site.css`, `site.js` and `icons.svg` get a fingerprint of their contents in the file name (for example `site.3de56787ab.css`), and every page links to those names. A changed file always has a new address, so phones and CDNs can't pair a new page with an old stylesheet. The plain names are written as well, so a page cached from before still finds its files.
 4. Rewrites the links between pages to clean addresses: `./` for home, `playbook` instead of `playbook.html`, and so on.
@@ -49,6 +52,23 @@ flowchart LR
   G -->|edgeone.json: node build-public.cjs| E[EdgeOne Pages]
   G -->|Actions: node build-public.cjs| H[GitHub Pages]
 ```
+
+## Chinese font
+
+The Chinese pages use Noto Sans SC (Source Han Sans), the Chinese companion to Source Sans. Google Fonts doesn't load in mainland China, so the site serves its own copy, trimmed to the characters the Chinese pages and `site.js` use (about 300KB for every weight from light to bold). The build fingerprints it like the other files.
+
+After adding Chinese text, remake it, or new characters show in the reader's system font:
+
+1. Download `NotoSansSC[wght].ttf` (about 18MB) once from https://github.com/google/fonts/tree/main/ofl/notosanssc. Keep it outside the repo.
+2. Create the project's virtual environment once, then run the script:
+
+```bash
+python -m venv .venv
+.venv/Scripts/python -m pip install fonttools brotli
+.venv/Scripts/python tools/subset-zh-font.py path/to/NotoSansSC[wght].ttf
+```
+
+The font is under the SIL Open Font License; `fonts/OFL.txt` travels with it.
 
 ## Preview locally
 

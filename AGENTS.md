@@ -86,6 +86,17 @@ The layout follows what established learning sites do (see References). In order
 - Each book shows its cover, full title, authors, first year and the edition shown ("1989; 30th anniversary edition, 2020") and Ding's note.
 - Covers use the latest edition, resized to about 350px wide.
 
+## Chinese version
+
+- Every page has a Simplified Chinese twin in `zh/` with the same file name (mainland terms, `lang="zh-CN"`). The top menu ends with a language switch (中文 on English pages, English on Chinese pages) that opens the same page in the other language.
+- **Change both languages together.** A content change to an English page isn't finished until its `zh/` twin says the same thing, and the other way round.
+- Chinese pages link one folder up for shared files (`../site.css`, `../site.js`, `../icons.svg#…`, `../covers/…`); links between Chinese pages stay inside `zh/`.
+- Text drawn by `site.js` comes in both languages through `say('English', '中文')`, chosen by the page's `lang`. Any new label in the script needs both.
+- Writing: plain mainland workplace Chinese in the voice of Ding's Chinese interview deck, written as Chinese rather than translated. Avoid AI tone using the humanize-chinese skill: no 首先…其次…最后, 值得注意的是, 综上所述, 赋能, 闭环, 抓手 and the like. Half-width space between Chinese and Latin letters or digits; full-width punctuation; no em dashes.
+- Fixed terms: site name 定泽的工作笔记; author 黄定泽; PDCA 计划、执行、检查、改进; agent 智能体; prompt 提示词; context 上下文; hallucination 幻觉; benchmark 基准测试; multimodal 多模态; illustrative figures 示意数据; metric definition 口径; dashboard 看板. Product names stay in English; Chinese products in Chinese (元宝, 豆包).
+- Font: Chinese pages use Noto Sans SC (Source Han Sans, made to match Source Sans), self-hosted in `fonts/` because Google Fonts is blocked in mainland China. It's trimmed to the characters in use: **after changing Chinese text, rerun `tools/subset-zh-font.py`** (see `README.md`), or new characters fall back to system fonts.
+- Typography: `html:lang(zh)` in `site.css` puts Noto Sans SC and then Chinese system fonts after Source Sans, turns off italics and negative letter spacing, and loosens line height.
+
 ## Visual system
 
 - **Look:** an airy white page with thin line drawings. Dark mode follows the reader's system setting. All colours are tokens on `:root` in `site.css`, redefined for dark mode.
@@ -159,7 +170,7 @@ flowchart LR
 
 ## Skills and tools used to build it
 
-- **Writing:** the humanizer skill for AI writing patterns, applied to every page.
+- **Writing:** the humanizer skill for AI writing patterns, applied to every page; humanize-chinese for the Chinese pages.
 - **Design:** the frontend-design skill for the visual direction.
 - **Checking:** a browser for checking layouts on desktop and phone widths, and small Python scripts for text and citation audits.
 - **Covers:** downloaded from Open Library, Amazon and Douban, and resized with Windows' System.Drawing.
@@ -189,3 +200,5 @@ flowchart LR
 | Fingerprinted assets | Phones showed old CSS with new pages |
 | Phone text box measured from content | A fixed height clipped text on some phones |
 | Book notes approved by Ding | The notes speak in Ding's voice |
+| Self-hosted, trimmed Noto Sans SC for Chinese | System fonts looked plain on Windows (Microsoft YaHei); Google Fonts is blocked in mainland China; trimming keeps it near 300KB |
+| Chinese as separate pages in `zh/`, not a script that swaps text | Each language has its own address to share and for search engines, and pages work without JavaScript |

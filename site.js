@@ -8,6 +8,14 @@
   // ---- Helpers
   var NS = 'http://www.w3.org/2000/svg';
   var SPRITE = 'icons.svg';
+  // Pages in zh/ load the same script from one folder up; the sprite is found next to the script itself
+  var ASSET_BASE = (function () {
+    var script = document.currentScript;
+    return script && script.src ? script.src.slice(0, script.src.lastIndexOf('/') + 1) : '';
+  })();
+  // Chinese pages set lang="zh-CN"; every label the script writes has both versions
+  var ZH = (document.documentElement.getAttribute('lang') || '').toLowerCase().indexOf('zh') === 0;
+  function say(en, zh) { return ZH ? zh : en; }
   function $(id) { return document.getElementById(id); }
   function svgEl(tag, attrs, text) {
     var node = document.createElementNS(NS, tag);
@@ -23,7 +31,7 @@
   }
   function icon(name, attrs) {
     var use = svgEl('use', attrs);
-    use.setAttribute('href', SPRITE + '#i-' + name);
+    use.setAttribute('href', ASSET_BASE + SPRITE + '#i-' + name);
     return use;
   }
   function each(list, fn) { Array.prototype.forEach.call(list, fn); }
@@ -84,8 +92,8 @@
   })();
 
   var LOOP_ARCS = [[6, 84], [96, 174], [186, 264], [276, 354]];
-  var LOOP_NAMES = ['Plan', 'Do', 'Check', 'Act'];
-  var NUMBER_WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'];
+  var LOOP_NAMES = say(['Plan', 'Do', 'Check', 'Act'], ['计划', '执行', '检查', '改进']);
+  var NUMBER_WORDS = say(['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'], ['零', '一', '两', '三', '四', '五', '六']);
   var scrollHandlers = [];
 
   // ---- Home: a field of line drawings that draws itself in once on load
@@ -120,12 +128,17 @@
 
     // The loop guide above the drawing: Plan, Do, Check, Act, with what the current stage is for
     var loopItems = document.querySelectorAll('#loop-steps li');
-    var LOOP_PURPOSE = [
+    var LOOP_PURPOSE = say([
       'agree the target and how it\u2019s measured',
       'run the business and track the numbers',
       'confirm what changed, then find out why',
       'agree the action, then follow up'
-    ];
+    ], [
+      '商定目标和衡量方式',
+      '开展业务，跟踪数字',
+      '确认变化，再找原因',
+      '商定行动，再跟进落实'
+    ]);
 
     // Opening figure: three ways in, all leading into the same loop. It sits beside the summary and draws itself in on load.
     (function drawWaysIn() {
@@ -137,9 +150,9 @@
         svg.appendChild(node);
       }
       var ways = [
-        { icon: 'kpi', lines: ['An owned KPI', 'moves'], cx: 70, path: 'M70 116C70 170 120 205 158 213', head: 'M149 206l9 7l-10 3' },
-        { icon: 'ticket', lines: ['Another team', 'asks'], cx: 220, path: 'M220 116V184', head: 'M214 177l6 7l6-7' },
-        { icon: 'idea', lines: ['A team starts', 'an initiative'], cx: 370, path: 'M370 116C370 170 320 205 282 213', head: 'M291 206l-9 7l10 3' }
+        { icon: 'kpi', lines: say(['An owned KPI', 'moves'], ['自己负责的', '指标有变化']), cx: 70, path: 'M70 116C70 170 120 205 158 213', head: 'M149 206l9 7l-10 3' },
+        { icon: 'ticket', lines: say(['Another team', 'asks'], ['其他团队', '提出需求']), cx: 220, path: 'M220 116V184', head: 'M214 177l6 7l6-7' },
+        { icon: 'idea', lines: say(['A team starts', 'an initiative'], ['团队启动', '专项项目']), cx: 370, path: 'M370 116C370 170 320 205 282 213', head: 'M291 206l-9 7l10 3' }
       ];
       ways.forEach(function (w) {
         onLoad(icon(w.icon, { x: w.cx - 26, y: 8, width: 52, height: 52, class: 'ico draw' }));
@@ -176,7 +189,7 @@
         var ly = cy - 106 * Math.cos(angle) + 5;
         onLoad(svgEl('text', { class: 'big', x: lx.toFixed(1), y: ly.toFixed(1), 'text-anchor': lx > cx ? 'start' : 'end' }, LOOP_NAMES[i]));
       });
-      onLoad(svgEl('text', { class: 'note', x: cx, y: cy + 5, 'text-anchor': 'middle' }, 'the same loop'));
+      onLoad(svgEl('text', { class: 'note', x: cx, y: cy + 5, 'text-anchor': 'middle' }, say('the same loop', '同一个循环')));
     })();
 
     // Weekly tracking: orders slip week by week; at the end of the story, the weeks after the promotion are still to come
@@ -190,13 +203,13 @@
       var last = thisYear.length - 1;
 
       svg.appendChild(piece(svgEl('line', { class: 'axis', x1: 20, y1: 296, x2: 415, y2: 296 }), 2));
-      [[1.5, 'September'], [6, 'October'], [10.5, 'November']].forEach(function (m) {
+      [[1.5, say('September', '9 月')], [6, say('October', '10 月')], [10.5, say('November', '11 月')]].forEach(function (m) {
         svg.appendChild(piece(svgEl('text', { class: 'wk-axis', x: x(m[0]), y: 318, 'text-anchor': 'middle' }, m[1]), 2.02));
       });
       [3.5, 8.5].forEach(function (i) { svg.appendChild(piece(svgEl('line', { class: 'axis', x1: x(i), y1: 290, x2: x(i), y2: 302 }), 2.02)); });
 
       svg.appendChild(piece(svgEl('line', { class: 'wk-target', x1: 20, y1: y(target), x2: 415, y2: y(target) }), 2.05));
-      svg.appendChild(piece(svgEl('text', { class: 'wk-target-label', x: 415, y: y(target) + 18, 'text-anchor': 'end' }, 'weekly target ' + target.toFixed(1)), 2.05));
+      svg.appendChild(piece(svgEl('text', { class: 'wk-target-label', x: 415, y: y(target) + 18, 'text-anchor': 'end' }, say('weekly target ', '每周目标 ') + target.toFixed(1)), 2.05));
 
       var lastPath = lastYear.map(function (v, i) { return (i ? 'L' : 'M') + x(i) + ' ' + y(v).toFixed(1); }).join('');
       var lastLine = drawn(svgEl('path', { d: lastPath }));
@@ -210,29 +223,29 @@
         svg.appendChild(piece(svgEl('circle', { class: 'wk-dot-this', cx: x(i), cy: y(v).toFixed(1), r: 4 }), at));
       });
       // Labels sit left of the last week, leaving the space after it for the weeks still to come
-      svg.appendChild(piece(svgEl('text', { class: 'wk-num', x: x(last) - 8, y: y(thisYear[last]) + 24, 'text-anchor': 'end' }, 'this year ' + thisYear[last].toFixed(1)), 2.54));
-      svg.appendChild(piece(svgEl('text', { class: 'wk-num', x: x(last) - 8, y: y(lastYear[last]) - 14, 'text-anchor': 'end' }, 'last year ' + lastYear[last].toFixed(1)), 2.54));
+      svg.appendChild(piece(svgEl('text', { class: 'wk-num', x: x(last) - 8, y: y(thisYear[last]) + 24, 'text-anchor': 'end' }, say('this year ', '今年 ') + thisYear[last].toFixed(1)), 2.54));
+      svg.appendChild(piece(svgEl('text', { class: 'wk-num', x: x(last) - 8, y: y(lastYear[last]) - 14, 'text-anchor': 'end' }, say('last year ', '去年 ') + lastYear[last].toFixed(1)), 2.54));
       svg.appendChild(piece(svgEl('line', { class: 'wk-gap', x1: x(last), y1: y(lastYear[last]) + 7, x2: x(last), y2: y(thisYear[last]) - 7 }), 2.58));
-      svg.appendChild(piece(svgEl('text', { class: 'wk-gap-label', x: x(last) - 8, y: (y(lastYear[last]) + y(thisYear[last])) / 2 + 5, 'text-anchor': 'end' }, fmt(thisYear[last] - lastYear[last], 1) + 'k a week'), 2.6));
+      svg.appendChild(piece(svgEl('text', { class: 'wk-gap-label', x: x(last) - 8, y: (y(lastYear[last]) + y(thisYear[last])) / 2 + 5, 'text-anchor': 'end' }, say(fmt(thisYear[last] - lastYear[last], 1) + 'k a week', '每周 ' + fmt(thisYear[last] - lastYear[last], 1) + ' 千单')), 2.6));
 
       var start = x(last + 0.5);
       svg.appendChild(piece(svgEl('line', { class: 'wk-start', x1: start, y1: 62, x2: start, y2: 296 }), 12.04));
-      svg.appendChild(piece(svgEl('text', { class: 'wk-start-label', x: start + 6, y: 58 }, 'promotion starts'), 12.04));
+      svg.appendChild(piece(svgEl('text', { class: 'wk-start-label', x: start + 6, y: 58 }, say('promotion starts', '促销开始')), 12.04));
       for (var i = last + 1; i < lastYear.length; i++) {
         svg.appendChild(piece(svgEl('circle', { class: 'wk-dot-next', cx: x(i), cy: y(thisYear[last]).toFixed(1), r: 7 }), 12.1 + (i - last) * 0.05));
         svg.appendChild(piece(svgEl('text', { class: 'note', x: x(i), y: y(thisYear[last]) + 4.5, 'text-anchor': 'middle' }, '?'), 12.1 + (i - last) * 0.05));
       }
-      svg.appendChild(piece(svgEl('text', { class: 'note', x: 20, y: 24 }, 'Each week now shows whether the action is working.'), 12.36));
+      svg.appendChild(piece(svgEl('text', { class: 'note', x: 20, y: 24 }, say('Each week now shows whether the action is working.', '现在每周都能看出行动是否见效。')), 12.36));
     })();
 
     // Variance data (illustrative, thousands of orders), shared by every chart and table
     var segments = [
-      { key: 'delivery_app', name: 'Delivery apps', lead: 'Delivery apps', last: 48.0, now: 43.2 },
-      { key: 'takeaway', name: 'Takeaway', lead: 'Takeaway', last: 31.0, now: 30.1 },
-      { key: 'dine_in', name: 'Dine-in', lead: 'Dine-in', last: 22.5, now: 23.4 },
-      { key: 'app_preorder', name: 'App pre-order', lead: 'App pre-orders', last: 14.0, now: 13.3 },
-      { key: 'catering', name: 'Catering', lead: 'Catering', last: 6.5, now: 6.9 },
-      { key: 'drive_through', name: 'Drive-through', lead: 'The drive-through', last: 2.0, now: 1.3 }
+      { key: 'delivery_app', name: say('Delivery apps', '外卖平台'), lead: say('Delivery apps', '外卖平台'), last: 48.0, now: 43.2 },
+      { key: 'takeaway', name: say('Takeaway', '外带'), lead: say('Takeaway', '外带'), last: 31.0, now: 30.1 },
+      { key: 'dine_in', name: say('Dine-in', '堂食'), lead: say('Dine-in', '堂食'), last: 22.5, now: 23.4 },
+      { key: 'app_preorder', name: say('App pre-order', 'App 预点单'), lead: say('App pre-orders', 'App 预点单'), last: 14.0, now: 13.3 },
+      { key: 'catering', name: say('Catering', '团餐'), lead: say('Catering', '团餐'), last: 6.5, now: 6.9 },
+      { key: 'drive_through', name: say('Drive-through', '得来速'), lead: say('The drive-through', '得来速'), last: 2.0, now: 1.3 }
     ].map(function (s) {
       var d = Math.round((s.now - s.last) * 10) / 10;
       return { key: s.key, name: s.name, lead: s.lead, last: s.last, now: s.now, d: d, pct: (s.now - s.last) / s.last * 100 };
@@ -252,7 +265,12 @@
     var steepest = orders.pct[0];
     var falling = segments.filter(function (s) { return s.d < 0; }).length;
     // Each chart title states the message of its step
-    var chartTitles = {
+    var chartTitles = ZH ? {
+      total: '订单量同比下降 ' + Math.abs(totalPct).toFixed(1) + '%',
+      split: NUMBER_WORDS[falling] + '种点单方式下降，' + NUMBER_WORDS[segments.length - falling] + '种增长',
+      abs: biggest.lead + '占了 ' + Math.abs(totalD).toFixed(1) + ' 千单降幅的 ' + Math.round(shareOf[biggest.key]) + '%',
+      pct: steepest.lead + '降得最快，但只少了 ' + Math.abs(steepest.d).toFixed(1) + ' 千单'
+    } : {
       total: 'Orders fell ' + Math.abs(totalPct).toFixed(1) + '% year on year',
       split: NUMBER_WORDS[falling] + ' ways of ordering fell, and ' + NUMBER_WORDS[segments.length - falling].toLowerCase() + ' grew',
       abs: biggest.lead + ' explain ' + Math.round(shareOf[biggest.key]) + '% of the ' + Math.abs(totalD).toFixed(1) + 'k drop',
@@ -271,19 +289,19 @@
       var scale = 340 / totalLast;
       var nowW = totalNow * scale;
       var lastW = totalLast * scale;
-      chart.appendChild(piece(svgEl('text', { class: 't-label', x: 0, y: 54 }, 'All channels'), t + 0.04, t + 1));
-      chart.appendChild(piece(svgEl('text', { class: 't-last', x: lastW, y: 54, 'text-anchor': 'end' }, 'October 2025: ' + totalLast.toFixed(1)), t + 0.08, t + 1));
+      chart.appendChild(piece(svgEl('text', { class: 't-label', x: 0, y: 54 }, say('All channels', '全部渠道')), t + 0.04, t + 1));
+      chart.appendChild(piece(svgEl('text', { class: 't-last', x: lastW, y: 54, 'text-anchor': 'end' }, say('October 2025: ', '2025 年 10 月：') + totalLast.toFixed(1)), t + 0.08, t + 1));
       chart.appendChild(piece(svgEl('rect', { class: 'bar-last', x: 0.75, y: 66.75, width: lastW - 1.5, height: 26 }), t + 0.08, t + 1));
       chart.appendChild(piece(svgEl('rect', { class: 'bar-this', x: 0, y: 76, width: nowW, height: 26 }), t + 0.14, t + 1));
       chart.appendChild(piece(svgEl('text', { class: 't-value', x: lastW + 8, y: 96 }, totalNow.toFixed(1)), t + 0.18, t + 1));
       chart.appendChild(piece(svgEl('rect', { x: nowW, y: 112, width: lastW - nowW, height: 14, fill: 'var(--bad)' }), t + 0.24, t + 1));
       chart.appendChild(piece(svgEl('line', { class: 'axis', x1: lastW, y1: 108, x2: lastW, y2: 130 }), t + 0.24, t + 1));
-      chart.appendChild(piece(svgEl('text', { class: 't-delta', x: lastW, y: 152, 'text-anchor': 'end' }, fmt(totalD, 1) + 'k, ' + percentLabel(totalPct)), t + 0.3, t + 1));
-      chart.appendChild(piece(svgEl('text', { class: 't-note', x: 0, y: 196 }, 'The red gap is what was lost since last year.'), t + 0.38, t + 1));
+      chart.appendChild(piece(svgEl('text', { class: 't-delta', x: lastW, y: 152, 'text-anchor': 'end' }, fmt(totalD, 1) + say('k, ', ' 千单，') + percentLabel(totalPct)), t + 0.3, t + 1));
+      chart.appendChild(piece(svgEl('text', { class: 't-note', x: 0, y: 196 }, say('The red gap is what was lost since last year.', '红色部分是比去年少掉的订单。')), t + 0.38, t + 1));
 
       var s0 = STEP.split;
-      chart.appendChild(piece(svgEl('text', { x: 0, y: 14, class: 'ch-colhead' }, 'Oct 2026 vs Oct 2025, thousands'), s0));
-      varianceHead = piece(svgEl('text', { x: CH.axis, y: 14, 'text-anchor': 'middle', class: 'ch-colhead' }, 'Change, thousands'), s0);
+      chart.appendChild(piece(svgEl('text', { x: 0, y: 14, class: 'ch-colhead' }, say('Oct 2026 vs Oct 2025, thousands', '2026 年 10 月对比 2025 年 10 月，千单')), s0));
+      varianceHead = piece(svgEl('text', { x: CH.axis, y: 14, 'text-anchor': 'middle', class: 'ch-colhead' }, say('Change, thousands', '变化，千单')), s0);
       chart.appendChild(varianceHead);
       segments.forEach(function (s, i) {
         var g = piece(svgEl('g', { class: 'vrow' }), s0 + 0.05 + i * 0.06);
@@ -314,7 +332,7 @@
       var order = orders[state] || orders.split;
       var usePct = state === 'pct';
       var focusKey = state === 'abs' ? biggest.key : usePct ? steepest.key : null;
-      varianceHead.textContent = usePct ? 'Change, %' : 'Change, thousands';
+      varianceHead.textContent = usePct ? say('Change, %', '变化，%') : say('Change, thousands', '变化，千单');
       order.forEach(function (s, i) {
         var el = rowEls[s.key];
         var width = usePct ? s.pct * CH.pctScale : s.d * CH.absScale;
@@ -326,7 +344,8 @@
         el.label.style.transform = 'translate(' + labelX.toFixed(2) + 'px, 0px)';
         el.label.textContent = usePct ? percentLabel(s.pct) : fmt(s.d, 1);
         var note = '';
-        if (s.key === focusKey) note = usePct ? 'steepest, but only ' + Math.abs(s.d).toFixed(1) + 'k' : Math.round(shareOf[s.key]) + '% of the net drop';
+        if (s.key === focusKey) note = usePct ? say('steepest, but only ' + Math.abs(s.d).toFixed(1) + 'k', '降幅最大，但只少 ' + Math.abs(s.d).toFixed(1) + ' 千')
+          : say(Math.round(shareOf[s.key]) + '% of the net drop', '占净降幅的 ' + Math.round(shareOf[s.key]) + '%');
         el.note.textContent = note;
       });
     }
@@ -347,7 +366,8 @@
       });
       svg.appendChild(piece(svgEl('line', { class: 'axis', x1: L.axis, y1: 0, x2: L.axis, y2: L.top + segments.length * L.row }), 11.14));
       svg.appendChild(piece(svgEl('path', { class: 'slide-ring draw', pathLength: 1, d: loopPath(-6, L.top - 1, 130, L.top + L.row - 3) }), 11.42));
-      $('slide-title').textContent = biggest.lead + ' explain ' + Math.round(shareOf[biggest.key]) + '% of a ' + Math.abs(totalD).toFixed(1) + 'k drop in orders';
+      $('slide-title').textContent = say(biggest.lead + ' explain ' + Math.round(shareOf[biggest.key]) + '% of a ' + Math.abs(totalD).toFixed(1) + 'k drop in orders',
+        '订单减少 ' + Math.abs(totalD).toFixed(1) + ' 千单，其中 ' + Math.round(shareOf[biggest.key]) + '% 来自' + biggest.lead);
     })();
 
     // Raw output for the side panel, from the same data
@@ -369,7 +389,7 @@
       });
       table.appendChild(head);
       table.appendChild(body);
-      $('raw-meta').textContent = orders.abs.length + ' rows returned';
+      $('raw-meta').textContent = say(orders.abs.length + ' rows returned', '返回 ' + orders.abs.length + ' 行');
     })();
 
     // SQL highlighting; the story's snippet types itself in, line by line
@@ -425,13 +445,13 @@
       bar.appendChild(fill);
       card.insertBefore(bar, card.firstChild);
       var nav = htmlEl('div', { class: 'card-nav' });
-      var back = htmlEl('button', { type: 'button', class: 'card-btn' }, 'Back');
+      var back = htmlEl('button', { type: 'button', class: 'card-btn' }, say('Back', '上一步'));
       back.disabled = i === 0;
       back.addEventListener('click', function () { scrollToStep(i - 1); });
-      var next = htmlEl('button', { type: 'button', class: 'card-btn' }, i === steps.length - 1 ? 'Finish' : 'Next');
+      var next = htmlEl('button', { type: 'button', class: 'card-btn' }, i === steps.length - 1 ? say('Finish', '完成') : say('Next', '下一步'));
       next.addEventListener('click', function () { scrollToStep(i + 1); });
       nav.appendChild(back);
-      nav.appendChild(htmlEl('span', { class: 'card-count' }, 'Step ' + (i + 1) + ' of ' + steps.length));
+      nav.appendChild(htmlEl('span', { class: 'card-count' }, say('Step ' + (i + 1) + ' of ' + steps.length, '第 ' + (i + 1) + ' 步，共 ' + steps.length + ' 步')));
       nav.appendChild(next);
       card.appendChild(nav);
     });
@@ -450,7 +470,7 @@
       var screenProbe = htmlEl('div', { 'aria-hidden': 'true' });
       screenProbe.style.cssText = 'position:fixed;top:0;left:0;width:0;height:100svh;visibility:hidden;pointer-events:none';
       // Its width follows the phone's text size, including font-size settings in Android and WeChat
-      var textProbe = htmlEl('span', { 'aria-hidden': 'true' }, 'Monthly orders by channel');
+      var textProbe = htmlEl('span', { 'aria-hidden': 'true' }, say('Monthly orders by channel', '各渠道每月订单量'));
       textProbe.style.cssText = 'position:absolute;top:0;left:0;white-space:nowrap;visibility:hidden;pointer-events:none';
       document.body.appendChild(screenProbe);
       document.body.appendChild(textProbe);
@@ -538,12 +558,12 @@
       });
       var name;
       var purpose;
-      if (stageIndex === -2) { name = 'Plan, do, check, act'; purpose = 'one example, step by step'; }
-      else if (stageIndex === -1) { name = 'The example'; purpose = 'a café chain and its monthly orders'; }
-      else if (stageIndex === 4) { name = 'Back to plan'; purpose = 'the result feeds the next plan'; }
+      if (stageIndex === -2) { name = say('Plan, do, check, act', '计划、执行、检查、改进'); purpose = say('one example, step by step', '用一个例子逐步走一遍'); }
+      else if (stageIndex === -1) { name = say('The example', '示例'); purpose = say('a café chain and its monthly orders', '一家连锁咖啡店的每月订单'); }
+      else if (stageIndex === 4) { name = say('Back to plan', '回到计划'); purpose = say('the result feeds the next plan', '结果进入下一轮计划'); }
       else { name = LOOP_NAMES[stageIndex]; purpose = LOOP_PURPOSE[stageIndex]; }
       $('loop-name').textContent = name;
-      $('loop-desc').textContent = ': ' + purpose;
+      $('loop-desc').textContent = say(': ', '：') + purpose;
     }
     function updateRail() {
       var current = activeStep ? (activeStage === 4 ? 3 : activeStage) : -2;
@@ -682,8 +702,8 @@
       var lines = [];
       each(document.querySelectorAll('#tpl > div'), function (row) {
         var name = row.querySelector('dt').textContent.trim();
-        var guide = row.querySelector('dd').textContent.trim().match(/^[^.?]*[.?]?/)[0].replace(/\.$/, '');
-        lines.push(name + ': [' + guide + ']');
+        var guide = row.querySelector('dd').textContent.trim().match(/^[^.?。？]*[.?。？]?/)[0].replace(/[.。]$/, '');
+        lines.push(name + say(': [', '：[') + guide + ']');
       });
       return lines.join('\n');
     }
@@ -692,13 +712,13 @@
       var copied = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(text) : Promise.reject(new Error('Clipboard unavailable'));
       copied.then(function () {
         fallback.hidden = true;
-        status.textContent = 'Copied.';
+        status.textContent = say('Copied.', '已复制。');
       }, function () {
         fallback.value = text;
         fallback.hidden = false;
         fallback.focus();
         fallback.select();
-        status.textContent = 'Copy is blocked here. The text is selected below; press Ctrl+C.';
+        status.textContent = say('Copy is blocked here. The text is selected below; press Ctrl+C.', '这里无法直接复制。下面的文字已选中，请按 Ctrl+C。');
       });
     });
   })();
@@ -740,11 +760,12 @@
     function barWidth(share) { return (share / BAR_FULL * 100).toFixed(1) + '%'; }
 
     function describe(simple, weighted, profit, revenue) {
-      if (weighted === null) return 'With no revenue at all, there is no margin to compare.';
+      if (weighted === null) return say('With no revenue at all, there is no margin to compare.', '没有收入，就没有利润率可比。');
       var gap = Math.abs(weighted - simple) * 100;
-      var totals = 'Total profit is ' + money(profit) + ' on ' + money(revenue) + ' of revenue. ';
-      if (gap < 0.05) return totals + 'Both products sell the same amount, so the two answers agree.';
-      return totals + 'The two answers differ by ' + tidy(gap) + ' percentage points.';
+      var totals = say('Total profit is ' + money(profit) + ' on ' + money(revenue) + ' of revenue. ',
+        '总收入 ' + money(revenue) + '，总利润 ' + money(profit) + '。');
+      if (gap < 0.05) return totals + say('Both products sell the same amount, so the two answers agree.', '两种产品卖得一样多，所以两个答案相同。');
+      return totals + say('The two answers differ by ' + tidy(gap) + ' percentage points.', '两个答案相差 ' + tidy(gap) + ' 个百分点。');
     }
     function update() {
       var a = Number(revenueA.value);
@@ -756,7 +777,7 @@
       $('rev-b-out').textContent = money(b);
       $('m-simple').textContent = percent(simple);
       $('bar-simple').style.width = barWidth(simple);
-      $('m-weighted').textContent = weighted === null ? 'n/a' : percent(weighted);
+      $('m-weighted').textContent = weighted === null ? say('n/a', '无') : percent(weighted);
       $('bar-weighted').style.width = weighted === null ? '0%' : barWidth(weighted);
       $('calc-note').textContent = describe(simple, weighted, profit, a + b);
     }
@@ -774,7 +795,7 @@
     var AI_FEE = 100;
     var HIRE_FEE = 400;
     var HIRE_HOURS = 1;
-    var NAMES = { diy: 'Doing it yourself', ai: 'AI-assisted work', hire: 'Hiring a person' };
+    var NAMES = say({ diy: 'Doing it yourself', ai: 'AI-assisted work', hire: 'Hiring a person' }, { diy: '自己做', ai: '用 AI 协助', hire: '请人做' });
 
     function money(amount) { return 'RM' + Math.round(amount).toLocaleString('en-GB'); }
     function tidy(number) { return Math.abs(number - Math.round(number)) < 0.05 ? String(Math.round(number)) : number.toFixed(1); }
@@ -789,10 +810,12 @@
         $('bar-' + key).style.width = (costs[key] / highest * 100).toFixed(1) + '%';
         if (costs[key] < costs[cheapest]) cheapest = key;
       });
-      $('ai-hours-out').textContent = hours + (hours === 1 ? ' hour' : ' hours');
+      $('ai-hours-out').textContent = say(hours + (hours === 1 ? ' hour' : ' hours'), hours + ' 小时');
       $('hour-value-out').textContent = money(rate);
-      $('cost-note').textContent = NAMES[cheapest] + ' costs least here. At ' + money(rate) + ' an hour, the ' + money(AI_FEE) +
-        ' subscription pays for itself only if AI saves you more than ' + tidy(AI_FEE / rate) + ' hours a month.';
+      $('cost-note').textContent = say(NAMES[cheapest] + ' costs least here. At ' + money(rate) + ' an hour, the ' + money(AI_FEE) +
+        ' subscription pays for itself only if AI saves you more than ' + tidy(AI_FEE / rate) + ' hours a month.',
+        '这里最省钱的是' + NAMES[cheapest] + '。按每小时 ' + money(rate) + ' 算，AI 每月要帮你省下 ' + tidy(AI_FEE / rate) +
+        ' 小时以上，' + money(AI_FEE) + ' 的订阅费才回本。');
     }
     hoursInput.addEventListener('input', update);
     rateInput.addEventListener('input', update);
@@ -816,7 +839,7 @@
             other.classList.toggle('is-wrong', other === option && !right);
             other.setAttribute('aria-pressed', other === option ? 'true' : 'false');
           });
-          result.textContent = right ? 'Right.' : 'Not quite. The best answer is marked with a tick.';
+          result.textContent = right ? say('Right.', '答对了。') : say('Not quite. The best answer is marked with a tick.', '不太对。最佳答案已打勾。');
           quiz.classList.add('is-answered');
         });
       });
