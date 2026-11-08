@@ -72,7 +72,7 @@ Rules that came out of Ding's reviews. Apply them to every new or changed senten
 
 ### Playbook
 
-- A scroll story: steps on the left, a sticky canvas on the right whose drawings assemble as you scroll.
+- A scroll story: steps on the left, a sticky canvas on the right whose drawings assemble as you scroll. The pattern is modelled on Stitch Fix's Algorithms Tour (see References); start there when building another story like it.
 - On phones the drawing sits at the top and the step text in a fixed box below it. `fitPhoneLayout` in `site.js` measures the tallest step card on each phone and sets `--stage-h`, so the box fits every phone. Scenes scale with `transform: scale()`; zoom made them reflow.
 - The loop starts with Plan at the top left and runs clockwise.
 
@@ -217,6 +217,10 @@ flowchart LR
 
 ## References
 
+- **Scroll story (the playbook):**
+  - Stitch Fix, [Algorithms Tour](https://algorithms-tour.stitchfix.com/): the model for the playbook. Text steps scroll past a sticky drawing that builds piece by piece.
+  - Stitch Fix, [Making the tour, part 1](https://multithreaded.stitchfix.com/blog/2017/03/23/making-the-tour-part-1/): how they built it.
+  - [stitchfix/hello-scrollytelling](https://github.com/stitchfix/hello-scrollytelling): their minimal starter code for the pattern.
 - **Story and charts:**
   - International Business Communication Standards (IBCS): headings that state the message, one colour for one meaning.
   - Brent Dykes, *Effective Data Storytelling*: the playbook's story arc.
