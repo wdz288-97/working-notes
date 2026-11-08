@@ -53,7 +53,7 @@ function headExtras(page, lang) {
 
 // Web hosts serve /playbook from playbook.html and / from index.html, so the public site links to clean addresses.
 // The source keeps the .html links because clean ones don't resolve when the files are opened from disk.
-// edgeone.json redirects the old .html addresses here, so shared links keep working.
+// GitHub Pages still serves the old .html addresses too, so links shared earlier keep working.
 // Links between the languages carry a folder: zh/ from an English page, ../ from a Chinese one
 function cleanPageLinks(html) {
   const pageLink = new RegExp('href="((?:\\.\\./|zh/)?)(' + PAGE_NAMES.join('|') + ')\\.html(#[^"]*)?"', 'g');

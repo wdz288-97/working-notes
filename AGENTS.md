@@ -179,8 +179,8 @@ flowchart LR
 - **Build:**
   - The home source (`data-analytics-playbook.html`) has no `<head>`; the build wraps it.
   - The build adds a description per page (the `DESCRIPTIONS` map), rewrites links to clean addresses, and fingerprints `site.css`, `site.js` and `icons.svg` by content hash, so phones never pair a new page with an old stylesheet.
-  - A new page needs to be added to `PAGES`, to `DESCRIPTIONS`, and to the redirects in `edgeone.json`.
-- **Deploy:** push to `main`. EdgeOne Pages and GitHub Pages each build and publish. If GitHub Pages fails with "Deployment failed, try again later", start a fresh run (`gh workflow run`); rerunning only the failed job causes a duplicate-artifact error.
+  - A new page needs to be added to `PAGES` and to `DESCRIPTIONS` (and `ZH_DESCRIPTIONS` for its Chinese twin).
+- **Deploy:** push to `main`; GitHub Pages builds and publishes. It is the only host: an EdgeOne Pages copy was removed in November 2026 because its free `edgeone.dev` address returned 4XX errors to mainland China visitors (89 of 92 test points on boce.com), while GitHub Pages loaded from most of them. Don't add another overseas host without testing it from China first. If GitHub Pages fails with "Deployment failed, try again later", start a fresh run (`gh workflow run`); rerunning only the failed job causes a duplicate-artifact error.
 - **Local preview:** any server that maps `/ai` to `ai.html` (see `README.md`).
 - **Testing quirks:**
   - Background browser tabs pause CSS animations. Call `document.getAnimations().forEach(a => a.finish())` before screenshots.
@@ -214,7 +214,7 @@ flowchart LR
   D --> E[Run the checks above]
   E --> F[Ding approves files and commit message]
   F --> G[git push to main]
-  G --> H[EdgeOne Pages and GitHub Pages rebuild]
+  G --> H[GitHub Pages rebuilds]
 ```
 
 ## Skills and tools used to build it
