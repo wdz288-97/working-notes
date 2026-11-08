@@ -26,7 +26,7 @@
 
   <header class="page-head with-figure">
     <div class="head-text">
-      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 4 of 6</p>
+      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 4</p>
       <h1>Divide, delegate and reuse</h1>
       <p class="meta">About 7 minutes to read</p>
       <p class="lede">Once you can brief and check AI's work, the next questions are which steps to hand over, how to pass work between AIs, and when a method is worth turning into something reusable.</p>
@@ -54,7 +54,7 @@
         <li>Give each AI, tool or person the contribution it's best at, and give the reviewer the evidence as well as the conclusion.</li>
         <li>Start with the simplest setup that works, and add an agent only when the next step depends on what it finds.</li>
         <li>A handover carries the goal, decisions, evidence, current state and open questions.</li>
-        <li>Make a method reusable when its steps repeat and the setup and upkeep pay back, and give agents only the access the job needs.</li>
+        <li>Make a method reusable when its steps repeat and the setup and upkeep are worth it, and give agents only the access the job needs.</li>
       </ul>
     </section>
 
@@ -98,7 +98,7 @@
       <p>Whoever reviews the work should get the task and the evidence, as well as the draft's conclusion. A reviewer who sees only a polished answer tends to inherit its assumptions.</p>
 
       <h2 id="simple">Start simple, and add an agent only when steps vary</h2>
-      <p>More helpers mean more coordination. Anthropic's guidance on building agents recommends starting with the simplest solution and adding complexity only when it improves the result.<a class="cite" href="#src-1" aria-label="Source 1">1</a> It separates two shapes:</p>
+      <p>More helpers mean more coordination. Anthropic's guidance on building agents recommends starting with the simplest solution and adding complexity only when it improves the result.<a class="cite" href="#src-1" aria-label="Source 1">1</a> It separates two patterns:</p>
       <ul>
         <li><strong>A workflow</strong> follows a fixed sequence of steps that you design in advance.</li>
         <li><strong>An agent</strong> chooses its next step based on what it finds, which helps when the path can't be known in advance.</li>
@@ -118,7 +118,7 @@
       <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>Without a ready-made workflow for coordinating agents, I don't do this often. When I do, a handoff skill (Matt Pocock's is a good one) passes the work to another agent cleanly. Simpler ways are to have the main agent start a helper agent of its own (a sub-agent), or to give the agent the name or ID of an earlier chat in the same project. I expect that last one to use more tokens, though I haven't measured it.</p></aside>
 
       <h2 id="reuse">Decide what's worth making reusable</h2>
-      <p>When a task keeps coming back, you can keep using a prompt, write a skill, write a script, set up an agent workflow, or combine them. Three questions decide it: which steps repeat, where judgement is needed, and whether the setup and upkeep are worth the benefit.</p>
+      <p>When a task keeps coming back, you can keep using a prompt, write a skill, write a script, set up an agent, or combine them. Three questions decide it: which steps repeat, where judgement is needed, and whether the setup and upkeep are worth the benefit.</p>
 
       <figure class="figure reuse-map">
         <svg viewBox="0 0 360 318" role="img" aria-label="How often a task repeats against how much its steps vary, with the approach that fits each box.">
@@ -135,10 +135,10 @@
           <text class="rm-end" x="54" y="272" text-anchor="end">fixed</text>
           <text class="rm-title" x="131" y="82">A prompt</text><text class="rm-sub" x="131" y="102">and a conversation</text>
           <text class="rm-title" x="131" y="208">One prompt</text><text class="rm-sub" x="131" y="228">or just do it</text>
-          <text class="rm-title" x="271" y="72">A skill or</text><text class="rm-title" x="271" y="92">agent workflow</text><text class="rm-sub" x="271" y="112">with checks</text>
+          <text class="rm-title" x="271" y="72">A skill, or</text><text class="rm-title" x="271" y="92">an agent</text><text class="rm-sub" x="271" y="112">with checks</text>
           <text class="rm-title" x="271" y="208">A script</text><text class="rm-sub" x="271" y="228">runs the same way</text>
         </svg>
-        <figcaption>Where important judgement is needed between steps, keep a person's review in the flow, whichever box you're in. And the setup and upkeep have to pay back.</figcaption>
+        <figcaption>Where important judgement is needed between steps, keep a person's review in the flow, whichever box you're in. And the setup and upkeep have to be worth it.</figcaption>
       </figure>
 
       <p>A skill packages instructions and resources that an agent loads when they're relevant,<a class="cite" href="#src-2" aria-label="Source 2">2</a> so it suits a method that repeats but still needs judgement on each run. A script suits steps that run the same way every time. <mark>Saving an untested method as a skill keeps its mistakes along with its convenience</mark>, so test it on real work first (<a href="ai-value.html#claims">chapter 5</a>).</p>
@@ -157,7 +157,7 @@
       <h2 id="permissions">Give an agent the access its job needs</h2>
       <p>Advice can be reviewed before you use it. An action may already have changed a file, sent a message or exposed information. As an agent's ability to act grows, the need for clear limits grows with it.</p>
       <ul>
-        <li><strong>Keep permissions in proportion to the job.</strong> Work on safe copies where you can, and keep approval for consequential steps such as sending, deleting or paying.</li>
+        <li><strong>Keep permissions in proportion to the job.</strong> Work on safe copies where you can, and require your approval for consequential steps such as sending, deleting or paying.</li>
         <li><strong>A written instruction isn't a lock.</strong> "Don't send anything" in a prompt doesn't technically stop an agent that has permission to send.</li>
         <li><strong>Know where your data goes.</strong> Running an agent on your own computer doesn't mean your data stays there: the model service or a connected tool may run elsewhere.<a class="cite" href="#src-6" aria-label="Source 6">6</a></li>
         <li><strong>Text in a page isn't an instruction.</strong> A web page or document can contain words aimed at the agent. Finding them doesn't give them authority over your task.<a class="cite" href="#src-6" aria-label="Source 6">6</a></li>
@@ -175,7 +175,7 @@
             <li><button type="button" class="quiz-option" data-option="c">A script.</button></li>
           </ul>
           <p class="quiz-result" aria-live="polite"></p>
-          <p class="quiz-why">A script. The steps repeat and don't vary, and no judgement is needed between them, so the setup pays back quickly.</p>
+          <p class="quiz-why">A script. The steps repeat and don't vary, and no judgement is needed between them, so the setup pays for itself quickly.</p>
         </div>
         <div class="quiz" data-answer="a">
           <p class="quiz-q">You pass work to a second AI with just the finished draft. What's missing?</p>
@@ -191,11 +191,11 @@
           <p class="quiz-q">Your prompt tells an agent "don't email anyone", and it has access to your email. Is that safe?</p>
           <ul class="quiz-options">
             <li><button type="button" class="quiz-option" data-option="a">Yes: the instruction is clear.</button></li>
-            <li><button type="button" class="quiz-option" data-option="b">No: an instruction isn't a barrier, so remove the access or keep sending behind your approval.</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">No: an instruction isn't a barrier, so remove the access or require your approval before it sends anything.</button></li>
             <li><button type="button" class="quiz-option" data-option="c">Yes, if you repeat the instruction.</button></li>
           </ul>
           <p class="quiz-result" aria-live="polite"></p>
-          <p class="quiz-why">No. An instruction isn't a technical barrier. If the task doesn't need email, don't give the agent email access; if it does, keep sending behind your approval.</p>
+          <p class="quiz-why">No. An instruction isn't a technical barrier. If the task doesn't need email, don't give the agent email access; if it does, require your approval before it sends anything.</p>
         </div>
       </section>
 

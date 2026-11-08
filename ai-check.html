@@ -26,10 +26,10 @@
 
   <header class="page-head with-figure">
     <div class="head-text">
-      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 3 of 6</p>
+      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 3</p>
       <h1>Check the work</h1>
       <p class="meta">About 10 minutes to read</p>
-      <p class="lede">An AI can give a confident, well-formatted answer that's wrong, so you need checks that don't rely on its word: a test for each task, a way out of the loop, and the right evidence for each kind of claim.</p>
+      <p class="lede">An AI can give a confident, well-formatted answer that's wrong, so you need checks that don't rely on its word: a test for each task, a rule for when to stop, and the right evidence for each kind of claim.</p>
     </div>
     <svg class="loop-figure chapter-figure" viewBox="0 0 400 196" role="img" aria-label="The work goes through a test and its evidence before you use it.">
       <use class="ico draw onload" style="--i:0" href="icons.svg#i-clipboard" x="24" y="70" width="72" height="72"/>
@@ -50,7 +50,7 @@
       <h2 id="key-ideas">Key ideas</h2>
       <ul>
         <li>A confident, well-formatted answer isn't evidence. Look for proof outside the answer.</li>
-        <li>Give every loop a test, feedback that names the defect, and a way out.</li>
+        <li>Give every loop a test, feedback that names the defect, and a stopping rule.</li>
         <li>When you can't judge the answer, borrow a check: a tiny example, a trusted definition or a qualified person.</li>
         <li>Two AIs agreeing is a second opinion. Settle disagreements with a definition, a source or a test.</li>
         <li>Check the actual result, and when a check fails, find the layer that broke before you retry.</li>
@@ -68,7 +68,7 @@
           <ol class="guide-sections">
             <li><a href="#key-ideas">Key ideas</a></li>
             <li><a href="#fluent">A fluent answer isn't evidence</a></li>
-            <li><a href="#loop">Give every loop a test and a way out</a></li>
+            <li><a href="#loop">Give every loop a test and a stopping rule</a></li>
             <li><a href="#borrow">When you can't judge it, borrow a check</a></li>
             <li><a href="#second-opinion">Two AIs agreeing isn't proof</a></li>
             <li><a href="#match">Match the check to the claim</a></li>
@@ -91,12 +91,12 @@
       <p>Format doesn't tell you either. A neat table, or a data field in exactly the required layout, <mark>can still hold the wrong number</mark>.<a class="cite" href="#src-2" aria-label="Source 2">2</a> Analysts know this from reporting: a dashboard can refresh without a single error and still show the wrong figure.</p>
       <p>So look for evidence outside the answer: a test the result has to pass, a source you can open, or a total that has to match.</p>
 
-      <h2 id="loop">Give every loop a test and a way out</h2>
+      <h2 id="loop">Give every loop a test and a stopping rule</h2>
       <p>Most work with AI happens in rounds. The first draft is an attempt; you look at it and ask for changes. Whether those rounds lead anywhere depends on three things.</p>
       <ul>
         <li><strong>A test, written before you look.</strong> Something the result has to pass: every date and cost matches the source notes, the totals reconcile, the page works on a phone.</li>
         <li><strong>Feedback that names the defect.</strong> "Make it better" leaves the gap unspecified. "The proposal treats an estimate as an approval; separate confirmed facts from pending decisions" tells the next round exactly what to fix.</li>
-        <li><strong>A way out.</strong> Stop when the test passes, or when the same defect comes back. Asking again until an answer feels reassuring isn't checking. Sometimes the right next step is a different tool, or a person who knows the subject.</li>
+        <li><strong>A stopping rule.</strong> Stop when the test passes, or when the same defect comes back. Asking again until an answer feels reassuring isn't checking. Sometimes the right next step is a different tool, or a person who knows the subject.</li>
       </ul>
 
       <figure class="figure loop-check" id="loop-check">
@@ -130,7 +130,7 @@
         <li><strong>20%</strong> answers "what margin does a typical product earn?", counting each product equally however much it sells.</li>
         <li><strong>28%</strong> answers "how much of each ringgit we took in did we keep as profit?", counting each ringgit of revenue equally.</li>
       </ul>
-      <p>A finance team asking for the business's margin almost always means the second. <strong>The business definition decides which question was asked</strong>, so settle it before you trust either number.</p>
+      <p>A finance team asking for the business's margin usually means the second. <strong>The business definition decides which question was asked</strong>, so settle it before you trust either number.</p>
 
       <figure class="figure calc" id="margin-calc">
         <div class="calc-inputs">
@@ -142,12 +142,12 @@
           <div><dt>Total profit ÷ total revenue <i>each ringgit counts equally</i></dt><dd><b id="m-weighted">28%</b><span class="calc-bar"><i id="bar-weighted" style="width: 93.3%"></i></span></dd></div>
         </dl>
         <p class="calc-note" id="calc-note" aria-live="polite">Total profit is RM280 on RM1,000 of revenue. The two answers differ by 8 percentage points.</p>
-        <figcaption>Move the revenue sliders. The simple average stays at 20% whatever each product sells; total profit ÷ total revenue follows where the revenue is. The two agree only when both products sell the same amount. Fictional figures.</figcaption>
+        <figcaption>Move the revenue sliders. The simple average stays at 20% whatever each product sells; total profit ÷ total revenue follows where the revenue is. The two agree only when both products bring in the same revenue. Fictional figures.</figcaption>
       </figure>
 
-      <p>An experienced analyst spots the difference at once. A newcomer can borrow the check: work out the totals on a tiny example, look up a trusted definition, or ask someone qualified. All three <mark>make the claim testable outside the AI's own explanation</mark>.</p>
+      <p>Someone who works with margins every day may spot the difference quickly. A newcomer can borrow the check: work out the totals on a tiny example, look up a trusted definition, or ask someone qualified. All three <mark>make the claim testable outside the AI's own explanation</mark>.</p>
 
-      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>Pick a figure an AI calculated for you recently. Rebuild it on a tiny example, two or three rows you can work out by hand. If the method gives a different answer on the small example, you've found a definition to settle before you trust the large one.</p></aside>
+      <aside class="box try"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-pencil"/></svg>Try this</p><p>Pick a figure an AI calculated for you recently. Rebuild it on a tiny example, two or three rows you can work out by hand. If the method's answer on the small example doesn't match your hand calculation, you've found a definition to settle before you trust the large one.</p></aside>
 
       <h2 id="second-opinion">Two AIs agreeing isn't proof</h2>
       <p>A second AI can help review the work. Give it the original question, the data and the method, then ask it to list the assumptions nobody has supported and the tests that would settle them. For a more independent attempt, hold back the first answer at the start.</p>
@@ -177,13 +177,13 @@
       <p>Calculations can be tested. Interpretations are harder: "orders fell because a competitor ran a promotion" sounds plausible and may be wrong. Ask for every interpretation to come with its evidence: the figure in the validated output, the document from the context you supplied, or the outside source it relied on.</p>
       <p>Evidence from outside your own context needs the most care. The AI may have found a real report, or a page that doesn't support the claim at all, so open it. Even good evidence only supports a possible explanation, and the action is a separate decision. <mark>The people responsible for the decision should test the explanation before anyone acts on it.</mark></p>
 
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I ask for the evidence or reference behind every interpretation. If it comes from the internet rather than the business context I gave the AI, I sense-check it or do a quick search myself, then check with the relevant team before acting.</p></aside>
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>I ask for the evidence or reference behind every interpretation. If it comes from the internet rather than the business context I gave the AI, I check that it makes sense or do a quick search myself, then check with the relevant team before acting.</p></aside>
 
       <h2 id="real-result">Check what the agent actually produced</h2>
       <p>An agent saying a task succeeded is a claim like any other. Good agent evaluation inspects the final state: the file that was written, or the app as it runs.<a class="cite" href="#src-6" aria-label="Source 6">6</a> What an agent can check depends on its tools: a chat-only assistant can draft a test but can't run it, while an agent working in a copy of the project can.</p>
       <p>For visual work, the agent needs to see the page as well as the code. <mark>Give the agent tools that reach the actual outcome</mark>, and find out where those tools stop.</p>
 
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>When an agent built my browser extension, it needed to reload the extension to test each change. Browser control alone couldn't do that, because the browser's own rules block it; the agent needed computer use, which lets it work the screen, mouse and keyboard the way a person does. Websites are similar: the agent needs a browser to look at the page as well as the code. This site is checked that way. The agent measures each page at phone sizes in a browser, and I look at it on my own phone.</p></aside>
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>When an agent built my browser extension, it needed to reload the extension to test each change. Browser control alone couldn't do that, because the browser's own rules block it; the agent needed computer use, which lets it operate the screen, mouse and keyboard the way a person does. Websites are similar: the agent needs a browser to look at the page as well as the code. This site is checked that way. The agent measures each page at phone sizes in a browser, and I look at it on my own phone.</p></aside>
 
       <h2 id="layer">When a check fails, find the layer that broke</h2>
       <p>A failed check tells you something is wrong, not what. Before asking for another attempt, work out which layer failed:</p>

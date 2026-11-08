@@ -135,7 +135,7 @@
       'agree the action, then follow up'
     ], [
       '商定目标和衡量方式',
-      '开展业务，跟踪数字',
+      '开展业务，跟踪数据',
       '确认变化，再找原因',
       '商定行动，再跟进落实'
     ]);
@@ -151,7 +151,7 @@
       }
       var ways = [
         { icon: 'kpi', lines: say(['An owned KPI', 'moves'], ['自己负责的', '指标有变化']), cx: 70, path: 'M70 116C70 170 120 205 158 213', head: 'M149 206l9 7l-10 3' },
-        { icon: 'ticket', lines: say(['Another team', 'asks'], ['其他团队', '提出需求']), cx: 220, path: 'M220 116V184', head: 'M214 177l6 7l6-7' },
+        { icon: 'ticket', lines: say(['Another team', 'makes a request'], ['其他团队', '提出需求']), cx: 220, path: 'M220 116V184', head: 'M214 177l6 7l6-7' },
         { icon: 'idea', lines: say(['A team starts', 'an initiative'], ['团队启动', '专项项目']), cx: 370, path: 'M370 116C370 170 320 205 282 213', head: 'M291 206l-9 7l10 3' }
       ];
       ways.forEach(function (w) {
@@ -192,24 +192,50 @@
       onLoad(svgEl('text', { class: 'note', x: cx, y: cy + 5, 'text-anchor': 'middle' }, say('the same loop', '同一个循环')));
     })();
 
-    // Weekly tracking: orders slip week by week; at the end of the story, the weeks after the promotion are still to come
+    // Orders are in thousands. English shows them as 54.0 and −1.6; Chinese readers expect plain counts, 54,000 and −1,600.
+    function orderCount(v) { return ZH ? Math.round(v * 1000).toLocaleString('en-US') : v.toFixed(1); }
+    function orderChange(d) {
+      return ZH ? (d > 0 ? '+' : d < 0 ? '−' : '') + Math.round(Math.abs(d) * 1000).toLocaleString('en-US') : fmt(d, 1);
+    }
+
+    // Weekly tracking through September and October. October's first week dips just under target; in the second week
+    // the tracker shows the same channel and shops behind the fall, so the analyst starts checking. Lunch cover goes back
+    // at the start of week 3, and week 4 shows the recovery. The month's totals (118.2k against 124.0k) come from these weeks.
     (function drawTracking() {
       var svg = $('track-canvas');
-      var lastYear = [27.8, 27.9, 27.9, 28.0, 27.9, 28.0, 28.0, 28.1, 28.1, 28.1, 28.2, 28.2, 28.3];
-      var thisYear = [28.6, 28.3, 28.0, 27.7, 27.3, 27.0, 26.7, 26.5, 26.2];
+      var lastYear = [27.8, 27.9, 27.9, 28.0, 27.9, 28.0, 28.0, 28.1, 28.1];
+      var thisYear = [28.4, 28.3, 28.4, 28.2, 27.4, 26.6, 26.0, 26.7, 27.0];
       var target = 27.5;
-      function x(i) { return 34 + i * 30.5; }
-      function y(v) { return 280 - (v - 25.6) * 60; }
+      var PATTERN = 5; // October's second week: the check starts
+      var FIX = 5.5; // the start of week 3: one barista per shop moves back to the lunch shift
       var last = thisYear.length - 1;
+      var SHOWN_FIRST = PATTERN; // the opening step shows the weeks up to the pattern; the rest arrive with the fix
+      function x(i) { return 34 + i * 44; }
+      function y(v) { return 280 - (v - 25.6) * 60; }
+      function line(i, at, until) {
+        svg.appendChild(piece(svgEl('line', { class: 'wk-this', x1: x(i - 1), y1: y(thisYear[i - 1]).toFixed(1), x2: x(i), y2: y(thisYear[i]).toFixed(1) }), at, until));
+      }
+      function dot(i, at) { svg.appendChild(piece(svgEl('circle', { class: 'wk-dot-this', cx: x(i), cy: y(thisYear[i]).toFixed(1), r: 4 }), at)); }
+      function marker(at, i, label, until) {
+        svg.appendChild(piece(svgEl('line', { class: 'wk-start', x1: x(i), y1: 62, x2: x(i), y2: 296 }), at, until));
+        svg.appendChild(piece(svgEl('text', { class: 'wk-start-label', x: x(i) + 6, y: 58 }, label), at, until));
+      }
+      // side: 'right' puts the labels after the point; otherwise they sit before it. thisAbove lifts this year's label above its point.
+      function labels(i, at, until, side, thisAbove) {
+        var anchor = side === 'right' ? 'start' : 'end';
+        var lx = side === 'right' ? x(i) + 8 : x(i) - 8;
+        svg.appendChild(piece(svgEl('text', { class: 'wk-num', x: lx, y: thisAbove ? y(thisYear[i]) - 12 : y(thisYear[i]) + 24, 'text-anchor': anchor }, say('this year ', '今年 ') + orderCount(thisYear[i])), at, until));
+        svg.appendChild(piece(svgEl('text', { class: 'wk-num', x: lx, y: y(lastYear[i]) - 14, 'text-anchor': anchor }, say('last year ', '去年 ') + orderCount(lastYear[i])), at, until));
+      }
 
       svg.appendChild(piece(svgEl('line', { class: 'axis', x1: 20, y1: 296, x2: 415, y2: 296 }), 2));
-      [[1.5, say('September', '9 月')], [6, say('October', '10 月')], [10.5, say('November', '11 月')]].forEach(function (m) {
+      [[1.5, say('September', '9 月')], [6, say('October', '10 月')]].forEach(function (m) {
         svg.appendChild(piece(svgEl('text', { class: 'wk-axis', x: x(m[0]), y: 318, 'text-anchor': 'middle' }, m[1]), 2.02));
       });
       [3.5, 8.5].forEach(function (i) { svg.appendChild(piece(svgEl('line', { class: 'axis', x1: x(i), y1: 290, x2: x(i), y2: 302 }), 2.02)); });
 
       svg.appendChild(piece(svgEl('line', { class: 'wk-target', x1: 20, y1: y(target), x2: 415, y2: y(target) }), 2.05));
-      svg.appendChild(piece(svgEl('text', { class: 'wk-target-label', x: 415, y: y(target) + 18, 'text-anchor': 'end' }, say('weekly target ', '每周目标 ') + target.toFixed(1)), 2.05));
+      svg.appendChild(piece(svgEl('text', { class: 'wk-target-label', x: 20, y: y(target) + 18 }, say('weekly target ', '每周目标 ') + orderCount(target)), 2.05));
 
       var lastPath = lastYear.map(function (v, i) { return (i ? 'L' : 'M') + x(i) + ' ' + y(v).toFixed(1); }).join('');
       var lastLine = drawn(svgEl('path', { d: lastPath }));
@@ -217,68 +243,85 @@
       svg.appendChild(piece(lastLine, 2.08));
       lastYear.forEach(function (v, i) { svg.appendChild(piece(svgEl('circle', { class: 'wk-dot-last', cx: x(i), cy: y(v).toFixed(1), r: 3 }), 2.1)); });
 
-      thisYear.forEach(function (v, i) {
+      // Up to October's second week: a small dip, then the pattern
+      for (var i = 0; i <= SHOWN_FIRST; i++) {
         var at = 2.14 + i * 0.045;
-        if (i > 0) svg.appendChild(piece(svgEl('line', { class: 'wk-this', x1: x(i - 1), y1: y(thisYear[i - 1]).toFixed(1), x2: x(i), y2: y(v).toFixed(1) }), at));
-        svg.appendChild(piece(svgEl('circle', { class: 'wk-dot-this', cx: x(i), cy: y(v).toFixed(1), r: 4 }), at));
-      });
-      // Labels sit left of the last week, leaving the space after it for the weeks still to come
-      svg.appendChild(piece(svgEl('text', { class: 'wk-num', x: x(last) - 8, y: y(thisYear[last]) + 24, 'text-anchor': 'end' }, say('this year ', '今年 ') + thisYear[last].toFixed(1)), 2.54));
-      svg.appendChild(piece(svgEl('text', { class: 'wk-num', x: x(last) - 8, y: y(lastYear[last]) - 14, 'text-anchor': 'end' }, say('last year ', '去年 ') + lastYear[last].toFixed(1)), 2.54));
-      svg.appendChild(piece(svgEl('line', { class: 'wk-gap', x1: x(last), y1: y(lastYear[last]) + 7, x2: x(last), y2: y(thisYear[last]) - 7 }), 2.58));
-      svg.appendChild(piece(svgEl('text', { class: 'wk-gap-label', x: x(last) - 8, y: (y(lastYear[last]) + y(thisYear[last])) / 2 + 5, 'text-anchor': 'end' }, say(fmt(thisYear[last] - lastYear[last], 1) + 'k a week', '每周 ' + fmt(thisYear[last] - lastYear[last], 1) + ' 千单')), 2.6));
-
-      var start = x(last + 0.5);
-      svg.appendChild(piece(svgEl('line', { class: 'wk-start', x1: start, y1: 62, x2: start, y2: 296 }), 12.04));
-      svg.appendChild(piece(svgEl('text', { class: 'wk-start-label', x: start + 6, y: 58 }, say('promotion starts', '促销开始')), 12.04));
-      for (var i = last + 1; i < lastYear.length; i++) {
-        svg.appendChild(piece(svgEl('circle', { class: 'wk-dot-next', cx: x(i), cy: y(thisYear[last]).toFixed(1), r: 7 }), 12.1 + (i - last) * 0.05));
-        svg.appendChild(piece(svgEl('text', { class: 'note', x: x(i), y: y(thisYear[last]) + 4.5, 'text-anchor': 'middle' }, '?'), 12.1 + (i - last) * 0.05));
+        if (i > 0) line(i, at);
+        dot(i, at);
       }
-      svg.appendChild(piece(svgEl('text', { class: 'note', x: 20, y: 24 }, say('Each week now shows whether the action is working.', '现在每周都能看出行动是否见效。')), 12.36));
+      svg.appendChild(piece(svgEl('text', { class: 'note', x: x(PATTERN - 1), y: y(thisYear[PATTERN - 1]) + 26, 'text-anchor': 'end' }, say('small dip', '小幅下滑')), 2.42, 11));
+      marker(2.5, PATTERN, say('check starts', '开始排查'), 11);
+      labels(PATTERN, 2.54, 11, 'right');
+      svg.appendChild(piece(svgEl('line', { class: 'wk-gap', x1: x(PATTERN), y1: y(lastYear[PATTERN]) + 7, x2: x(PATTERN), y2: y(thisYear[PATTERN]) - 7 }), 2.58, 11));
+      svg.appendChild(piece(svgEl('text', { class: 'wk-gap-label', x: x(PATTERN) + 8, y: (y(lastYear[PATTERN]) + y(thisYear[PATTERN])) / 2 + 5 },
+        say(fmt(thisYear[PATTERN] - lastYear[PATTERN], 1) + 'k a week', '每周 ' + orderChange(thisYear[PATTERN] - lastYear[PATTERN]) + ' 单')), 2.6, 11));
+
+      // The fix goes in at the start of week 3, and the weeks after it show the recovery
+      marker(11.02, FIX, say('lunch shift restaffed', '咖啡师调回午班'));
+      for (var j = SHOWN_FIRST + 1; j <= last; j++) {
+        line(j, 11.06 + (j - SHOWN_FIRST) * 0.06);
+        dot(j, 11.06 + (j - SHOWN_FIRST) * 0.06);
+      }
+      labels(last, 11.3, undefined, 'left', true);
+      svg.appendChild(piece(svgEl('text', { class: 'note', x: 20, y: 24 }, say('Orders start to recover in week 4, after the lunch shift is restaffed.', '咖啡师调回午班后，第 4 周订单开始回升。')), 11.36));
     })();
 
-    // Variance data (illustrative, thousands of orders), shared by every chart and table
-    var segments = [
-      { key: 'delivery_app', name: say('Delivery apps', '外卖平台'), lead: say('Delivery apps', '外卖平台'), last: 48.0, now: 43.2 },
-      { key: 'takeaway', name: say('Takeaway', '外带'), lead: say('Takeaway', '外带'), last: 31.0, now: 30.1 },
-      { key: 'dine_in', name: say('Dine-in', '堂食'), lead: say('Dine-in', '堂食'), last: 22.5, now: 23.4 },
-      { key: 'app_preorder', name: say('App pre-order', 'App 预点单'), lead: say('App pre-orders', 'App 预点单'), last: 14.0, now: 13.3 },
-      { key: 'catering', name: say('Catering', '团餐'), lead: say('Catering', '团餐'), last: 6.5, now: 6.9 },
-      { key: 'drive_through', name: say('Drive-through', '得来速'), lead: say('The drive-through', '得来速'), last: 2.0, now: 1.3 }
-    ].map(function (s) {
-      var d = Math.round((s.now - s.last) * 10) / 10;
-      return { key: s.key, name: s.name, lead: s.lead, last: s.last, now: s.now, d: d, pct: (s.now - s.last) / s.last * 100 };
-    });
-    var totalLast = segments.reduce(function (a, s) { return a + s.last; }, 0);
-    var totalNow = segments.reduce(function (a, s) { return a + s.now; }, 0);
-    var totalD = Math.round((totalNow - totalLast) * 10) / 10;
-    var totalPct = (totalNow - totalLast) / totalLast * 100;
-    var shareOf = {};
-    segments.forEach(function (s) { shareOf[s.key] = s.d / totalD * 100; });
-    var orders = {
-      split: segments.slice(),
-      abs: segments.slice().sort(function (a, b) { return a.d - b.d; }),
-      pct: segments.slice().sort(function (a, b) { return a.pct - b.pct; })
-    };
-    var biggest = orders.abs[0];
-    var steepest = orders.pct[0];
-    var falling = segments.filter(function (s) { return s.d < 0; }).length;
+    // Change by channel (illustrative, thousands of orders). The story's analysis runs on the first two weeks of October
+    // against the same weeks last year; the month-end slide uses the whole month.
+    var CHANNELS = [
+      { key: 'delivery_app', name: say('Delivery apps', '外卖平台'), lead: say('Delivery apps', '外卖平台') },
+      { key: 'takeaway', name: say('Takeaway', '外带'), lead: say('Takeaway', '外带') },
+      { key: 'dine_in', name: say('Dine-in', '堂食'), lead: say('Dine-in', '堂食') },
+      { key: 'app_preorder', name: say('App pre-order', 'App 预点单'), lead: say('App pre-orders', 'App 预点单') },
+      { key: 'catering', name: say('Catering', '团餐'), lead: say('Catering', '团餐') },
+      { key: 'drive_through', name: say('Drive-through', '得来速'), lead: say('The drive-through', '得来速') }
+    ];
+    function summarise(figures) {
+      var rows = CHANNELS.map(function (c, i) {
+        var lastValue = figures[i][0];
+        var nowValue = figures[i][1];
+        return { key: c.key, name: c.name, lead: c.lead, last: lastValue, now: nowValue,
+          d: Math.round((nowValue - lastValue) * 10) / 10, pct: (nowValue - lastValue) / lastValue * 100 };
+      });
+      var sumLast = rows.reduce(function (a, s) { return a + s.last; }, 0);
+      var sumNow = rows.reduce(function (a, s) { return a + s.now; }, 0);
+      var change = Math.round((sumNow - sumLast) * 10) / 10;
+      var shares = {};
+      rows.forEach(function (s) { shares[s.key] = s.d / change * 100; });
+      var byChange = rows.slice().sort(function (a, b) { return a.d - b.d; });
+      var byRate = rows.slice().sort(function (a, b) { return a.pct - b.pct; });
+      return { segments: rows, totalLast: sumLast, totalNow: sumNow, totalD: change, totalPct: (sumNow - sumLast) / sumLast * 100,
+        shareOf: shares, orders: { split: rows.slice(), abs: byChange, pct: byRate }, biggest: byChange[0], steepest: byRate[0],
+        falling: rows.filter(function (s) { return s.d < 0; }).length };
+    }
+    // [last year, this year] per channel, in the order of CHANNELS
+    var twoWeeks = summarise([[21.6, 20.0], [14.0, 13.8], [10.2, 10.4], [6.3, 6.1], [2.9, 3.0], [0.9, 0.7]]);
+    var wholeMonth = summarise([[48.0, 43.2], [31.0, 30.1], [22.5, 23.4], [14.0, 13.3], [6.5, 6.9], [2.0, 1.3]]);
+    var segments = twoWeeks.segments;
+    var totalLast = twoWeeks.totalLast;
+    var totalNow = twoWeeks.totalNow;
+    var totalD = twoWeeks.totalD;
+    var totalPct = twoWeeks.totalPct;
+    var shareOf = twoWeeks.shareOf;
+    var orders = twoWeeks.orders;
+    var biggest = twoWeeks.biggest;
+    var steepest = twoWeeks.steepest;
+    var falling = twoWeeks.falling;
     // Each chart title states the message of its step
     var chartTitles = ZH ? {
-      total: '订单量同比下降 ' + Math.abs(totalPct).toFixed(1) + '%',
+      total: '10 月前两周，订单量同比下降 ' + Math.abs(totalPct).toFixed(1) + '%',
       split: NUMBER_WORDS[falling] + '种点单方式下降，' + NUMBER_WORDS[segments.length - falling] + '种增长',
-      abs: biggest.lead + '占了 ' + Math.abs(totalD).toFixed(1) + ' 千单降幅的 ' + Math.round(shareOf[biggest.key]) + '%',
-      pct: steepest.lead + '降得最快，但只少了 ' + Math.abs(steepest.d).toFixed(1) + ' 千单'
+      abs: '净减少的 ' + orderCount(Math.abs(totalD)) + ' 单中，' + Math.round(shareOf[biggest.key]) + '% 来自' + biggest.lead,
+      pct: steepest.lead + '降得最快，但只少了 ' + orderCount(Math.abs(steepest.d)) + ' 单'
     } : {
-      total: 'Orders fell ' + Math.abs(totalPct).toFixed(1) + '% year on year',
+      total: 'Orders are down ' + Math.abs(totalPct).toFixed(1) + '% on the same weeks last year',
       split: NUMBER_WORDS[falling] + ' ways of ordering fell, and ' + NUMBER_WORDS[segments.length - falling].toLowerCase() + ' grew',
-      abs: biggest.lead + ' explain ' + Math.round(shareOf[biggest.key]) + '% of the ' + Math.abs(totalD).toFixed(1) + 'k drop',
+      abs: biggest.lead + ' explain ' + Math.round(shareOf[biggest.key]) + '% of the net ' + Math.abs(totalD).toFixed(1) + 'k drop',
       pct: steepest.lead + ' fell fastest, but by only ' + Math.abs(steepest.d).toFixed(1) + 'k'
     };
 
     // Channel chart: pieces arrive with scroll, rows slide to their new rank, the variance bars rescale
-    var CH = { top: 34, row: 60, barScale: 200 / 48, axis: 372, absScale: 13, pctScale: 2, right: 440 };
+    var CH = { top: 34, row: 60, barScale: 180 / 21.6, axis: 372, absScale: 45, pctScale: 2, right: 440 };
     var STEP = { total: 3, split: 6, abs: 7, pct: 8 };
     var chart = $('story-chart');
     var chartTitle = $('ch-title');
@@ -290,18 +333,18 @@
       var nowW = totalNow * scale;
       var lastW = totalLast * scale;
       chart.appendChild(piece(svgEl('text', { class: 't-label', x: 0, y: 54 }, say('All channels', '全部渠道')), t + 0.04, t + 1));
-      chart.appendChild(piece(svgEl('text', { class: 't-last', x: lastW, y: 54, 'text-anchor': 'end' }, say('October 2025: ', '2025 年 10 月：') + totalLast.toFixed(1)), t + 0.08, t + 1));
+      chart.appendChild(piece(svgEl('text', { class: 't-last', x: lastW, y: 54, 'text-anchor': 'end' }, say('Same weeks 2025: ', '2025 年同期：') + orderCount(totalLast)), t + 0.08, t + 1));
       chart.appendChild(piece(svgEl('rect', { class: 'bar-last', x: 0.75, y: 66.75, width: lastW - 1.5, height: 26 }), t + 0.08, t + 1));
       chart.appendChild(piece(svgEl('rect', { class: 'bar-this', x: 0, y: 76, width: nowW, height: 26 }), t + 0.14, t + 1));
-      chart.appendChild(piece(svgEl('text', { class: 't-value', x: lastW + 8, y: 96 }, totalNow.toFixed(1)), t + 0.18, t + 1));
+      chart.appendChild(piece(svgEl('text', { class: 't-value', x: lastW + 8, y: 96 }, orderCount(totalNow)), t + 0.18, t + 1));
       chart.appendChild(piece(svgEl('rect', { x: nowW, y: 112, width: lastW - nowW, height: 14, fill: 'var(--bad)' }), t + 0.24, t + 1));
       chart.appendChild(piece(svgEl('line', { class: 'axis', x1: lastW, y1: 108, x2: lastW, y2: 130 }), t + 0.24, t + 1));
-      chart.appendChild(piece(svgEl('text', { class: 't-delta', x: lastW, y: 152, 'text-anchor': 'end' }, fmt(totalD, 1) + say('k, ', ' 千单，') + percentLabel(totalPct)), t + 0.3, t + 1));
-      chart.appendChild(piece(svgEl('text', { class: 't-note', x: 0, y: 196 }, say('The red gap is what was lost since last year.', '红色部分是比去年少掉的订单。')), t + 0.38, t + 1));
+      chart.appendChild(piece(svgEl('text', { class: 't-delta', x: lastW, y: 152, 'text-anchor': 'end' }, orderChange(totalD) + say('k, ', ' 单，') + percentLabel(totalPct)), t + 0.3, t + 1));
+      chart.appendChild(piece(svgEl('text', { class: 't-note', x: 0, y: 196 }, say('The red gap is the shortfall against last year.', '红色部分是比去年同期少掉的订单。')), t + 0.38, t + 1));
 
       var s0 = STEP.split;
-      chart.appendChild(piece(svgEl('text', { x: 0, y: 14, class: 'ch-colhead' }, say('Oct 2026 vs Oct 2025, thousands', '2026 年 10 月对比 2025 年 10 月，千单')), s0));
-      varianceHead = piece(svgEl('text', { x: CH.axis, y: 14, 'text-anchor': 'middle', class: 'ch-colhead' }, say('Change, thousands', '变化，千单')), s0);
+      chart.appendChild(piece(svgEl('text', { x: 0, y: 14, class: 'ch-colhead' }, say('Oct 1–14, 2026 vs same weeks 2025, thousands', '10 月前两周对比去年同期，单位：单')), s0));
+      varianceHead = piece(svgEl('text', { x: CH.axis, y: 14, 'text-anchor': 'middle', class: 'ch-colhead' }, say('Change, thousands', '变化，单')), s0);
       chart.appendChild(varianceHead);
       segments.forEach(function (s, i) {
         var g = piece(svgEl('g', { class: 'vrow' }), s0 + 0.05 + i * 0.06);
@@ -311,7 +354,7 @@
         // Last year outlined behind this year, offset across the bar only; the stroke inset lines the outline's outer edge up with the solid bar
         g.appendChild(svgEl('rect', { class: 'bar-last', x: 0.75, y: 25.75, width: s.last * CH.barScale - 1.5, height: 14 }));
         g.appendChild(svgEl('rect', { class: 'bar-this', x: 0, y: 31, width: s.now * CH.barScale, height: 15 }));
-        g.appendChild(svgEl('text', { class: 'rval', x: Math.max(s.now, s.last) * CH.barScale + 6, y: 44 }, s.now.toFixed(1)));
+        g.appendChild(svgEl('text', { class: 'rval', x: Math.max(s.now, s.last) * CH.barScale + 6, y: 44 }, orderCount(s.now)));
         var bar = svgEl('rect', { class: 'vbar', x: CH.axis, y: 28, width: 1, height: 16, fill: varianceColor(s.d) });
         var label = svgEl('text', { class: 'vlabel', x: 0, y: 40 }, '');
         g.appendChild(bar);
@@ -332,7 +375,7 @@
       var order = orders[state] || orders.split;
       var usePct = state === 'pct';
       var focusKey = state === 'abs' ? biggest.key : usePct ? steepest.key : null;
-      varianceHead.textContent = usePct ? say('Change, %', '变化，%') : say('Change, thousands', '变化，千单');
+      varianceHead.textContent = usePct ? say('Change, %', '变化，%') : say('Change, thousands', '变化，单');
       order.forEach(function (s, i) {
         var el = rowEls[s.key];
         var width = usePct ? s.pct * CH.pctScale : s.d * CH.absScale;
@@ -342,32 +385,32 @@
         el.bar.style.transform = 'scaleX(' + width.toFixed(2) + ')';
         el.label.setAttribute('text-anchor', width < 0 ? 'end' : 'start');
         el.label.style.transform = 'translate(' + labelX.toFixed(2) + 'px, 0px)';
-        el.label.textContent = usePct ? percentLabel(s.pct) : fmt(s.d, 1);
+        el.label.textContent = usePct ? percentLabel(s.pct) : orderChange(s.d);
         var note = '';
-        if (s.key === focusKey) note = usePct ? say('steepest, but only ' + Math.abs(s.d).toFixed(1) + 'k', '降幅最大，但只少 ' + Math.abs(s.d).toFixed(1) + ' 千')
-          : say(Math.round(shareOf[s.key]) + '% of the net drop', '占净降幅的 ' + Math.round(shareOf[s.key]) + '%');
+        if (s.key === focusKey) note = usePct ? say('steepest, but only ' + Math.abs(s.d).toFixed(1) + 'k', '降幅最大，但只少 ' + orderCount(Math.abs(s.d)) + ' 单')
+          : say(Math.round(shareOf[s.key]) + '% of the net drop', '占净减少量的 ' + Math.round(shareOf[s.key]) + '%');
         el.note.textContent = note;
       });
     }
     layoutChart('split');
 
-    // Review slide: ranked by the size of the change
+    // Month-end slide: the whole of October, ranked by the size of the change
     (function drawSlideChart() {
       var svg = $('slide-chart');
       var L = { top: 4, row: 29, axis: 250, scale: 18 };
-      orders.abs.forEach(function (s, i) {
+      wholeMonth.orders.abs.forEach(function (s, i) {
         var y = L.top + i * L.row;
         var w = s.d * L.scale;
-        var g = piece(svgEl('g', {}), 11.14 + i * 0.05);
+        var g = piece(svgEl('g', {}), 12.14 + i * 0.05);
         g.appendChild(svgEl('text', { class: 'slabel', x: 0, y: y + 18 }, s.name));
         g.appendChild(svgEl('rect', { x: w < 0 ? L.axis + w : L.axis, y: y + 6, width: Math.abs(w), height: 14, fill: varianceColor(s.d) }));
-        g.appendChild(svgEl('text', { class: 'sval', x: w < 0 ? L.axis + w - 5 : L.axis + w + 5, y: y + 18, 'text-anchor': w < 0 ? 'end' : 'start' }, fmt(s.d, 1)));
+        g.appendChild(svgEl('text', { class: 'sval', x: w < 0 ? L.axis + w - 5 : L.axis + w + 5, y: y + 18, 'text-anchor': w < 0 ? 'end' : 'start' }, orderChange(s.d)));
         svg.appendChild(g);
       });
-      svg.appendChild(piece(svgEl('line', { class: 'axis', x1: L.axis, y1: 0, x2: L.axis, y2: L.top + segments.length * L.row }), 11.14));
-      svg.appendChild(piece(svgEl('path', { class: 'slide-ring draw', pathLength: 1, d: loopPath(-6, L.top - 1, 130, L.top + L.row - 3) }), 11.42));
-      $('slide-title').textContent = say(biggest.lead + ' explain ' + Math.round(shareOf[biggest.key]) + '% of a ' + Math.abs(totalD).toFixed(1) + 'k drop in orders',
-        '订单减少 ' + Math.abs(totalD).toFixed(1) + ' 千单，其中 ' + Math.round(shareOf[biggest.key]) + '% 来自' + biggest.lead);
+      svg.appendChild(piece(svgEl('line', { class: 'axis', x1: L.axis, y1: 0, x2: L.axis, y2: L.top + wholeMonth.segments.length * L.row }), 12.14));
+      svg.appendChild(piece(svgEl('path', { class: 'slide-ring draw', pathLength: 1, d: loopPath(-6, L.top - 1, 130, L.top + L.row - 3) }), 12.42));
+      $('slide-title').textContent = say(wholeMonth.biggest.lead + ' explain ' + Math.round(wholeMonth.shareOf[wholeMonth.biggest.key]) + '% of a net ' + Math.abs(wholeMonth.totalD).toFixed(1) + 'k drop in orders',
+        '订单净减少 ' + orderCount(Math.abs(wholeMonth.totalD)) + ' 单，其中 ' + Math.round(wholeMonth.shareOf[wholeMonth.biggest.key]) + '% 来自' + wholeMonth.biggest.lead);
     })();
 
     // Raw output for the side panel, from the same data
@@ -764,7 +807,7 @@
       var gap = Math.abs(weighted - simple) * 100;
       var totals = say('Total profit is ' + money(profit) + ' on ' + money(revenue) + ' of revenue. ',
         '总收入 ' + money(revenue) + '，总利润 ' + money(profit) + '。');
-      if (gap < 0.05) return totals + say('Both products sell the same amount, so the two answers agree.', '两种产品卖得一样多，所以两个答案相同。');
+      if (gap < 0.05) return totals + say('Both products bring in the same revenue, so the two answers agree.', '两种产品收入一样，所以两个答案相同。');
       return totals + say('The two answers differ by ' + tidy(gap) + ' percentage points.', '两个答案相差 ' + tidy(gap) + ' 个百分点。');
     }
     function update() {

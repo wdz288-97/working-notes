@@ -26,7 +26,7 @@
 
   <header class="page-head with-figure">
     <div class="head-text">
-      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 6 of 6</p>
+      <p class="page-name"><a href="ai.html">Using AI</a>, chapter 6</p>
       <h1>AI in analytics</h1>
       <p class="meta">About 5 minutes to read</p>
       <p class="lede">How the ideas in this guide come together in data analysis: where AI fits in my workflow, the two places I check its work, and what a team should see before relying on an AI agent.</p>
@@ -53,10 +53,10 @@
     <section class="key-ideas" aria-labelledby="key-ideas">
       <h2 id="key-ideas">Key ideas</h2>
       <ul>
-        <li>AI never interprets data I haven't validated, and nothing goes out in its words alone.</li>
+        <li>AI never interprets data I haven't validated, and nothing goes out in the AI's words without my review.</li>
         <li>Organise the context so AI can find it: team-agreed information in shared tools, personal preferences kept locally.</li>
         <li>Before reusing old work, compare the period, conditions, assumptions and definitions with the new request.</li>
-        <li>Analysts need business context, metrics and basic SQL and data knowledge to judge AI's work.</li>
+        <li>In my experience, judging AI's work takes business context, metrics and basic SQL and data knowledge.</li>
         <li>Start a team on real requests, and show accuracy and time saved before expanding.</li>
       </ul>
     </section>
@@ -74,10 +74,10 @@
           <p class="guide-here">In this chapter</p>
           <ol class="guide-sections">
             <li><a href="#key-ideas">Key ideas</a></li>
-            <li><a href="#workflow">Two checkpoints keep the analysis trustworthy</a></li>
+            <li><a href="#workflow">I check AI's analysis at two fixed points</a></li>
             <li><a href="#context">Organise the context so AI can find it</a></li>
             <li><a href="#reuse">Check what's changed before reusing old work</a></li>
-            <li><a href="#foundations">Analysts need the foundations to judge AI's work</a></li>
+            <li><a href="#foundations">Judging AI's work takes a few foundations</a></li>
             <li><a href="#adoption">Start a team on real requests</a></li>
             <li><a href="#my-view">My view: how AI should work in a company</a></li>
             <li><a href="#self-check">Check your understanding</a></li>
@@ -88,9 +88,9 @@
     </nav>
 
     <article class="prose">
-      <h2 id="workflow">Two checkpoints keep the analysis trustworthy</h2>
+      <h2 id="workflow">I check AI's analysis at two fixed points</h2>
       <p>This chapter is for people who work with data, so a few terms are worth a line each. SQL is the language used to pull data out of databases. A join combines two tables, and the grain is the level of detail of each row, such as one row per order or one row per day. Metadata is information about the data itself, such as what each column means.</p>
-      <p>In my analysis work, AI drafts and runs a lot of the work, but two checkpoints never move. <mark>The AI never interprets data I haven't validated, and nothing goes out in its words alone.</mark> You can see the workflow in the <a href="playbook.html">playbook story</a>, where the AI writes the query that splits the drop in orders by channel.</p>
+      <p>In my analysis work, AI drafts and runs a lot of the work, but two checkpoints never move. <mark>The AI never interprets data I haven't validated, and nothing goes out in the AI's words without my review.</mark> You can see the workflow in the <a href="playbook.html">playbook story</a>, where the AI writes the query that splits the drop in orders by channel.</p>
       <ol class="pipeline is-static">
         <li><svg class="ico" aria-hidden="true"><use class="draw" href="icons.svg#i-bubble"/></svg><span class="who">Me and the AI</span><strong>Agree the plan</strong><p>Objective, output, tables, joins, filters, grain and calculations. It draws on past SQL, table metadata, metric definitions, business context, team rules and data-privacy standards.</p></li>
         <li><svg class="ico" aria-hidden="true"><use class="draw" href="icons.svg#i-sparkle"/></svg><span class="who">The AI</span><strong>Write and run the SQL</strong><p>Within the plan. Any material change comes back to me for realignment.</p></li>
@@ -111,13 +111,13 @@
       </ul>
       <p><mark>When the AI gets something wrong because it lacked context, I add that context to what it reads next time.</mark> Improvements to shared context are worth prioritising by their effect on the quality of the work and on the team's ability to use AI.</p>
 
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>While working on SQL, data and dashboards, I watch for tables that seem poorly structured or heavy to query. When a planned script gets long and complex, I ask the AI for better models or layers where it could be optimised, and I add that preference to the context for future planning.</p></aside>
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="icons.svg#i-person"/></svg>In my practice</p><p>While working on SQL, data and dashboards, I watch for tables that seem poorly structured or slow or costly to query. When a planned script gets long and complex, I ask the AI for better models or layers where it could be optimised, and I add that preference to the context for future planning.</p></aside>
 
       <h2 id="reuse">Check what's changed before reusing old work</h2>
       <p>The last step of the workflow saves everything together: the plan, the SQL, the checks, the outputs, the references and assumptions, a summary of the instructions, the ticket and the final version I edited. That archive makes reruns quick, and it's useful for periodic reviews, related requests and changes of format.</p>
       <p>A query that was right last quarter isn't automatically right now. <mark>Before rerunning old work, compare the period, conditions, assumptions and definitions with the new request.</mark></p>
 
-      <h2 id="foundations">Analysts need the foundations to judge AI's work</h2>
+      <h2 id="foundations">Judging AI's work takes a few foundations</h2>
       <p>AI can write the query and draft the chart, but someone has to judge whether they're right. That takes three kinds of knowledge:</p>
       <ul>
         <li><strong>Business context:</strong> what the business and its teams are trying to achieve.</li>
@@ -137,7 +137,7 @@
       <p>These are the checks I'd want a team to see, not results from a pilot. <mark>Prove it on real requests before expanding.</mark></p>
 
       <h2 id="my-view">My view: how AI should work in a company</h2>
-      <p>This is my perspective on where AI at work should go, not a project I'm running. I see a chat-based agent, perhaps starting as a few focused bots, that eases the steps of everyday analytics work: getting data and insights, building monitoring dashboards, summarising meetings, following up on projects with their context, and helping with planning.</p>
+      <p>This is my perspective on where AI at work should go, not a project I'm running. I see a chat-based agent, perhaps starting as a few focused bots, that simplifies everyday analytics work: getting data and insights, building monitoring dashboards, summarising meetings, following up on projects with their context, and helping with planning.</p>
 
       <figure class="figure model-map agent-map">
         <svg viewBox="0 0 360 280" role="img" aria-label="A team agent connected to communication, documentation, projects and operations tools.">
@@ -163,7 +163,7 @@
       <section class="self-check" aria-labelledby="self-check">
         <h2 id="self-check">Check your understanding</h2>
         <div class="quiz" data-answer="a">
-          <p class="quiz-q">The AI has written and run the SQL, and its first chart looks convincing. What has to happen before it interprets anything?</p>
+          <p class="quiz-q">The AI has written and run the SQL, and the numbers it returned look plausible. What has to happen before it interprets anything?</p>
           <ul class="quiz-options">
             <li><button type="button" class="quiz-option" data-option="a">Validate the raw output first.</button></li>
             <li><button type="button" class="quiz-option" data-option="b">Let it interpret, then check afterwards.</button></li>

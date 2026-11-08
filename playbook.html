@@ -38,9 +38,9 @@
     <div class="head-text">
       <p class="page-name">Business analysis playbook</p>
       <h1>One loop, three ways in</h1>
-      <p class="lede">Most business work runs on a loop: plan, do, check, act. A business intelligence analyst supports every turn of it: agreeing targets and definitions, tracking the numbers, explaining what moved, and helping the teams who act.</p>
-      <p>The analyst's work usually starts in one of three ways: <strong>a KPI they own moves</strong>, <strong>another team asks a question</strong>, or <strong>a team starts an initiative</strong>.</p>
-      <p class="scope-note">These notes come from work in companies with several teams, a ticketing system and regular business reviews. In a small business the same loop applies with lighter tools: a shared sheet instead of tickets, a weekly catch-up instead of a formal review.</p>
+      <p class="lede">Most of the work I see runs on one loop: plan, do, check, act. As a business intelligence analyst, I support each stage of it: agreeing targets and definitions, tracking the numbers, explaining what moved, and helping the teams who act.</p>
+      <p>The analyst's work usually starts in one of three ways: <strong>a KPI they own moves</strong>, <strong>another team asks for data, an analysis or a dashboard</strong>, or <strong>a team starts an initiative</strong>.</p>
+      <p class="scope-note">These notes come from work in companies with several teams, a ticketing system and regular business reviews. In a small business the same loop applies with lighter tools: a shared sheet instead of tickets, a short weekly meeting instead of a formal review.</p>
     </div>
     <svg class="canvas loop-figure" id="ways-canvas" viewBox="0 0 440 400" aria-hidden="true"></svg>
     <p class="scroll-cue"><svg class="ico cue-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M6 13l6 6l6-6"/></svg>Scroll to follow one example around the loop</p>
@@ -120,9 +120,9 @@
             <p class="ck-head" data-at="4"><svg class="ico"><use class="draw" href="icons.svg#i-clipboard"/></svg>Is the number itself right?</p>
             <ul class="ck-list">
               <li class="ck" data-at="4.08"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>Same definition both years</span><span class="ck-result">The glossary entry for an order is unchanged</span></span></li>
-              <li class="ck" data-at="4.16"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>Data is complete</span><span class="ck-result">October sales loaded 2 Nov, after the cutoff</span></span></li>
-              <li class="ck" data-at="4.24"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>October 2026 total reconciles</span><span class="ck-result">118,200 orders on the master dashboard</span></span></li>
-              <li class="ck" data-at="4.32"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>October 2025 total reconciles</span><span class="ck-result">124,000 orders in last year's review</span></span></li>
+              <li class="ck" data-at="4.16"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>Data is complete</span><span class="ck-result">Every order for both weeks loaded by the next morning</span></span></li>
+              <li class="ck" data-at="4.24"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>2026 total reconciles</span><span class="ck-result">54,000 orders in the weekly tracker</span></span></li>
+              <li class="ck" data-at="4.32"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg><span><span>2025 total reconciles</span><span class="ck-result">55,900 orders in the same weeks last year</span></span></li>
             </ul>
             <p class="note-text" data-at="4.4">Confirmed: the drop is real, not a data problem.</p>
           </div>
@@ -142,25 +142,25 @@
             </svg>
             <dl class="wk-plan">
               <div data-at="5.22"><dt>Question</dt><dd>Which ways of ordering drove the drop?</dd></div>
-              <div data-at="5.26"><dt>Grain</dt><dd>One row per channel per month</dd></div>
+              <div data-at="5.26"><dt>Grain</dt><dd>One row per order channel</dd></div>
               <div data-at="5.3"><dt>Calculations</dt><dd>Change, change % and share of the net drop</dd></div>
             </dl>
-            <pre class="code-mini" data-at="5.33"><code id="scene-sql">SELECT order_channel, order_month,
+            <pre class="code-mini" data-at="5.33"><code id="scene-sql">SELECT order_channel, order_week,
   COUNT(DISTINCT order_id) AS orders
 FROM cafe.orders
 WHERE is_refunded = FALSE
   AND is_staff_order = FALSE
-  AND order_month IN ('2025-10-01',
-                      '2026-10-01')
+  AND order_week IN ('2025-W40', '2025-W41',
+                     '2026-W40', '2026-W41')
 GROUP BY 1, 2;</code></pre>
-            <p class="wk-check" data-at="5.66"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Output checked: no duplicates, all 6 channels, totals match 118.2k</p>
+            <p class="wk-check" data-at="5.66"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Output checked: no duplicates, all 6 channels, totals match the tracker</p>
           </div>
 
           <div class="scene scene-chart">
-            <p class="scene-title" id="ch-title" data-at="3">Orders fell 4.7% year on year</p>
-            <p class="scene-sub" data-at="3">Monthly orders, October 2026 vs October 2025, thousands. Illustrative.</p>
+            <p class="scene-title" id="ch-title" data-at="3">Orders are down 3.4% on the same weeks last year</p>
+            <p class="scene-sub" data-at="3">Orders in the first two weeks of October, 2026 vs the same weeks of 2025, thousands. Illustrative.</p>
             <svg id="story-chart" viewBox="-8 0 456 400" preserveAspectRatio="xMidYMin meet"></svg>
-            <p class="ch-legend" data-at="3.02"><span><i class="sw this"></i>October 2026</span><span><i class="sw last"></i>October 2025</span><span><i class="sw fall"></i>Fall</span><span><i class="sw growth"></i>Growth</span></p>
+            <p class="ch-legend" data-at="3.02"><span><i class="sw this"></i>2026</span><span><i class="sw last"></i>Same weeks 2025</span><span><i class="sw fall"></i>Fall</span><span><i class="sw growth"></i>Growth</span></p>
           </div>
 
           <div class="scene scene-align">
@@ -168,14 +168,14 @@ GROUP BY 1, 2;</code></pre>
               <use class="ico draw" href="icons.svg#i-person" x="30" y="90" width="60" height="60" data-at="9"/>
               <text x="60" y="172" text-anchor="middle" data-at="9">Analyst</text>
               <use class="ico draw" href="icons.svg#i-person" x="350" y="90" width="60" height="60" data-at="9.04"/>
-              <text x="380" y="172" text-anchor="middle" data-at="9.04">Business-unit head</text>
+              <text x="380" y="172" text-anchor="middle" data-at="9.04">Operations manager</text>
               <path class="ico draw" pathLength="1" d="M160 70H280V160H160Z" data-at="9.08"/>
               <use class="ico draw" href="icons.svg#i-bars" x="190" y="88" width="60" height="60" data-at="9.1"/>
               <text class="note" x="220" y="186" text-anchor="middle" data-at="9.12">the finding</text>
               <use class="ico draw amber" href="icons.svg#i-bubble" x="300" y="20" width="48" height="48" data-at="9.16"/>
-              <text class="note" x="324" y="16" text-anchor="middle" data-at="9.16">a question, with context</text>
+              <text class="note" x="324" y="16" text-anchor="middle" data-at="9.16">context: a new shift schedule</text>
               <use class="ico draw accent" href="icons.svg#i-bubble" x="92" y="20" width="48" height="48" data-at="9.22"/>
-              <text class="note" x="116" y="16" text-anchor="middle" data-at="9.22">an answer, with data</text>
+              <text class="note" x="116" y="16" text-anchor="middle" data-at="9.22">a check, with data</text>
               <use class="ico draw accent" href="icons.svg#i-loop" x="190" y="226" width="60" height="60" data-at="9.28"/>
               <text class="note" x="220" y="310" text-anchor="middle" data-at="9.32">repeat until the finding holds,</text>
               <text class="note" x="220" y="330" text-anchor="middle" data-at="9.32">or is dismissed</text>
@@ -187,26 +187,26 @@ GROUP BY 1, 2;</code></pre>
               <p class="lane-h" style="grid-column:1" data-at="10"><svg class="ico"><use class="draw" href="icons.svg#i-person"/></svg><span>Analyst</span></p>
               <p class="lane-h" style="grid-column:2" data-at="10.04"><svg class="ico"><use class="draw" href="icons.svg#i-person"/></svg><span>Business-unit head</span></p>
               <p class="lane-h" style="grid-column:3" data-at="10.08"><svg class="ico"><use class="draw" href="icons.svg#i-person"/></svg><span>Operations manager</span></p>
-              <div class="node" style="--c:1;--r:2" data-at="10.12"><b>1</b>Shared thread with the evidence</div>
-              <div class="node" style="--c:2;--r:3" data-at="10.18"><b>2</b>Sets the priority and timeline</div>
-              <div class="node" style="--c:3;--r:4" data-at="10.24"><b>3</b>Designs the action: a delivery-app promotion</div>
-              <div class="node loop" style="--c:1;--r:4" data-at="10.3"><b>3, alongside</b>Supplies data points as the plan takes shape</div>
-              <div class="node" style="--c:3;--r:5" data-at="10.36"><b>4</b>Shares the plan with the head</div>
-              <div class="node" style="--c:1;--r:6" data-at="10.42"><b>5</b>Tracks the KPI as the action runs</div>
+              <div class="node" style="--c:1;--r:2" data-at="10.12"><b>1</b>Shares the finding and its cause</div>
+              <div class="node" style="--c:2;--r:3" data-at="10.18"><b>2</b>Agrees the finding and the priority</div>
+              <div class="node" style="--c:3;--r:4" data-at="10.24"><b>3</b>Moves one barista per shop back to the lunch shift</div>
+              <div class="node loop" style="--c:1;--r:4" data-at="10.3"><b>3, alongside</b>Tracks prep times and lunchtime orders daily</div>
+              <div class="node" style="--c:3;--r:5" data-at="10.36"><b>4</b>Briefs the five shop managers</div>
+              <div class="node" style="--c:1;--r:6" data-at="10.42"><b>5</b>Reports the effect each week</div>
             </div>
           </div>
 
           <div class="scene scene-present">
-            <div class="slide" data-at="11">
-              <p class="slide-title" id="slide-title" data-at="11.06">Delivery apps explain 83% of a 5.8k drop in orders</p>
-              <p class="slide-sub" data-at="11.1">Change in monthly orders by channel, October 2026 vs October 2025, thousands</p>
+            <div class="slide" data-at="12">
+              <p class="slide-title" id="slide-title" data-at="12.06">Delivery apps explain 83% of a net 5.8k drop in orders</p>
+              <p class="slide-sub" data-at="12.1">Change in monthly orders by channel, October 2026 vs October 2025, thousands. Lunch shift restaffed from week 3.</p>
               <svg id="slide-chart" viewBox="-8 0 416 182"></svg>
-              <p class="slide-foot" data-at="11.45">An order is one paid receipt. Refunds and staff drinks excluded. Same definition both years. Figures illustrative.</p>
+              <p class="slide-foot" data-at="12.45">An order is one paid receipt. Refunds and staff drinks excluded. Same definition both years. Figures illustrative.</p>
             </div>
             <ul class="prep">
-              <li data-at="11.5"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Documents updated by the cutoff</li>
-              <li data-at="11.56"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Numbers pre-reviewed with the head</li>
-              <li data-at="11.62"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Who presents what, agreed</li>
+              <li data-at="12.5"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Documents updated by the cutoff</li>
+              <li data-at="12.56"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Numbers pre-reviewed with the head</li>
+              <li data-at="12.62"><svg class="ico"><use class="draw" href="icons.svg#i-tick"/></svg>Who presents what, agreed</li>
             </ul>
           </div>
 
@@ -222,60 +222,63 @@ GROUP BY 1, 2;</code></pre>
       </div></div>
       <div class="step" id="s-plan" data-scene="plan" data-state="plan" data-stage="0"><div class="step-card">
         <h3>A key metric gets an owner, a target and one definition</h3>
-        <p>Monthly orders is <strong>owned by the BI analyst</strong>, who tracks it, explains its moves and works with the teams who act.</p>
+        <p>Monthly orders is <strong>owned by the BI analyst</strong>, who tracks it, explains its moves and works with the teams who act. A <strong>weekly tracker</strong> splits it by channel and shop.</p>
         <p>Before the month starts, the <strong>target</strong> is agreed with the business-unit head, and <mark>every team counts an order the same way</mark>.</p>
       </div></div>
       <div class="step" id="s-do" data-scene="track" data-state="track" data-stage="1"><div class="step-card">
-        <h3>Weekly tracking shows orders slipping</h3>
-        <p>During the month, the analyst checks orders <strong>every week</strong> against target and last year.</p>
-        <p>Through September and October, <mark>orders fall a little further each week</mark> while last year's line holds steady.</p>
+        <h3>Two weeks into October, a pattern shows</h3>
+        <p>Every week, the analyst checks orders in the tracker against target and last year, by channel and shop.</p>
+        <p>In October's first week, orders dip just under target. The tracker shows no clear cause, so the analyst keeps watching.</p>
+        <p>In the second week they fall further, and <mark>the same channel and shops are behind it two weeks in a row</mark>. That pattern is the signal to investigate now, while there's still time to act this month.</p>
       </div></div>
       <div class="step" id="s-check" data-scene="chart" data-state="total" data-stage="2"><div class="step-card">
-        <h3>October closes 5.8k orders down</h3>
-        <p>At the monthly review, October shows <strong>118.2k</strong> orders against 124.0k a year earlier: <span class="chg fall">−4.7%</span>, and <span class="chg fall">3.8k below</span> target.</p>
-        <p>As the metric's owner, the analyst is expected to explain why.</p>
+        <h3>Two weeks in, orders are 1.9k below the same weeks last year</h3>
+        <p>The first two weeks of October show <strong>54.0k</strong> orders against 55.9k in the same weeks last year: <span class="chg fall">−3.4%</span>, and <span class="chg fall">1.0k below</span> target.</p>
+        <p>As the metric's owner, the analyst looks for the cause while there's still time to act.</p>
       </div></div>
       <div class="step" data-scene="confirm" data-state="confirm" data-stage="2"><div class="step-card">
         <h3>First, the analyst makes sure the drop is real</h3>
         <p>A drop in the report isn't always a real drop: <mark>late or incomplete data can make orders look lower</mark> than they were.</p>
-        <p>That's why it's checked first: the <strong>same definition</strong> both years, <strong>complete data</strong>, and totals that <strong>match the master dashboard</strong>.</p>
+        <p>That's why it's checked first: the <strong>same definition</strong> both years, <strong>complete data</strong> for both weeks, and totals that <strong>match the tracker</strong>.</p>
       </div></div>
       <div class="step" data-scene="work" data-state="sql" data-stage="2"><div class="step-card">
         <h3>Then the drop is broken down, with the AI writing the query</h3>
-        <p>To see where the drop came from, the analyst and the AI first agree <strong>what to count and how</strong>. The AI then writes the SQL, and the analyst <mark>checks the output before reading anything into it</mark>.</p>
+        <p>To see where the drop came from, the analyst and the AI first agree <strong>what to count and how</strong>. The AI then writes the SQL, and the analyst <mark>checks the output before interpreting it</mark>.</p>
         <p class="aside"><button type="button" class="link-btn" data-open="drawer-work">See the plan, SQL and checks</button></p>
       </div></div>
       <div class="step" data-scene="chart" data-state="split" data-stage="2"><div class="step-card">
         <h3>Four channels lost orders, and two gained</h3>
-        <p>Split by how customers order, each row compares <strong>this October with last</strong>. The red bars are the losses.</p>
+        <p>Split by how customers order, each row compares <strong>the first two weeks with the same weeks last year</strong>. The red bars are the losses.</p>
       </div></div>
       <div class="step aha" data-scene="chart" data-state="abs" data-stage="2"><div class="step-card">
-        <h3>Delivery apps explain 83% of the drop</h3>
-        <p>Delivery-app orders changed by <span class="chg fall">−4.8k</span>, most of the 5.8k drop. <mark>One large channel holds most of the answer</mark>, so that's where action will pay back.</p>
-        <p>The next questions: which <strong>shops</strong> and which <strong>apps</strong>, and does the operations team's explanation hold up in the data?</p>
+        <h3>Delivery apps explain 84% of the net drop</h3>
+        <p>Delivery-app orders changed by <span class="chg fall">−1.6k</span>, most of the 1.9k drop. <mark>One large channel holds most of the answer</mark>, so that's where action will pay off.</p>
+        <p>The tracker narrows it down: <strong>lunchtime</strong> orders in <strong>five shops near offices</strong>. Does what the operations team sees there match the data?</p>
       </div></div>
       <div class="step" data-scene="chart" data-state="pct" data-stage="2"><div class="step-card">
         <h3>The drive-through fell fastest, but it's small</h3>
-        <p>By rate, drive-through orders changed by <span class="chg fall">−35%</span>, yet that's only 0.7k orders. It's <strong>noted to revisit later</strong> rather than made the headline.</p>
+        <p>By rate, drive-through orders changed by <span class="chg fall">−22%</span>, yet that's only 0.2k orders. It's <strong>noted for later</strong> rather than reported as the main finding.</p>
         <p><mark>The analysis stops when more detail wouldn't change the action.</mark></p>
       </div></div>
       <div class="step" id="s-act" data-scene="align" data-state="align" data-stage="3"><div class="step-card">
-        <h3>Before anyone acts, the business-unit head tests the finding</h3>
-        <p>The head brings <strong>context the data doesn't have</strong> and asks questions. The analyst answers each one <strong>with data</strong>, <mark>until the finding holds or is dismissed</mark>.</p>
+        <h3>The operations manager knows what the data can't show</h3>
+        <p>Still in week 2, the analyst takes the findings to the operations manager, who recognises the shops: <strong>September's new shift schedule moved one barista per shop from the lunch shift to the afternoon</strong>.</p>
+        <p>The analyst checks it <strong>with data</strong>: since the schedule changed, lunchtime prep times on the delivery apps have risen, so the apps show longer waits and rank those shops lower. <mark>Now the finding has a cause that holds.</mark></p>
       </div></div>
       <div class="step" data-scene="act" data-state="act" data-stage="3"><div class="step-card">
-        <h3>The operations manager turns the finding into an action</h3>
-        <p>A <strong>shared thread</strong> brings in the evidence, priority and timeline. The operations manager designs a <strong>delivery-app promotion</strong>, and the analyst supplies data as the plan takes shape.</p>
-        <p><mark>Agreeing on a cause doesn't prove it</mark>, so the data keeps backing each step.</p>
+        <h3>From the start of week 3, the fix is in place</h3>
+        <p>The business-unit head agrees the finding and the priority. The operations manager <strong>moves one barista per shop back to the lunch shift</strong>, 11am to 2pm, to handle delivery-app orders only. The analyst tracks prep times and lunchtime orders daily.</p>
+        <p><mark>Acting two weeks before month end saves orders</mark> that waiting for the monthly review would have lost.</p>
       </div></div>
-      <div class="step" data-scene="present" data-state="present" data-stage="3"><div class="step-card">
-        <h3>At the business review, the slide leads with the finding</h3>
-        <p>Before the meeting, documents are <strong>updated by the cutoff</strong>, the numbers <strong>pre-reviewed with the head</strong>, and presenters agreed.</p>
-        <p>On the slide, <mark>the title states the finding and the chart proves it</mark>.</p>
+      <div class="step" data-scene="track" data-state="next" data-stage="3"><div class="step-card">
+        <h3>In week 4, orders start to recover</h3>
+        <p>Orders rise again in week 4. The same breakdown shows why: <mark>lunchtime delivery-app orders in the five shops are recovering</mark>, and prep times are back to their usual level.</p>
+        <p>October still closes below target, but the gap stops growing.</p>
       </div></div>
-      <div class="step" data-scene="track" data-state="next" data-stage="4"><div class="step-card">
-        <h3>Next month's tracking shows whether it worked</h3>
-        <p>Once the promotion starts, <strong>weekly tracking</strong> shows whether orders recover. <mark>Either way, the result feeds the next plan</mark>, and the loop turns again.</p>
+      <div class="step" data-scene="present" data-state="present" data-stage="4"><div class="step-card">
+        <h3>At month end, the review reports October and plans November</h3>
+        <p>October closes at <strong>118.2k</strong> orders, <span class="chg fall">−4.7%</span> on last year. At the monthly review, the slide <mark>states the finding, the fix and its early effect</mark>, so every team works from the same picture.</p>
+        <p>The analyst then helps the operations manager <strong>plan November</strong>: keep the barista on the lunch shift, and check future schedule changes against delivery orders before they start. The loop turns again.</p>
       </div></div>
     </div>
   </section>
@@ -284,27 +287,27 @@ GROUP BY 1, 2;</code></pre>
   <section id="ways" class="sub" aria-labelledby="ways-h">
     <div class="sub-head">
       <h2 id="ways-h">The same loop, whichever way the work comes in</h2>
-      <p class="lede">The story followed a KPI that moved. A question from another team, or a team's own initiative, turns the same loop from a different starting point.</p>
+      <p class="lede">The story followed a KPI that moved. A request from another team, or a team's own initiative, starts the same loop from a different point.</p>
     </div>
     <div class="ways">
       <article class="way is-story">
         <svg class="ico" aria-hidden="true"><use href="icons.svg#i-kpi"/></svg>
         <h3>An owned KPI moves</h3>
-        <p class="starts">Starts at the weekly or monthly review, such as orders falling short</p>
+        <p class="starts">Starts from weekly tracking, such as a pattern behind orders falling short</p>
         <dl>
-          <div><dt>Plan</dt><dd>Target set with the business-unit head; definition aligned across the business</dd></div>
+          <div><dt>Plan</dt><dd>Target set with the business-unit head; definition aligned across the business; a weekly tracker by channel and shop</dd></div>
           <div><dt>Do</dt><dd>Tracked weekly against target and last year</dd></div>
-          <div><dt>Check</dt><dd>Confirm the number, then find what drove it</dd></div>
-          <div><dt>Act</dt><dd>Align with the head, plan the action with its owner, present at the review, follow up next month</dd></div>
+          <div><dt>Check</dt><dd>When a pattern shows, confirm the number, then find what drove it</dd></div>
+          <div><dt>Act</dt><dd>Agree the cause with the team that will act and the head, act within the month, report at the monthly review, plan the next month</dd></div>
         </dl>
         <p class="foot"><a href="#s-example">Followed in the story above</a></p>
       </article>
       <article class="way">
         <svg class="ico" aria-hidden="true"><use href="icons.svg#i-ticket"/></svg>
-        <h3>Another team asks</h3>
-        <p class="starts">Starts with a ticket, such as marketing asking why weekend orders dipped</p>
+        <h3>Another team makes a request</h3>
+        <p class="starts">Starts with a ticket, such as marketing asking for an analysis of why weekend orders dipped</p>
         <dl>
-          <div><dt>Plan</dt><dd>The ticket, then an alignment chat; the agreement and due date go into the ticket</dd></div>
+          <div><dt>Plan</dt><dd>The ticket, then a short call to agree the scope; the agreement and due date go into the ticket</dd></div>
           <div><dt>Do</dt><dd>Query and analysis inside an agreed plan</dd></div>
           <div><dt>Check</dt><dd>Validate the output before interpreting it</dd></div>
           <div><dt>Act</dt><dd>Deliver with notes on filters and definitions; follow up a week later, then close the ticket</dd></div>
@@ -313,10 +316,10 @@ GROUP BY 1, 2;</code></pre>
       </article>
       <article class="way">
         <svg class="ico" aria-hidden="true"><use href="icons.svg#i-idea"/></svg>
-        <h3>A team sets out to do something</h3>
+        <h3>A team starts an initiative</h3>
         <p class="starts">Starts with the team's own idea, a project or business initiative, such as a loyalty programme</p>
         <dl>
-          <div><dt>Plan</dt><dd>Success metrics mapped to the must-win battles; initiative metrics drilled down from the main objective to the actions meant to move it; targets set with the head</dd></div>
+          <div><dt>Plan</dt><dd>Success measures tied to the company's top priorities for the year; initiative measures broken down from the main goal to the actions meant to move it; targets set with the head</dd></div>
           <div><dt>Do</dt><dd>Data points supplied as the team's plan takes shape, then progress tracked</dd></div>
           <div><dt>Check</dt><dd>Whether the initiative metrics are moving</dd></div>
           <div><dt>Act</dt><dd>The same alignment and action planning as when a KPI moves</dd></div>
@@ -352,14 +355,14 @@ GROUP BY 1, 2;</code></pre>
     <div role="tabpanel" id="wp-plan" aria-labelledby="wt-plan">
       <p>Agreed with the AI before any code was written. Anything that changes this plan comes back to the analyst first.</p>
       <dl class="plan">
-        <dt>Question</dt><dd>Which ways of ordering drove the year-on-year drop in monthly orders?</dd>
+        <dt>Question</dt><dd>Which ways of ordering drove the drop in the first two weeks of October, against the same weeks last year?</dd>
         <dt>Source</dt><dd><code>cafe.orders</code>, one row per order</dd>
         <dt>Metric</dt><dd>Orders: distinct paid receipts</dd>
-        <dt>Filters</dt><dd>Refunds and staff drinks excluded; October 2025 and October 2026</dd>
+        <dt>Filters</dt><dd>Refunds and staff drinks excluded; weeks 40 and 41 of 2025 and of 2026</dd>
         <dt>Grain</dt><dd>One row per order channel</dd>
-        <dt>Calculations</dt><dd>Change = this year − last year. Change % = change ÷ last year. Share of the net drop = change ÷ total change.</dd>
+        <dt>Calculations</dt><dd>Change = this year − last year. Change % = change ÷ last year. Share of the net drop = change ÷ total change, worked out from these rows for the chart.</dd>
         <dt>Output</dt><dd>Six rows sorted by change, ready to chart</dd>
-        <dt>Out of scope</dt><dd>The split by shop and by delivery app, which comes next</dd>
+        <dt>Out of scope</dt><dd>The split by shop and by hour, which comes next in the tracker</dd>
       </dl>
     </div>
 
@@ -367,25 +370,25 @@ GROUP BY 1, 2;</code></pre>
       <p>Written and run by the AI within the plan, then read line by line before anything is interpreted.</p>
       <div class="code">
         <div class="code-head">orders_by_channel_change.sql</div>
-        <pre><code id="sql-code">-- Monthly orders by channel, October 2026 vs October 2025
+        <pre><code id="sql-code">-- Orders by channel, first two weeks of October 2026 vs the same weeks of 2025
 -- Illustrative schema: one row per order
-WITH monthly AS (
+WITH weekly AS (
   SELECT
     order_channel,
-    order_month,
+    LEFT(order_week, 4) AS order_year,
     COUNT(DISTINCT order_id) AS orders
   FROM cafe.orders
   WHERE is_refunded = FALSE
     AND is_staff_order = FALSE
-    AND order_month IN ('2025-10-01', '2026-10-01')
-  GROUP BY order_channel, order_month
+    AND order_week IN ('2025-W40', '2025-W41', '2026-W40', '2026-W41')
+  GROUP BY order_channel, order_year
 ),
 pivoted AS (
   SELECT
     order_channel,
-    SUM(CASE WHEN order_month = '2025-10-01' THEN orders ELSE 0 END) AS last_year,
-    SUM(CASE WHEN order_month = '2026-10-01' THEN orders ELSE 0 END) AS this_year
-  FROM monthly
+    SUM(CASE WHEN order_year = '2025' THEN orders ELSE 0 END) AS last_year,
+    SUM(CASE WHEN order_year = '2026' THEN orders ELSE 0 END) AS this_year
+  FROM weekly
   GROUP BY order_channel
 )
 SELECT
@@ -406,9 +409,9 @@ ORDER BY change;</code></pre>
           <thead><tr><th scope="col">Check</th><th scope="col">Compared against</th><th scope="col">Result</th><th scope="col">Status</th></tr></thead>
           <tbody>
             <tr><td>Same definition of an order</td><td>Glossary entry for both years</td><td>Unchanged</td><td><span class="pass">Pass</span></td></tr>
-            <tr><td>Data is complete</td><td>Load log for October 2026 sales</td><td>Loaded 2 Nov 2026, after cutoff</td><td><span class="pass">Pass</span></td></tr>
-            <tr><td>October 2026 total reconciles</td><td>Master dashboard, October 2026</td><td>118,200 = 118,200</td><td><span class="pass">Pass</span></td></tr>
-            <tr><td>October 2025 total reconciles</td><td>October 2025 monthly review</td><td>124,000 = 124,000</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Data is complete</td><td>Load log for weeks 40 and 41</td><td>Every order loaded by the next morning</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>2026 total reconciles</td><td>Weekly tracker, weeks 40 and 41</td><td>54,000 = 54,000</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>2025 total reconciles</td><td>Weekly tracker, the same weeks of 2025</td><td>55,900 = 55,900</td><td><span class="pass">Pass</span></td></tr>
             <tr><td>One row per order</td><td>Primary key of the orders table</td><td>0 duplicate orders</td><td><span class="pass">Pass</span></td></tr>
             <tr><td>Refunds and staff drinks excluded</td><td>Flags in the output</td><td>0 flagged rows</td><td><span class="pass">Pass</span></td></tr>
             <tr><td>Every channel present</td><td>Channel list in the team glossary</td><td>6 of 6 channels</td><td><span class="pass">Pass</span></td></tr>
@@ -427,7 +430,7 @@ ORDER BY change;</code></pre>
 
 <!-- Side panel: requests and the template -->
 <dialog class="drawer" id="drawer-requests" aria-labelledby="drawer-requests-h">
-  <div class="drawer-head"><h2 id="drawer-requests-h">When another team asks</h2><button type="button" class="drawer-close" data-close>Close</button></div>
+  <div class="drawer-head"><h2 id="drawer-requests-h">When another team makes a request</h2><button type="button" class="drawer-close" data-close>Close</button></div>
   <div class="drawer-body">
     <p>Requests come in through a ticket on a short template. Here is how one moves, from before it's written to after it closes, with notes beside the fields that matter most.</p>
     <ol class="req-flow">
@@ -454,8 +457,8 @@ ORDER BY change;</code></pre>
         </div>
         <textarea id="copy-fallback" aria-label="Template text" rows="12" hidden readonly></textarea>
       </div></li>
-      <li><span class="req-n" aria-hidden="true">3</span><div><strong>A written agreement saves the argument later</strong><p>Anything unclear gets settled in a quick chat, and the understanding and due date go into the ticket. If the date doesn't work, the requester takes it to the manager, so priorities are decided openly.</p></div></li>
-      <li><span class="req-n" aria-hidden="true">4</span><div><strong>A ticket closes once someone has acted</strong><p>The output goes out with notes on filters and definitions. A week later comes a follow-up: was it used, and what action was taken? Then the ticket closes. Expanded scope gets a new ticket linked to the first.</p></div></li>
+      <li><span class="req-n" aria-hidden="true">3</span><div><strong>A written agreement avoids disputes later</strong><p>Anything unclear gets settled in a quick chat, and the understanding and due date go into the ticket. If the date doesn't work, the requester takes it to the analyst's manager, so priorities are decided openly.</p></div></li>
+      <li><span class="req-n" aria-hidden="true">4</span><div><strong>A ticket closes after a follow-up on how it was used</strong><p>The output goes out with notes on filters and definitions. A week later comes a follow-up: was it used, and what action was taken? Then the ticket closes. Expanded scope gets a new ticket linked to the first.</p></div></li>
     </ol>
   </div>
 </dialog>

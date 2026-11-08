@@ -14,10 +14,10 @@ const ASSETS = ['site.css', 'site.js', 'icons.svg', 'favicon.svg'];
 const DESCRIPTIONS = {
   'index.html': 'Working notes from a business intelligence analyst: how analysis runs as a loop, how to work with AI, and the books behind it.',
   'playbook.html': 'A business analysis playbook: one loop of plan, do, check and act, followed through one month of a made-up café chain.',
-  'ai.html': 'A practical guide to working with AI, in six chapters: learning what it can do, briefing it, checking its work, delegating, judging value, and AI in analytics.',
-  'ai-learn.html': 'Start here if you are new to AI: what chat apps are, trying them on small tasks, how AI got here, keeping up, and choosing tools that suit you.',
+  'ai.html': 'Notes on working with AI: learning what it can do, briefing it, checking its work, delegating, judging value, and AI in analytics.',
+  'ai-learn.html': 'Start here if you are new to AI: what chat apps are, trying them on small tasks, how AI developed, keeping up, and choosing tools that suit you.',
   'ai-brief.html': 'How to brief and steer AI: your role in the task, a brief that names the outcome, context as a working folder, sources, examples, and a worked example.',
-  'ai-check.html': 'How to check work done with AI: tests and loops with a way out, borrowed checks, second opinions, and the evidence behind an interpretation.',
+  'ai-check.html': 'How to check work done with AI: tests and loops with a stopping rule, borrowed checks, second opinions, and the evidence behind an interpretation.',
   'ai-delegate.html': 'Which steps to hand to AI, how to pass work between AIs, when a method is worth making reusable, and what access an agent should have.',
   'ai-value.html': 'Whether AI is worth it: the whole effort including checking, testing tools against their claims, build or adapt, and a worked example.',
   'ai-analytics.html': 'AI in data analysis: a workflow with two checkpoints, organising context for reuse, the foundations analysts need, and starting a team on real requests.',
@@ -27,13 +27,13 @@ const DESCRIPTIONS = {
 const ZH_DESCRIPTIONS = {
   'index.html': '一位商业智能分析师的工作笔记：分析工作怎样形成一个循环，怎样用好 AI，以及背后读过的书。',
   'playbook.html': '商业分析工作手册：用一家虚构连锁咖啡店一个月的订单，走一遍计划、执行、检查、改进的循环。',
-  'ai.html': '用好 AI 的实用指南，共六章：了解 AI 能做什么、交代任务、检查成果、拆分与委派、判断值不值，以及数据分析中的 AI。',
+  'ai.html': '我用 AI 的笔记：了解 AI 能做什么、交代任务、检查成果、拆分与委派、判断值不值，以及用 AI 做数据分析。',
   'ai-learn.html': '刚接触 AI 可以从这里开始：AI 对话应用是什么，先用小任务试，AI 的发展脉络，怎样跟进新进展、挑选合适的工具。',
   'ai-brief.html': '怎样给 AI 交代任务、把握方向：你在任务里的角色，写清结果的任务说明，把背景整理成工作文件夹，资料来源和示例。',
   'ai-check.html': '怎样检查 AI 参与完成的工作：测试和有出口的循环，借用现成的检查方法，第二意见，以及解读背后的证据。',
   'ai-delegate.html': '哪些步骤交给 AI，AI 之间怎样交接，什么时候值得把方法做成可复用的，以及智能体该有哪些权限。',
   'ai-value.html': 'AI 值不值得用：把检查也算进总投入，用实际效果检验工具的宣传，自己搭还是改现成的，附一个实例。',
-  'ai-analytics.html': '数据分析中的 AI：有两个检查点的工作流程，整理可复用的背景资料，分析师需要的基础，以及团队怎样从真实需求起步。',
+  'ai-analytics.html': '用 AI 做数据分析：有两个检查点的工作流程，整理可复用的背景资料，分析师需要的基础，以及团队怎样从真实需求起步。',
   'reading.html': '影响我工作和思考方式的书，按主题分组，附上每本书带给我的收获。'
 };
 const PAGE_NAMES = PAGES.map(page => page.replace(/\.html$/, ''));

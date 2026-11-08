@@ -34,7 +34,26 @@ This repository is public. Keep anything personal or confidential out of it, inc
   - no forced groups of three;
   - no inflated words (crucial, pivotal, robust, showcase, landscape).
 - Calm tone. Ding's speed-versus-value view is written to inform, not to alarm.
+- Low profile. Write as someone sharing what works for them, not as an authority: "in my experience", "I find", "a good way to start". No promises about the reader's results ("this will help you", "you will"), no sweeping claims (everyone, always, the best, most business work), no headings that guarantee outcomes. The site's own process rules ("nothing gets interpreted until every check passes") are fine as descriptions of Ding's practice. Readers are invited to get in touch and compare notes.
+- Chinese: 数据 for data in general (看数据、示意数据、跟踪数据), 数字 only for a specific figure (这个数字对不对).
 - Self-check questions state their whole setup, so they can be answered without scrolling back.
+
+### Ding's review notes (English)
+
+Rules that came out of Ding's reviews. Apply them to every new or changed sentence; the examples show the kind of thing that was rejected.
+
+- **Standard wording, not clever wording.** Use the collocation a careful reader expects.
+  - "get work from AI you can trust" → "work with AI to produce results I can trust"
+  - "compare notes" (an idiom that reads as a pun on a site called working notes) → "exchange ideas"
+- **Avoid regional or informal terms and idioms a reader in Malaysia or China may not know.** "rota" → "shift schedule"; "dearer" → "more expensive"; "pay back" → "pay off" or "be worth it"; "at every turn" → "at every stage"; "a way out" (of a loop) → "a stopping rule"; "doesn't land" → "isn't clear"; "sense-check" → "check that it makes sense"; "catch-up" → "short meeting".
+- **Say exactly who does what, when.** "puts lunch cover back, with one barista on delivery orders" → "moves one barista per shop back to the lunch shift, 11am to 2pm, to handle delivery-app orders only".
+- **Headings about data or results use reporting terms.** "orders are coming back" → "orders start to recover"; "1.9k down on last year" → "1.9k below the same weeks last year".
+- **Low profile** (see the bullet above): share what works for Ding; no promises to the reader, no sweeping claims, no outcome guarantees in headings.
+- **The text must match what the reader can see.** A sentence saying the drop was "normal swing" was rejected because the chart shows a steady decline. Check every claim against its chart.
+- **Don't invent Ding's practice.** When a story needs a step Ding hasn't described (what happens after a weekly dip, what the fix was), propose it and ask before writing it.
+- **Examples from Ding's field.** Use analysis, reporting and business examples (an analyst drafting SQL for a weekly report), not unrelated roles (a Power BI trainer).
+- **No counts that go stale.** Don't write "fourteen books" or "six chapters" in running text.
+- **Gender-neutral.** Use they/them for Ding and for authors whose gender isn't stated.
 
 ## Layout
 
@@ -92,10 +111,31 @@ The layout follows what established learning sites do (see References). In order
 - **Change both languages together.** A content change to an English page isn't finished until its `zh/` twin says the same thing, and the other way round.
 - Chinese pages link one folder up for shared files (`../site.css`, `../site.js`, `../icons.svg#…`, `../covers/…`); links between Chinese pages stay inside `zh/`.
 - Text drawn by `site.js` comes in both languages through `say('English', '中文')`, chosen by the page's `lang`. Any new label in the script needs both.
-- Writing: plain mainland workplace Chinese in the voice of Ding's Chinese interview deck, written as Chinese rather than translated. Avoid AI tone using the humanize-chinese skill: no 首先…其次…最后, 值得注意的是, 综上所述, 赋能, 闭环, 抓手 and the like. Half-width space between Chinese and Latin letters or digits; full-width punctuation; no em dashes.
-- Fixed terms: site name 定泽的工作笔记; author 黄定泽; PDCA 计划、执行、检查、改进; agent 智能体; prompt 提示词; context 上下文; hallucination 幻觉; benchmark 基准测试; multimodal 多模态; illustrative figures 示意数据; metric definition 口径; dashboard 看板. Product names stay in English; Chinese products in Chinese (元宝, 豆包).
+- Writing: **follow `docs/zh-style-guide.md`.** Write as a mainland analyst would write in Chinese, not as a translation: 刘润's structure (short sentences, one point per section, point first) in 数字生命卡兹克's plain first-person voice, without slang. Say exactly what the English says, sentence by sentence; add and drop nothing. Avoid AI tone with the humanize-chinese skill (no 首先…其次…最后, 值得注意的是, 综上所述, 赋能, 闭环, 抓手). Half-width space between Chinese and Latin letters or digits; full-width punctuation; no em dashes.
+- Terms follow how Chinese AI media and workplaces actually write them (checked against 量子位 and 机器之心): Agent stays in English (first mention per page Agent（智能体）), Token, Skill, MCP and Harness stay English; 提示词, 上下文, 幻觉, 评测, 榜单, 电脑操控, 多模态, AI 聊天工具. Business terms: 效率 (productivity), 业务方, 需求, 专项, 看板, 口径, 负责人, 结果 vs 产出. Site name 定泽的工作笔记; author 黄定泽 (no English name on Chinese pages). The full table is in `docs/zh-style-guide.md`.
+- Before committing, run `python tools/check-translations.py`: it fails when a Chinese page's structure drifts from its English twin (a paragraph, id, citation or link added on one side only).
 - Font: Chinese pages use Noto Sans SC (Source Han Sans, made to match Source Sans), self-hosted in `fonts/` because Google Fonts is blocked in mainland China. It's trimmed to the characters in use: **after changing Chinese text, rerun `tools/subset-zh-font.py`** (see `README.md`), or new characters fall back to system fonts.
 - Typography: `html:lang(zh)` in `site.css` puts Noto Sans SC and then Chinese system fonts after Source Sans, turns off italics and negative letter spacing, and loosens line height.
+
+### How to translate or update the Chinese
+
+The method used for the November 2026 rewrite, which Ding found much better than a straight translation. Reuse it for any new or changed Chinese text.
+
+1. **Fix the English first.** Check the English page for logic (claims supported, no contradictions between pages, numbers add up, self-checks have one best answer). The Chinese is written from the final English, never from an older version.
+2. **Write the Chinese from the English, sentence by sentence**, following `docs/zh-style-guide.md`: say exactly what the English says (same facts, numbers and qualifiers, nothing added or dropped), in the way a mainland analyst would write it. Rewrite from the meaning; don't adjust the old Chinese word by word.
+3. **Keep the structure identical**: the same paragraphs, list items, headings and table cells as the English, so `python tools/check-translations.py` passes. Split long sentences inside a block instead of adding blocks.
+4. **Editor review**: go through the Chinese again with the English beside it, block by block, as described at the end of `docs/zh-style-guide.md` (meaning, translationese, word choice, terms, flow). With agents, use a different agent from the writer.
+5. **Run the checks**: `tools/check-translations.py`, a scan for the banned phrases in the style guide, and `tools/subset-zh-font.py` if new characters were added. Check drawing labels still fit, on a 360px-wide phone too.
+6. **Ding reads the result** before it's committed, especially headings and first paragraphs.
+
+```mermaid
+flowchart LR
+  A[Fix the English] --> B[Write Chinese from the English]
+  B --> C[Check structure matches]
+  C --> D[Editor review against the English]
+  D --> E[Checks: sync, banned phrases, font, labels]
+  E --> F[Ding reads and approves]
+```
 
 ## Visual system
 

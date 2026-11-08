@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>拆分、委派与复用</title>
+<title>拆分、委派、复用</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=Source+Code+Pro:wght@400;500&display=swap">
@@ -26,12 +26,12 @@
 
   <header class="page-head with-figure">
     <div class="head-text">
-      <p class="page-name"><a href="ai.html">用好 AI</a>，第 4 章（共 6 章）</p>
-      <h1>拆分、委派与复用</h1>
+      <p class="page-name"><a href="ai.html">用好 AI</a>，第 4 章</p>
+      <h1>拆分、委派、复用</h1>
       <p class="meta">阅读约 7 分钟</p>
-      <p class="lede">会交代任务、会检查 AI 的成果以后，接下来要想的是：哪些步骤可以交出去，工作怎么在几个 AI 之间传递，什么时候值得把一套方法做成可复用的东西。</p>
+      <p class="lede">会交代任务、会检查 AI 的成果以后，接下来要想的是：哪些步骤交出去，工作怎么在几个 AI 之间交接，一套做法什么时候值得做成可复用的。</p>
     </div>
-    <svg class="loop-figure chapter-figure" viewBox="0 0 400 212" role="img" aria-label="一项任务拆成几个步骤：一部分交给 AI，需要判断的步骤留给你。">
+    <svg class="loop-figure chapter-figure" viewBox="0 0 400 212" role="img" aria-label="一项任务拆成几步：一部分交给 AI，需要判断的留给你。">
       <use class="ico draw onload" style="--i:0" href="../icons.svg#i-clipboard" x="20" y="82" width="64" height="64"/>
       <text class="onload" style="--i:1" x="52" y="172" text-anchor="middle">任务</text>
       <path class="ico draw onload" style="--i:2" pathLength="1" d="M90 112L236 48"/>
@@ -50,11 +50,11 @@
     <section class="key-ideas" aria-labelledby="key-ideas">
       <h2 id="key-ideas">本章要点</h2>
       <ul>
-        <li>中间不需要重要人工判断的步骤，可以交出去。需要判断的地方，要留一个人。</li>
-        <li>每个 AI、工具或人，负责它最擅长的那部分。负责审阅的人除了结论，还要拿到证据。</li>
-        <li>先用能跑通的最简单方案。只有下一步要看前一步发现了什么时，才加智能体。</li>
-        <li>交接时要带上目标、已做的决定、证据、当前进度和待解决的问题。</li>
-        <li>步骤会重复、搭建和维护的投入收得回来，才值得把方法做成可复用的。智能体只给它完成任务需要的权限。</li>
+        <li>中间不需要人做重要判断的步骤，交出去。要判断的地方，留人把关。</li>
+        <li>每个 AI、工具或人，各做自己最擅长的那部分。审阅的人除了结论，还要拿到证据。</li>
+        <li>先用最简单、能跑通的做法。下一步要看查到了什么才能定的时候，再加 Agent（智能体）。</li>
+        <li>交接要带上目标、已经定下的事、证据、目前的进度，还有没解决的问题。</li>
+        <li>步骤会重复，搭建和维护的投入也收得回来，才值得把这套方法做成可复用的。Agent 只给完成任务需要的权限。</li>
       </ul>
     </section>
 
@@ -65,63 +65,63 @@
         <li><a href="ai-brief.html">2. 交代任务，把握方向</a></li>
         <li><a href="ai-check.html">3. 检查成果</a></li>
         <li class="is-here">
-          <a href="ai-delegate.html" aria-current="page">4. 拆分、委派与复用</a>
+          <a href="ai-delegate.html" aria-current="page">4. 拆分、委派、复用</a>
           <p class="guide-here">本章内容</p>
           <ol class="guide-sections">
             <li><a href="#key-ideas">本章要点</a></li>
             <li><a href="#hand-over">中间不需要判断的步骤，交出去</a></li>
-            <li><a href="#contributions">每个帮手做它最擅长的那部分</a></li>
-            <li><a href="#simple">从简单做起，步骤多变时才加智能体</a></li>
-            <li><a href="#handover">交接时带上目标、证据和进度</a></li>
+            <li><a href="#contributions">每个帮手，做它最擅长的那部分</a></li>
+            <li><a href="#simple">从简单的做起，步骤不固定时才加 Agent</a></li>
+            <li><a href="#handover">交接要带上目标、证据和进度</a></li>
             <li><a href="#reuse">想清楚什么值得做成可复用的</a></li>
-            <li><a href="#project">把项目整理好，智能体才好干活</a></li>
-            <li><a href="#permissions">只给智能体完成任务所需的权限</a></li>
+            <li><a href="#project">把项目整理好，Agent 才能做好工作</a></li>
+            <li><a href="#permissions">任务需要什么权限，就给 Agent 什么权限</a></li>
             <li><a href="#self-check">自测一下</a></li>
             <li><a href="#sources-h">参考来源</a></li>
           </ol>
         </li>
         <li><a href="ai-value.html">5. 判断值不值</a></li>
-        <li><a href="ai-analytics.html">6. 数据分析中的 AI</a></li>
+        <li><a href="ai-analytics.html">6. 用 AI 做数据分析</a></li>
       </ol>
     </nav>
 
     <article class="prose">
       <h2 id="hand-over">中间不需要判断的步骤，交出去</h2>
-      <p>先把任务拆成步骤，再一步一步地问：从这一步到下一步，中间有没有重要的地方需要人来判断？能用代码完成，或者由智能体操作电脑完成，中间又不需要这种判断的步骤，适合交出去。一步走错代价很大的，或者答案取决于只有你知道的情况的，留给自己做，或者在那里安排一次检查。</p>
-      <p>如果这类任务你没做过，不用一个人琢磨怎么拆。看看别人在同类任务上怎么用 AI，自己试一试，经验会慢慢攒起来。<mark>交出去的部分，<a href="ai-check.html">第 3 章</a>讲的检查点照样适用。</mark></p>
+      <p>先把任务拆成几步，然后每一步都问一句：从这一步到下一步，中间有没有重要的地方要人来判断？能用代码完成，或者能让 Agent 操作电脑完成，中间又不需要这种判断的步骤，就适合交出去。有的步骤一旦走错代价很大，有的要靠只有你才清楚的情况才能做对。这些留给自己，或者加一道审阅。</p>
+      <p>这类任务要是你没做过，不用一个人琢磨怎么拆。看看别人做同类任务时怎么用 AI，自己试一试，经验慢慢就攒起来了。<mark>交出去的任务，<a href="ai-check.html">第 3 章</a>讲的检查点照样适用。</mark></p>
 
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>能用代码或电脑操作自动完成、中间不需要重要人工判断的步骤，都可以交给 AI。遇到没做过的任务，我会先查别人是怎么用 AI 做的，边做边积累经验。</p></aside>
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>能用代码或电脑操控自动完成、中间不需要人做重要判断的步骤，可以交给 AI 做。碰到没做过的任务，我会先查查别人是怎么用 AI 做的，边做边攒经验。</p></aside>
 
-      <h2 id="contributions">每个帮手做它最擅长的那部分</h2>
-      <p>把 AI 当成合作者以后，同时用好几个就很自然了。有的擅长找资料，有的擅长在软件项目的代码里干活，有的擅长讲解。这些分工要拿来测试，因为产品在变，谁最擅长什么也在变。我现在的选择列在<a href="ai.html#tools-h">用好 AI 页面</a>上，标了日期。</p>
-      <p>帮手不一定是 AI。算术交给计算器，比交给另一个大语言模型靠谱。就算初稿大部分是 AI 写的，最合适的审阅人也可能是一位专家。要问的是：这项任务需要哪种贡献，哪种安排能以可接受的成本提供它。<mark>能把结果做出来、也能说清依据的最小团队，通常就是合适的团队。</mark></p>
-      <p>负责审阅的人，除了初稿的结论，还应该拿到任务本身和证据。只看到一份打磨好的答案，审阅的人往往会把它的假设一并接过来。</p>
+      <h2 id="contributions">每个帮手，做它最擅长的那部分</h2>
+      <p>把 AI 当成合作者以后，同时用好几个就很自然了。有的擅长找资料，有的擅长处理软件项目的代码，有的擅长讲解。这样分工，得边用边验证：产品在变，谁最擅长什么也跟着变。我现在怎么选，写在<a href="ai.html#tools-h">“用好 AI”页面</a>上，标了日期。</p>
+      <p>帮手也不一定是 AI。算术交给计算器，比交给另一个大语言模型靠谱。初稿就算大半是 AI 写的，最合适的审阅人也可能是一位专家。该问的是：任务需要哪一块，哪种搭配能在成本可接受的情况下做好这一块。<mark>能把结果做出来、又能讲清依据的最小团队，通常就是最合适的。</mark></p>
+      <p>谁来审阅，除了初稿的结论，还要把任务和证据一起给他。审阅的人如果只看到一份打磨好的答案，往往会连它的假设一起接过去。</p>
 
-      <h2 id="simple">从简单做起，步骤多变时才加智能体</h2>
-      <p>帮手越多，要协调的事就越多。Anthropic 关于搭建智能体的指南建议，从最简单的方案做起，只有在能改善结果时才增加复杂度。<a class="cite" href="#src-1" aria-label="来源 1">1</a>指南区分了两种形态：</p>
+      <h2 id="simple">从简单的做起，步骤不固定时才加 Agent</h2>
+      <p>帮手越多，要协调的事就越多。Anthropic 讲怎么搭 Agent 的指南建议：从最简单的方案做起，只有能让结果变好，才加复杂度。<a class="cite" href="#src-1" aria-label="来源 1">1</a>它区分了两种做法：</p>
       <ul>
-        <li><strong>工作流</strong>按你事先设计好的固定步骤执行。</li>
-        <li><strong>智能体</strong>根据它发现的情况决定下一步，适合事先摸不清路径的任务。</li>
+        <li><strong>工作流</strong>按你事先设计好的固定步骤走。</li>
+        <li><strong>Agent</strong> 根据查到的情况，自己决定下一步。路径事先没法知道的时候，它就派上用场了。</li>
       </ul>
-      <p>在把任何环节自动化之前，你完全可以先手动协调。把一份认真写好的任务说明从一个工具拿到另一个工具，这本身就是一个工作流。<mark>还没弄懂的流程拿去自动化，只会让错误重复得更快。</mark></p>
+      <p>什么都还没自动化，你也可以先手动把有用的工作串起来。把一份认真写好的任务说明，从一个工具挪到另一个工具，这就已经是工作流了。<mark>还没弄懂的流程就拿去自动化，只会让错误重复得更快。</mark></p>
 
-      <h2 id="handover">交接时带上目标、证据和进度</h2>
-      <p>工作在几个 AI 或几个对话之间流转时，要有一个明确的牵头方，负责汇总结果并检查。然后把足够的信息交给下一个帮手，让它不用猜就能接着做：</p>
+      <h2 id="handover">交接要带上目标、证据和进度</h2>
+      <p>工作在几个 AI 或几个对话之间流转时，要有一个明确的牵头方，负责把结果汇总起来、检查一遍。再把足够的信息交给下一个帮手，让它不用猜就能接着做：</p>
       <ul>
-        <li>最初的目标，以及已经做出的决定</li>
-        <li>目前收集到的证据，以及出处</li>
-        <li>工作的当前进度，以及有用的文件</li>
+        <li>最初的目标，和已经定下的事</li>
+        <li>到目前为止收集到的证据，各自从哪来</li>
+        <li>工作现在的进度，以及用得上的文件</li>
         <li>还没解决的问题</li>
       </ul>
-      <p>只交一份打磨好的结论，下一个帮手就会在没人核实过的假设上接着搭。协调和最后的审阅要跟任务的大小相称，两步就能做完的事，用不着项目计划。</p>
+      <p>只交一份打磨好的结论，下一个帮手就容易在没人核实过的假设上接着搭。协调和最后的审阅，跟任务大小相称就行，两步就能做完的任务，用不着项目计划。</p>
 
-      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>我手上没有现成的智能体协作工作流，所以这件事做得不多。真要做的时候，我用一个交接（handoff）技能（Skill）把工作干净地交给另一个智能体，Matt Pocock 写的那个就不错。更简单的办法，是让主智能体自己启动一个帮手智能体（子智能体），或者把同一项目里之前某个对话的名称或 ID 告诉智能体。我估计最后这种办法更费 Token（词元），不过没有实际测过。</p></aside>
+      <aside class="box practice"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-person"/></svg>我的做法</p><p>我手上没有现成的、用来协调多个 Agent 的工作流，所以这种事做得不多。真要做的时候，我用一个专做交接的 Skill（Matt Pocock 写的就不错），把工作干净地交给另一个 Agent。更简单的办法有两种：让主 Agent 自己启动一个帮手（子 Agent），或者把同一项目里之前某个对话的名称或 ID 告诉 Agent。我估计后一种更费 Token，不过没实际测过。</p></aside>
 
       <h2 id="reuse">想清楚什么值得做成可复用的</h2>
-      <p>一项任务反复出现时，你可以一直用提示词，也可以写一个技能、写一段脚本、搭一个智能体工作流，或者组合着用。选哪种，看三个问题：哪些步骤会重复，哪里需要判断，搭建和维护的投入值不值。</p>
+      <p>同一类任务反复出现时，你可以一直用提示词，也可以写个 Skill、写段脚本、搭个 Agent，或者几样组合着用。选哪种，看三个问题：哪些步骤会重复，哪里需要判断，搭建和维护的投入换来的好处值不值。</p>
 
       <figure class="figure reuse-map">
-        <svg viewBox="0 0 360 318" role="img" aria-label="横轴是任务重复的频率，纵轴是步骤变化的程度，每一格写着适合的做法。">
+        <svg viewBox="0 0 360 318" role="img" aria-label="横轴是任务多久重复一次，纵轴是步骤变化有多大，每一格写着适合的做法。">
           <g class="rm-axes">
             <path d="M60 276H344"/><path d="M338 271l6 5l-6 5"/>
             <path d="M60 276V22"/><path d="M55 28l5-6l5 6"/>
@@ -133,69 +133,69 @@
           <text class="rm-axis" x="22" y="149" text-anchor="middle" transform="rotate(-90 22 149)">步骤变化有多大</text>
           <text class="rm-end" x="50" y="46" text-anchor="end">多变</text>
           <text class="rm-end" x="54" y="272" text-anchor="end">固定</text>
-          <text class="rm-title" x="131" y="82">提示词</text><text class="rm-sub" x="131" y="102">再加多轮对话</text>
-          <text class="rm-title" x="131" y="208">一条提示词</text><text class="rm-sub" x="131" y="228">或者自己直接做</text>
-          <text class="rm-title" x="271" y="72">技能（Skill）</text><text class="rm-title" x="271" y="92">或智能体工作流</text><text class="rm-sub" x="271" y="112">带检查</text>
-          <text class="rm-title" x="271" y="208">脚本</text><text class="rm-sub" x="271" y="228">每次照同样步骤跑</text>
+          <text class="rm-title" x="131" y="82">提示词</text><text class="rm-sub" x="131" y="102">再聊几轮</text>
+          <text class="rm-title" x="131" y="208">一条提示词</text><text class="rm-sub" x="131" y="228">或者干脆自己做</text>
+          <text class="rm-title" x="271" y="72">Skill</text><text class="rm-title" x="271" y="92">或者 Agent</text><text class="rm-sub" x="271" y="112">带检查</text>
+          <text class="rm-title" x="271" y="208">脚本</text><text class="rm-sub" x="271" y="228">每次照原样跑</text>
         </svg>
-        <figcaption>不管落在哪一格，步骤之间只要需要重要判断，就在流程里留一道人工审阅。搭建和维护的投入也得收得回来。</figcaption>
+        <figcaption>不管落在哪一格，只要步骤之间需要重要判断，流程里就得留一道人工审阅。搭建和维护的投入，也得收得回来。</figcaption>
       </figure>
 
-      <p>技能把指令和资源打包在一起，智能体在用得上的时候加载，<a class="cite" href="#src-2" aria-label="来源 2">2</a>所以适合会重复、但每次运行仍要判断的方法。脚本适合每次都一模一样的步骤。<mark>没测试过的方法存成技能，方便留下了，错误也一起留下了</mark>，所以先拿真实工作测一测（<a href="ai-value.html#claims">第 5 章</a>）。</p>
+      <p>Skill 就是把指令和资源打包好，Agent 用得上的时候再加载，<a class="cite" href="#src-2" aria-label="来源 2">2</a>所以适合那种会重复、但每次跑都还要判断的方法。脚本适合每次都一模一样的步骤。<mark>没测过的方法存成 Skill，方便是留下了，错误也一起留下了</mark>，所以先拿真实工作测一测（<a href="ai-value.html#claims">第 5 章</a>）。</p>
 
-      <h2 id="project">把项目整理好，智能体才好干活</h2>
-      <p>智能体在为它准备好的项目里干得更好，就像新同事拿到一份好的交接资料，上手会快很多。我采用了五条实用原则，当作灵活的指引，不当死规矩：</p>
+      <h2 id="project">把项目整理好，Agent 才能做好工作</h2>
+      <p>项目要是专门为 Agent 收拾过，它就干得更好。这跟新同事一样：交接资料准备得好，工作就做得好。我采用了五条实用的原则，当作灵活的参考，不当成死规矩：</p>
       <ol>
-        <li><strong>改动要好理解，范围要可控。</strong>模块各自内聚，输入、输出和约束清楚，只在有帮助的地方增加结构。</li>
-        <li><strong>给一份简短的地图，指向要紧的东西。</strong>指明相关的项目知识、定义、决策、搭建步骤和专项指引，不要堆成一个巨大的指令文件。<a class="cite" href="#src-3" aria-label="来源 3">3</a></li>
-        <li><strong>重要的要求要能检查。</strong>用测试和检查把关，失败信息要写明该改什么，搭建和验证的命令也要写下来。光有指令，不能保证智能体照做。<a class="cite" href="#src-4" aria-label="来源 4">4</a></li>
-        <li><strong>给智能体验证实际结果的工具。</strong>视觉类的工作，以及必须实际执行的操作，给它浏览器或电脑操作（computer use，即操作屏幕、鼠标和键盘），<a href="ai-check.html#real-result">第 3 章</a>讲过。<a class="cite" href="#src-5" aria-label="来源 5">5</a></li>
-        <li><strong>保留有意义的人工审阅。</strong>包括分析里那两个固定的检查点：验证原始输出，审阅最终解读。</li>
+        <li><strong>改动要好懂，影响范围要可控。</strong>每个模块自成一体，输入、输出和约束都写清楚。结构只在有用的地方加。</li>
+        <li><strong>给一份简短的地图，指向要紧的东西。</strong>指明相关的项目知识、定义、决策、搭建步骤和专业指引在哪，别堆成一个巨大的指令文件。<a class="cite" href="#src-3" aria-label="来源 3">3</a></li>
+        <li><strong>重要的要求，要能检查。</strong>用测试和检查把关，失败提示要写明该改什么，搭建和验证的命令也要写下来。光写指令，保证不了 Agent 照做。<a class="cite" href="#src-4" aria-label="来源 4">4</a></li>
+        <li><strong>给 Agent 能核实实际结果的工具。</strong>做视觉类的任务，或者要它实际执行操作时，给它浏览器或电脑操控（直接操作屏幕、鼠标和键盘），<a href="ai-check.html#real-result">第 3 章</a>讲过。<a class="cite" href="#src-5" aria-label="来源 5">5</a></li>
+        <li><strong>保留真正起作用的人工审阅。</strong>包括分析里那两个固定的检查点：验证原始输出，审阅最终解读。</li>
       </ol>
-      <p><mark>好的工程习惯对智能体有用，道理和对人有用是一样的。</mark>我通常从知名、口碑好的来源挑选教智能体这些习惯的工程类技能，再拿自己的工作测试。</p>
+      <p><mark>好的工程习惯对人有用，对 Agent 也有用，道理是一样的。</mark>教 Agent 这些习惯的工程类 Skill，我一般从热门、知名的来源里挑，再拿自己的工作测一测。</p>
 
-      <h2 id="permissions">只给智能体完成任务所需的权限</h2>
-      <p>建议可以先审阅再用。行动就不一样了，它可能已经改了文件、发了消息，或者泄露了信息。智能体能做的事越多，越需要划清界限。</p>
+      <h2 id="permissions">任务需要什么权限，就给 Agent 什么权限</h2>
+      <p>建议可以先审一遍再用。操作就不一样了，它可能已经改了文件、发出了消息，或者泄露了信息。Agent 能做的事越多，越需要划清界限。</p>
       <ul>
-        <li><strong>权限和任务相称。</strong>能用安全副本就用副本。发送、删除、付款这类后果大的步骤，要保留你的审批。</li>
-        <li><strong>写下的指令不是锁。</strong>提示词里写“什么都别发”，并不能从技术上拦住一个有发送权限的智能体。</li>
-        <li><strong>弄清数据去了哪里。</strong>智能体在你自己的电脑上运行，不代表数据留在本机，模型服务或接入的工具可能在别处运行。<a class="cite" href="#src-6" aria-label="来源 6">6</a></li>
-        <li><strong>页面里的文字不是指令。</strong>网页或文档里可能藏着冲着智能体写的话。智能体读到了，这些话也无权指挥你的任务。<a class="cite" href="#src-6" aria-label="来源 6">6</a></li>
+        <li><strong>权限跟任务相称。</strong>能在安全的副本上做，就用副本。发送、删除、付款这类后果大的步骤，审批权留在你手里。</li>
+        <li><strong>写下的指令不是锁。</strong>提示词里写一句“什么都别发”，从技术上拦不住有发送权限的 Agent。</li>
+        <li><strong>弄清数据去了哪里。</strong>Agent 在你自己电脑上跑，不代表数据就留在本机，模型服务或接入的工具可能在别的地方运行。<a class="cite" href="#src-6" aria-label="来源 6">6</a></li>
+        <li><strong>页面里的文字不是指令。</strong>网页或文档里，可能有专门冲着 Agent 写的话。Agent 读到了，这些话也不能当成你的指令。<a class="cite" href="#src-6" aria-label="来源 6">6</a></li>
       </ul>
 
-      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-alert"/></svg>常见误区：为了省事，把权限全给了</p><p>把所有权限都给智能体，确实不会被打断，直到它按误解动了手。任务需要什么就给什么，等智能体在这类工作上证明了自己，再一步步放宽。</p></aside>
+      <aside class="box trap"><p class="box-label"><svg class="ico" aria-hidden="true"><use href="../icons.svg#i-alert"/></svg>常见误区：图省事，权限全给</p><p>权限全给 Agent，确实不会老被打断，直到它按错误的理解动了手。任务需要什么就给什么。等 Agent 在这类任务上证明靠得住，再一步步放宽。</p></aside>
 
       <section class="self-check" aria-labelledby="self-check">
         <h2 id="self-check">自测一下</h2>
         <div class="quiz" data-answer="c">
-          <p class="quiz-q">你每个月都做同一份数据导出，步骤每次完全一样。哪种做法最合适？</p>
+          <p class="quiz-q">你每个月都要导一次同样的数据，步骤每次完全一样。用哪种做法最合适？</p>
           <ul class="quiz-options">
             <li><button type="button" class="quiz-option" data-option="a">每个月写一条新提示词。</button></li>
-            <li><button type="button" class="quiz-option" data-option="b">用一个每次自己决定步骤的智能体。</button></li>
-            <li><button type="button" class="quiz-option" data-option="c">写一段脚本。</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">用 Agent，每次让它自己定步骤。</button></li>
+            <li><button type="button" class="quiz-option" data-option="c">写个脚本。</button></li>
           </ul>
           <p class="quiz-result" aria-live="polite"></p>
-          <p class="quiz-why">写一段脚本。步骤重复又不变，中间也不需要判断，搭建的投入很快就能收回来。</p>
+          <p class="quiz-why">写个脚本。步骤重复、不变，中间也不用判断，搭建的投入很快就能收回来。</p>
         </div>
         <div class="quiz" data-answer="a">
-          <p class="quiz-q">你把工作交给第二个 AI 时，只给了写好的初稿。缺了什么？</p>
+          <p class="quiz-q">你把工作交给第二个 AI，只给了写好的初稿。缺了什么？</p>
           <ul class="quiz-options">
-            <li><button type="button" class="quiz-option" data-option="a">目标、已做的决定、证据、当前进度和待解决的问题。</button></li>
-            <li><button type="button" class="quiz-option" data-option="b">什么都不缺，初稿里全都有。</button></li>
+            <li><button type="button" class="quiz-option" data-option="a">目标、已经定下的事、证据、当前进度和没解决的问题。</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">什么都不缺，初稿里全有。</button></li>
             <li><button type="button" class="quiz-option" data-option="c">一份更长的初稿。</button></li>
           </ul>
           <p class="quiz-result" aria-live="polite"></p>
-          <p class="quiz-why">缺了目标、已经做出的决定、证据及其出处、当前进度，还有待解决的问题。没有这些，第二个 AI 就会在没人核实过的假设上接着做。</p>
+          <p class="quiz-why">缺了目标、已经定下的事、证据和它的出处、当前进度，还有没解决的问题。少了这些，第二个 AI 就会在没人核实过的假设上接着做。</p>
         </div>
         <div class="quiz" data-answer="b">
-          <p class="quiz-q">你在提示词里告诉智能体“不要给任何人发邮件”，而它有你邮箱的权限。这样安全吗？</p>
+          <p class="quiz-q">你在提示词里告诉 Agent“别给任何人发邮件”，而它能访问你的邮箱。这样安全吗？</p>
           <ul class="quiz-options">
             <li><button type="button" class="quiz-option" data-option="a">安全，指令写得很清楚。</button></li>
-            <li><button type="button" class="quiz-option" data-option="b">不安全。指令不是屏障，应该收回权限，或者让每次发送都先经过你批准。</button></li>
+            <li><button type="button" class="quiz-option" data-option="b">不安全。指令拦不住它，要么收回权限，要么每次发送都先经过你批准。</button></li>
             <li><button type="button" class="quiz-option" data-option="c">安全，只要把指令多说几遍。</button></li>
           </ul>
           <p class="quiz-result" aria-live="polite"></p>
-          <p class="quiz-why">不安全。指令不是技术屏障。任务用不到邮件，就别给智能体邮箱权限；用得到，就让每次发送都先经过你批准。</p>
+          <p class="quiz-why">不安全。指令在技术上拦不住它。任务用不到邮件，就别给 Agent 邮箱权限。用得到，就让每次发送都先经过你批准。</p>
         </div>
       </section>
 
@@ -207,10 +207,10 @@
           <li id="src-3">OpenAI：<a href="https://openai.com/index/harness-engineering/">Harness engineering</a>。</li>
           <li id="src-4">GitHub：<a href="https://docs.github.com/en/copilot/concepts/customizations/comparing-customizations">Comparing customizations</a>，文档。</li>
           <li id="src-5">Anthropic：<a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Prompting best practices</a>，文档。</li>
-          <li id="src-6">OpenClaw：<a href="https://docs.openclaw.ai/gateway/security">Security documentation</a>，关于访问、权限和不可信输入。</li>
+          <li id="src-6">OpenClaw：<a href="https://docs.openclaw.ai/gateway/security">Security documentation</a>（访问、权限和不可信输入）。</li>
           <li>我的实践经验，截至 2026 年 11 月。</li>
         </ol>
-        <p class="meta">来源核对于 2026 年 10 月和 11 月。</p>
+        <p class="meta">来源核对时间：2026 年 10 月和 11 月。</p>
       </section>
     </article>
   </div>
@@ -223,7 +223,7 @@
   </nav>
 
   <footer>
-    <p>作者：黄定泽（Wong Ding Zhe）。联系方式：<a href="mailto:dzwong97@gmail.com">dzwong97@gmail.com</a>，或 <a href="https://www.linkedin.com/in/dzwong97/?locale=zh-CN">领英（LinkedIn）</a>。</p>
+    <p>作者：黄定泽。联系方式：<a href="mailto:dzwong97@gmail.com">dzwong97@gmail.com</a>，或 <a href="https://www.linkedin.com/in/dzwong97/?locale=zh-CN">领英（LinkedIn）</a>。</p>
     <p>版本 0.9，2026 年 11 月 7 日</p>
   </footer>
 </div>

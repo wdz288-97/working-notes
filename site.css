@@ -704,7 +704,10 @@ text.vc-noai { fill: var(--ink); }
   /* The drawing gets --stage-h and the text box starts just under it, reaching the bottom of the screen, so it grows
      when the browser bar hides. site.js measures each phone and replaces --stage-h; these values are the fallback. */
   :root { --bar-h: 0px; --stage-h: 52svh; --box-gap: 12px; }
-  .topbar { position: static; height: auto; padding-block: 16px; flex-wrap: wrap; background: var(--paper); backdrop-filter: none; }
+  .topbar { position: relative; height: auto; padding-block: 16px; flex-wrap: wrap; background: var(--paper); backdrop-filter: none; }
+  .topbar nav { flex-basis: 100%; }
+  .topbar nav a.lang-switch { position: absolute; top: 16px; right: 16px; margin-left: 0; }
+  .topbar nav a.lang-switch::before { display: none; }
   .scrolly { display: block; margin-top: 8px; }
   .stage-col { top: 0; height: 100svh; align-items: flex-start; padding-top: 12px; z-index: 0; }
   .stage { height: var(--stage-h); gap: 12px; font-size: clamp(11px, 1.6svh, 13.5px); padding: 14px; background: var(--paper); border: 1.5px dashed var(--faint); border-radius: 6px; }
@@ -780,7 +783,13 @@ text.vc-noai { fill: var(--ink); }
   .ai-intro { position: static; }
 }
 
+/* Home: "get in touch" jumps to the footer's contact line and briefly highlights it */
+#contact { scroll-margin-bottom: 40vh; border-radius: 4px; }
+#contact:target { animation: contact-flash 2.6s var(--ease) 0.3s both; }
+@keyframes contact-flash { 0%, 45% { background: var(--accent-soft); box-shadow: 0 0 0 8px var(--accent-soft); color: var(--ink); } 100% { background: transparent; box-shadow: 0 0 0 8px transparent; } }
+
 @media (prefers-reduced-motion: reduce) {
+  #contact:target { background: var(--accent-soft); box-shadow: 0 0 0 8px var(--accent-soft); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
   .draw, #hero-field use { stroke-dashoffset: 0 !important; }

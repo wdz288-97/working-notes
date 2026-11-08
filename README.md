@@ -25,6 +25,8 @@ This repository is the only copy of the site. A private claude.ai artifact of it
 | `zh/` | The Chinese version: the same pages with the same file names, in Simplified Chinese. They link one folder up for styles, script, icons and covers. |
 | `fonts/` | `noto-sans-sc.woff2`, the Chinese web font trimmed to the characters the site uses, and its licence (`OFL.txt`) |
 | `tools/subset-zh-font.py` | Remakes the trimmed Chinese font. See "Chinese font" below |
+| `tools/check-translations.py` | Checks that each Chinese page has the same structure as its English twin (blocks, ids, citations, links). Run before committing. |
+| `docs/zh-style-guide.md` | How the Chinese pages are written: style, translationese to avoid, and the fixed terms |
 | `public/` | Generated. Don't edit it by hand; rebuild instead |
 
 ## Build the public site
