@@ -113,7 +113,7 @@ html:lang(zh) .page-head h1 { max-width: 14em; }
 .page-head.with-figure { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 16px clamp(32px, 5vw, 72px); align-items: center; }
 .head-text { display: grid; gap: 14px; }
 .head-text strong { color: var(--ink); font-weight: 600; }
-.scope-note { font-size: 0.9rem; line-height: 1.55; color: var(--muted); max-width: 60ch; padding-top: 10px; border-top: 1px dashed var(--faint); }
+.scope-note { font-size: 0.9rem; line-height: 1.55; color: var(--muted); padding-top: 10px; border-top: 1px dashed var(--faint); }
 .loop-figure { display: block; width: 100%; max-width: 440px; height: auto; justify-self: center; color: var(--line); overflow: visible; }
 /* The opening figure draws itself in once, piece by piece, as the page loads */
 .loop-figure .onload { opacity: 0; animation: fade-in .5s var(--ease) forwards; animation-delay: calc(var(--i) * 70ms + 200ms); }
