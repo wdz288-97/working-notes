@@ -43,6 +43,8 @@ The build:
 3. Copies the styles, script, drawings and covers. `site.css`, `site.js` and `icons.svg` get a fingerprint of their contents in the file name (for example `site.3de56787ab.css`), and every page links to those names. A changed file always has a new address, so phones and CDNs can't pair a new page with an old stylesheet. The plain names are written as well, so a page cached from before still finds its files.
 4. Rewrites the links between pages to clean addresses: `./` for home, `playbook` instead of `playbook.html`, and so on.
 
+Analytics: Umami Cloud records page views, clicks and reading progress. The events and how to read them are in `AGENTS.md` (Analytics).
+
 GitHub Pages tells browsers to keep each page for 10 minutes, and that can't be changed. Right after a deploy, the GitHub Pages copy can show the previous version for up to 10 minutes, but always as a matching set.
 
 The source pages keep their `.html` links so they still work when opened from disk. The public site uses clean addresses (`/playbook`, `/ai`, `/reading`), which GitHub Pages, Netlify and Cloudflare Pages all serve from the matching `.html` file. GitHub Pages also still serves the old `.html` addresses, so links shared earlier keep working.

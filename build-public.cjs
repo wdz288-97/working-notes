@@ -153,12 +153,22 @@ const renamed = writeFingerprintedAssets();
 // language? Umami records a click on any element with data-umami-event; the page's language goes with it.
 function tagClicks(html) {
   const lang = /<html lang="zh/.test(html) ? 'zh' : 'en';
-  const tag = name => ' data-umami-event="' + name + '" data-umami-event-lang="' + lang + '"';
+  const tag = (name, extra) => ' data-umami-event="' + name + '" data-umami-event-lang="' + lang + '"' + (extra || '');
+  // Where a navigation link goes, as a page name: "./" and "../" are home
+  const target = href => href.replace(/^(\.\.\/|\.\/)+/, '').replace(/#.*$/, '') || 'home';
+  const to = href => ' data-umami-event-target="' + target(href) + '"';
+  // Which way readers move between pages: the top menu (and the site name), the cards on home and the Using AI
+  // page, or the previous/next links at the bottom of each page
+  const tagMenu = block => block.replace(/<a href="([^"]*)"/g, (m, href) => '<a' + tag('menu-click', to(href)) + ' href="' + href + '"');
   return html
     .replace(/<a href="mailto:/g, '<a' + tag('email-click') + ' href="mailto:')
     .replace(/<a href="https:\/\/www\.linkedin\.com/g, '<a' + tag('linkedin-click') + ' href="https://www.linkedin.com')
     .replace(/<a href="#contact"/g, '<a' + tag('get-in-touch') + ' href="#contact"')
-    .replace(/<a class="lang-switch"/g, '<a class="lang-switch"' + tag('language-switch'));
+    .replace(/<a class="lang-switch"/g, '<a class="lang-switch"' + tag('language-switch'))
+    .replace(/<header class="topbar">[\s\S]*?<\/header>/, tagMenu)
+    .replace(/<a class="who-am-i" href="([^"]*)"/g, (m, href) => '<a class="who-am-i"' + tag('menu-click', to(href) + ' data-umami-event-link="site-name"') + ' href="' + href + '"')
+    .replace(/<a class="toc-item" href="([^"]*)"/g, (m, href) => '<a class="toc-item"' + tag('card-click', to(href)) + ' href="' + href + '"')
+    .replace(/<a class="(prev|next)" href="([^"]*)"/g, (m, dir, href) => '<a class="' + dir + '"' + tag('bottom-nav-click', to(href) + ' data-umami-event-direction="' + dir + '"') + ' href="' + href + '"');
 }
 const finish = html => tagClicks(linkFingerprintedAssets(cleanPageLinks(html), renamed));
 fs.writeFileSync(path.join(OUT, 'index.html'), finish(buildHome('', 'en')));
