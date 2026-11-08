@@ -186,6 +186,15 @@ flowchart LR
   - Background browser tabs pause CSS animations. Call `document.getAnimations().forEach(a => a.finish())` before screenshots.
   - Test phones at 360px wide as well as desktop.
 
+## Analytics
+
+- Visitor analytics use **Umami Cloud** (cloud.umami.is): cookie-free, so the site needs no consent banner, and it loads in mainland China (Ding checked). Google Analytics was ruled out because it needs cookies and is blocked in China.
+- The tracking script is added by `build-public.cjs` (the `UMAMI` line in `headExtras`) to every public page in both languages. Source pages stay clean, so opening them locally isn't counted.
+- The website ID in the script is public by design; it is not a secret.
+- Page views are recorded per address automatically (`/ai`, `/zh/ai`, …), so each page and language shows separately.
+- Click events are added by `tagClicks` in `build-public.cjs`, with the page language as a property: `email-click` and `linkedin-click` (footer, every page), `get-in-touch` (home intro) and `language-switch` (top menu). Umami also records the page each click happened on. To track another link, add a rule there rather than editing the source pages.
+- Reading-progress events come from `site.js` (`track()` is a no-op when Umami isn't loaded): `playbook-step` fires the first time each story step becomes active in a visit, with the step number, its heading and the language, so the counts per step show where readers stop; `chapter-end` fires once when a reader reaches a Using AI chapter's self-check section, so chapter-end ÷ page views gives a completion rate per chapter.
+
 ## Checks before publishing
 
 - Contents labels match headings, and every `#anchor` link resolves.

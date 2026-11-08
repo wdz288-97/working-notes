@@ -16,6 +16,13 @@
   // Chinese pages set lang="zh-CN"; every label the script writes has both versions
   var ZH = (document.documentElement.getAttribute('lang') || '').toLowerCase().indexOf('zh') === 0;
   function say(en, zh) { return ZH ? zh : en; }
+  // Reading-progress events for Umami (loaded by the public build). Analytics must never break the page, so a
+  // missing or blocked script is simply skipped.
+  function track(name, data) {
+    try {
+      if (window.umami && typeof window.umami.track === 'function') window.umami.track(name, data);
+    } catch (e) { /* analytics unavailable: nothing to do */ }
+  }
   function $(id) { return document.getElementById(id); }
   function svgEl(tag, attrs, text) {
     var node = document.createElementNS(NS, tag);
@@ -613,6 +620,15 @@
       if (waysSection.getBoundingClientRect().top < window.innerHeight * 0.5) current = 5;
       railLinks.forEach(function (a) { a.classList.toggle('is-current', current !== null && Number(a.getAttribute('data-rail')) === current); });
     }
+    // Reading progress: the first time each step becomes active in a visit, so Umami shows how far readers get
+    var reportedSteps = {};
+    function reportStep(step) {
+      var index = steps.indexOf(step);
+      if (index < 0 || reportedSteps[index]) return;
+      reportedSteps[index] = true;
+      var heading = step.querySelector('h3');
+      track('playbook-step', { step: index + 1, title: (index + 1) + '. ' + (heading ? heading.textContent.trim() : ''), lang: ZH ? 'zh' : 'en' });
+    }
     function activate(step) {
       if (step === activeStep) return;
       if (activeStep) activeStep.classList.remove('is-active');
@@ -623,6 +639,7 @@
         return;
       }
       step.classList.add('is-active');
+      reportStep(step);
       var scene = step.getAttribute('data-scene');
       var state = step.getAttribute('data-state');
       stage.setAttribute('data-scene', scene);
@@ -777,6 +794,9 @@
     var READING_LINE = 1 / 3;
     var contents = $('guide-contents');
     var toContents = $('to-contents');
+    // The end of the chapter: the self-check section. Reaching it once per visit counts as reading to the end.
+    var chapterEnd = $('self-check');
+    var endReported = false;
     scrollHandlers.push(function markCurrentSection() {
       var line = window.innerHeight * READING_LINE;
       var current = null;
@@ -784,6 +804,10 @@
       sections.forEach(function (section) { section.link.classList.toggle('is-current', section === current); });
       // Phones: offer the way back to the contents once they have scrolled out of view
       if (contents && toContents) toContents.classList.toggle('is-shown', contents.getBoundingClientRect().bottom < 0);
+      if (chapterEnd && !endReported && chapterEnd.getBoundingClientRect().top < window.innerHeight * 0.8) {
+        endReported = true;
+        track('chapter-end', { lang: ZH ? 'zh' : 'en' });
+      }
     });
   })();
 

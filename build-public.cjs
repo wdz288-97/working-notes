@@ -38,11 +38,16 @@ const ZH_DESCRIPTIONS = {
 };
 const PAGE_NAMES = PAGES.map(page => page.replace(/\.html$/, ''));
 
+// Visitor analytics: Umami Cloud, cookie-free, so no consent banner is needed. The website ID is public by design.
+// Only the public build gets it, so opening the source files locally doesn't count as a visit.
+const UMAMI = '<script defer src="https://cloud.umami.is/script.js" data-website-id="46f5f6fc-4dab-45f8-aeb1-d6081b6578ba"></script>';
+
 function headExtras(page, lang) {
   const zh = lang === 'zh';
   return [
     '<meta name="description" content="' + (zh ? ZH_DESCRIPTIONS : DESCRIPTIONS)[page] + '">',
-    '<link rel="icon" href="' + (zh ? '../' : '') + 'favicon.svg" type="image/svg+xml">'
+    '<link rel="icon" href="' + (zh ? '../' : '') + 'favicon.svg" type="image/svg+xml">',
+    UMAMI
   ].join('\n');
 }
 
@@ -144,7 +149,18 @@ function linkFingerprintedAssets(html, renamed) {
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 const renamed = writeFingerprintedAssets();
-const finish = html => linkFingerprintedAssets(cleanPageLinks(html), renamed);
+// Click tracking for the few links that answer a real question: does the site lead to contact, and do readers switch
+// language? Umami records a click on any element with data-umami-event; the page's language goes with it.
+function tagClicks(html) {
+  const lang = /<html lang="zh/.test(html) ? 'zh' : 'en';
+  const tag = name => ' data-umami-event="' + name + '" data-umami-event-lang="' + lang + '"';
+  return html
+    .replace(/<a href="mailto:/g, '<a' + tag('email-click') + ' href="mailto:')
+    .replace(/<a href="https:\/\/www\.linkedin\.com/g, '<a' + tag('linkedin-click') + ' href="https://www.linkedin.com')
+    .replace(/<a href="#contact"/g, '<a' + tag('get-in-touch') + ' href="#contact"')
+    .replace(/<a class="lang-switch"/g, '<a class="lang-switch"' + tag('language-switch'));
+}
+const finish = html => tagClicks(linkFingerprintedAssets(cleanPageLinks(html), renamed));
 fs.writeFileSync(path.join(OUT, 'index.html'), finish(buildHome('', 'en')));
 PAGES.forEach(page => fs.writeFileSync(path.join(OUT, page), finish(buildPage('', page, 'en'))));
 if (fs.existsSync(path.join(SOURCE, 'zh'))) {

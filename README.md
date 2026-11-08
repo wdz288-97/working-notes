@@ -40,7 +40,7 @@ node build-public.cjs
 The build:
 
 1. Wraps the home page in a full HTML document and saves it as `public/index.html`, and does the same for the Chinese pages in `zh/` (saved under `public/zh/`, with `lang="zh-CN"` and Chinese descriptions).
-2. Copies the other pages, adding a page description and the favicon to each.
+2. Copies the other pages, adding a page description, the favicon and the Umami analytics script (cookie-free) to each.
 3. Copies the styles, script, drawings and covers. `site.css`, `site.js` and `icons.svg` get a fingerprint of their contents in the file name (for example `site.3de56787ab.css`), and every page links to those names. A changed file always has a new address, so phones and CDNs can't pair a new page with an old stylesheet. The plain names are written as well, so a page cached from before still finds its files.
 4. Rewrites the links between pages to clean addresses: `./` for home, `playbook` instead of `playbook.html`, and so on.
 
